@@ -13,6 +13,16 @@
     "@babel/preset-env": "^7.17.12",
     "@babel/preset-react": "^7.17.12",
     "@babel/preset-typescript": "^7.17.12",
+    "@storybook/addon-actions": "^6.5.3",
+    "@storybook/addon-essentials": "^6.5.3",
+    "@storybook/addon-interactions": "^6.5.3",
+    "@storybook/addon-links": "^6.5.3",
+    "@storybook/builder-webpack4": "^6.5.3",
+    "@storybook/builder-webpack5": "^6.5.3",
+    "@storybook/manager-webpack4": "^6.5.3",
+    "@storybook/manager-webpack5": "^6.5.3",
+    "@storybook/react": "^6.5.3",
+    "@storybook/testing-library": "^0.0.11",
     "@types/jest": "^27.5.1",
     "@types/react": "^18.0.9",
     "@types/react-dom": "^18.0.4",
@@ -39,7 +49,9 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {},
-  "scripts":{
-    "publish:canary":"lerna publish --canary --preid canary"
+  "scripts": {
+    "publish:canary": "lerna publish --canary --preid canary",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   }
 }
