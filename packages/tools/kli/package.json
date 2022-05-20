@@ -1,10 +1,10 @@
 {
   "name": "@infini-soft/kli",
-  "version": "0.0.2-alpha.1",
+  "version": "0.0.2-canary.8+2a2dd9a",
   "description": "Kitchen Line Interface",
   "author": "Infinisoft Inc. <info@infini-soft.com>",
   "homepage": "https://www.kitchen.infini-soft.com/",
-  "license": "UNLICENSED",
+  "license": "INFINISOFT",
   "bin": {
     "mono": "./bin/kli.js"
   },
@@ -15,6 +15,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/mouimet-infinisoft/kitchen-next.git",
-    "template":"https://github.com/Infinisoft-inc/kitchen-mono-template.git"
-  }
+    "template": "https://github.com/Infinisoft-inc/kitchen-mono-template.git"
+  },
+  "gitHead": "2a2dd9af203fe9e9eef3aef9d7c4707e99ef3849"
 }
