@@ -1,3 +1,6 @@
 [submodule "template/kitchen-mono-template"]
 	path = template/kitchen-mono-template
 	url = https://github.com/Infinisoft-inc/kitchen-mono-template.git
+[submodule "template/template-fm-components"]
+	path = template/template-fm-components
+	url = https://github.com/Infinisoft-inc/template-fm-components.git
