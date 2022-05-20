@@ -1,26 +1,17 @@
-# Getting started
-
-## 🏭 React 18 Mono Repo
-- Not yet
-  
-## ✨ Features
+# ✨ React 18 Mono Repo
 - Monorepo
 - Yarn workspace
 - Webpack 5 boilerplate
 - React 18
+- Typescrcipt
 - Css / Less
 
-## 🔨 Usage
+# 🔨 Usage
 
 ```bash
-$ npx @infini-soft/boiler@0.0.5-canary.9 create
+$ npx @infini-soft/kli mono create myrepo
 
 ```
-
-## 📚 Documentation
-
-> Get all documentations, examples and execute it directly from our website, the ☕ kitchen! Come cook software :) [https://www.kitchen.infini-soft.com/microapp/contacts](https://www.kitchen.infini-soft.com/microapp/contacts
-
 
 Powered 🚀 by [Infinisoft Inc.](https://www.infini-soft.com)
 <br>
