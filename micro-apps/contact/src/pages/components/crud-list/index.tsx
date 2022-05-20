@@ -6,7 +6,7 @@
 import { Button, Typography } from 'antd';
 import React from 'react';
 import { useMicroContext } from '../../../context/micro';
-import { AddIcon, DeleteIcon } from '../../../pages/assets/svg';
+import { AddIcon, DeleteIcon } from '../../assets/svg';
 import ContactDetail from '../contact-detail';
 
 export type CrudListProps = Partial<HTMLElement> & {
@@ -53,4 +53,4 @@ export const CrudList: React.FC<CrudListProps> = ({ field, title, icon, readonly
     /></>
 }
 
-export default CrudList       
+export default CrudList
