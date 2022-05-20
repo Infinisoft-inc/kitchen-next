@@ -15,7 +15,11 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/mouimet-infinisoft/kitchen-next.git",
-    "template": "https://github.com/Infinisoft-inc/kitchen-mono-template.git"
+    "template": "https://github.com/Infinisoft-inc/kitchen-mono-template.git",
+    "component":"https://github.com/mouimet-infinisoft/tpl-mf-component.git"
   },
-  "gitHead": "2a2dd9af203fe9e9eef3aef9d7c4707e99ef3849"
+  "gitHead": "2a2dd9af203fe9e9eef3aef9d7c4707e99ef3849",
+  "dependencies": {
+    "mustache": "^4.2.0"
+  }
 }

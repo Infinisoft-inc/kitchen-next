@@ -4,7 +4,9 @@
  * www.infini-soft.com
  */
 const mono = require('./mono');
+const component = require('./component');
 
 module.exports = {
-  mono
+  mono,
+  component
 };
