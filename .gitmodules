@@ -1,0 +1,3 @@
+[submodule "template/kitchen-mono-template"]
+	path = template/kitchen-mono-template
+	url = https://github.com/Infinisoft-inc/kitchen-mono-template.git
