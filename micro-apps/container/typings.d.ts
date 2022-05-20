@@ -16,3 +16,9 @@ declare module 'contact/Index' {
 
   export default Index;
 }
+
+// declare module 'button/Button' {
+//   const Button: React.ComponentType<{message?:string}>;
+
+//   export default Button;
+// }

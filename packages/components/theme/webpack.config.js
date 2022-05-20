@@ -4,26 +4,25 @@
  * www.infini-soft.com
  */
 const { merge } = require('webpack-merge');
-const common = require('../../dev/config/webpack.common');
+const common = require('../../../dev/config/webpack.common');
 const path = require('path');
 const { ModuleFederationPlugin } = require('webpack').container;
-const deps = require('./package.json').dependencies
+const deps = require('./package.json').peerDependencies
 
 module.exports = merge(common, {
   mode: 'development',
-  entry: path.join(process.cwd(), "/src/index.ts"),
   devServer: {
     static: path.join(process.cwd(), 'dist'),
     hot: true,
-    port: 8000,
+    port: 8088,
   },
   devtool: 'inline-source-map',
   plugins: [
     new ModuleFederationPlugin({
-      name: 'container',
-      remotes: {
-        contact: 'contact@https://app.micro.infini-soft.com/contact/remoteEntry.js',
-        button: 'button@https://app.micro.infini-soft.com/button/remoteEntry.js'
+      name: 'theme',
+      filename: 'remoteEntry.js',
+      exposes: {
+        './useTheme': './src',
       },
       shared: {
         ...deps,

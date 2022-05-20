@@ -10,14 +10,8 @@ const { ModuleFederationPlugin } = require('webpack').container;
 const deps = require('./package.json').dependencies
 
 module.exports = merge(common, {
-  mode: 'development',
+  mode: 'production',
   entry: path.join(process.cwd(), "/src/index.ts"),
-  devServer: {
-    static: path.join(process.cwd(), 'dist'),
-    hot: true,
-    port: 8000,
-  },
-  devtool: 'inline-source-map',
   plugins: [
     new ModuleFederationPlugin({
       name: 'container',

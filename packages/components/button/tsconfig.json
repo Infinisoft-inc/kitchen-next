@@ -19,7 +19,7 @@
     "mock/**/*",
     "src/**/*",
     "config/*",
-    "typings.d.ts" ],
+    "typings.d.ts", "../../../micro-apps/container/button.d.ts" ],
   "exclude": [
     "node_modules",
     "lib",
