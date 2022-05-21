@@ -6,18 +6,18 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  title: 'KitchenSink',
+  tagline: 'Cooking the future, one micro at a time! 🚀',
   url: 'https://your-docusaurus-test-site.com',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/infinisoftticon.ico',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'Infinisoft Inc.', // Usually your GitHub org/user name.
+  projectName: 'KitchenSink', // Usually your repo name.
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
@@ -57,21 +57,44 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: 'My Site',
+        title: 'Infinisoft',
         logo: {
           alt: 'My Site Logo',
-          src: 'img/logo.svg',
+          src: 'img/infinisoftticon.png',
         },
         items: [
           {
             type: 'doc',
             docId: 'intro',
-            position: 'left',
-            label: 'Tutorial',
+            position: 'right',
+            label: 'Cli',
+          },
+          {
+            type: 'doc',
+            docId: 'intro',
+            position: 'right',
+            label: 'Libraries',
+          },
+          {
+            type: 'doc',
+            docId: 'intro',
+            position: 'right',
+            label: 'Schemas',
+          },
+          {
+            type: 'doc',
+            docId: 'intro',
+            position: 'right',
+            label: 'Templates',
+          },          {
+            type: 'doc',
+            docId: 'intro',
+            position: 'right',
+            label: 'Components',
           },
           {to: '/blog', label: 'Blog', position: 'left'},
           {
-            href: 'https://github.com/facebook/docusaurus',
+            href: 'https://github.com/Infinisoft-inc',
             label: 'GitHub',
             position: 'right',
           },
@@ -84,7 +107,23 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Tutorial',
+                label: 'Cli docs',
+                to: '/docs/intro',
+              },
+              {
+                label: 'Libraries docs',
+                to: '/docs/intro',
+              },
+              {
+                label: 'Schemas docs',
+                to: '/docs/intro',
+              },
+              {
+                label: 'Templates docs',
+                to: '/docs/intro',
+              },
+              {
+                label: 'Components docs',
                 to: '/docs/intro',
               },
             ],
@@ -93,16 +132,16 @@ const config = {
             title: 'Community',
             items: [
               {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+                label: 'Npm',
+                href: 'https://www.npmjs.com/search?q=infini-soft%2F',
               },
               {
                 label: 'Discord',
                 href: 'https://discordapp.com/invite/docusaurus',
               },
               {
-                label: 'Twitter',
-                href: 'https://twitter.com/docusaurus',
+                label: 'Facebook',
+                href: 'https://facebook.com/infinisoft',
               },
             ],
           },
@@ -115,12 +154,12 @@ const config = {
               },
               {
                 label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                href: 'https://github.com/Infinisoft-inc',
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} KitchenSink, Inc. Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,
