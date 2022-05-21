@@ -4,7 +4,7 @@
  */
 
 .heroBanner {
-  padding: 4rem 0;
+  padding: 4rem 0 !important;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -20,4 +20,30 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: var(--ifm-container-width);
+  padding: 0 var(--ifm-spacing-horizontal);
+  width: 100%;
+}
+
+button {
+  box-sizing: border-box;
+    height: 44px;
+    /* margin-right: 16px; */
+    padding: 0 24px;
+    color: white;
+    font-size: 16px;
+    background: black;
+    border: 1px solid #000;
+    border-radius: 22px;
+    outline: none;
+    cursor: pointer;
+    transition: all .3s;
+}
+
+button:hover {
+  opacity: .8;
 }
