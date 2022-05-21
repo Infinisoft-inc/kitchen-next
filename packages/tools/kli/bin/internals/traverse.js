@@ -16,7 +16,7 @@ const traverse = function (sourceDir, visitor) {
   const targetFile = path.resolve(sourceDir);
   if (!existsSync(targetFile)) {
     mkdirSync(targetFile, {
-      mode: 0o744,
+      mode: 0o777,
     });
   }
   const files = readdirSync(targetFile);
