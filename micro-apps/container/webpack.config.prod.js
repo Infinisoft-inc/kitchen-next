@@ -17,7 +17,8 @@ module.exports = merge(common, {
       name: 'container',
       remotes: {
         contact: 'contact@https://app.micro.infini-soft.com/contact/remoteEntry.js',
-        button: 'button@https://app.micro.infini-soft.com/button/remoteEntry.js'
+        button: 'button@https://app.micro.infini-soft.com/button/remoteEntry.js',
+        buttona: 'buttona@https://app.micro.infini-soft.com/buttona/remoteEntry.js'
       },
       shared: {
         ...deps,

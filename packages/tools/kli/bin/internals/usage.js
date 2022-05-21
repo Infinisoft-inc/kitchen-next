@@ -18,6 +18,8 @@ options
 --help                      - Usage
 --version                   - Version
 --dry-run                   - Simulate the execution without changing anything
+--skeleton                  - Console log json skeleton for the command input
+--input <json file>         - Customized json skeleton for input
 `);
   console.log(`commands    subcommands    arguments`);
 

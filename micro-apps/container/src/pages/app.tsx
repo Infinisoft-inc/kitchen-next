@@ -11,6 +11,7 @@ import React, { Suspense } from 'react';
 
 const Index = React.lazy(() => import('contact/Index'));
 const Button = React.lazy(() => import('button/Button'));
+const ButtonA = React.lazy(() => import('buttona/ButtonA'));
 
 const App = () => {
   return (<Suspense fallback="container">
@@ -18,6 +19,7 @@ const App = () => {
     <Index />
     <Button message='KOUUUUUUUUUUUUUUUUAAAAAAAAA??' />
     <Button message='Bobeytyte??' />
+    <ButtonA message='Bobeytyte??' size='large' backgroundColor='pink' />
   </Suspense>
   );
 };

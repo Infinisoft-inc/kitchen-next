@@ -9,7 +9,7 @@ const {create} = require('./create');
  * Command usage informations
  */
 const usage = () => {
-  console.log(`component     create          <target>      - Create new federated component to <target> folder.`);
+  console.log(`component     create          <json input>      - Create new federated component.`);
 };
 
 module.exports = {
