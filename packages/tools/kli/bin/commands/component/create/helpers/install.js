@@ -12,10 +12,10 @@ const {writeFileSync, readFileSync} = require('fs')
 const VERBOSE = process.argv.join(' ').includes('--debug');
 const DRYRUN = process.argv.join(' ').includes('--dry-run');
 const data = {
-  "name": "button",
-  "component":"Button",
-  "import": "./Button",
-  "module":"button/Button",
+  "name": "buttona",
+  "component":"ButtonA",
+  "import": "./ButtonA",
+  "module":"button/ButtonA",
   "port": 8088
 }
 
@@ -44,7 +44,7 @@ Installing dependencies...
     };
 
     traverse(folder, visitor);
-    // exec(`yarn`);
+    exec(`yarn`);
   }
 };
 module.exports = { install };
