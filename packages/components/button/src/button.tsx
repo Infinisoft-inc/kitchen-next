@@ -35,6 +35,6 @@ const buttonPresets: ButtonPresets = {
   }
 }
 
-const Button = ({ message = 'Doguette la coquette', backgroundColor = 'blue', size = 'large', ...props }: ButtonProps) => <Suspense><input type='text' {...props}/><button {...props} style={{ backgroundColor, ...buttonPresets[size] }} >CHALKUT</button></Suspense>
+const Button = ({ message = 'Doguette la coquette', backgroundColor = 'blue', size = 'large', ...props }: ButtonProps) => <Suspense><input type='text' {...props} /><button {...props} style={{ backgroundColor, ...buttonPresets[size] }} >CHALKUT</button></Suspense>
 
 export default Button;
