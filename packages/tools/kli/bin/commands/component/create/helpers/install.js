@@ -5,9 +5,20 @@
  */
 const { chdir } = require('process');
 const { exec } = require('./exec');
+const { render } = require('mustache');
+const { traverse } = require('../../../../internals/traverse');
+const {writeFileSync, readFileSync} = require('fs')
 
 const VERBOSE = process.argv.join(' ').includes('--debug');
 const DRYRUN = process.argv.join(' ').includes('--dry-run');
+const data = {
+  "name": "button",
+  "component":"Button",
+  "import": "./Button",
+  "module":"button/Button",
+  "port": 8088
+}
+
 
 /**
  * Dependencies installtion
@@ -24,7 +35,16 @@ Installing dependencies...
 
   if (!DRYRUN && folder) {
     chdir(folder);
-    exec(`yarn`);
+
+    const visitor = (filepath) => {
+      writeFileSync(
+        filepath,
+        render(readFileSync(filepath).toString('utf-8'), data),
+      );
+    };
+
+    traverse(folder, visitor);
+    // exec(`yarn`);
   }
 };
 module.exports = { install };
