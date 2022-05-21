@@ -16,9 +16,7 @@ module.exports = merge(common, {
     new ModuleFederationPlugin({
       name: 'container',
       remotes: {
-        contact: 'contact@https://app.micro.infini-soft.com/contact/remoteEntry.js',
-        button: 'button@https://app.micro.infini-soft.com/button/remoteEntry.js',
-        buttona: 'buttona@https://app.micro.infini-soft.com/buttona/remoteEntry.js'
+        contact: 'contact@https://app.micro.infini-soft.com/contact/remoteEntry.js'
       },
       shared: {
         ...deps,

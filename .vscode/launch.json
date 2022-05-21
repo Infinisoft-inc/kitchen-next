@@ -5,12 +5,28 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Contact",
+      "name": "Package",
       "type": "pwa-chrome",
       "request": "launch",
       "url": "http://localhost:8080",
       "protocol": "inspector",
       "webRoot": "${workspaceFolder}/packages/contact/src"
+    },
+    {
+      "name": "Microapp",
+      "type": "pwa-chrome",
+      "request": "launch",
+      "url": "http://localhost:8080",
+      "protocol": "inspector",
+      "webRoot": "${workspaceFolder}/micro-apps/container/src"
+    },
+    {
+      "name": "Storybook",
+      "type": "pwa-chrome",
+      "request": "launch",
+      "url": "http://localhost:6006",
+      "protocol": "inspector",
+      "webRoot": "${workspaceFolder}/micro-apps/container/src"
     }
   ]
 }

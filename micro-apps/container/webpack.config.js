@@ -23,10 +23,7 @@ module.exports = merge(common, {
       name: 'container',
       remotes: {
         contact:
-          'contact@https://app.micro.infini-soft.com/contact/remoteEntry.js',
-        button:
-          'button@https://app.micro.infini-soft.com/button/remoteEntry.js',
-        pulse: 'pulse@https://app.micro.infini-soft.com/pulse/remoteEntry.js',
+          'contact@https://app.micro.infini-soft.com/contact/remoteEntry.js'
       },
       shared: {
         ...deps,

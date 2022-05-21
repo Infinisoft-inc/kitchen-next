@@ -17,15 +17,4 @@ declare module 'contact/Index' {
   export default Index;
 }
 
-declare module 'pulse/Pulse' {
-  export type MotionDirection = 'vertical' | 'horizontal'
 
-  export type PulseProps = {
-    direction: MotionDirection
-    children: React.ReactNode
-  };
-
-
-  const Pulse: (props: PulseProps) => JSX.Element;
-  export default Pulse;
-}
