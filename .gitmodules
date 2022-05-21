@@ -4,3 +4,6 @@
 [submodule "template/template-fm-components"]
 	path = template/template-fm-components
 	url = https://github.com/Infinisoft-inc/template-fm-components.git
+[submodule "template/template-fm-container"]
+	path = template/template-fm-container
+	url = https://github.com/Infinisoft-inc/template-fm-container.git
