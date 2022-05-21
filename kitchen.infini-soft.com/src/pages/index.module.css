@@ -8,6 +8,8 @@
   text-align: center;
   position: relative;
   overflow: hidden;
+  background: url('https://infinicloudstorage215423-mart.s3.amazonaws.com/public/kitchen.infini-soft.com/assets/hero-kitchen.gif');
+  height: 400px;
 }
 
 @media screen and (max-width: 996px) {
@@ -31,19 +33,19 @@
 
 button {
   box-sizing: border-box;
-    height: 44px;
-    /* margin-right: 16px; */
-    padding: 0 24px;
-    color: white;
-    font-size: 16px;
-    background: black;
-    border: 1px solid #000;
-    border-radius: 22px;
-    outline: none;
-    cursor: pointer;
-    transition: all .3s;
+  height: 44px;
+  /* margin-right: 16px; */
+  padding: 0 24px;
+  color: white;
+  font-size: 16px;
+  background: black;
+  border: 1px solid #000;
+  border-radius: 22px;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.3s;
 }
 
 button:hover {
-  opacity: .8;
+  opacity: 0.8;
 }
