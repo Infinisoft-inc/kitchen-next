@@ -17,8 +17,15 @@ declare module 'contact/Index' {
   export default Index;
 }
 
-// declare module 'button/Button' {
-//   const Button: React.ComponentType<{message?:string}>;
+declare module 'pulse/Pulse' {
+  export type MotionDirection = 'vertical' | 'horizontal'
 
-//   export default Button;
-// }
+  export type PulseProps = {
+    direction: MotionDirection
+    children: React.ReactNode
+  };
+
+
+  const Pulse: (props: PulseProps) => JSX.Element;
+  export default Pulse;
+}

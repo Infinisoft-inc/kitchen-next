@@ -7,11 +7,11 @@ const { merge } = require('webpack-merge');
 const common = require('../../dev/config/webpack.common');
 const path = require('path');
 const { ModuleFederationPlugin } = require('webpack').container;
-const deps = require('./package.json').dependencies
+const deps = require('./package.json').dependencies;
 
 module.exports = merge(common, {
   mode: 'development',
-  entry: path.join(process.cwd(), "/src/index.ts"),
+  entry: path.join(process.cwd(), '/src/index.ts'),
   devServer: {
     static: path.join(process.cwd(), 'dist'),
     hot: true,
@@ -22,9 +22,11 @@ module.exports = merge(common, {
     new ModuleFederationPlugin({
       name: 'container',
       remotes: {
-        contact: 'contact@https://app.micro.infini-soft.com/contact/remoteEntry.js',
-        button: 'button@https://app.micro.infini-soft.com/button/remoteEntry.js',
-        buttona: 'buttona@https://app.micro.infini-soft.com/buttona/remoteEntry.js'
+        contact:
+          'contact@https://app.micro.infini-soft.com/contact/remoteEntry.js',
+        button:
+          'button@https://app.micro.infini-soft.com/button/remoteEntry.js',
+        pulse: 'pulse@https://app.micro.infini-soft.com/pulse/remoteEntry.js',
       },
       shared: {
         ...deps,
