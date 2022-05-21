@@ -1,1 +1,1 @@
-{"name":"booper","component":"Booper","port":8090}
+{"name":"notification","component":"NotificationProvider","port":8192}
