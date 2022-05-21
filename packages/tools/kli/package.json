@@ -1,6 +1,6 @@
 {
   "name": "@infini-soft/kli",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Kitchen Line Interface",
   "author": "Infinisoft Inc. <info@infini-soft.com>",
   "homepage": "https://www.kitchen.infini-soft.com/",
@@ -16,7 +16,7 @@
     "type": "git",
     "url": "https://github.com/mouimet-infinisoft/kitchen-next.git",
     "template": "https://github.com/Infinisoft-inc/kitchen-mono-template.git",
-    "component":"https://github.com/Infinisoft-inc/template-fm-components.git"
+    "component": "https://github.com/Infinisoft-inc/template-fm-components.git"
   },
   "gitHead": "2a2dd9af203fe9e9eef3aef9d7c4707e99ef3849",
   "dependencies": {
