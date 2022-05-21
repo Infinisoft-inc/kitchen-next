@@ -13,7 +13,7 @@ const DRYRUN = process.argv.join(' ').includes('--dry-run');
  * Dependencies installtion
  * @param {string} folder
  */
-const postInstall = (folder) => {
+const postInstall = ({name: folder}) => {
   console.log(`
 Post installation...
 ----------------------`);

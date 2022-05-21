@@ -16,27 +16,16 @@ const DRYRUN = process.argv.join(' ').includes('--dry-run');
  * Dependencies installtion
  * @param {string} folder
  */
-const install = () => {
+const install = (inputParameters) => {
   console.log(`
 Installing dependencies...
 ----------------------`);
-  let inputFile = process.argv[4];
-  const inputParameters = JSON.parse(
-    readFileSync(inputFile).toString('utf-8'),
-  );
-  const folder = inputParameters.name
-
-  if (VERBOSE) {
-    console.log(`install() folder `, folder);
-  }
 
   if (VERBOSE) {
     console.log(`install() inputParameters `, inputParameters);
   }
 
-  if (!DRYRUN && folder && inputParameters) {
-    chdir(folder);
-
+  if (!DRYRUN && inputParameters) {
     const visitor = (filepath) => {
       writeFileSync(
         filepath,
@@ -44,7 +33,7 @@ Installing dependencies...
       );
     };
 
-    traverse(folder, visitor);
+    traverse(inputParameters.name, visitor);
     exec(`yarn`);
   }
 };

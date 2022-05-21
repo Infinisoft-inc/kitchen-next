@@ -14,7 +14,7 @@ const DRYRUN = process.argv.join(' ').includes('--dry-run');
  * Clone git repo
  * @param {string} folder
  */
-const clone = (folder) => {
+const clone = ({name: folder}) => {
   console.log(`
 Cloning repo...
 ----------------------`);

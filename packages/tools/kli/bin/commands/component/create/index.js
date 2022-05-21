@@ -3,23 +3,25 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
-const { resolve } = require('path');
 const { clone } = require('./helpers/clone');
 const { complete } = require('./helpers/complete');
 const { install } = require('./helpers/install');
 const { initialize } = require('./helpers/initialize');
 const { postInstall } = require('./helpers/post.install');
+const { readFileSync } = require('fs');
 
 /**
  * Command runner
  */
 const create = () => {
   initialize();
-  const targetDir = resolve(process.argv[4]);
 
-  clone(targetDir);
-  install(targetDir);
-  postInstall(targetDir);
+  let inputFile = process.argv[4];
+  const inputParameters = JSON.parse(readFileSync(inputFile).toString('utf-8'));
+
+  clone(inputParameters);
+  install(inputParameters);
+  postInstall(inputParameters);
   complete();
 };
 
