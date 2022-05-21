@@ -11,6 +11,12 @@ const {writeFileSync, readFileSync} = require('fs')
 
 const VERBOSE = process.argv.join(' ').includes('--debug');
 const DRYRUN = process.argv.join(' ').includes('--dry-run');
+
+/**
+ * prompt for answer
+ * or
+ * unattended
+ */
 const data = {
   "name": "buttona",
   "component":"ButtonA",
