@@ -7,7 +7,9 @@ const { merge } = require('webpack-merge');
 const common = require('../../../dev/config/webpack.common');
 const path = require('path');
 const { ModuleFederationPlugin } = require('webpack').container;
-const deps = require('./package.json').peerDependencies
+const pkg = require('./package.json')
+const deps = pkg.peerDependencies
+
 
 module.exports = merge(common, {
   mode: 'development',
@@ -19,10 +21,10 @@ module.exports = merge(common, {
   devtool: 'inline-source-map',
   plugins: [
     new ModuleFederationPlugin({
-      name: 'button',
+      name: pkg.name,
       filename: 'remoteEntry.js',
       exposes: {
-        './Button': './src/button',
+        './Button': './src/component',
       },
       shared: {
         ...deps,

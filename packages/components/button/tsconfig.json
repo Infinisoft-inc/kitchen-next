@@ -24,7 +24,7 @@
     "node_modules",
     "lib",
     "es",
-    "dist",
+    "button",
     "typings",
     "**/__test__",
     "test",

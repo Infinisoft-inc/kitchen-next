@@ -9,6 +9,6 @@ import React from "react";
 export type MotionDirection = 'vertical' | 'horizontal'
 
 export type PulseProps = {
-  direction: MotionDirection
-  children: React.ReactNode
+  direction?: MotionDirection
+  children?: React.ReactNode
 };

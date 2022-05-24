@@ -9,15 +9,16 @@
 
 import { Layout } from 'antd';
 import React, { Suspense } from 'react';
+import './styles.css';
 const { Sider, Content, Footer, Header } = Layout
 
 const Index = React.lazy(() => import('contact/Index'));
+const Button = React.lazy(() => import('button/Button'));
 
 const App = () => {
   return (<Suspense fallback="container">
     <Layout>
-      <Header>
-        <h1>Container</h1>
+      <Header className='topbar'>
       </Header>
 
       <Layout>
@@ -25,6 +26,7 @@ const App = () => {
 
         <Content>
           <Index />
+          <Button message='11'/>
         </Content>
 
       </Layout>

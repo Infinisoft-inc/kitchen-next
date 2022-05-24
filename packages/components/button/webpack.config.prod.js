@@ -16,7 +16,7 @@ module.exports = merge(common, {
       name: 'button',
       filename: 'remoteEntry.js',
       exposes: {
-        './Button': './src/button',
+        './Button': './src/component',
       },
       shared: {
         ...deps,

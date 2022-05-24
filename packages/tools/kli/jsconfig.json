@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "target": "es6",
+    "baseUrl": ".",
+    "checkJs":true,
+    "resolveJsonModule":true,
+    "paths": {
+      "@/internals/*": ["./src/internals/*"],
+      "@/commands/*":["./src/commands/*"],
+      "@/*":["*"]
+    }
+  }
+}
