@@ -7,6 +7,7 @@ const { create } = require('./create');
 const { build } = require('./build');
 const { deploy } = require('./deploy');
 const { use } = require('./use');
+const { remove } = require('./remove');
 
 /**
  * Command usage informations
@@ -16,12 +17,15 @@ const usage = () => {
 component     create          <json input>      - Create new federated component.
               build                             - Build component
               deploy                            - Deploy component on cloud.
-              use             <name>            - Add module to container`);};
+              use             <name>            - Add module to container
+              remove          <name>            - removes module from container`);
+};
 
 module.exports = {
   create,
   build,
   deploy,
   use,
+  remove,
   usage,
 };

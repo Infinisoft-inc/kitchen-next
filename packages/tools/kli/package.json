@@ -29,5 +29,10 @@
     "build:dev:watch": "webpack -c ./webpack.config.js -w",
     "test": "jest",
     "test:coverage": "jest --coverage&& start coverage/lcov-report/index.html"
+  },
+  "infinisoft": {
+    "moduleFederation": {
+      "registry": "https://app.micro.infini-soft.com"
+    }
   }
 }

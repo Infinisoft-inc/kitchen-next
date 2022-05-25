@@ -12,7 +12,7 @@ import React, { Suspense } from 'react';
 import './styles.css';
 const { Sider, Content, Footer, Header } = Layout
 
-const Index = React.lazy(() => import('contact/Index'));
+// const Index = React.lazy(() => import('contact/Index'));
 const Button = React.lazy(() => import('button/Button'));
 
 const App = () => {
@@ -25,7 +25,7 @@ const App = () => {
         <Sider>left sidebar</Sider>
 
         <Content>
-          <Index />
+          {/* <Index /> */}
           <Button message='11'/>
         </Content>
 
