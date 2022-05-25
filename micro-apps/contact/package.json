@@ -33,5 +33,13 @@
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-router-dom": "^6.3.0"
+  },
+  "infinisoft": {
+    "moduleFederation": {
+      "remotes": {
+        "test1": "test1@https://app.micro.infini-soft.com/test1/remoteEntry.js",
+        "button": "button@http://localhost:8082/remoteEntry.js"
+      }
+    }
   }
 }

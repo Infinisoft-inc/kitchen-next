@@ -18,6 +18,7 @@
   },
   "include": [
     "mock/**/*",
+    "modules/*.d.ts",
     "src/**/*",
     "config/*",
     "typings.d.ts" ],

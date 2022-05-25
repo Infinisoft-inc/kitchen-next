@@ -15,6 +15,8 @@ const Create = React.lazy(() => import('./create'));
 const Filter = React.lazy(() => import('./filter'));
 const Read = React.lazy(() => import('./read'));
 const Search = React.lazy(() => import('./search'));
+// const Test1 = React.lazy(() => import(/* webpackChunkName: 'Test1' */ 'test1/Test1'))
+const MyButton = React.lazy(() => import(/* webpackChunkName: 'MyButton' */ 'button/Button'))
 
 const App = () => {
   const actionRef = useRef<ActionType>();
@@ -33,6 +35,9 @@ const App = () => {
       backIcon={<><BackArrow /></>}
       onBack={() => { }}
       title={<Typography.Title level={1}>Contacts</Typography.Title>} />
+
+    {/* <Test1 /> */}
+    <MyButton />
 
     <ProTable
       actionRef={actionRef}
