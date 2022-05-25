@@ -26,6 +26,7 @@
   },
   "scripts": {
     "build:dev": "webpack -c ./webpack.config.js",
+    "build:prod": "webpack -c ./webpack.config.prod.js",
     "build:dev:watch": "webpack -c ./webpack.config.js -w",
     "test": "jest",
     "test:coverage": "jest --coverage&& start coverage/lcov-report/index.html"

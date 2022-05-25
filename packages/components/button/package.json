@@ -17,7 +17,6 @@
     "serve:dist": "serve -s dist"
   },
   "devDependencies": {
-    "@infini-soft/kli": "C:/SHARED/WORKSPACE/kitchen-next/packages/tools/kli",
     "@types/react": "^18.0.9",
     "@types/react-dom": "^18.0.4"
   },
@@ -25,7 +24,5 @@
     "react": "^18.1.0",
     "react-dom": "^18.1.0"
   },
-  "dependencies": {
-    "@infini-soft/kli": "C:/SHARED/WORKSPACE/kitchen-next/packages/tools/kli"
-  }
+  "dependencies": {}
 }
