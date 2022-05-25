@@ -1,10 +1,10 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import Fader from '.';
+import Fader from './index';
 
 // https://storybook.js.org/docs/react/writing-stories/introduction
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'TEMPLATE/Fader',
+  title: 'UX/Fader',
   component: Fader,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   // https://storybook.js.org/docs/react/essentials/controls
@@ -21,9 +21,4 @@ const Template: ComponentStory<typeof Fader> = (args) => <Fader {...args} ><div 
 
 export const Primary = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
-Primary.args = {
-};
 
-export const Secondary = Template.bind({});
-Secondary.args = {
-};

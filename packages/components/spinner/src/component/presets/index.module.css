@@ -8,8 +8,7 @@
     --spinner-color: #1890ff;
    }
    
-   .spinner
-     .loader {
+   .spinner .loader {
        position: relative;
        display: inline-block;
        width: 60px;

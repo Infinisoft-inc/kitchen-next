@@ -6,15 +6,14 @@
  * Module Federated Micro Component
  */
  import React, { Suspense } from 'react';
-import { colorPreset } from "./presets/colors";
 import styles from './presets/index.module.css';
 import { SpinnerProps } from './types';
  
- const Spinner = ({spinnerStyle, loaderStyle, loaderOuterStyle, loaderInnerStyle, colors= 'red'}:SpinnerProps ) => {
+ const Spinner = ({spinnerStyle={}, loaderStyle={}, loaderOuterStyle={}, loaderInnerStyle={}}: SpinnerProps) => {
  
  return <Suspense>
-         <div className={styles.spinner} {...colorPreset[colors]} style={spinnerStyle}>
-             <div className={`${styles.loader} ${styles['loader-1']}`}   style={loaderStyle}>
+         <div className={styles.spinner} style={spinnerStyle}>
+             <div className={`${styles.loader} ${styles['loader-1']}`} style={loaderStyle}>
                  <div className={styles["loader-outter"]} style={loaderOuterStyle}></div>
                  <div className={styles["loader-inner"]} style={loaderInnerStyle}></div>
              </div>
