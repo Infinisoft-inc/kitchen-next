@@ -9,7 +9,7 @@ const { join } = require('path');
 
 const VERBOSE = process.argv.join(' ').includes('--debug');
 const DRYRUN = process.argv.join(' ').includes('--dry-run');
-const REGISTRY = process.env.REGISTRY || 'https://app.micro.infini-soft.com';
+const REGISTRY = process.env.REGISTRY || 'app.micro.infini-soft.com';
 const CLOUDFRONTID = process.env.CLOUDFRONTID || "E351LZG5E36SJZ"
 
 /**
