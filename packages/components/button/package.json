@@ -1,6 +1,6 @@
 {
   "name": "button",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "",
   "private": true,
   "author": "Infinisoft Inc. <info@infini-soft.com>",
@@ -23,6 +23,5 @@
   "peerDependencies": {
     "react": "^18.1.0",
     "react-dom": "^18.1.0"
-  },
-  "dependencies": {}
+  }
 }
