@@ -9,17 +9,20 @@ const { join } = require('path');
 
 const VERBOSE = process.argv.join(' ').includes('--debug');
 const DRYRUN = process.argv.join(' ').includes('--dry-run');
+const BUILDENV = process.argv.join(' ').includes('--prod') ? 'prod' : 'dev';
 
 /**
  * Command runner
  */
 const build = () => {
+  console.log(`Building ${BUILDENV} mode...
+-----------------------------`)
   if (VERBOSE) {
     console.log(`package.json path = `, join(process.cwd(), 'package.json'));
   }
 
   if (!DRYRUN) {
-    exec(`yarn build:dev`);
+    exec(`yarn build:${BUILDENV}`);
   }
 
   const pkg = JSON.parse(
@@ -30,11 +33,7 @@ const build = () => {
     join(process.cwd(), 'dist', 'types.d.ts'),
   ).toString('utf8');
 
-  const defaultComponent = originalType
-    .match(/(export default.*;|export _default.*;)/)[0]
-    .split(' ')
-    .reverse()[0]
-    .replace(';', '');
+  const defaultComponent = pkg.infinisoft.moduleFederation.component
 
   if (VERBOSE) {
     console.log(`original dist/types = `, originalType);
@@ -53,10 +52,7 @@ const build = () => {
       originalType.replace(
         `declare module "component/index"`,
         `declare module "${pkg.name}/${defaultComponent}"`,
-      ).replace(
-        `declare module "component/_default"`,
-        `declare module "${pkg.name}/${defaultComponent}"`,
-      ),
+      )
     );
   }
 };

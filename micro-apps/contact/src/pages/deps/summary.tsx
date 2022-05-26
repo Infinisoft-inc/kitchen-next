@@ -8,10 +8,10 @@ import React from 'react';
 import { useMicroContext } from '../../context/micro';
 import { AddressIcon, CategoryIcon, EmailIcon, NameIcon, PhoneIcon, RelatedwithIcon, WebIcon } from '../assets/svg';
 import AvatarUpload from '../components/avatar-upload';
-import CrudList from '../components/crud-list';
 import css from './index.css';
 
 const ContactDetail = React.lazy(() => import('contactdetails/ContactDetails'))
+const CrudList = React.lazy(() => import(/* webpackChunkName: 'CrudList' */ 'crudlist/CrudList'))
 
 type SummaryProps = {
   values: API.Item,

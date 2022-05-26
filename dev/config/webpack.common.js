@@ -24,27 +24,9 @@ module.exports = {
   output: {
     filename: "[name].[contenthash].js",
     path: path.join(process.cwd(), "dist"),
-    publicPath: 'auto',
-    clean: true
+    publicPath: 'auto'
   },
-  // Issue with module federation
-  // optimization: {
-  //   moduleIds: 'deterministic',
-  //   usedExports: true,
-  //   runtimeChunk: 'multiple',
-  //   minimize: true,
-  //   minimizer: [new TerserPlugin()],
-  //   splitChunks: {
-  //     chunks: "all",
-  //     cacheGroups: {
-  //       vendor: {
-  //         test: /[\\/]node_modules[\\/]/,
-  //         chunks: "all"
-  //       }
-  //     }
-  //   }
-  // },
-  resolve: {
+   resolve: {
     cacheWithContext: false,
     extensions: [".tsx", ".ts", ".jsx", ".js"]
   },

@@ -15,6 +15,7 @@ const DRYRUN = process.argv.join(' ').includes('--dry-run');
  * Command runner
  */
 const use = () => {
+
   if (VERBOSE) {
     console.log(`use() `);
   }
@@ -24,6 +25,10 @@ const use = () => {
   );
 
   let moduleName = process.argv[4];
+  console.log(`Configuring ${moduleName}, one moment...
+--------------------------------------------`);
+
+
 
   if (VERBOSE) {
     console.log(`use() modulename = `, moduleName);
@@ -40,6 +45,7 @@ const use = () => {
       false
     )
   ) {
+
     pkg = {
       ...pkg,
       infinisoft: {
@@ -69,11 +75,21 @@ const use = () => {
     writeFileSync(join(process.cwd(), 'package.json'), JSON.stringify(pkg));
   }
 
-  console.log(`IMPORTANT
+  console.log(`
+  IMPORTANT
+  ---------
   If you are using webpack watch mode, dev server or hot module reload, it needs to be shutdown and restarted for configuration to be loaded!
   To use component, import it like following:
 
+  Usage
+  -----
   const Button = React.lazy(() => import('button/Button'));
+
+  Completed
+  ---------
+  Component ready to use
+  Powered 🚀 by Infinisoft Inc.
+  Happy ☠️  Hacking
   `);
 };
 

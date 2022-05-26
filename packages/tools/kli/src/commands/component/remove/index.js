@@ -43,8 +43,17 @@ const remove = () => {
       onErrorContinue(()=>writeFileSync(join(process.cwd(), 'package.json'), JSON.stringify(pkg)))
   }
 
-  console.log(`IMPORTANT
-  If you are using webpack watch mode, dev server or hot module reload, it needs to be shutdown and restarted for configuration to be unloaded!`)
+  console.log(`
+  IMPORTANT
+  ---------
+  If you are using webpack watch mode, dev server or hot module reload, it needs to be shutdown and restarted for configuration to be refreshed!
+
+  Removed
+  ---------
+  Component ${moduleName} removed
+  Powered 🚀 by Infinisoft Inc.
+  Happy ☠️  Hacking
+  `);
 };
 
 module.exports = { remove };

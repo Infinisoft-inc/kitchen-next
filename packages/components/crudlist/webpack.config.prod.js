@@ -6,13 +6,14 @@
 const { merge } = require('webpack-merge');
 const common = require('../../../dev/config/webpack.common');
 const { ModuleFederationPlugin } = require('webpack').container;
-const {peerDependencies, name} = require('./package.json')
+const {peerDependencies, name, infinisoft} = require('./package.json')
 
 module.exports = merge(common, {
   mode: 'production',
   plugins: [
     new ModuleFederationPlugin({
       name,
+      remotes: infinisoft.moduleFederation.remotes,
       filename: 'remoteEntry.js',
       exposes: {
         './CrudList': './src/component',

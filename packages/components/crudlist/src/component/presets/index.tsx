@@ -4,9 +4,7 @@
  * www.infini-soft.com
  */
 
-import { CrudListProps } from '../types'
 
-
-export type CrudListPresets = { [P in CrudListProps]: {} }
+export type CrudListPresets = {}
 
 export const crudlistPresets: CrudListPresets = {}

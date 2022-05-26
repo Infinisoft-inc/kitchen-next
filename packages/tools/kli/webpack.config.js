@@ -14,8 +14,7 @@ module.exports = {
   output: {
     path: path.join(process.cwd(), "dist"),
     filename: 'kli.js',
-    library: "kli",
-    clean: true
+    library: "kli"
   },
   resolve: {
     cacheWithContext: false,

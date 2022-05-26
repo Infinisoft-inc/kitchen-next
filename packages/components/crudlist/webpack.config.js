@@ -8,7 +8,7 @@ const { merge } = require('webpack-merge');
 const common = require('../../../dev/config/webpack.common');
 const path = require('path');
 const { ModuleFederationPlugin } = require('webpack').container;
-const {peerDependencies, name} = require('./package.json')
+const {peerDependencies, name, infinisoft} = require('./package.json')
 
 module.exports = merge(common, {
   mode: 'development',
@@ -22,6 +22,7 @@ module.exports = merge(common, {
     new ModuleFederationPlugin({
       name,
       filename: 'remoteEntry.js',
+      remotes: infinisoft.moduleFederation.remotes,
       exposes: {
         './CrudList': './src/component',
       },

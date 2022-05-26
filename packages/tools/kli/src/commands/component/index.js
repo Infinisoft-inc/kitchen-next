@@ -15,7 +15,8 @@ const { remove } = require('./remove');
 const usage = () => {
   console.log(`
 component     create          <json input>      - Create new federated component.
-              build                             - Build component
+              build                             - Build component dev
+                              [--prod]          - Build component prod
               deploy                            - Deploy component on cloud.
               use             <name>            - Add module to container
               remove          <name>            - removes module from container`);

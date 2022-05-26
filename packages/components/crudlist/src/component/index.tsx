@@ -5,9 +5,9 @@
  *
  * CrudList Federated Micro Component
  */
-import { AddIcon, DeleteIcon } from '@/assets/svg';
 import { Button, Typography } from 'antd';
 import React, { ForwardedRef, forwardRef, Suspense } from 'react';
+import { AddIcon, DeleteIcon } from '../assets/svg';
 import css from './index.module.css';
 import { CrudListProps } from './types';
 
