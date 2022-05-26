@@ -3,6 +3,9 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
+
+export type Size = 'small' | 'medium' | 'large'
+
 export type SpinnerProps = {
   spinnerStyle?: React.CSSProperties
   loaderStyle?: React.CSSProperties

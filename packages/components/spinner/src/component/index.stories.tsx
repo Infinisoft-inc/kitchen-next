@@ -8,6 +8,9 @@ export default {
   component: Spinner,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   // https://storybook.js.org/docs/react/essentials/controls
+  argTypes: {
+  
+  }
 
 } as ComponentMeta<typeof Spinner>;
 

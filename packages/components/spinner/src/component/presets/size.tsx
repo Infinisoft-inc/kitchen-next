@@ -14,11 +14,15 @@ export type SizePresets = { [P in Size]: {
 
 export const sizePresets: SizePresets = {
   large: {
-    width: '200px',
-    height: '125px'
+    width: '80px',
+    height: '80px'
+  },
+  medium: {
+    width: '60px',
+    height: '60px'
   },
   small: {
-    width: '125px',
-    height: '65px'
+    width: '40px',
+    height: '40px'
   }
 }
