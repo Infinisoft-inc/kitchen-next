@@ -39,7 +39,6 @@ Style1.args = {
 
 export const Style2 = Template.bind({});
 Style2.args = {
-
   loaderOuterStyle: {
     borderColor: 'pink',
     borderBottom: "0px",
