@@ -1,9 +1,9 @@
 {
-  "name": "flexcol",
-  "component": "FlexCol",
-  "port": 8089,
-  "title": "Flexcol",
-  "description": "Flex item",
-  "categories": ["layout"],
+  "name": "crudlist",
+  "component": "CrudList",
+  "port": 8091,
+  "title": "CrudList",
+  "description": "CrudList",
+  "categories": ["Display"],
   "image": ""
 }

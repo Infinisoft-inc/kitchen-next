@@ -14,12 +14,8 @@ import style from './index.css';
 import './overrides.css';
 const REQUIRED = !config?.devMode
 
-// export type ContactFormProps = {};
-
 const ContactForm: React.FC<FormInstance> = (form: FormInstance) => {
   const search = useMicroSearch()
-
-  // React.useEffect(() => { search.run("d") }, [])
 
   return <>
     <Form.Item name={'avatar'}>
