@@ -4,6 +4,7 @@
  * www.infini-soft.com
  */
 
-.variant1 {
-  flex: 1 1 50%;
-}
+
+export type FlexColPresets = { }
+
+export const flexcolPresets: FlexColPresets = {}

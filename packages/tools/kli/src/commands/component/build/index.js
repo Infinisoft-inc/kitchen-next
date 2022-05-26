@@ -31,7 +31,7 @@ const build = () => {
   ).toString('utf8');
 
   const defaultComponent = originalType
-    .match(/export default.*;/)[0]
+    .match(/(export default.*;|export _default.*;)/)[0]
     .split(' ')
     .reverse()[0]
     .replace(';', '');
@@ -52,6 +52,9 @@ const build = () => {
       join(process.cwd(), 'dist', 'types.d.ts'),
       originalType.replace(
         `declare module "component/index"`,
+        `declare module "${pkg.name}/${defaultComponent}"`,
+      ).replace(
+        `declare module "component/_default"`,
         `declare module "${pkg.name}/${defaultComponent}"`,
       ),
     );

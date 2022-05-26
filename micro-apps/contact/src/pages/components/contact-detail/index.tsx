@@ -6,9 +6,12 @@
 import { Typography } from 'antd';
 import React from 'react';
 import { useMicroContext } from '../../../context/micro';
-import FlexCol from '../flexcol';
-import FlexLine from '../flexline';
 import css from './index.css';
+
+
+const FlexLine = React.lazy(()=> import('flexline/FlexLine'));
+const FlexCol = React.lazy(()=> import('flexcol/FlexCol'));
+
 
 export type ContactDetailProps = {
     title: any
@@ -19,7 +22,7 @@ export type ContactDetailProps = {
      * Editable field name
      */
     editableFieldName?: string
-    children?: React.ReactNode
+    // children?: React.ReactNode
 };
 
 export const ContactDetail: React.FC<ContactDetailProps> = ({ content, icon, title, editableFieldName = '', ...props }) => {
@@ -39,8 +42,9 @@ export const ContactDetail: React.FC<ContactDetailProps> = ({ content, icon, tit
         }
     }
 
-    return <FlexCol variant={1}><FlexLine
+    return <FlexCol><FlexLine
         left={<span className={css.left}>{icon}</span>}
+
         right={<>
             <Typography.Title {...props} level={4}>
                 {title}
@@ -50,4 +54,4 @@ export const ContactDetail: React.FC<ContactDetailProps> = ({ content, icon, tit
     </FlexCol>
 }
 
-export default ContactDetail       
+export default ContactDetail

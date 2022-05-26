@@ -36,7 +36,10 @@
   "infinisoft": {
     "moduleFederation": {
       "registry": "https://app.micro.infini-soft.com",
-      "remotes": {}
+      "remotes": {
+        "test1": "test1@https://app.micro.infini-soft.com/test1/remoteEntry.js",
+        "button": "button@https://app.micro.infini-soft.com/button/remoteEntry.js"
+      }
     }
   }
 }

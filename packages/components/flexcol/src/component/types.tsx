@@ -4,8 +4,8 @@
  * www.infini-soft.com
  */
 
-.flexlineRoot {
-  display: flex;
-  margin-bottom: 1.5rem;
-  text-align: left;
+import React from "react"
+
+export type FlexColProps = {
+  children?: React.ReactNode
 }

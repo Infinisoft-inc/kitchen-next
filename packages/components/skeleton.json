@@ -1,1 +1,9 @@
-{"name":"spinner","component":"Spinner","port":8097}
+{
+  "name": "flexcol",
+  "component": "FlexCol",
+  "port": 8089,
+  "title": "Flexcol",
+  "description": "Flex item",
+  "categories": ["layout"],
+  "image": ""
+}

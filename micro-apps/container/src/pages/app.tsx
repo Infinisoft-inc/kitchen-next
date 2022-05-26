@@ -13,7 +13,8 @@ import './styles.css';
 const { Sider, Content, Footer, Header } = Layout
 
 // const Index = React.lazy(() => import('contact/Index'));
-const Button = React.lazy(() => import('button/Button'));
+// const Button = React.lazy(() => import('button/Button'));
+const Test = React.lazy(() => import(/* webpackChunkName: 'Test' */ 'button/Button'))
 
 const App = () => {
   return (<Suspense fallback="container">
@@ -26,7 +27,8 @@ const App = () => {
 
         <Content>
           {/* <Index /> */}
-          <Button message='11'/>
+          {/* <Button message='11'/> */}
+          <Test />
         </Content>
 
       </Layout>

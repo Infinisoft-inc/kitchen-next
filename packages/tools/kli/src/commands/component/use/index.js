@@ -6,7 +6,7 @@
 const { exec } = require('@/internals/exec');
 const { readFileSync, writeFileSync, mkdirSync } = require('fs');
 const { join } = require('path');
-const {onErrorContinue} = require('@/internals/onErrorContinue')
+const { onErrorContinue } = require('@/internals/onErrorContinue');
 
 const VERBOSE = process.argv.join(' ').includes('--debug');
 const DRYRUN = process.argv.join(' ').includes('--dry-run');
@@ -19,7 +19,7 @@ const use = () => {
     console.log(`use() `);
   }
 
-  const pkg = JSON.parse(
+  let pkg = JSON.parse(
     readFileSync(join(process.cwd(), 'package.json')).toString('utf-8'),
   );
 
@@ -30,16 +30,28 @@ const use = () => {
     console.log(`use() pkg`, pkg);
   }
 
+  const REGISTRY =
+    pkg?.infinisoft?.moduleFederation?.registry ??
+    'https://app.micro.infini-soft.com';
+
   if (
     !(
       pkg?.infinisoft?.moduleFederation?.remotes?.hasOwnProperty(moduleName) ??
       false
-    ) &&
-    pkg.infinisoft.moduleFederation.registry
+    )
   ) {
-    pkg.infinisoft.moduleFederation.remotes = {
-      ...(pkg?.infinisoft?.moduleFederation?.remotes ?? {}),
-      [`${moduleName}`]: `${moduleName}@${pkg.infinisoft.moduleFederation.registry}/${moduleName}/remoteEntry.js`,
+    pkg = {
+      ...pkg,
+      infinisoft: {
+        ...pkg?.infinisoft,
+        moduleFederation: {
+          ...pkg?.infinisoft?.moduleFederation,
+          remotes: {
+            ...(pkg?.infinisoft?.moduleFederation?.remotes ?? {}),
+            [`${moduleName}`]: `${moduleName}@${REGISTRY}/${moduleName}/remoteEntry.js`,
+          },
+        },
+      },
     };
   }
 
@@ -51,7 +63,7 @@ const use = () => {
   if (!DRYRUN) {
     onErrorContinue(() => mkdirSync(join(process.cwd(), 'modules')));
     exec(
-      `curl "${pkg.infinisoft.moduleFederation.registry}/${moduleName}/types.d.ts" > modules/${moduleName}.d.ts`,
+      `curl "${REGISTRY}/${moduleName}/types.d.ts" > modules/${moduleName}.d.ts`,
     );
 
     writeFileSync(join(process.cwd(), 'package.json'), JSON.stringify(pkg));

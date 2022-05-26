@@ -31,7 +31,7 @@ const deploy = () => {
       }/${pkg.name}" --acl public-read`,
     );
     exec(
-      `aws cloudfront create-invalidation --distribution-id ${CLOUDFRONTID} --paths "/${pkg.name}"`,
+      `aws cloudfront create-invalidation --distribution-id ${CLOUDFRONTID} --paths "/${pkg.name}/*"`,
     );
   }
 };
