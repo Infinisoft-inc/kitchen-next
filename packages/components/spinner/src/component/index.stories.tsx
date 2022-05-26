@@ -17,9 +17,6 @@ const Template: ComponentStory<typeof Spinner> = (args) => <Spinner {...args} />
 export const Style1 = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Style1.args = {
-  spinnerStyle: {
-    backgroundColor: 'pink'
-  },
   loaderStyle: {
     width: '70px',
     height: '70px'
