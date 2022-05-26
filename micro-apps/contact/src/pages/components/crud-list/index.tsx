@@ -39,7 +39,6 @@ export const CrudList: React.FC<CrudListProps> = ({ field, title, icon, readonly
         }
     }
 
-    // @ts-ignore
     return <><ContactDetail
         {...props}
         icon={icon}

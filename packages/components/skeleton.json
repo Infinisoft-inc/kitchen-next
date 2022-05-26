@@ -1,9 +1,9 @@
 {
-  "name": "flexline",
-  "component": "FlexLine",
-  "port": 8088,
-  "title": "Flexline",
-  "description": "Flex line with 2 columns",
+  "name": "flexcol",
+  "component": "FlexCol",
+  "port": 8089,
+  "title": "Flexcol",
+  "description": "Flex item",
   "categories": ["layout"],
   "image": ""
 }
