@@ -22,7 +22,6 @@ export type ContactDetailProps = {
      * Editable field name
      */
     editableFieldName?: string
-    // children?: React.ReactNode
 };
 
 export const ContactDetail: React.FC<ContactDetailProps> = ({ content, icon, title, editableFieldName = '', ...props }) => {
