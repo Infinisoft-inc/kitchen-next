@@ -26,7 +26,7 @@
       "request": "launch",
       "url": "http://localhost:6006",
       "protocol": "inspector",
-      "webRoot": "${workspaceFolder}/micro-apps/container/src"
+      "webRoot": "${workspaceFolder}/micro-apps/contact/src"
     }
   ]
 }

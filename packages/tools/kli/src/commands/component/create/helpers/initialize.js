@@ -29,6 +29,10 @@ Component sample json input skeleton`);
       name: 'appname',
       component: 'ButtonA',
       port: 8088,
+      title: 'ButtonA',
+      description: 'My amazing button',
+      categories: ['button'],
+      image: '',
     };
 
     writeFileSync(join(process.cwd(), 'skeleton.json'), JSON.stringify(skeleton));

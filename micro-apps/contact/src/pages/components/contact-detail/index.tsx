@@ -7,8 +7,9 @@ import { Typography } from 'antd';
 import React from 'react';
 import { useMicroContext } from '../../../context/micro';
 import FlexCol from '../flexcol';
-import FlexLine from '../flexline';
 import css from './index.css';
+
+const FlexLine = React.lazy(()=> import('flexline/FlexLine'));
 
 export type ContactDetailProps = {
     title: any
@@ -50,4 +51,4 @@ export const ContactDetail: React.FC<ContactDetailProps> = ({ content, icon, tit
     </FlexCol>
 }
 
-export default ContactDetail       
+export default ContactDetail

@@ -4,8 +4,7 @@
  * www.infini-soft.com
  */
 
-.flexlineRoot {
-  display: flex;
-  margin-bottom: 1.5rem;
-  text-align: left;
-}
+export type FlexLineProps = {
+  left?: React.ReactNode
+  right?: React.ReactNode
+};

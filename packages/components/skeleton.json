@@ -1,1 +1,9 @@
-{"name":"test1","component":"Test1","port":8666}
+{
+  "name": "flexline",
+  "component": "FlexLine",
+  "port": 8088,
+  "title": "Flexline",
+  "description": "Flex line with 2 columns",
+  "categories": ["layout"],
+  "image": ""
+}
