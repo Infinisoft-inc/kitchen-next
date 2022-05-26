@@ -9,14 +9,14 @@ import React, { Suspense } from 'react';
 import css from './index.module.css';
 import { FlexLineProps } from './types';
 
-export const FlexLine: React.FC<FlexLineProps> = ({ left = '', right = '' }) => {
+export const FlexLine: React.FC<FlexLineProps> = ({ left = '', right = '', leftProps = {}, rightProps = {} }) => {
 
   return <Suspense>
     <div className={css.root}>
-      <div className={css.item}>
+      <div {...leftProps}>
         {left}
       </div>
-      <div className={css.item}>
+      <div {...rightProps}>
         {right}
       </div>
     </div>

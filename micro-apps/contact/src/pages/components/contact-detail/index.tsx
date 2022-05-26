@@ -42,6 +42,7 @@ export const ContactDetail: React.FC<ContactDetailProps> = ({ content, icon, tit
 
     return <FlexCol variant={1}><FlexLine
         left={<span className={css.left}>{icon}</span>}
+
         right={<>
             <Typography.Title {...props} level={4}>
                 {title}
