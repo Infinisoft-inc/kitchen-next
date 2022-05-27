@@ -1,13 +1,16 @@
-const { ModuleFederationPlugin } = require('webpack').container;
+// const { ModuleFederationPlugin } = require('webpack').container;
 const {
   withStorybookModuleFederation,
 } = require('storybook-module-federation');
 
+// module.exports =
+
 const config = {
    stories: [
     '../stories/**/*.stories.mdx',
-    '../stories/**/*.stories.@(js|jsx|ts|tsx|mdx)',
-    '../packages/**/*.stories.@(js|jsx|ts|tsx|mdx)',
+    '../stories/**/*.stories.@(js|jsx|ts|tsx)',
+    '../packages/**/*.stories.@(js|jsx|ts|tsx)',
+    '../packages/**/*.stories.mdx'
   ],
   addons: [
     '@storybook/addon-links',
@@ -20,7 +23,7 @@ const config = {
   },
   features: {
     previewMdx2: true,
-    storyStoreV7: true,
+    // storyStoreV7: true,
   },
 };
 

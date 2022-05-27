@@ -13,10 +13,9 @@ module.exports = merge(common, {
   plugins: [
     new ModuleFederationPlugin({
       name,
-      remotes: infinisoft.moduleFederation.remotes,
       filename: 'remoteEntry.js',
       exposes: {
-        './CrudList': './src/component',
+        [`./${infinisoft.moduleFederation.component}`]: './src/component',
       },
       shared: {
         ...peerDependencies,

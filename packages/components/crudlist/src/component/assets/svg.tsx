@@ -4,8 +4,5 @@
  * www.infini-soft.com
  */
 
-.root {
-  display: flex;
-  margin-bottom: 1.5rem;
-}
-
+ export const AddIcon = () => <>Icon</>
+ export const DeleteIcon = () => <>Icon</>

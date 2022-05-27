@@ -3,7 +3,6 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
-
 export type ContactDetailProps = {
   /**
    * Title

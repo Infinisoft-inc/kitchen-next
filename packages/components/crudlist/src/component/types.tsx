@@ -3,7 +3,6 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
-
 export type CrudListProps = Partial<HTMLElement> & {
   field: string
   title: string

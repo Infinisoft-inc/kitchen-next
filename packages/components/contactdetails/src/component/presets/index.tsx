@@ -4,7 +4,9 @@
  * www.infini-soft.com
  */
 
+import { ContactDetailsProps } from '../types'
 
-// export type ContactDetailsPresets = { [P in ContactDetailProps]: {} }
 
-// export const contactdetailsPresets: ContactDetailsPresets = {}
+export type ContactDetailsPresets = { }
+
+export const contactdetailsPresets: ContactDetailsPresets = {}
