@@ -1,9 +1,9 @@
 {
   "name": "crudlist",
   "component": "CrudList",
-  "port": 8091,
+  "port": 8093,
   "title": "CrudList",
-  "description": "CrudList",
+  "description": "",
   "categories": ["Display"],
   "image": ""
 }

@@ -15,16 +15,15 @@ module.exports = merge(common, {
   devServer: {
     static: path.join(process.cwd(), 'dist'),
     hot: true,
-    port: 8091,
+    port: 8093,
   },
   devtool: 'inline-source-map',
   plugins: [
     new ModuleFederationPlugin({
       name,
       filename: 'remoteEntry.js',
-      remotes: infinisoft.moduleFederation.remotes,
       exposes: {
-        './CrudList': './src/component',
+        [`./${infinisoft.moduleFederation.component}`]: './src/component',
       },
       shared: {
         ...peerDependencies,

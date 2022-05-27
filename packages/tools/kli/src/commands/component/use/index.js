@@ -81,9 +81,13 @@ const use = () => {
   If you are using webpack watch mode, dev server or hot module reload, it needs to be shutdown and restarted for configuration to be loaded!
   To use component, import it like following:
 
-  Usage
+  Import
   -----
-  const Button = React.lazy(() => import('button/Button'));
+  Loads in parallel of parent
+  const Component = React.lazy(() => import(/* webpackPrefetch: true */'name/Component'));
+
+  Loads when browser is idle
+  const Component = React.lazy(() => import(/*webpackPreload: true*/'name/Component'));
 
   Completed
   ---------

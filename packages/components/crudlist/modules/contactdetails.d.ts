@@ -24,12 +24,15 @@ declare module "component/types" {
         /**
          * onChange event callback
          */
-        onChange?: (val: string) => void;
+        onChange?: false | {
+            onChange: (val: string) => void;
+        };
     };
 }
 declare module "contactdetails/ContactDetails" {
+    import React, { ForwardedRef } from 'react';
     import type { ContactDetailProps } from "component/types";
-  import React from 'react';
+    export const ContactDetails: ({ icon, title, onChange, editableFieldName, content, ...props }: ContactDetailProps, ref: ForwardedRef<unknown>) => JSX.Element;
     const _default: React.ForwardRefExoticComponent<ContactDetailProps & React.RefAttributes<unknown>>;
     export default _default;
 }

@@ -39,6 +39,7 @@
     "less-loader": "^11.0.0",
     "mini-css-extract-plugin": "^2.6.0",
     "moment-locales-webpack-plugin": "^1.2.0",
+    "storybook-module-federation": "^0.6.2",
     "style-loader": "^3.3.1",
     "terser-webpack-plugin": "^5.3.1",
     "ts-jest": "^28.0.2",
@@ -55,6 +56,7 @@
     "publish:canary": "lerna publish --canary --preid canary",
     "publish": "lerna publish",
     "storybook": "start-storybook -p 6006",
+    "storybook:nocache": "start-storybook -p 6006 --no-manager-cache",
     "build-storybook": "build-storybook"
   }
 }

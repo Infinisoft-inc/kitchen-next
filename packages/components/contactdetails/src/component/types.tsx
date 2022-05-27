@@ -3,7 +3,6 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
-
 export type ContactDetailProps = {
   /**
    * Title
@@ -28,5 +27,5 @@ export type ContactDetailProps = {
   /**
    * onChange event callback
    */
-  onChange?: (val: string) => void
+  onChange?: false | {onChange: (val: string) => void}
 };
