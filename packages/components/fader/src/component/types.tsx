@@ -4,8 +4,6 @@
  * www.infini-soft.com
  */
 
-export type Size = 'small' | 'large'
-
 export type FaderProps = {
-  children: React.ReactNode
+  children?: React.ReactNode
 }

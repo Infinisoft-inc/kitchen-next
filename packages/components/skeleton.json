@@ -1,9 +1,1 @@
-{
-  "name": "flexcol",
-  "component": "FlexCol",
-  "port": 8089,
-  "title": "Flexcol",
-  "description": "Flex item",
-  "categories": ["layout"],
-  "image": ""
-}
+{"name":"fader2","component":"Fader2","port":8092,"title":"Fader2","description":"My amazing fader2.","categories":["fader2"],"image":""}

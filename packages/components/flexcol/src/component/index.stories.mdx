@@ -1,15 +1,16 @@
 import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
-import  FlexCol  from './index';
-import { FlexColProps} from './types'
+import FlexCol from './index';
+import { FlexColProps } from './types';
 
-<Meta title="Layout/FlexCol" component={ FlexCol } />
+<Meta title="Layout/FlexCol" component={FlexCol} />
 export const Template = (args) => <FlexCol {...args}>Content</FlexCol>;
 
 # FlexCol
+
 Flex item, can be used as child component inside FlexLine.
 
 <Canvas>
-  <Story name="FlexCol" args={ {flex: 1 } }>
+  <Story name="FlexCol" args={{ flex: 1 }}>
     {Template.bind({})}
   </Story>
 </Canvas>

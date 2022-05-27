@@ -16,5 +16,5 @@ export type SliderProps = {
    */
   styleProps?: React.CSSProperties
 
-  children: React.ReactNode
+  children?: React.ReactNode
 }
