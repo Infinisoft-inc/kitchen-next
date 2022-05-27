@@ -1,5 +1,5 @@
 import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
-import  ContactDetails  from './index';
+import  {ContactDetails}  from './index';
 import { ContactDetailsProps} from './types'
 
 <Meta title="TEMPLATE/ContactDetails" component={ ContactDetails } />

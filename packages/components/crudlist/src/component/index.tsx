@@ -5,23 +5,23 @@
  *
  * CrudList Federated Micro Component
  */
-import { Button, Typography } from 'antd';
+import { Typography } from 'antd';
 import React, { ForwardedRef, forwardRef, Suspense } from 'react';
 import { AddIcon, DeleteIcon } from '../assets/svg';
 import css from './index.module.css';
 import { CrudListProps } from './types';
 
 
-const ContactDetails = React.lazy(() => import(/* webpackChunkName: 'ContactDetails' */ 'contactdetails/ContactDetails'))
+const ContactDetails = React.lazy(() => import('contactdetails/ContactDetails'))
 
-const CrudList = ({
+export const CrudList = ({
   field,
   title,
   icon,
   list=[],
   readonly = false,
   onRender = (a: any) => a,
-  onChange = () => { },
+  onChange = false,
   onAdd = () => { },
   onDelete = () => () => { },
   ...props
@@ -33,15 +33,15 @@ const CrudList = ({
       <ContactDetails
         {...props}
         icon={icon}
-        title={<>{title} <Button hidden={readonly} type='text' onClick={onAdd}><AddIcon /></Button></>}
+        title={<>{title} <button hidden={readonly} onClick={onAdd}><AddIcon /></button></>}
         content={
           list?.map(
             (item: string, i: number) =>
               <span key={`item${i}`} className={css.item}>
-                <Typography.Text editable={readonly ? false : {onChange}} key={item + i}>
+                <Typography.Text editable={onChange} key={item + i}>
                   {onRender(item)}
                 </Typography.Text>
-                <Button type='text' hidden={readonly} onClick={onDelete(i)}><DeleteIcon /></Button>
+                <button hidden={readonly} onClick={onDelete(i)}><DeleteIcon /></button>
               </span>
           )}
         onChange={onChange}

@@ -53,7 +53,7 @@ export const modelPlugin = <T extends ReturnType<typeof useModelSdk> & Record<st
     }
 
     if (payload.event.includes('onChange.postoperation') &&
-        (/(read|detail|crudlist)/g.test(payload.source)) &&
+        (/(read|detail|crudlist|summary)/g.test(payload.source)) &&
         payload.message?.context?.current
     ) {
         const item = payload?.message?.context.draft ?? {}

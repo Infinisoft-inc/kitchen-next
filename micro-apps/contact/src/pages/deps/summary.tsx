@@ -4,14 +4,15 @@
  * www.infini-soft.com
  */
 import { Tag, Typography } from 'antd';
-import React from 'react';
+import React, { useId } from 'react';
 import { useMicroContext } from '../../context/micro';
-import { AddressIcon, CategoryIcon, EmailIcon, NameIcon, PhoneIcon, RelatedwithIcon, WebIcon } from '../assets/svg';
+import { AddressIcon, EmailIcon, NameIcon, PhoneIcon, RelatedwithIcon, WebIcon } from '../assets/svg';
 import AvatarUpload from '../components/avatar-upload';
 import css from './index.css';
 
+
 const ContactDetail = React.lazy(() => import('contactdetails/ContactDetails'))
-const CrudList = React.lazy(() => import(/* webpackChunkName: 'CrudList' */ 'crudlist/CrudList'))
+const CrudList = React.lazy(() => import(/* webpackPreload: true */ 'crudlist/CrudList'))
 
 type SummaryProps = {
   values: API.Item,
@@ -26,11 +27,14 @@ const Summary: React.FC<SummaryProps> = ({ hide = [], editable = true, errors = 
   const isEditable = (fieldName: string) => editable ? fieldName : undefined
   const { model } = useMicroContext()
   const isError = errors.length > 0
+  const id = useId()
 
-  const onChange = (field: string) => (val: string) => {
-    model?.item.onChange({ ...model.item.draft, [field]: val }, "summary")
-    model?.item.commit.run()
-  }
+  const onChange = (field: string) => ({
+    onChange: (val: string) => {
+      model?.item.onChange({ ...model.item.draft, [field]: val }, "summary")
+      // model?.item.commit.run()
+    }
+  })
 
   const onChangeList = (_field: keyof API.Item) => (val: string, index?: number) => {
     if (model?.item?.draft?.[_field] && Array.isArray(model?.item?.draft?.[_field])) {
@@ -56,7 +60,7 @@ const Summary: React.FC<SummaryProps> = ({ hide = [], editable = true, errors = 
           Please fix these errors:
         </Typography.Text>
         {errors?.map((e) => {
-          return <li key={`${e}${new Date().getTime() * Math.random()}`}>
+          return <li key={`${e}${id}`}>
             {e}
           </li>
         })}
@@ -72,27 +76,30 @@ const Summary: React.FC<SummaryProps> = ({ hide = [], editable = true, errors = 
         }} />}
 
       {!_hide.includes('name') &&
-        <ContactDetail className='invariant' title='Name' editableFieldName={isEditable('name')} icon={<NameIcon />} content={values?.name ?? 'Add name'} onChange={onChange('name')} />}
-
-      {!_hide.includes('Subcategory') && values?.SK && values?.Subcategory &&
-        <ContactDetail className='invariant' onChange={onChange('Subcategory')} title='Category' icon={<CategoryIcon size={24} />} content={
-          <span>
-            <Tag>
-              <Typography.Text className='invariant'>
-                {values?.SK?.split('__')?.[0] ?? ''}
-              </Typography.Text>
-            </Tag>
-            <Tag>
-              <Typography.Text className='invariant'>{values?.Subcategory}</Typography.Text>
-            </Tag>
-          </span>
-        } />
-      }
+        <ContactDetail className='invariant' title='Name' icon={<NameIcon />} content={values?.name ?? 'Add name'} onChange={onChange('name')} />}
 
       {!_hide.includes('email') &&
         <ContactDetail className='invariant' onChange={onChange('email')} title='Email' editableFieldName={isEditable('email')} icon={<EmailIcon />} content={values?.email ?? 'Add email'} />}
 
-      {!_hide.includes('address') && <ContactDetail className='invariant' onChange={onChange('address')} title='Address' editableFieldName={isEditable('address')} icon={<AddressIcon />} content={values?.address ?? 'Add address'} />}
+      {!_hide.includes('Subcategory') && values?.SK && values?.Subcategory &&
+        // <ContactDetail className='invariant' onChange={onChange('Subcategory')} title='Category' icon={<CategoryIcon size={24} />} content={
+        <span>
+          <Tag>
+            <Typography.Text className='invariant'>
+              {values?.SK?.split('__')?.[0] ?? ''}
+            </Typography.Text>
+          </Tag>
+          <Tag>
+            <Typography.Text className='invariant'>{values?.Subcategory}</Typography.Text>
+          </Tag>
+        </span>
+        // } />
+      }
+
+
+
+      {!_hide.includes('address') &&
+        <ContactDetail className='invariant' title='Address' icon={<AddressIcon />} content={values?.address ?? 'Add address'} onChange={onChange('address')} />}
 
       {!_hide.includes('telephones') && <CrudList list={model?.item?.draft?.telephones ?? []} onDelete={onDelete('telephones')} onChange={onChangeList('telephones')} onAdd={onAddList('telephones')} readonly={!editable} icon={<PhoneIcon />} className='invariant' title='Telephones' field='telephones' />}
 

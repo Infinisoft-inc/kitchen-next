@@ -8,14 +8,14 @@
  */
 import { ConfigProvider } from 'antd';
 import enUS from 'antd/lib/locale/en_US';
-import React, { Suspense } from 'react';
+import React from 'react';
 
 const MicroContextProvider = React.lazy(() => import('../context/micro'))
 const MicroThemeProvider = React.lazy(() => import('../context/theme'))
 const App = React.lazy(() => import('./app'));
 
 const Index = () => {
-  return (<Suspense fallback="DOOOOOOOOOOOOG">
+  return (
     <ConfigProvider locale={enUS}>
       <MicroThemeProvider>
         <MicroContextProvider>
@@ -23,7 +23,6 @@ const Index = () => {
         </MicroContextProvider>
       </MicroThemeProvider>
     </ConfigProvider>
-  </Suspense>
   );
 };
 

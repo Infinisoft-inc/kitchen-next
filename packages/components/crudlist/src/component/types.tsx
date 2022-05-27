@@ -11,7 +11,7 @@ export type CrudListProps = Partial<HTMLElement> & {
   icon: React.ReactNode
   readonly: boolean
   onRender?: <T = any, >(val: T) => string
-  onChange?: (val: string, index?: number) => void
+  onChange?: false | {onChange: (val: string, index?: number) => void}
   onAdd?: () => void
   onDelete?: (index: number) => ()=> void
 };
