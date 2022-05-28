@@ -14,6 +14,7 @@ module.exports = merge(common, {
     new ModuleFederationPlugin({
       name,
       filename: 'remoteEntry.js',
+      remotes: infinisoft.moduleFederation.remotes,
       exposes: {
         [`./${infinisoft.moduleFederation.component}`]: './src/component',
       },
