@@ -5,7 +5,7 @@
  */
 
 const { merge } = require('webpack-merge');
-const common = require('../../../dev/config/webpack.common');
+const common = require('../../../../dev/config/webpack.common');
 const path = require('path');
 const { ModuleFederationPlugin } = require('webpack').container;
 const {peerDependencies, name, infinisoft} = require('./package.json')
@@ -15,14 +15,13 @@ module.exports = merge(common, {
   devServer: {
     static: path.join(process.cwd(), 'dist'),
     hot: true,
-    port: 8093,
+    port: 8193,
   },
   devtool: 'inline-source-map',
   plugins: [
     new ModuleFederationPlugin({
       name,
       filename: 'remoteEntry.js',
-      remotes: infinisoft.moduleFederation.remotes,
       exposes: {
         [`./${infinisoft.moduleFederation.component}`]: './src/component',
       },

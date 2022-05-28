@@ -1,16 +1,13 @@
-// const { ModuleFederationPlugin } = require('webpack').container;
 const {
   withStorybookModuleFederation,
 } = require('storybook-module-federation');
 
-// module.exports =
-
 const config = {
-   stories: [
+  stories: [
     '../stories/**/*.stories.mdx',
     '../stories/**/*.stories.@(js|jsx|ts|tsx)',
     '../packages/**/*.stories.@(js|jsx|ts|tsx)',
-    '../packages/**/*.stories.mdx'
+    '../packages/**/*.stories.mdx',
   ],
   addons: [
     '@storybook/addon-links',
@@ -23,31 +20,28 @@ const config = {
   },
   features: {
     previewMdx2: true,
-    // storyStoreV7: true,
   },
 };
 
-
-module.exports =  withStorybookModuleFederation({
-        name:'storybook',
-        remotes: {
-          contactdetails:
-            'contactdetails@https://app.micro.infini-soft.com/contactdetails/remoteEntry.js',
-          flexcol:
-            'flexcol@https://app.micro.infini-soft.com/flexcol/remoteEntry.js',
-          flexline:
-            'flexline@https://app.micro.infini-soft.com/flexline/remoteEntry.js',
-        },
-        shared: {
-          react: {
-            singleton: true,
-            eager: true,
-            // requiredVersion: storybookConfig?.packageJson?.peerDependencies?.react,
-          },
-          'react-dom': {
-            singleton: true,
-            eager: true,
-            // requiredVersion: storybookConfig.packageJson?.peerDependencies?.['react-dom'],
-          },
-        },
-      })(config)
+module.exports = withStorybookModuleFederation({
+  name: 'storybook',
+  remotes: {
+    contactdetails:
+      'contactdetails@https://app.micro.infini-soft.com/contactdetails/remoteEntry.js',
+    flexcol: 'flexcol@https://app.micro.infini-soft.com/flexcol/remoteEntry.js',
+    flexline:
+      'flexline@https://app.micro.infini-soft.com/flexline/remoteEntry.js',
+    inputtext:
+      'inputtext@https://app.micro.infini-soft.com/inputtext/remoteEntry.js',
+  },
+  shared: {
+    react: {
+      singleton: true,
+      eager: true,
+    },
+    'react-dom': {
+      singleton: true,
+      eager: true,
+    },
+  },
+})(config);

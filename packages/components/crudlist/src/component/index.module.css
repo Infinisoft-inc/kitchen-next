@@ -4,8 +4,46 @@
  * www.infini-soft.com
  */
 
-.root {
-  display: flex;
-  margin-bottom: 1.5rem;
+:root {
+  --primary-color: pink;
+
+  --text-primary: white;
 }
 
+h1 {
+  color: var(--text-primary);
+}
+
+.root {
+  display: flex;
+  margin: 1rem;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  background-color: transparent;
+  color: var(--text-primary);
+  border: 0;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+svg[class*=':primary'] {
+  color: var(--colors-primary);
+}
+
+/* input[name*=':ghost'][name*='input:text:focus'] {
+  background-color: red;
+} */

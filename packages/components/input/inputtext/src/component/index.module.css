@@ -1,0 +1,84 @@
+/*
+ * Copyright © All rights reserved 2022
+ * Infinisoft Inc.
+ * www.infini-soft.com
+ */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+
+:root {
+  --colors-primary: blue;
+
+  --text-primary: white;
+  --text-contrast: black;
+
+  --background-contrast: white;
+
+  --input-text-background-contrast: transparent;
+
+  --button-background-primary: transparent;
+  --button-background-secondary: green;
+}
+
+.root {
+  display: flex;
+  margin-bottom: 1.5rem;
+}
+
+input {
+  font-family: Orbitron !important;
+}
+
+input[name*=':ghost'] {
+  background-color: transparent;
+  border: 0;
+}
+
+[data-style*='input:text:root']{
+  background-color: transparent;
+  padding: 0.5rem;
+  border: 0;
+}
+
+[data-style*=':prefix'] {
+  background-color: transparent;
+  padding-right: 0.5rem;
+}
+[data-style*=':suffix'] {
+  background-color: transparent;
+  padding-left: 0.5rem;
+}
+
+input[name*=':ghost'][name*=':focus'] {
+  background-color: var(--background-contrast);
+  color: var(--text-contrast);
+}
+
+[name*='input:text'] {
+  background-color: var(--input-text-background-primary);
+  color: var(--text-primary);
+  border: 1px solid;
+  padding: 0.35rem;
+}
+
+[name*='input:text:focus'] {
+  background-color: var(--background-contrast);
+  color: var(--text-contrast);
+}
+
+[name*='button:primary'] {
+  background-color: var(--button-background-primary);
+  color: var(--text-primary);
+  border: 0;
+}
+
+[name*='button:secondary'] {
+  background-color: var(--button-background-secondary);
+  color: var(--colors-primary);
+  border: 0;
+}
+
+[name*='button:myvariant'] {
+  background-color: var(--button-background-primary);
+  color: red;
+  border: 0;
+}

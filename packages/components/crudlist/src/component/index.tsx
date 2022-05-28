@@ -5,50 +5,97 @@
  *
  * CrudList Federated Micro Component
  */
- import { Typography } from 'antd';
-import React, { ForwardedRef, forwardRef, Suspense } from 'react';
-import { AddIcon, DeleteIcon } from './assets/svg';
+import React, { Suspense, useSyncExternalStore } from 'react';
+import { AddIcon } from './assets/svg';
 import css from './index.module.css';
-import { CrudListProps } from './types';
+
+const getId = () => new Date().getTime().toFixed(0)
+
+const InputText = React.lazy(() => import(/* webpackPrefetch: true */'inputtext/InputText'));
+const FlexLine = React.lazy(() => import(/* webpackPrefetch: true */'flexline/FlexLine'));
+
+type IStore<T = unknown> = {
+  subscribe: (onStoreChange: () => void) => () => void
+  getSnapshot: () => T[]
+  getServerSnapshot?: () => T[]
+} & ICrud<T>
+
+type ICrud<T = unknown> = {
+  add: (item: T) => void
+  change: (val: T, index: number) => void
+  remove: (item: number) => void
+}
+
+export const createstore = <T,>(init?: T[]): IStore<T> => {
+
+  let data: T[] = init ?? []
+  const subscribers = new Map<string, Function>()
+
+  const notifyAll = () => {
+    subscribers.forEach((_callback) => {
+      _callback(data)
+    })
+  }
+
+  return {
+
+    subscribe: (callback: Function) => {
+      const id = getId()
+      subscribers.set(id, callback)
+      return () => { subscribers.delete(id) }
+    },
+
+    getSnapshot: () => data,
+
+    add: (val: T) => {
+      data = [val, ...data]
+      notifyAll()
+    },
+
+    remove: (index: number) => {
+      data = data.filter((_, i) => i !== index)
+      notifyAll()
+    },
+
+    change: (val: T, index: number) => {
+      data = data.map((item, i) => i === index ? val : item)
+      notifyAll()
+    }
+
+  }
+}
 
 
- const ContactDetails = React.lazy(() => import('contactdetails/ContactDetails'))
+export const CrudList = ({
+  title,
+  icon,
+  mystore
+}: { title: string, icon: React.ReactNode, mystore: IStore<string> }) => {
 
- export const CrudList = ({
-   field,
-   title,
-   icon,
-   list=[],
-   readonly = false,
-   onRender = (a: any) => a,
-   onChange = false,
-   onAdd = () => { },
-   onDelete = () => () => { },
-   ...props
- }: CrudListProps, ref: ForwardedRef<unknown>) => {
+  let list = useSyncExternalStore(mystore.subscribe, mystore.getSnapshot)
 
+  return <Suspense>
+    <div className={css.root}>
+      <FlexLine
+        left={icon}
+        right={
+          <div className={css.list}>
+            <div className={css.header}>
+              {title}
+              <button onClick={() => { mystore.add(`hello ${list.length}`) }}><AddIcon /></button>
+            </div>
 
-   return <Suspense>
-     <div className={css.root}>
-       <ContactDetails
-         {...props}
-         icon={icon}
-         title={<>{title} <button hidden={readonly} onClick={onAdd}><AddIcon /></button></>}
-         content={
-           list?.map(
-             (item: string, i: number) =>
-               <span key={`item${i}`} className={css.item}>
-                 <Typography.Text editable={onChange} key={item + i}>
-                   {onRender(item)}
-                 </Typography.Text>
-                 <button hidden={readonly} onClick={onDelete(i)}><DeleteIcon /></button>
-               </span>
-           )}
-         onChange={onChange}
-       />
-     </div>
+            {
+              list?.map(
+                (item, i: number) =>
+                  <InputText key={`item${i}`} value={item} onChange={(val) => { mystore.change(val.target.value, i) }} onRemove={() => mystore.remove(i)} copyable removable />
+              )
+            }
+          </div>
+        }
+      />
+    </div>
+  </Suspense>
+}
 
-   </Suspense>
- }
-
- export default forwardRef<unknown, CrudListProps>(CrudList);
+export default CrudList;

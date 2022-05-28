@@ -1,6 +1,6 @@
 // .storybook/InfinisoftTheme.js
 
-import { create } from '@storybook/theming';
+import { create, themes } from '@storybook/theming';
 
 export default create({
   base: 'dark',
@@ -8,4 +8,4 @@ export default create({
   brandUrl: 'https://www.kitchen.infini-soft.com',
   brandImage: 'https://www.kitchen.infini-soft.com/assets/infinisoftticon.png',
   brandTarget: '_self',
-});
+}, themes.dark);

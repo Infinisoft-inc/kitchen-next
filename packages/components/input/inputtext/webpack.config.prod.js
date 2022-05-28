@@ -3,26 +3,17 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
-
 const { merge } = require('webpack-merge');
-const common = require('../../../dev/config/webpack.common');
-const path = require('path');
+const common = require('../../../../dev/config/webpack.common');
 const { ModuleFederationPlugin } = require('webpack').container;
 const {peerDependencies, name, infinisoft} = require('./package.json')
 
 module.exports = merge(common, {
-  mode: 'development',
-  devServer: {
-    static: path.join(process.cwd(), 'dist'),
-    hot: true,
-    port: 8093,
-  },
-  devtool: 'inline-source-map',
+  mode: 'production',
   plugins: [
     new ModuleFederationPlugin({
       name,
       filename: 'remoteEntry.js',
-      remotes: infinisoft.moduleFederation.remotes,
       exposes: {
         [`./${infinisoft.moduleFederation.component}`]: './src/component',
       },

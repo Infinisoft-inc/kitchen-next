@@ -1,5 +1,5 @@
 {
-  "name": "crudlist",
+  "name": "inputtext",
   "version": "0.0.1",
   "description": "",
   "private": true,
@@ -10,7 +10,7 @@
     "build:dev": "yarn run build:types& webpack -c webpack.config.js",
     "test": "jest",
     "test:coverage": "jest --coverage&& start coverage/lcov-report/index.html",
-    "build:analyze": "webpack -c ../../../dev/config/webpack.analyze.js",
+    "build:analyze": "webpack -c webpack.analyze.js",
     "build:types": "tsc -p tsconfig.json -d --emitDeclarationOnly --outFile dist/types.d.ts --esModuleInterop",
     "build:prod": "yarn run build:types& webpack -c webpack.config.prod.js",
     "start:dev": "webpack serve -c webpack.config.js --open",
@@ -24,13 +24,10 @@
     "react": "^18.1.0",
     "react-dom": "^18.1.0"
   },
-  "infinisoft": {
-    "moduleFederation": {
-      "component": "CrudList",
-      "remotes": {
-        "inputtext": "inputtext@https://app.micro.infini-soft.com/inputtext/remoteEntry.js",
-        "flexline": "flexline@https://app.micro.infini-soft.com/flexline/remoteEntry.js"
-      }
+  "infinisoft":{
+    "moduleFederation":{
+      "component": "InputText",
+      "remotes":{}
     }
   }
 }
