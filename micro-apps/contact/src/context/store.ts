@@ -46,7 +46,7 @@ export const createstore = <T extends Pick<API.Item, 'SK'>,>(init?: T[] | (() =>
     })
   }
 
-  return {
+  const _store =  {
 
     subscribe: (callback: Function) => {
       const id = getId()
@@ -72,7 +72,9 @@ export const createstore = <T extends Pick<API.Item, 'SK'>,>(init?: T[] | (() =>
     },
 
     edit: (id: string) => {
-      state.item = state.list.find(_item => _item?.SK?.includes(id)) || null
+      state = {...state, item: state.list.find(_item => _item?.SK?.includes(id)) || null}
+      console.log(`state = `, state)
+      console.log(`subscribers = `, subscribers)
       notifyAll()
     },
 
@@ -90,4 +92,6 @@ export const createstore = <T extends Pick<API.Item, 'SK'>,>(init?: T[] | (() =>
     },
 
   }
+
+  return _store;
 }

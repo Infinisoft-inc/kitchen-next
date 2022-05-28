@@ -82,7 +82,7 @@ const MicroContextProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
   const [context,] = React.useState(initialContext);
 
-  return <MicroContext.Provider value={{ ...context, hub, list }}>
+  return <MicroContext.Provider value={{ ...context, hub, list, store }}>
     {children}
   </MicroContext.Provider>
 }

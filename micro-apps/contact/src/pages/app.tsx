@@ -17,12 +17,12 @@ const Search = React.lazy(() => import(/* webpackPrefetch: true */'./search'));
 
 const App = () => {
   const actionRef = useRef<ActionType>();
-  const {list, model} = useMicroContext();
+  const {list,store, model, item} = useMicroContext();
   const { liveTheme, ...theme } = useMicroTheme();
 
   React.useEffect(() => {
     document.querySelector('[aria-label="reload"]')?.addEventListener('click', () => model?.operations.list.run({}));
-    model?.operations.list.run({})
+    // model?.operations.list.run({})
   }, []);
 
   return <div className={styles.root}>
@@ -53,7 +53,7 @@ const App = () => {
         className={styles['ant-pro-table']}
         loading={list.length===0}
         dataSource={list}
-        columns={columns() as any}
+        columns={columns(store) as any}
         />
     </Suspense>
 

@@ -4,18 +4,20 @@
  * www.infini-soft.com
  */
 import { Tag, Typography } from 'antd';
-import React, { useId } from 'react';
+import React, { Suspense, useId } from 'react';
 import { useMicroContext } from '../../context/micro';
-import { AddressIcon, EmailIcon, NameIcon, PhoneIcon, RelatedwithIcon, WebIcon } from '../assets/svg';
+import { AddressIcon, EmailIcon, NameIcon, WebIcon } from '../assets/svg';
 import AvatarUpload from '../components/avatar-upload';
 import css from './index.css';
 
 
+
 const ContactDetail = React.lazy(() => import('contactdetails/ContactDetails'))
 const CrudList = React.lazy(() => import(/* webpackPreload: true */ 'crudlist/CrudList'))
+const InputText = React.lazy(() => import(/* webpackPreload: true */ 'inputtext/InputText'));
 
 type SummaryProps = {
-  values: API.Item,
+  values: API.Item | null,
   errors?: string[]
   hide?: string[]
   editable?: boolean
@@ -25,10 +27,9 @@ type SummaryProps = {
 const Summary: React.FC<SummaryProps> = ({ hide = [], editable = true, errors = [], values, variant = 'vertical' }) => {
   const _hide = hide.join(' ')
   const isEditable = (fieldName: string) => editable ? fieldName : undefined
-  const { model } = useMicroContext()
+  const { model, store } = useMicroContext()
   const isError = errors.length > 0
   const id = useId()
-
   const onChange = (field: string) => ({
     onChange: (val: string) => {
       model?.item.onChange({ ...model.item.draft, [field]: val }, "summary")
@@ -36,20 +37,20 @@ const Summary: React.FC<SummaryProps> = ({ hide = [], editable = true, errors = 
     }
   })
 
-  const onChangeList = (_field: keyof API.Item) => (val: string, index?: number) => {
-    if (model?.item?.draft?.[_field] && Array.isArray(model?.item?.draft?.[_field])) {
-      model?.item.onChange({ ...model?.item?.draft, [_field]: (model?.item?.draft?.[_field] as any[]).map((item, idx) => idx === index ? val : item) }, "crudlist")
-    }
-  }
-  const onAddList = (_field: keyof API.Item) => () => {
-    model?.item.onChange({ ...model.item.draft, [_field]: ['Insert here', ...(model?.item?.draft?.[_field] as any[] || [])] }, "crudlist")
-  }
+  // const onChangeList = (_field: keyof API.Item) => (val: string, index?: number) => {
+  //   if (model?.item?.draft?.[_field] && Array.isArray(model?.item?.draft?.[_field])) {
+  //     model?.item.onChange({ ...model?.item?.draft, [_field]: (model?.item?.draft?.[_field] as any[]).map((item, idx) => idx === index ? val : item) }, "crudlist")
+  //   }
+  // }
+  // const onAddList = (_field: keyof API.Item) => () => {
+  //   model?.item.onChange({ ...model.item.draft, [_field]: ['Insert here', ...(model?.item?.draft?.[_field] as any[] || [])] }, "crudlist")
+  // }
 
-  const onDelete = (_field: keyof API.Item) => (i: number) => () => {
-    if (model?.item?.draft?.[_field] && Array.isArray(model?.item?.draft?.[_field])) {
-      model.item?.onChange({ ...model.item.draft, [_field]: (model?.item?.draft?.[_field] as any[]).filter((_, idx) => idx !== i) }, "crudlist")
-    }
-  }
+  // const onDelete = (_field: keyof API.Item) => (i: number) => () => {
+  //   if (model?.item?.draft?.[_field] && Array.isArray(model?.item?.draft?.[_field])) {
+  //     model.item?.onChange({ ...model.item.draft, [_field]: (model?.item?.draft?.[_field] as any[]).filter((_, idx) => idx !== i) }, "crudlist")
+  //   }
+  // }
 
 
 
@@ -70,7 +71,7 @@ const Summary: React.FC<SummaryProps> = ({ hide = [], editable = true, errors = 
     {!isError && <>
 
       {!_hide.includes('avatar') &&
-        <AvatarUpload src={values.avatar} save={(_avatar) => {
+        <AvatarUpload src={values?.avatar} save={(_avatar) => {
           model?.item.onChange({ ...model.item.draft, avatar: _avatar })
           model?.operations.update.run({ ...model.item.draft })
         }} />}
@@ -97,24 +98,23 @@ const Summary: React.FC<SummaryProps> = ({ hide = [], editable = true, errors = 
       }
 
 
+      <Suspense>
+        {!_hide.includes('address') &&
+          //@ts-ignore
+          <InputText className='invariant' title='Address' prefix={<AddressIcon />} value={values?.address ?? 'Add address'} />}
+        {/*
+      {!_hide.includes('telephones') && <CrudList list={model?.item?.draft?.telephones ?? []} onDelete={onDelete('telephones')} onChange={onChangeList('telephones')} onAdd={onAddList('telephones')} readonly={!editable} icon={<PhoneIcon />} className='invariant' title='Telephones' field='telephones' />} */}
+      </Suspense>
+      <Suspense fallback='telephones'>
+        {/* @ts-ignore */}
+        {/* <CrudList title={<h1>Telephones</h1>} icon={<PhoneIcon />} mystore={createstore(values?.telephones ?? [''])} /> */}
+      </Suspense>
 
-      {!_hide.includes('address') &&
-        <ContactDetail className='invariant' title='Address' icon={<AddressIcon />} content={values?.address ?? 'Add address'} onChange={onChange('address')} />}
+      {/* @ts-ignore */}
+      {!_hide.includes('website') && <InputText className='invariant' title='Website' prefix={<WebIcon />} value={values?.website ?? 'Add website'} />}
 
-      {!_hide.includes('telephones') && <CrudList list={model?.item?.draft?.telephones ?? []} onDelete={onDelete('telephones')} onChange={onChangeList('telephones')} onAdd={onAddList('telephones')} readonly={!editable} icon={<PhoneIcon />} className='invariant' title='Telephones' field='telephones' />}
-
-      {!_hide.includes('website') && <ContactDetail
-        className='invariant'
-        icon={<WebIcon />}
-        title='Website'
-        editableFieldName={isEditable('website')}
-        content={values?.website ?? 'Add website'}
-        onChange={onChange('website')}
-      />
-      }
-
-
-      {!_hide.includes('relatedWith') && <CrudList list={model?.item?.draft?.relatedWith ?? []} onDelete={onDelete('relatedWith')} onChange={onChangeList('relatedWith')} readonly={!editable} icon={<RelatedwithIcon />} onAdd={onAddList('relatedWith')} onRender={(obj: any) => obj?.label ?? obj} className='invariant' title='Relation' field='relatedWith' />}
+      {/*
+      {!_hide.includes('relatedWith') && <CrudList list={model?.item?.draft?.relatedWith ?? []} onDelete={onDelete('relatedWith')} onChange={onChangeList('relatedWith')} readonly={!editable} icon={<RelatedwithIcon />} onAdd={onAddList('relatedWith')} onRender={(obj: any) => obj?.label ?? obj} className='invariant' title='Relation' field='relatedWith' />} */}
     </>}
   </div>;
 }

@@ -6,7 +6,7 @@
 import { off, on } from "@infini-soft/utils/lib/Events";
 import { Tag, Typography } from "antd";
 import Drawer from "antd/lib/drawer";
-import React, { useEffect } from "react";
+import React, { Suspense, useEffect, useSyncExternalStore } from "react";
 import { useMicroContext } from "../context/micro";
 import css from './index.css';
 
@@ -15,7 +15,9 @@ const Summary = React.lazy(() => import("./deps/summary"));
 
 const Read = () => {
   const [visible, setVisible] = React.useState(false);
-  const { model } = useMicroContext()
+  const { model, store } = useMicroContext()
+  const { item } = useSyncExternalStore(store.subscribe, store.getSnapshot)
+  // const [isPending, startTransition] = useTransition()
 
   const handleClose = () => setVisible(false)
 
@@ -24,8 +26,14 @@ const Read = () => {
     // background fetch detailed data
     // model?.operations.read?.run({ SK: payload?.detail?.SK });
     setVisible(true)
-  // }, [model?.item.init, model?.operations.read])
-  }, [])
+    store.edit(payload?.detail?.SK!)
+    console.log(`read() store `, store)
+    // }, [model?.item.init, model?.operations.read])
+  }, [store])
+
+
+
+  React.useEffect(() => { console.log(`ITEM = `, item) }, [item, store])
 
   useEffect(() => {
     on('ui.open.read', eventHandler)
@@ -47,11 +55,12 @@ const Read = () => {
     email = '',
     SK,
     Subcategory
+  } = item || {}
   // } = React.useMemo(() => deffered ?? {}, [deffered])
-  } =  React.useMemo(() => model?.item.draft ?? {}, [model?.item.draft])
+  // } =  React.useMemo(() => item ?? {}, [item])
 
   // @ts-ignore
-  return <Drawer
+  return <Suspense fallback='Reading...'><Drawer
     destroyOnClose
     visible={visible}
     onClose={handleClose}
@@ -85,10 +94,13 @@ const Read = () => {
       </span>
 
       <div className={css.readContent}>
-        {model?.item.draft && <Summary values={model.item.draft} hide={['name', 'email', 'Subcategory', 'avatar']} />}
+        <Suspense fallback='Summary...'>
+          <Summary values={item} hide={['name', 'email', 'Subcategory', 'avatar']} />
+        </Suspense>
       </div>
     </div>
   </Drawer>
+  </Suspense>
 }
 
 export default Read
