@@ -1,6 +1,6 @@
 
-import type { ActionType } from '@ant-design/pro-table';
-import { LiveConfig } from "@infini-soft/hooks-theme";
+import { ActionType } from '@ant-design/pro-table';
+import { LiveConfig } from '@infini-soft/hooks-theme';
 import { PageHeader, Typography } from 'antd';
 import React, { Suspense, useRef } from 'react';
 import { useMicroContext } from '../context/micro';
@@ -17,7 +17,7 @@ const Search = React.lazy(() => import(/* webpackPrefetch: true */'./search'));
 
 const App = () => {
   const actionRef = useRef<ActionType>();
-  const { model } = useMicroContext();
+  const {list, model} = useMicroContext();
   const { liveTheme, ...theme } = useMicroTheme();
 
   React.useEffect(() => {
@@ -51,9 +51,10 @@ const App = () => {
           pageSize: 10,
         }}
         className={styles['ant-pro-table']}
-        loading={model?.operations.list.isLoading}
-        dataSource={model?.list?.draft ?? []}
-        columns={columns as any} />
+        loading={list.length===0}
+        dataSource={list}
+        columns={columns() as any}
+        />
     </Suspense>
 
     <Suspense fallback='read'>

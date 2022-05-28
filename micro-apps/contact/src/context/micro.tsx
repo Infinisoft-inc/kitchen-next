@@ -1,16 +1,14 @@
-import type { IHub } from "@infini-soft/lib-hub";
-import { consoleplugin, Hub } from "@infini-soft/lib-hub";
+import { Hub, IHub } from "@infini-soft/lib-hub";
 import type { OperationFactoryOptions } from "@infini-soft/useoperationfactory";
-import React from 'react';
-import config from "../../config/config.json";
+import React, { useSyncExternalStore } from 'react';
 import { useModelSdk } from "../hooks/useModelSdk";
-import { modelPlugin, operationPlugin } from "../hub-plugin/model";
-import { antdNotificationPlugin } from "../hub-plugin/notification";
-import { persistentCleanupPlugin, persistentModelPlugin } from "../hub-plugin/persistent";
 import '../integration/antd.css';
+import * as listService from "../services/contacts/list";
+import { createstore, IStore } from "./store";
 
 export type UseModelSdkInput = { options?: OperationFactoryOptions }
 export type UseModelSdkOutput = ReturnType<typeof useModelSdk>
+
 
 type MicroContextState = {
   history: typeof history;
@@ -20,6 +18,9 @@ type MicroContextState = {
   };
   hub: IHub;
   model?: ReturnType<typeof useModelSdk>;
+  list: API.Item[];
+  item: API.Item | null,
+  store: IStore<API.Item>
 }
 
 const initialContext: MicroContextState = {
@@ -36,35 +37,52 @@ const initialContext: MicroContextState = {
  * IPC
  */
   hub: Hub(),
+  list: [],
+  item: null,
+  store: createstore<API.Item>(async () => {
+    const result = await listService.list({}) as API.Success
+
+    return result?.data ?? []
+  })
 
 };
 
 const MicroContext = React.createContext<MicroContextState>(initialContext);
 
+const store = createstore<API.Item>(async () => {
+  const result = await listService.list({}) as API.Success
+
+  return result?.data ?? []
+})
+
 const hub = Hub()
-const MicroContextProvider: React.FC<{children: React.ReactNode}> = ({ children }) => {
+const MicroContextProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const {list} = useSyncExternalStore(store.subscribe, store.getSnapshot)
 
-  const options = { ...config, hub, source: config.appName }
-  const model = useModelSdk({ options })
+//   const def = useDeferredValue({..._storeSnapshot,store})
+// const storeSnapshot = React.useMemo(()=>def, [def.list])
 
-  React.useEffect(() => {
-    const s: (() => void)[] = []
-    s.push(hub.subscribe(persistentModelPlugin(model)))
-    s.push(hub.subscribe(persistentCleanupPlugin(model)))
-    s.push(hub.subscribe(antdNotificationPlugin(model)))
-    s.push(hub.subscribe(modelPlugin(model)))
-    s.push(hub.subscribe(operationPlugin(model)))
+  // const options = { ...config, hub, source: config.appName }
+  // const model = useModelSdk({ options })
 
-    if (config.verbose) {
-      s.push(hub.subscribe(consoleplugin))
-    }
+  // React.useEffect(() => {
+  //   const s: (() => void)[] = []
+  //   s.push(hub.subscribe(persistentModelPlugin(model)))
+  //   s.push(hub.subscribe(persistentCleanupPlugin(model)))
+  //   s.push(hub.subscribe(antdNotificationPlugin(model)))
+  //   s.push(hub.subscribe(modelPlugin(model)))
+  //   s.push(hub.subscribe(operationPlugin(model)))
 
-    return () => { s.forEach(unsubscribe => unsubscribe()) }
-  }, [model])
+  //   if (config.verbose) {
+  //     s.push(hub.subscribe(consoleplugin))
+  //   }
+
+  //   return () => { s.forEach(unsubscribe => unsubscribe()) }
+  // }, [model])
 
   const [context,] = React.useState(initialContext);
 
-  return <MicroContext.Provider value={{ ...context, hub, model }}>
+  return <MicroContext.Provider value={{ ...context, hub, list }}>
     {children}
   </MicroContext.Provider>
 }

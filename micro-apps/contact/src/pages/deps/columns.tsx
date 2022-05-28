@@ -4,14 +4,14 @@
  * www.infini-soft.com
  */
 import type { ProColumns } from "@ant-design/pro-table";
-import { trigger } from "@infini-soft/utils/lib/Events";
+import { trigger } from "@infini-soft/utils";
 import { bubble } from "@infini-soft/utils/lib/Sorters";
 import { Avatar } from "antd";
 import React from 'react';
 import { AvatarIcon } from "../components/avatar-upload/assets";
 import css from './index.css';
 
-export const columns: ProColumns<API.Item>[] = [
+export const columns = (): ProColumns<API.Item>[] => [
     {
         title: 'Name',
         dataIndex: 'name',
@@ -21,7 +21,8 @@ export const columns: ProColumns<API.Item>[] = [
                 <Avatar shape="square" src={entity.avatar} size={48}><AvatarIcon /></Avatar>
                 <a
                     onClick={() => {
-                        trigger('ui.open.read', entity)
+                        // trigger('ui.open.read', entity)
+                        // store.edit(entity?.SK!)
                     }}
                 >
                     {dom}
@@ -32,7 +33,7 @@ export const columns: ProColumns<API.Item>[] = [
         },
         responsive: ['xs']
     },
-    {        
+    {
         title: 'Avatar',
         dataIndex: 'avatar',
         render: (_, entity) => <Avatar shape="square" src={entity.avatar} size={48} style={{backgroundColor: 'transparent'}}><AvatarIcon /></Avatar>,
@@ -48,6 +49,7 @@ export const columns: ProColumns<API.Item>[] = [
                 <a
                     onClick={() => {
                         trigger('ui.open.read', entity)
+                        // store.edit(entity?.SK!)
                     }}
                 >
                     {dom}
