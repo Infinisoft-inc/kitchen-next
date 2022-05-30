@@ -5,13 +5,9 @@
  */
 
 const path = require('path');
-// const webpack = require('webpack');
-// const HtmlWebpackPlugin = require('html-webpack-plugin');
-// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-// const TerserPlugin = require("terser-webpack-plugin"); // Issue with module federation
-// const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
+
 const { ModuleFederationPlugin } = require('webpack').container;
-const {name, infinisoft, peerDependencies} = require('./package.json')
+const { name, infinisoft } = require('./package.json');
 
 module.exports = {
   context: process.cwd(),
@@ -45,11 +41,12 @@ module.exports = {
     new ModuleFederationPlugin({
       name,
       filename: 'remoteEntry.js',
-      library: { type: 'var', name },
-      exposes: {
-        './createstore': './src/store/createstore',
+      library: {
+        type: 'var',
+        name,
       },
-
+      remotes: infinisoft.moduleFederation.remotes,
+      exposes: infinisoft.moduleFederation.exposes,
     }),
   ],
 };

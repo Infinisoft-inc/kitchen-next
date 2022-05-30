@@ -6,11 +6,12 @@
 
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common');
+const { name, infinisoft } = require('./package.json');
 
 module.exports = merge(common, {
   mode: 'development',
   devServer: {
-    port: 8666,
+    port: infinisoft.port,
   },
   devtool: 'inline-source-map',
 });

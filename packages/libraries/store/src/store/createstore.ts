@@ -65,6 +65,7 @@ const createstore: Store = <T,>(init?: T[] | (() => Promise<T[]>))=> {
     },
 
     commit: () => {
+
       // if (state.item && state.item?.SK) {
         // const id = state.list.findIndex(_item => _item?.SK?.includes(state.item?.SK!))
         // state.list[id] = state.item;

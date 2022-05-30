@@ -9,11 +9,6 @@ export type Snapshot<T> = {
   item: T | null;
 };
 
-/*
- * Copyright © All rights reserved 2022
- * Infinisoft Inc.
- * www.infini-soft.com
- */
 export type ICrud<T = unknown> = {
   add: (item: T) => void;
   change: (val: T, predicat: () => T) => void;
