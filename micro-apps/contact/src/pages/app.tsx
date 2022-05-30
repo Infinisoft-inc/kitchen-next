@@ -8,6 +8,8 @@ import { useMicroTheme } from '../context/theme';
 import { BackArrow } from './assets/svg';
 import { columns } from './deps/columns';
 import styles from './index.css';
+// const createstore = await load('store', 'createstore')
+
 
 const ProTable = React.lazy(() => import(/* webpackPreload: true */'@ant-design/pro-table'));
 const Create = React.lazy(() => import(/* webpackPreload: true */'./create'));

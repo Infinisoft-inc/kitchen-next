@@ -10,6 +10,8 @@ import React, { startTransition, Suspense, useEffect, useState, useSyncExternalS
 import { useMicroContext } from "../context/micro";
 import css from './index.css';
 
+import(/* webpackPreload: true */ 'store/createstore')
+
 const AvatarUpload = React.lazy(() => import("./components/avatar-upload"));
 const Summary = React.lazy(() => import("./deps/summary"));
 

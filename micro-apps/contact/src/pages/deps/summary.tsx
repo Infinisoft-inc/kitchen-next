@@ -3,27 +3,25 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
+import { load } from '@infini-soft/lib-federation';
 import { Tag, Typography } from 'antd';
 import React, { Suspense, useId } from 'react';
-import type { Store } from 'store/types';
-import { loadLibMF } from '../../context/loadLibMF';
+import type { Store } from "store/types";
 import { useMicroContext } from '../../context/micro';
 import { AddressIcon, EmailIcon, NameIcon, WebIcon } from '../assets/svg';
 import AvatarUpload from '../components/avatar-upload';
 import css from './index.css';
+
 import(/* webpackPreload: true */ 'store/createstore')
+const createstore: Store = await load('store', 'createstore')
+const d = createstore(['ddd', 'bob'])
+console.log(`list = `, d.getSnapshot().list)
+
 
 
 const ContactDetail = React.lazy(() => import('contactdetails/ContactDetails'))
 const CrudList = React.lazy(() => import(/* webpackPreload: true */ 'crudlist/CrudList'))
 const InputText = React.lazy(() => import(/* webpackPreload: true */ 'inputtext/InputText'));
-
-const createstore: Store = await loadLibMF('store', 'createstore')
-
-// const dogTokette = createstore(['dog', 'ette'])
-// console.log(`dogTokette  = `, dogTokette)
-// const doglist = dogTokette.getSnapshot()
-// console.log(`suck tuckette list `, doglist)
 
 
 type SummaryProps = {
