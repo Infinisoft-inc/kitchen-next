@@ -15,27 +15,27 @@ const DRYRUN = process.argv.join(' ').includes('--dry-run');
  * Clone git repo
  * @param {string} folder
  */
-const clone = ({ name: folder }) => {
+const clone = ({ name }) => {
   console.log(`
 Cloning repo...
 ----------------------`);
 
-  const basePath = join(process.cwd(), folder);
+  const basePath = join(process.cwd(), name);
   const lib = 'mylib';
   if (VERBOSE) {
-    console.log(`clone() folder `, folder);
+    console.log(`clone() folder `, name);
     console.log(`clone() process.cwd()/folder `, basePath);
-    console.log(`mv -f ${basePath}/src/name ${basePath}/src/${lib}`);
+    console.log(`mv -f ${basePath}/src/name ${basePath}/src/${name}`);
     console.log(
-      `mv ${basePath}/src/${lib}/createstore.ts ${basePath}/src/${lib}/${lib}.ts`,
+      `mv ${basePath}/src/${name}/lib.ts ${basePath}/src/${name}/${lib}.ts`,
     );
   }
 
-  if (!DRYRUN && folder) {
-    exec(`git clone ${REPO_URL} ${folder}`);
-    exec(`mv -f ${basePath}/src/name ${basePath}/src/${lib}`);
+  if (!DRYRUN && name) {
+    exec(`git clone ${REPO_URL} ${name}`);
+    exec(`mv -f ${basePath}/src/name ${basePath}/src/${name}`);
     exec(
-      `mv ${basePath}/src/${lib}/createstore.ts ${basePath}/src/${lib}/${lib}.ts`,
+      `mv ${basePath}/src/${name}/lib.ts ${basePath}/src/${name}/${lib}.ts`,
     );
   }
 };

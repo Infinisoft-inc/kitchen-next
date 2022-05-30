@@ -18,3 +18,5 @@ dist
 .env
 
 caroading
+packages/tools/kli/bin/skeleton.json
+packages/libraries/skeleton.json
