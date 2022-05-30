@@ -12,6 +12,7 @@
   "scripts": {
     "build:dev": "yarn run build:types& webpack -c webpack.config.js",
     "test": "jest",
+    "test:watchAll": "jest --watchAll",
     "test:coverage": "jest --coverage&& start coverage/lcov-report/index.html",
     "build:analyze": "webpack -c webpack.analyze.js",
     "build:analyze:baseline": "webpack -c webpack.analyze.js --env ANALYZEBASELINE=true",

@@ -29,7 +29,8 @@
       "component": "CrudList",
       "remotes": {
         "inputtext": "inputtext@https://app.micro.infini-soft.com/inputtext/remoteEntry.js",
-        "flexline": "flexline@https://app.micro.infini-soft.com/flexline/remoteEntry.js"
+        "flexline": "flexline@https://app.micro.infini-soft.com/flexline/remoteEntry.js",
+        "store": "store@https://app.micro.infini-soft.com/store/remoteEntry.js"
       }
     }
   }

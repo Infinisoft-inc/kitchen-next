@@ -14,10 +14,6 @@ import css from './index.css';
 
 import(/* webpackPreload: true */ 'store/createstore')
 const createstore: Store = await load('store', 'createstore')
-const d = createstore(['ddd', 'bob'])
-console.log(`list = `, d.getSnapshot().list)
-
-
 
 const ContactDetail = React.lazy(() => import('contactdetails/ContactDetails'))
 const CrudList = React.lazy(() => import(/* webpackPreload: true */ 'crudlist/CrudList'))
@@ -116,8 +112,8 @@ const Summary: React.FC<SummaryProps> = ({ hide = [], editable = true, errors = 
         {/* {!_hide.includes('telephones') && <CrudList mystore={createstore({list[0].telephones})} icon={<PhoneIcon />} className='invariant' title='Telephones' field='telephones' />} */}
       </Suspense>
       <Suspense fallback='telephones'>
-        {/* @ts-ignore */}
-        {/* <CrudList title={<h1>Telephones</h1>} icon={<PhoneIcon />} mystore={createstore(values?.telephones ?? [''])} /> */}
+
+        {/* <CrudList title={'Telephones'} icon={<PhoneIcon />} store={createstore(values?.telephones ?? [''])} /> */}
       </Suspense>
 
       {/* @ts-ignore */}

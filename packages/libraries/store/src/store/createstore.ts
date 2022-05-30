@@ -3,80 +3,81 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
-import { Snapshot, Store } from "./types"
+import { EventHandler, NotifyAllSubscribers, Store } from "./types";
 
-const createstore: Store = <T,>(init?: T[] | (() => Promise<T[]>))=> {
-  let state: Snapshot<T> = {
-    list: [],
-    item: null
-  }
+const createstore: Store = <State, Payload>(init?: State | (() => Promise<State>))=> {
+  let state: State | undefined;
 
   if (typeof init !== 'function') {
-    state.list = init ?? []
+    state = init
   }
 
-  if (typeof init === 'function') {
+  if (init && typeof init === 'function') {
+    // @ts-ignore
     init()
-      .then(result => state = {...state, list: result})
+      .then((result: State) => {state = result})
       .catch(console.error)
-      .finally(() => notifyAll())
+      .finally(() => notifyAllSubscribers('@initialization'))
   }
 
-  const subscribers = new Map<Symbol, Function>()
+  const subscribers = new Map<Symbol, EventHandler<State, Payload>>()
 
-  const notifyAll = () => {
+
+  const notifyAllSubscribers:NotifyAllSubscribers<Payload> = (event, payload) => {
     subscribers.forEach((_callback) => {
-      _callback()
+      return _callback(event, state, payload);
     })
   }
 
   const _store =  {
 
-    subscribe: (callback: Function) => {
+    subscribe: (callback: EventHandler<State, Payload>) => {
       const id = Symbol()
       subscribers.set(id, callback)
       return () => { subscribers.delete(id) }
     },
 
     getSnapshot: () => state,
+    emit: notifyAllSubscribers
 
-    add: (val: T) => {
-      state.list = [val, ...state.list]
-      notifyAll()
-    },
+    // add: (val: T) => {
+    //   state.list = [val, ...state.list]
+    //   notifyAll()
+    // },
 
-    remove: (predicat: ()=>T) => {
-      // state.list = state.list.filter((_, i) => i !== index)
-      state.list = state.list.filter(predicat)
-      notifyAll()
-    },
+    // remove: (predicat: (value: T, index: number, array: T[]) => unknown, thisArg?: any): void => {
+    //   // state.list = state.list.filter((_, i) => i !== index)
+    //   state.list = state.list.filter(predicat)
 
-    change: (val: T, predicat: ()=>T) => {
-      // state.list = state.list.map((_item, i) => i === index ? val : _item)
-      state.list = state.list.map(predicat)
-      notifyAll()
-    },
+    //   notifyAll()
+    // },
 
-    edit: (predicat: ()=>T) => {
-      state = {...state, item: state.list.find(predicat) || null}
-      console.log(`state = `, state)
-      console.log(`subscribers = `, subscribers)
-      notifyAll()
-    },
+    // change: (predicat: Predicat) => {
+    //   // state.list = state.list.map((_item, i) => i === index ? val : _item)
+    //   // state.list = state.list.map(predicat)
+    //   notifyAll()
+    // },
 
-    commit: () => {
+    // edit: (predicat: ()=>T) => {
+    //   state = {...state, item: state.list.find(predicat) || null}
+    //   console.log(`state = `, state)
+    //   console.log(`subscribers = `, subscribers)
+    //   notifyAll()
+    // },
 
-      // if (state.item && state.item?.SK) {
-        // const id = state.list.findIndex(_item => _item?.SK?.includes(state.item?.SK!))
-        // state.list[id] = state.item;
-        notifyAll()
-      // }
-    },
+    // commit: () => {
 
-    clear: () => {
-      state.item = null;
-      notifyAll()
-    },
+    //   // if (state.item && state.item?.SK) {
+    //     // const id = state.list.findIndex(_item => _item?.SK?.includes(state.item?.SK!))
+    //     // state.list[id] = state.item;
+    //     notifyAll()
+    //   // }
+    // },
+
+    // clear: () => {
+    //   state.item = null;
+    //   notifyAll()
+    // },
 
   }
 

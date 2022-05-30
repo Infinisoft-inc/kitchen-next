@@ -1,13 +1,17 @@
+import { load } from "@infini-soft/lib-federation";
 import { Hub, IHub } from "@infini-soft/lib-hub";
 import type { OperationFactoryOptions } from "@infini-soft/useoperationfactory";
 import React, { useSyncExternalStore } from 'react';
+import { IStore, Store } from "store/types";
 import { useModelSdk } from "../hooks/useModelSdk";
 import '../integration/antd.css';
 import * as listService from "../services/contacts/list";
-import { createstore, IStore } from "./store";
 
 export type UseModelSdkInput = { options?: OperationFactoryOptions }
 export type UseModelSdkOutput = ReturnType<typeof useModelSdk>
+
+import(/* webpackPreload: true */ 'store/createstore')
+const createstore: Store = await load('store', 'createstore')
 
 
 type MicroContextState = {

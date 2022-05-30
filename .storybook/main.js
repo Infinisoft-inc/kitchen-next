@@ -33,6 +33,7 @@ module.exports = withStorybookModuleFederation({
       'flexline@https://app.micro.infini-soft.com/flexline/remoteEntry.js',
     inputtext:
       'inputtext@https://app.micro.infini-soft.com/inputtext/remoteEntry.js',
+    store: 'store@https://app.micro.infini-soft.com/store/remoteEntry.js',
   },
   shared: {
     react: {

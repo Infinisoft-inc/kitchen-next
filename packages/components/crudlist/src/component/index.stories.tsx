@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import React from 'react';
-import CrudList, { createstore } from '.';
+import CrudList from '.';
 import { PhoneIcon } from './assets/svg';
 
 export default {
@@ -12,8 +12,8 @@ export default {
 } as ComponentMeta<typeof CrudList>;
 
 const Template: ComponentStory<typeof CrudList> = (args) => {
-//@ts-ignore
-  return <CrudList title={<h1>Telephones</h1>} icon={<PhoneIcon />} mystore={createstore(['dog'])} />
+  return <></>
+  // <CrudList title={'Telephones'} icon={<PhoneIcon />} store={createstore(['dog'])} />
 
 }
 export const StringArgs = Template.bind({});

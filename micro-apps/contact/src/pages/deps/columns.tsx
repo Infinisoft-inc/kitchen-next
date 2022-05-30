@@ -3,12 +3,12 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
-import { IStore } from "@/context/store";
 import type { ProColumns } from "@ant-design/pro-table";
 import { trigger } from "@infini-soft/utils";
 import { bubble } from "@infini-soft/utils/lib/Sorters";
 import { Avatar } from "antd";
 import React from 'react';
+import { IStore } from "store/types";
 import { AvatarIcon } from "../components/avatar-upload/assets";
 import css from './index.css';
 

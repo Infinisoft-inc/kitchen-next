@@ -5,6 +5,7 @@
  */
 
 import React from "react";
+import { Store } from "store/types";
 
 /**
  * CrudList Props
@@ -15,4 +16,5 @@ export type CrudListProps = Partial<HTMLElement> & {
    */
   title: React.ReactNode
   icon: React.ReactNode
+  store: ReturnType<Store>
 };

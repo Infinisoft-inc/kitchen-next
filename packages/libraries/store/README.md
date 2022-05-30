@@ -1,4 +1,4 @@
-# Federated Module Lirbary Template
+# Federated Module Library Template
 
 
 Powered 🚀 by [Infinisoft Inc.](https://www.infini-soft.com)
