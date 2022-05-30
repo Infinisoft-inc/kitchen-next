@@ -15,13 +15,13 @@ const DRYRUN = process.argv.join(' ').includes('--dry-run');
  * Clone git repo
  * @param {string} folder
  */
-const clone = ({ name }) => {
+const clone = ({ name, lib }) => {
   console.log(`
 Cloning repo...
 ----------------------`);
 
   const basePath = join(process.cwd(), name);
-  const lib = 'mylib';
+
   if (VERBOSE) {
     console.log(`clone() folder `, name);
     console.log(`clone() process.cwd()/folder `, basePath);
