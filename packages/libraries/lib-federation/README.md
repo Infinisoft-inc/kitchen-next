@@ -1,4 +1,7 @@
-# Federated Module Lirbary
+# Module Federation Library
+
+## load
+load a module
 
 
 Powered 🚀 by [Infinisoft Inc.](https://www.infini-soft.com)
