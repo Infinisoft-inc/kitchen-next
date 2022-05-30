@@ -5,8 +5,10 @@
  */
 const mono = require('./mono');
 const component = require('./component');
+const lib = require('./lib')
 
 module.exports = {
   mono,
-  component
+  component,
+  lib
 };
