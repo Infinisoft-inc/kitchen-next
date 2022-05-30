@@ -13,7 +13,7 @@ const ProTable = React.lazy(() => import(/* webpackPreload: true */'@ant-design/
 const Create = React.lazy(() => import(/* webpackPreload: true */'./create'));
 const Filter = React.lazy(() => import(/* webpackPrefetch: true */'./filter'));
 const Read = React.lazy(() => import(/*webpackPreload: true*/'./read'));
-const Search = React.lazy(() => import(/* webpackPrefetch: true */'./search'));
+const Search = React.lazy(() => import(/* webpackPreload: true */'./search'));
 
 const App = () => {
   const actionRef = useRef<ActionType>();

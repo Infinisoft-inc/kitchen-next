@@ -5,16 +5,26 @@
  */
 import { Tag, Typography } from 'antd';
 import React, { Suspense, useId } from 'react';
+import type { Store } from 'store/types';
+import { loadLibMF } from '../../context/loadLibMF';
 import { useMicroContext } from '../../context/micro';
 import { AddressIcon, EmailIcon, NameIcon, WebIcon } from '../assets/svg';
 import AvatarUpload from '../components/avatar-upload';
 import css from './index.css';
-
+import(/* webpackPreload: true */ 'store/createstore')
 
 
 const ContactDetail = React.lazy(() => import('contactdetails/ContactDetails'))
 const CrudList = React.lazy(() => import(/* webpackPreload: true */ 'crudlist/CrudList'))
 const InputText = React.lazy(() => import(/* webpackPreload: true */ 'inputtext/InputText'));
+
+const createstore: Store = await loadLibMF('store', 'createstore')
+
+// const dogTokette = createstore(['dog', 'ette'])
+// console.log(`dogTokette  = `, dogTokette)
+// const doglist = dogTokette.getSnapshot()
+// console.log(`suck tuckette list `, doglist)
+
 
 type SummaryProps = {
   values: API.Item | null,
@@ -27,7 +37,7 @@ type SummaryProps = {
 const Summary: React.FC<SummaryProps> = ({ hide = [], editable = true, errors = [], values, variant = 'vertical' }) => {
   const _hide = hide.join(' ')
   const isEditable = (fieldName: string) => editable ? fieldName : undefined
-  const { model, store } = useMicroContext()
+  const { model, store, list } = useMicroContext()
   const isError = errors.length > 0
   const id = useId()
   const onChange = (field: string) => ({
@@ -36,6 +46,8 @@ const Summary: React.FC<SummaryProps> = ({ hide = [], editable = true, errors = 
       // model?.item.commit.run()
     }
   })
+
+  console.log(`values `, values)
 
   // const onChangeList = (_field: keyof API.Item) => (val: string, index?: number) => {
   //   if (model?.item?.draft?.[_field] && Array.isArray(model?.item?.draft?.[_field])) {
@@ -102,8 +114,8 @@ const Summary: React.FC<SummaryProps> = ({ hide = [], editable = true, errors = 
         {!_hide.includes('address') &&
           //@ts-ignore
           <InputText className='invariant' title='Address' prefix={<AddressIcon />} value={values?.address ?? 'Add address'} />}
-        {/*
-      {!_hide.includes('telephones') && <CrudList list={model?.item?.draft?.telephones ?? []} onDelete={onDelete('telephones')} onChange={onChangeList('telephones')} onAdd={onAddList('telephones')} readonly={!editable} icon={<PhoneIcon />} className='invariant' title='Telephones' field='telephones' />} */}
+
+        {/* {!_hide.includes('telephones') && <CrudList mystore={createstore({list[0].telephones})} icon={<PhoneIcon />} className='invariant' title='Telephones' field='telephones' />} */}
       </Suspense>
       <Suspense fallback='telephones'>
         {/* @ts-ignore */}
@@ -119,3 +131,4 @@ const Summary: React.FC<SummaryProps> = ({ hide = [], editable = true, errors = 
   </div>;
 }
 export default Summary
+

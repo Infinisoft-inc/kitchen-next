@@ -3,6 +3,7 @@ const getId = () => new Date().getTime().toFixed(0)
 // type Snapshot<T> = T[]
 type Snapshot<T> = {
   list: T[]
+  item: T | null
 }
 
 export type IStore<T = unknown> = {
@@ -12,7 +13,7 @@ export type IStore<T = unknown> = {
 } & ICrud<T>
 
 type ICrud<T = unknown> = {
-  add: (item: T, _this: T[]) => void
+  add: (item: T) => void
   change: (val: T, index: number) => void
   remove: (item: number) => void
   edit: (item: string) => void
@@ -20,9 +21,10 @@ type ICrud<T = unknown> = {
   clear: () => void
 }
 
-export const createstore = <T,>(init?: T[] | (() => Promise<T[]>)): IStore<T> => {
+export const createstore = <T extends Pick<API.Item, 'SK'>,>(init?: T[] | (() => Promise<T[]>)): IStore<T> => {
   let state: Snapshot<T> = {
     list: [],
+    item: null
   }
 
   if (typeof init !== 'function') {
@@ -54,14 +56,13 @@ export const createstore = <T,>(init?: T[] | (() => Promise<T[]>)): IStore<T> =>
 
     getSnapshot: () => state,
 
-    add: (val: T, _this: T[] = state.list) => {
-      _this = [val, ..._this]
-      // state.list = [...state.list]
+    add: (val: T) => {
+      state.list = [val, ...state.list]
       notifyAll()
     },
 
-    remove: (index: number, _this: T[] = state.list) => {
-      _this = state.list.filter((_, i) => i !== index)
+    remove: (index: number) => {
+      state.list = state.list.filter((_, i) => i !== index)
       notifyAll()
     },
 
@@ -71,22 +72,22 @@ export const createstore = <T,>(init?: T[] | (() => Promise<T[]>)): IStore<T> =>
     },
 
     edit: (id: string) => {
-      // state = {...state, item: state.list.find(_item => _item?.SK?.includes(id)) || null}
+      state = {...state, item: state.list.find(_item => _item?.SK?.includes(id)) || null}
       console.log(`state = `, state)
       console.log(`subscribers = `, subscribers)
       notifyAll()
     },
 
     commit: () => {
-      // if (state.item && state.item?.SK) {
-      //   const id = state.list.findIndex(_item => _item?.SK?.includes(state.item?.SK!))
-      //   state.list[id] = state.item;
+      if (state.item && state.item?.SK) {
+        const id = state.list.findIndex(_item => _item?.SK?.includes(state.item?.SK!))
+        state.list[id] = state.item;
         notifyAll()
-      // }
+      }
     },
 
     clear: () => {
-      // state.item = null;
+      state.item = null;
       notifyAll()
     },
 

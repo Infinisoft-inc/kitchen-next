@@ -6,11 +6,17 @@
   "configurations": [
     {
       "name": "Package",
-      "type": "pwa-chrome",
+      "type": "chrome",
       "request": "launch",
       "url": "http://localhost:8080",
-      "protocol": "inspector",
-      "webRoot": "${workspaceFolder}/packages/contact/src"
+      "webRoot": "${workspaceFolder}/micro-apps/contact",
+      "sourceMapPathOverrides": {
+        "webpack:/*": "${webRoot}/*",
+        "/./*": "${webRoot}/*",
+        "/src/*": "${webRoot}/*",
+        "/*": "*",
+        "/./~/*": "${webRoot}/node_modules/*"
+      },
     },
     {
       "name": "Microapp",

@@ -4,10 +4,10 @@
  * www.infini-soft.com
  */
 
-const path = require("path");
-const webpack = require("webpack");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // const TerserPlugin = require("terser-webpack-plugin"); // Issue with module federation
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 
@@ -17,77 +17,78 @@ module.exports = {
     new MomentLocalesPlugin(),
     new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, "../templates/index.html"),
-      title: "Infinisoft Boilerplate"
-    })
+      template: path.join(__dirname, '../templates/index.html'),
+      title: 'Infinisoft Boilerplate',
+    }),
   ],
   output: {
-    filename: "[name].[contenthash].js",
-    path: path.join(process.cwd(), "dist"),
-    publicPath: 'auto'
+    filename: '[name].[contenthash].js',
+    path: path.join(process.cwd(), 'dist'),
+    publicPath: 'auto',
   },
-   resolve: {
+  resolve: {
     cacheWithContext: false,
-    extensions: [".tsx", ".ts", ".jsx", ".js"]
+    extensions: ['.tsx', '.ts', '.jsx', '.js'],
+  },
+  experiments: {
+    topLevelAwait: true,
   },
   module: {
     rules: [
       {
         test: /\.(js|jsx|ts|tsx)?$/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
           options: {
             presets: [
-              "@babel/preset-typescript",
-              "@babel/preset-env",
-              ["@babel/preset-react", {"runtime": "automatic"}]
+              '@babel/preset-typescript',
+              '@babel/preset-env',
+              ['@babel/preset-react', { runtime: 'automatic' }],
             ],
-            plugins: [
-              'lodash',
-            ],
-          }
+            plugins: ['lodash'],
+          },
         },
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
         test: /\.less$/i,
         use: [
           {
-            loader: "style-loader"
+            loader: 'style-loader',
           },
           {
-            loader: "css-loader"
+            loader: 'css-loader',
           },
           {
-            loader: "less-loader",
+            loader: 'less-loader',
             options: {
               lessOptions: {
-                javascriptEnabled: true
-              }
-            }
-          }
-        ]
+                javascriptEnabled: true,
+              },
+            },
+          },
+        ],
       },
       {
         test: /\.css$/i,
-        include: path.resolve(process.cwd(), "src"),
+        include: path.resolve(process.cwd(), 'src'),
         exclude: /node_modules/,
         use: [
           MiniCssExtractPlugin.loader,
           {
-            loader: "css-loader",
+            loader: 'css-loader',
             options: {
-              modules: true
-            }
-          }
-        ]
+              modules: true,
+            },
+          },
+        ],
       },
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        include: path.resolve(process.cwd(), "src"),
+        include: path.resolve(process.cwd(), 'src'),
         exclude: /node_modules/,
-        type: "asset/resource"
-      }
-    ]
-  }
+        type: 'asset/resource',
+      },
+    ],
+  },
 };

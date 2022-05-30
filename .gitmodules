@@ -7,3 +7,6 @@
 [submodule "template/template-fm-container"]
 	path = template/template-fm-container
 	url = https://github.com/Infinisoft-inc/template-fm-container.git
+[submodule "template/template-library"]
+	path = template/template-library
+	url = https://github.com/Infinisoft-inc/template-library.git
