@@ -18,12 +18,18 @@ declare module "store/types" {
     /**
      * Store State
      */
-    export type State<S> = S;
+    export type State<S> = S | S[] | {
+        [k: string]: S | S[];
+    };
     export type NormalizedState<K, S> = Map<K, S>;
     /**
      * Store input
      */
     export type Init<S> = () => Promise<State<S>> | State<S>;
+    export type CreateStoreOptions<K, S> = {
+        key?: K;
+        keyPredicat?: (arg: S) => any;
+    };
     /**
      * Store output
      */
@@ -40,7 +46,7 @@ declare module "store/types" {
     /**
      * Store abstraction
      */
-    export type Store = <S, Payload, K>(init?: Init<S>, key?: K) => IStore<S, Payload, K>;
+    export type Store = <S, Payload, K>(init?: Init<S>, options?: CreateStoreOptions<K, S>) => IStore<S, Payload, K>;
 }
 declare module "store/createstore" {
     import { Store } from "store/types";

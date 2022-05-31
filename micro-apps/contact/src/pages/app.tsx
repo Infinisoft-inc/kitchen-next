@@ -20,8 +20,7 @@ const App = () => {
   const actionRef = useRef<ActionType>();
   const { store } = useMicroContext();
   const { liveTheme, ...theme } = useMicroTheme();
-  //@ts-ignore
-  const list = useSyncExternalStore(store.subscribe, () => store.getSnapshot()?.list )
+  const list = useSyncExternalStore(store.subscribe, store.getSnapshot )
 
   //@ts-ignore
   console.log(`list = `, list)
@@ -56,7 +55,7 @@ const App = () => {
           pageSize: 10,
         }}
         className={styles['ant-pro-table']}
-        dataSource={list}
+        dataSource={list as []}
         columns={columns(store) as any}
       />
     </Suspense>

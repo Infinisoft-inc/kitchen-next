@@ -13,10 +13,11 @@ export type UseModelSdkOutput = ReturnType<typeof useModelSdk>
 import(/* webpackPreload: true */ 'store/createstore')
 const createstore: Store = await load('store', 'createstore')
 
-export type MicroState = {
-  list: API.Item[]
-  itemSelectedId?: string
-}
+export type MicroState = API.Item[]
+// {
+//   list: API.Item[]
+//   itemSelectedId?: string
+// }
 export type MicroPayload = API.Item
 export type ContactStore = IStore<MicroState, MicroPayload, keyof API.Item>
 
@@ -31,12 +32,11 @@ export type MicroContextState = {
   store: ContactStore
 }
 
-const store = createstore<MicroState, MicroPayload, keyof API.Item>(async () => {
+const store = createstore<API.Item[], MicroPayload, keyof API.Item>(async () => {
   const result = await listService.list({}) as API.Success
-  const _state: MicroState = {list: result?.data ?? [], itemSelectedId: ''}
 
-  return _state
-}, 'SK')
+  return result?.data ?? []
+}, {key: 'SK'})
 
 const initialContext: MicroContextState = {
   history,
