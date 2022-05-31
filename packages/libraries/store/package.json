@@ -13,7 +13,7 @@
     "build:dev": "yarn run build:types& webpack -c webpack.config.js",
     "test": "jest",
     "test:watchAll": "jest --watchAll",
-    "test:coverage": "jest --coverage&& start coverage/lcov-report/index.html",
+    "test:coverage": "jest --coverage&& start analyze/coverage/lcov-report/index.html",
     "build:analyze": "webpack -c webpack.analyze.js",
     "build:analyze:baseline": "webpack -c webpack.analyze.js --env ANALYZEBASELINE=true",
     "build:types": "tsc -p tsconfig.json -d --emitDeclarationOnly --outFile dist/types.d.ts --esModuleInterop",
@@ -21,7 +21,7 @@
     "deploy": "kli component deploy",
     "start:dev": "webpack serve -c webpack.config.js --open",
     "serve:dist": "serve -s dist",
-    "clean":"rm -rf analyze dist node_modules"
+    "clean": "rm -rf analyze dist node_modules"
   },
   "devDependencies": {},
   "peerDependencies": {},

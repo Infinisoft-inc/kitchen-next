@@ -27,6 +27,7 @@ module.exports = merge(common, {
         './Index': './src/pages/index',
       },
       shared: {
+        store: { singleton: true, eager: true },
         react: { singleton: true, eager: true, requiredVersion: deps.react },
         'react-dom': {
           singleton: true,

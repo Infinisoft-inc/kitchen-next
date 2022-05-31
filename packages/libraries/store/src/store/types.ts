@@ -4,27 +4,62 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
-// export type Snapshot<T> = T;
 
-// export type Predicat = <T = unknown>(...args: T[]) => T
-export type EventHandler<State, Payload> = (event: string, state?: State, payload?: Payload) => void
-export type EventEmitter<State, Payload> = (event: string, payload?: Payload) => State
-export type NotifyAllSubscribers<Payload> = (event: string, payload?: Payload) => void
+/**
+ * Subscriber get notified on state change immutable only
+ */
+export type SubscriberEventHandler<S = unknown, Payload = unknown> = (event: string, state?: State<S>, payload?: Payload) => void
+export type Subscribers<S, Payload> = Map<Symbol, SubscriberEventHandler<S, Payload>>
 
-// export type ICrud<T = unknown> = {
-//   add: (item: T) => void;
-//   change: (predicat: Predicat) => void;
-//   remove: (predicat: Predicat) => void;
-//   edit: (predicat: () => T) => void;
-//   commit: (item: number) => void;
-//   clear: () => void;
-// };
+/**
+ * Publisher emit events with optionnal payload
+ */
+export type PublisherEvent<Payload = unknown> = (event: string, payload?: Payload) => void
 
-export type IStore<State = unknown, Payload = unknown> = {
-  subscribe: (eventhandler: EventHandler<State, Payload>) => () => void;
-  getSnapshot: () => State | undefined;
-  getServerSnapshot?: () => State | undefined;
-  emit:  NotifyAllSubscribers<Payload>
+/**
+ * Cookers are middlewares
+ * responsible of cooking
+ * data mutation/transformation
+ */
+export type CookersEventHandler<S = unknown, Payload = unknown> = (event: string, state?: State<S>, payload?: Payload) => S
+export type Cookers<S, Payload> = Map<Symbol, CookersEventHandler<S, Payload>>
+
+/**
+ * Store State
+ */
+export type State<S> = S | S[] | {[k:string]: S | S[]}
+export type NormalizedState<K, S> = Map<K, S>
+/**
+ * Store input
+ */
+export type Init<S> = () => Promise<State<S>> | State<S>
+export type CreateStoreOptions<K, S> = {
+  // Unique key for normalization
+  key?: K
+  // Use path to call keyPredicat
+  path?: string
+  // Callback to find and return key
+  keyPredicat?: (arg: S) => any
+
 }
 
-export type Store = <State>(init?: State | (() => Promise<State>) | undefined) => IStore<State>
+/**
+ * Store output
+ */
+export type GetState<S> = () => State<S>
+export type GetNormalizedState<K, S> = () => NormalizedState<K, State<S>>
+
+export type IStore<S, Payload, K = any> = {
+  getSnapshot: GetState<S>
+  getServerSnapshot?: GetState<S>;
+  getNormalizedState?: GetNormalizedState<K, S>;
+
+  subscribe: (eventhandler: SubscriberEventHandler<S, Payload>) => () => void;
+  publish: PublisherEvent<Payload>
+  cook: (eventhandler: CookersEventHandler<S, Payload>) => () => void;
+}
+
+/**
+ * Store abstraction
+ */
+export type Store = <S, Payload, K >(init?: Init<S>, options?: CreateStoreOptions<K,S>) => IStore<S, Payload, K>

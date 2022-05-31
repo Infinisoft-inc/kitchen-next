@@ -5,16 +5,19 @@
  */
 
 import React from "react";
-import { Store } from "store/types";
 
 /**
  * CrudList Props
  */
-export type CrudListProps = Partial<HTMLElement> & {
+export type CrudListProps<T = any> = Partial<HTMLElement> & {
   /**
    * List title
    */
   title: React.ReactNode
   icon: React.ReactNode
-  store: ReturnType<Store>
+  onAdd: ()=>void
+  onChange: ()=>void
+  onRemove: ()=>void
+  list: T[]
+
 };

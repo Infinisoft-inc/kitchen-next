@@ -18,7 +18,7 @@ declare module "store/types" {
     /**
      * Store State
      */
-    export type State<S> = S;
+    export type State<S> = S// | S[] | Record<keyof S | string | number | symbol, S> | undefined;
     export type NormalizedState<K, S> = Map<K, S>;
     /**
      * Store input
@@ -40,6 +40,7 @@ declare module "store/types" {
     /**
      * Store abstraction
      */
+
     export type Store = <S, Payload, K>(init?: Init<S>, key?: K) => IStore<S, Payload, K>;
 }
 declare module "store/createstore" {

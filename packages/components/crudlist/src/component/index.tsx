@@ -5,7 +5,7 @@
  *
  * CrudList Federated Micro Component
  */
-import React, { Suspense, useSyncExternalStore } from 'react';
+import React, { Suspense } from 'react';
 import { AddIcon } from './assets/svg';
 import css from './index.module.css';
 import { CrudListProps } from './types';
@@ -17,10 +17,11 @@ const FlexLine = React.lazy(() => import(/* webpackPrefetch: true */'flexline/Fl
 export const CrudList = ({
   title,
   icon,
-  store
+  list,
+  onAdd,
+  onChange,
+  onRemove
 }: CrudListProps) => {
-
-  let {list} = useSyncExternalStore(store.subscribe, store.getSnapshot)
 
   return <Suspense>
     <div className={css.root}>
@@ -30,13 +31,13 @@ export const CrudList = ({
           <div className={css.list}>
             <div className={css.header}>
               {title}
-              <button onClick={() => { store.add(`hello ${list.length}`) }}><AddIcon /></button>
+              <button onClick={onAdd}><AddIcon /></button>
             </div>
 
             {
               list?.map(
                 (item, i: number) =>
-                  <InputText key={`item${i}`} value={String(list[i])} onChange={(val) => { store.change(val.target.value, ()=>{}) }} onRemove={() => store.remove(()=>{})} copyable removable />
+                  <InputText key={`item${i}`} value={String(list[i])} onChange={onChange} onRemove={onRemove} copyable removable />
               )
             }
           </div>

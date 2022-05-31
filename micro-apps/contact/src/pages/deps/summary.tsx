@@ -3,17 +3,14 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
-import { load } from '@infini-soft/lib-federation';
+// import { load } from '@infini-soft/lib-federation';
 import { Tag, Typography } from 'antd';
 import React, { Suspense, useId } from 'react';
-import type { Store } from "store/types";
+// import type { Store } from "store/types";
 import { useMicroContext } from '../../context/micro';
-import { AddressIcon, EmailIcon, NameIcon, WebIcon } from '../assets/svg';
+import { AddressIcon, EmailIcon, NameIcon, PhoneIcon, WebIcon } from '../assets/svg';
 import AvatarUpload from '../components/avatar-upload';
 import css from './index.css';
-
-import(/* webpackPreload: true */ 'store/createstore')
-const createstore: Store = await load('store', 'createstore')
 
 const ContactDetail = React.lazy(() => import('contactdetails/ContactDetails'))
 const CrudList = React.lazy(() => import(/* webpackPreload: true */ 'crudlist/CrudList'))
@@ -31,7 +28,10 @@ type SummaryProps = {
 const Summary: React.FC<SummaryProps> = ({ hide = [], editable = true, errors = [], values, variant = 'vertical' }) => {
   const _hide = hide.join(' ')
   const isEditable = (fieldName: string) => editable ? fieldName : undefined
-  const { model, store, list } = useMicroContext()
+  const { model } = useMicroContext()
+  // const f = useSyncExternalStore(store.subscribe, () => {
+  //   values?.SK ? store.getSnapshot()?.[values.SK] : undefined
+  // })
   const isError = errors.length > 0
   const id = useId()
   const onChange = (field: string) => ({
@@ -40,8 +40,6 @@ const Summary: React.FC<SummaryProps> = ({ hide = [], editable = true, errors = 
       // model?.item.commit.run()
     }
   })
-
-  console.log(`values `, values)
 
   // const onChangeList = (_field: keyof API.Item) => (val: string, index?: number) => {
   //   if (model?.item?.draft?.[_field] && Array.isArray(model?.item?.draft?.[_field])) {
@@ -57,6 +55,11 @@ const Summary: React.FC<SummaryProps> = ({ hide = [], editable = true, errors = 
   //     model.item?.onChange({ ...model.item.draft, [_field]: (model?.item?.draft?.[_field] as any[]).filter((_, idx) => idx !== i) }, "crudlist")
   //   }
   // }
+
+  const onAdd = () => {alert(`Add`)}
+  const onRemove = () => {alert(`Remove`)}
+  const onChangeTmp = () => {alert(`onChangetmp`)}
+
 
 
 
@@ -108,12 +111,10 @@ const Summary: React.FC<SummaryProps> = ({ hide = [], editable = true, errors = 
         {!_hide.includes('address') &&
           //@ts-ignore
           <InputText className='invariant' title='Address' prefix={<AddressIcon />} value={values?.address ?? 'Add address'} />}
-
-        {/* {!_hide.includes('telephones') && <CrudList mystore={createstore({list[0].telephones})} icon={<PhoneIcon />} className='invariant' title='Telephones' field='telephones' />} */}
       </Suspense>
       <Suspense fallback='telephones'>
 
-        {/* <CrudList title={'Telephones'} icon={<PhoneIcon />} store={createstore(values?.telephones ?? [''])} /> */}
+        <CrudList title={'Telephones'} icon={<PhoneIcon />} list={values?.telephones ?? []} onAdd={onAdd} onChange={onChangeTmp} onRemove={onRemove} />
       </Suspense>
 
       {/* @ts-ignore */}

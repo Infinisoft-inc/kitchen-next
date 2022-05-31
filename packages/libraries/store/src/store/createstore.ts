@@ -3,85 +3,115 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
-import { EventHandler, NotifyAllSubscribers, Store } from "./types";
+import { Cookers, CookersEventHandler, CreateStoreOptions, Init, IStore, NormalizedState, PublisherEvent, State, Store, SubscriberEventHandler, Subscribers } from "./types";
 
-const createstore: Store = <State, Payload>(init?: State | (() => Promise<State>))=> {
-  let state: State | undefined;
 
-  if (typeof init !== 'function') {
-    state = init
+/**
+ * Store Creator
+ * @param init State initializer function
+ * @returns new store
+ */
+const createstore: Store = <S, Payload, K>(init?: Init<S>, options?: CreateStoreOptions<K, S>): IStore<S, Payload, K> => {
+  const _init = init?.()
+  const subscribers: Subscribers<S, Payload> = new Map()
+  const cookers: Cookers<S, Payload> = new Map()
+  let state: State<S>;
+  let normalizedState: NormalizedState<K, typeof state> = new Map();
+
+  /**
+   * Convert array to map with k as key
+   * @param k key
+   * @param ar array
+   * @returns Mapped items like Map<k, array[k]>
+   */
+  // type Condition<K, NS> = NS extends object ? path extends keyof NS : never
+
+  const normalizeArray = <K, S>(ar: S) => {
+    const {key, keyPredicat} = options ?? {}
+    const normalize: NormalizedState<K, S> = new Map()
+
+
+    // if (ar && typeof ar === 'object' && path && keyPredicat && Array.isArray(ar[path])) {
+    //   ar[path].forEach((item) => normalize.set(keyPredicat(item), item))
+    // }
+
+    if (ar && Array.isArray(ar) && keyPredicat) {
+      ar.forEach((item) => normalize.set(keyPredicat(item), item))
+    }
+
+    if (ar && Array.isArray(ar) && key) {
+      ar.forEach(item => normalize.set(item[key], item))
+    }
+
+    // if (ar && Array.isArray(ar)) {
+    //   ar.forEach(item => normalize.set(Symbol() as unknown as K, item))
+    // }
+
+    return normalize;
   }
 
-  if (init && typeof init === 'function') {
-    // @ts-ignore
-    init()
-      .then((result: State) => {state = result})
-      .catch(console.error)
-      .finally(() => notifyAllSubscribers('@initialization'))
-  }
-
-  const subscribers = new Map<Symbol, EventHandler<State, Payload>>()
-
-
-  const notifyAllSubscribers:NotifyAllSubscribers<Payload> = (event, payload) => {
+  const _notifyAllSubscribers: PublisherEvent<Payload> = (event, payload) => {
     subscribers.forEach((_callback) => {
-      return _callback(event, state, payload);
+      _callback(event, state, payload);
     })
   }
 
-  const _store =  {
+  const initialize = (_state: typeof state) => {
+    state = _state
 
-    subscribe: (callback: EventHandler<State, Payload>) => {
-      const id = Symbol()
-      subscribers.set(id, callback)
-      return () => { subscribers.delete(id) }
-    },
+    // if ((options?.key || options?.keyPredicat) && Array.isArray(_state)) {
+      normalizedState = normalizeArray(_state)
+    // }
 
-    getSnapshot: () => state,
-    emit: notifyAllSubscribers
-
-    // add: (val: T) => {
-    //   state.list = [val, ...state.list]
-    //   notifyAll()
-    // },
-
-    // remove: (predicat: (value: T, index: number, array: T[]) => unknown, thisArg?: any): void => {
-    //   // state.list = state.list.filter((_, i) => i !== index)
-    //   state.list = state.list.filter(predicat)
-
-    //   notifyAll()
-    // },
-
-    // change: (predicat: Predicat) => {
-    //   // state.list = state.list.map((_item, i) => i === index ? val : _item)
-    //   // state.list = state.list.map(predicat)
-    //   notifyAll()
-    // },
-
-    // edit: (predicat: ()=>T) => {
-    //   state = {...state, item: state.list.find(predicat) || null}
-    //   console.log(`state = `, state)
-    //   console.log(`subscribers = `, subscribers)
-    //   notifyAll()
-    // },
-
-    // commit: () => {
-
-    //   // if (state.item && state.item?.SK) {
-    //     // const id = state.list.findIndex(_item => _item?.SK?.includes(state.item?.SK!))
-    //     // state.list[id] = state.item;
-    //     notifyAll()
-    //   // }
-    // },
-
-    // clear: () => {
-    //   state.item = null;
-    //   notifyAll()
-    // },
-
+    _notifyAllSubscribers('@initialization')
   }
 
-  return _store;
+  if (_init && !('then' in _init)) {
+    initialize(_init)
+  }
+
+  if (_init && ('then' in _init)) {
+    (_init as Promise<State<S>>).then?.(initialize)
+      .catch(console.error)
+  }
+
+  const _notifyAllCookers: PublisherEvent<Payload> = (event, payload) => {
+    cookers.forEach((_callback) => {
+      state = _callback(event, state, payload);
+    })
+  }
+
+  const subscribe = (callback: SubscriberEventHandler<S, Payload>) => {
+    const id = Symbol()
+    subscribers.set(id, callback)
+    return () => { subscribers.delete(id) }
+  }
+
+  const subscribeFilter = (callback: SubscriberEventHandler<S, Payload>) => {
+    const id = Symbol()
+    subscribers.set(id, callback)
+    return () => { subscribers.delete(id) }
+  }
+
+  const cook = (callback: CookersEventHandler<S, Payload>) => {
+    const id = Symbol()
+    cookers.set(id, callback)
+    return () => { cookers.delete(id) }
+  }
+
+  const publish: PublisherEvent<Payload> = (event, payload) => {
+    _notifyAllCookers(event, payload)
+    _notifyAllSubscribers(event, payload)
+  }
+
+  return {
+    subscribe,
+    publish,
+    cook,
+    getSnapshot: () => state,
+    getServerSnapshot: () => state,
+    getNormalizedState: () => normalizedState
+  }
 }
 
 export default createstore

@@ -13,8 +13,14 @@ export type UseModelSdkOutput = ReturnType<typeof useModelSdk>
 import(/* webpackPreload: true */ 'store/createstore')
 const createstore: Store = await load('store', 'createstore')
 
+export type MicroState = {
+  list: API.Item[]
+  itemSelectedId?: string
+}
+export type MicroPayload = API.Item
+export type ContactStore = IStore<MicroState, MicroPayload, keyof API.Item>
 
-type MicroContextState = {
+export type MicroContextState = {
   history: typeof history;
   user: {
     isAdmin: boolean;
@@ -22,10 +28,15 @@ type MicroContextState = {
   };
   hub: IHub;
   model?: ReturnType<typeof useModelSdk>;
-  list: API.Item[];
-  item: API.Item | null,
-  store: IStore<API.Item>
+  store: ContactStore
 }
+
+const store = createstore<MicroState, MicroPayload, keyof API.Item>(async () => {
+  const result = await listService.list({}) as API.Success
+  const _state: MicroState = {list: result?.data ?? [], itemSelectedId: ''}
+
+  return _state
+}, 'SK')
 
 const initialContext: MicroContextState = {
   history,
@@ -41,30 +52,18 @@ const initialContext: MicroContextState = {
  * IPC
  */
   hub: Hub(),
-  list: [],
-  item: null,
-  store: createstore<API.Item>(async () => {
-    const result = await listService.list({}) as API.Success
-
-    return result?.data ?? []
-  })
-
+  // item: null,
+  store
 };
 
 const MicroContext = React.createContext<MicroContextState>(initialContext);
 
-const store = createstore<API.Item>(async () => {
-  const result = await listService.list({}) as API.Success
-
-  return result?.data ?? []
-})
-
 const hub = Hub()
 const MicroContextProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const {list} = useSyncExternalStore(store.subscribe, store.getSnapshot)
+  const contactList = useSyncExternalStore(store.subscribe, store.getSnapshot)
 
-//   const def = useDeferredValue({..._storeSnapshot,store})
-// const storeSnapshot = React.useMemo(()=>def, [def.list])
+  //   const def = useDeferredValue({..._storeSnapshot,store})
+  // const storeSnapshot = React.useMemo(()=>def, [def.list])
 
   // const options = { ...config, hub, source: config.appName }
   // const model = useModelSdk({ options })
@@ -86,7 +85,7 @@ const MicroContextProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
   const [context,] = React.useState(initialContext);
 
-  return <MicroContext.Provider value={{ ...context, hub, list, store }}>
+  return <MicroContext.Provider value={{ ...context, hub, store}}>
     {children}
   </MicroContext.Provider>
 }

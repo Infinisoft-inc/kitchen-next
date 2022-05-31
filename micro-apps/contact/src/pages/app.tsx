@@ -2,13 +2,12 @@
 import { ActionType } from '@ant-design/pro-table';
 import { LiveConfig } from '@infini-soft/hooks-theme';
 import { PageHeader, Typography } from 'antd';
-import React, { Suspense, useRef } from 'react';
+import React, { Suspense, useRef, useSyncExternalStore } from 'react';
 import { useMicroContext } from '../context/micro';
 import { useMicroTheme } from '../context/theme';
 import { BackArrow } from './assets/svg';
 import { columns } from './deps/columns';
 import styles from './index.css';
-// const createstore = await load('store', 'createstore')
 
 
 const ProTable = React.lazy(() => import(/* webpackPreload: true */'@ant-design/pro-table'));
@@ -19,12 +18,16 @@ const Search = React.lazy(() => import(/* webpackPreload: true */'./search'));
 
 const App = () => {
   const actionRef = useRef<ActionType>();
-  const {list,store, model, item} = useMicroContext();
+  const { store } = useMicroContext();
   const { liveTheme, ...theme } = useMicroTheme();
+  //@ts-ignore
+  const list = useSyncExternalStore(store.subscribe, () => store.getSnapshot()?.list )
+
+  //@ts-ignore
+  console.log(`list = `, list)
 
   React.useEffect(() => {
-    document.querySelector('[aria-label="reload"]')?.addEventListener('click', () => model?.operations.list.run({}));
-    // model?.operations.list.run({})
+    // document.querySelector('[aria-label="reload"]')?.addEventListener('click', () => model?.operations.list.run({}));
   }, []);
 
   return <div className={styles.root}>
@@ -53,10 +56,9 @@ const App = () => {
           pageSize: 10,
         }}
         className={styles['ant-pro-table']}
-        loading={list.length===0}
         dataSource={list}
         columns={columns(store) as any}
-        />
+      />
     </Suspense>
 
     <Suspense fallback='read'>

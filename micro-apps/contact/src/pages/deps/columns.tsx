@@ -4,122 +4,124 @@
  * www.infini-soft.com
  */
 import type { ProColumns } from "@ant-design/pro-table";
-import { trigger } from "@infini-soft/utils";
 import { bubble } from "@infini-soft/utils/lib/Sorters";
 import { Avatar } from "antd";
 import React from 'react';
-import { IStore } from "store/types";
+// import { IStore } from "store/types";
 import { AvatarIcon } from "../components/avatar-upload/assets";
 import css from './index.css';
 
-export const columns = (store: IStore<API.Item>): ProColumns<API.Item>[] => [
-    {
-        title: 'Name',
-        dataIndex: 'name',
-        sorter: bubble('name'),
-        render: (dom, entity) => {
-            return (<div className={css.mobileColumnContainer}>
-                <Avatar shape="square" src={entity.avatar} size={48}><AvatarIcon /></Avatar>
-                <a
-                    onClick={() => {
-                        // trigger('ui.open.read', entity)
-                        // store.edit(entity?.SK!)
-                    }}
-                >
-                    {dom}
-                </a>
+// export const columns = (store: IStore<API.Item, API.Item, keyof API.Item>): ProColumns<API.Item>[] => [
+export const columns = (store: any): ProColumns<API.Item>[] => [
+  {
+    title: 'Name',
+    dataIndex: 'name',
+    sorter: bubble('name'),
+    render: (dom, entity) => {
+      return (<div className={css.mobileColumnContainer}>
+        <Avatar shape="square" src={entity.avatar} size={48}><AvatarIcon /></Avatar>
+        <a
+          onClick={() => {
+            // trigger('ui.open.read', entity)
+            // store.edit(entity?.SK!)
+          }}
+        >
+          {dom}
+        </a>
 
-                {entity.email}
-            </div>);
-        },
-        responsive: ['xs']
+        {entity.email}
+      </div>);
     },
-    {
-        title: 'Avatar',
-        dataIndex: 'avatar',
-        render: (_, entity) => <Avatar shape="square" src={entity.avatar} size={48} style={{backgroundColor: 'transparent'}}><AvatarIcon /></Avatar>,
-        responsive: ['sm']
+    responsive: ['xs']
+  },
+  {
+    title: 'Avatar',
+    dataIndex: 'avatar',
+    render: (_, entity) => <Avatar shape="square" src={entity.avatar} size={48} style={{ backgroundColor: 'transparent' }}><AvatarIcon /></Avatar>,
+    responsive: ['sm']
 
+  },
+  {
+    title: 'Name',
+    dataIndex: 'name',
+    sorter: bubble('name'),
+    render: (dom, entity) => {
+      return (
+        <a
+          onClick={() => {
+            // trigger('ui.open.read', entity)
+            store.publish("item.clicked", entity)
+            // store.edit(entity?.SK!)
+            // startTransition(() => {
+            console.log(`entity `, entity)
+            // store.edit(entity?.SK!)
+            // })
+          }}
+          key={entity.SK}
+        >
+          {dom}
+        </a>
+      );
     },
-    {
-        title: 'Name',
-        dataIndex: 'name',
-        sorter: bubble('name'),
-        render: (dom, entity) => {
-            return (
-                <a
-                    onClick={() => {
-                        trigger('ui.open.read', entity)
-                        // store.edit(entity?.SK!)
-                        // startTransition(() => {
-                          console.log(`entity `, entity)
-                          // store.edit(entity?.SK!)
-                        // })
-                    }}
-                >
-                    {dom}
-                </a>
-            );
-        },
-        responsive: ['sm']
+    responsive: ['sm']
+  },
+  {
+    title: 'Category',
+    dataIndex: 'SK',
+    sorter: bubble('SK'),
+    filters: true,
+    render: (_, record) => record.SK?.split('__')?.[0] ?? 'Unknown',
+    hideInTable: true
+  },
+  {
+    title: 'Subcategory',
+    dataIndex: 'Subcategory',
+    sorter: bubble('Subcategory'),
+    filters: true,
+    render: (_, record) => record.Subcategory?.split('__')?.[0] ?? 'Unknown',
+    responsive: ['lg'],
+  },
+  {
+    title: 'Address',
+    dataIndex: 'address',
+    sorter: bubble('address'),
+    render: (_, record) => record.address,
+    responsive: ['md'],
+  },
+  {
+    title: 'Telephones',
+    dataIndex: 'telephones',
+    sorter: bubble('telephones'),
+    valueType: 'select',
+    render: (_, record) => {
+      if (Array.isArray(record.telephones)) {
+        return <div style={{ display: 'flex', flexDirection: 'column', flexWrap: 'wrap' }}>{record.telephones.map((t, i) => <div key={i}>{t}</div>)}</div>
+      }
     },
-    {
-        title: 'Category',
-        dataIndex: 'SK',
-        sorter: bubble('SK'),
-        filters: true,
-        render: (_, record) => record.SK?.split('__')?.[0] ?? 'Unknown',
-        hideInTable: true
-    },
-    {
-        title: 'Subcategory',
-        dataIndex: 'Subcategory',
-        sorter: bubble('Subcategory'),
-        filters: true,
-        render: (_, record) => record.Subcategory?.split('__')?.[0] ?? 'Unknown',
-        responsive: ['lg'],
-    },
-    {
-        title: 'Address',
-        dataIndex: 'address',
-        sorter: bubble('address'),
-        render: (_, record) => record.address,
-        responsive: ['md'],
-    },
-    {
-        title: 'Telephones',
-        dataIndex: 'telephones',
-        sorter: bubble('telephones'),
-        valueType: 'select',
-        render: (_, record) => {
-            if (Array.isArray(record.telephones)) {
-                return <div style={{ display: 'flex', flexDirection: 'column', flexWrap: 'wrap' }}>{record.telephones.map((t, i) => <div key={i}>{t}</div>)}</div>
-            }
-        },
-        responsive: ['sm'],
-    },
-    {
-        title: 'Email',
-        dataIndex: 'email',
-        sorter: bubble('email'),
-        valueType: 'text',
-        render: (_, record) => record.email,
-        responsive: ['md'],
-    },
-    {
-        title: 'Website',
-        dataIndex: 'website',
-        sorter: bubble('website'),
-        valueType: 'text',
-        hideInTable: true,
-        responsive: ['md'],
-    },
-    {
-        title: 'Relation',
-        dataIndex: 'relatedWith',
-        sorter: bubble('relatedWith'),
-        valueType: 'text',
-        hideInTable: true,
-        responsive: ['md'],
-    }
+    responsive: ['sm'],
+  },
+  {
+    title: 'Email',
+    dataIndex: 'email',
+    sorter: bubble('email'),
+    valueType: 'text',
+    render: (_, record) => record.email,
+    responsive: ['md'],
+  },
+  {
+    title: 'Website',
+    dataIndex: 'website',
+    sorter: bubble('website'),
+    valueType: 'text',
+    hideInTable: true,
+    responsive: ['md'],
+  },
+  {
+    title: 'Relation',
+    dataIndex: 'relatedWith',
+    sorter: bubble('relatedWith'),
+    valueType: 'text',
+    hideInTable: true,
+    responsive: ['md'],
+  }
 ]

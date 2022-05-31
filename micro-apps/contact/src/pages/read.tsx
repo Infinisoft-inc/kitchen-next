@@ -3,14 +3,11 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
-import { off, on } from "@infini-soft/utils/lib/Events";
 import { Tag, Typography } from "antd";
 import Drawer from "antd/lib/drawer";
-import React, { startTransition, Suspense, useEffect, useState, useSyncExternalStore } from "react";
+import React, { startTransition, Suspense, useState, useSyncExternalStore } from "react";
 import { useMicroContext } from "../context/micro";
 import css from './index.css';
-
-import(/* webpackPreload: true */ 'store/createstore')
 
 const AvatarUpload = React.lazy(() => import("./components/avatar-upload"));
 const Summary = React.lazy(() => import("./deps/summary"));
@@ -18,11 +15,24 @@ const Summary = React.lazy(() => import("./deps/summary"));
 const Read = () => {
   const [visible, setVisible] = React.useState(false);
   const { model, store } = useMicroContext()
-  const { list } = useSyncExternalStore(store.subscribe, store.getSnapshot)
+  const list = useSyncExternalStore(store.subscribe, store.getSnapshot)
   // const [isPending, startTransition] = useTransition()
   const [sk, setSk] = useState(-1)
+  const item = list?.list
 
   const handleClose = () => setVisible(false)
+
+  React.useEffect(() => {
+    return store.subscribe((event, state, payload) => {
+      if (event.match(/(clicked)/g)) {
+        console.log(`Event `, event, state, payload)
+        console.log(`Normalized = `, store?.getNormalizedState?.())
+        setVisible(true)
+      }
+    })
+  }, [store])
+
+
 
   const eventHandler = React.useCallback((payload: any) => {
     // model?.item.init.run(payload.detail, "init")
@@ -30,22 +40,14 @@ const Read = () => {
     // model?.operations.read?.run({ SK: payload?.detail?.SK });
     setVisible(true)
     startTransition(() => {
-      console.log(`index = `, list.findIndex((_item) => String(_item.SK) === String(payload?.detail?.SK)))
-      setSk(list.findIndex((_item) => String(_item.SK) === String(payload?.detail?.SK)))
+      if (item) {
+        console.log(`index = `, item?.findIndex((_item) => String(_item.SK) === String(payload?.detail?.SK)))
+        setSk(item.findIndex((_item) => String(_item.SK) === String(payload?.detail?.SK)))
+      }
+
     })
     console.log(`read() store `, store)
-    // }, [model?.item.init, model?.operations.read])
-  }, [store, list])
-
-
-
-  React.useEffect(() => { console.log(`ITEM = `, list[sk]) }, [list, sk])
-
-  useEffect(() => {
-    on('ui.open.read', eventHandler)
-    return () => off('ui.open.read', eventHandler)
-  }, [eventHandler])
-
+  }, [store, item])
 
   const onChange = (field: string) => ({
     onChange: (val: string) => {
@@ -53,7 +55,6 @@ const Read = () => {
     }
   })
 
-  // const deffered = useDeferredValue(item)
 
   const {
     avatar = '',
@@ -61,9 +62,7 @@ const Read = () => {
     email = '',
     SK,
     Subcategory
-  } = list[sk] || {}
-  // } = React.useMemo(() => deffered ?? {}, [deffered])
-  // } =  React.useMemo(() => item ?? {}, [item])
+  } = item?.[sk] || {}
 
   // @ts-ignore
   return <Suspense fallback='Reading...'><Drawer
@@ -101,7 +100,7 @@ const Read = () => {
 
       <div className={css.readContent}>
         <Suspense fallback='Summary...'>
-          <Summary values={list[sk]} hide={['name', 'email', 'Subcategory', 'avatar']} />
+          <Summary values={item?.[sk]!} hide={['name', 'email', 'Subcategory', 'avatar']} />
         </Suspense>
       </div>
     </div>
