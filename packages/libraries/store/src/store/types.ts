@@ -37,7 +37,7 @@ export type CreateStoreOptions<K, S> = {
   // Unique key for normalization
   key?: K
   // Use path to call keyPredicat
-  path?: string
+  // path?: string
   // Callback to find and return key
   keyPredicat?: (arg: S) => any
 
