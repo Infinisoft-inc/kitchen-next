@@ -20,10 +20,10 @@ const App = () => {
   const actionRef = useRef<ActionType>();
   const { store } = useMicroContext();
   const { liveTheme, ...theme } = useMicroTheme();
-  const list = useSyncExternalStore(store.subscribe, store.getSnapshot )
+  const microState = useSyncExternalStore(store.subscribe, store.getSnapshot )
 
   //@ts-ignore
-  console.log(`list = `, list)
+  console.log(`list = `, microState?.list)
 
   React.useEffect(() => {
     // document.querySelector('[aria-label="reload"]')?.addEventListener('click', () => model?.operations.list.run({}));
@@ -55,7 +55,7 @@ const App = () => {
           pageSize: 10,
         }}
         className={styles['ant-pro-table']}
-        dataSource={list as []}
+        dataSource={microState?.list}
         columns={columns(store) as any}
       />
     </Suspense>

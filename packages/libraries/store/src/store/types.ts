@@ -27,31 +27,34 @@ export type Cookers<S, Payload> = Map<Symbol, CookersEventHandler<S, Payload>>
 /**
  * Store State
  */
-export type State<S> = S | S[] | {[k:string]: S | S[]}
+export type State<S> = S | S[] | {
+  [k: string]: S | S[];
+};
+export type StateListItem<I> = I
 export type NormalizedState<K, S> = Map<K, S>
 /**
  * Store input
  */
-export type Init<S> = () => Promise<State<S>> | State<S>
-export type CreateStoreOptions<K, S> = {
+export type Init<S> = () => Promise<S> | S
+export type CreateStoreOptions<K extends keyof S, S, I> = {
   // Unique key for normalization
-  key?: K
+  id?: K
   // Use path to call keyPredicat
-  // path?: string
+  normalizeKeys?: K[]
   // Callback to find and return key
-  keyPredicat?: (arg: S) => any
+  keyPredicat?: (arg: I) => any
 
 }
 
 /**
  * Store output
  */
-export type GetState<S> = () => State<S>
+export type GetState<S> = () => S
 export type GetNormalizedState<K, S> = () => NormalizedState<K, State<S>>
 
 export type IStore<S, Payload, K = any> = {
-  getSnapshot: GetState<S>
-  getServerSnapshot?: GetState<S>;
+  getSnapshot: () => S;
+  getServerSnapshot?: () => S;
   getNormalizedState?: GetNormalizedState<K, S>;
 
   subscribe: (eventhandler: SubscriberEventHandler<S, Payload>) => () => void;
@@ -62,4 +65,4 @@ export type IStore<S, Payload, K = any> = {
 /**
  * Store abstraction
  */
-export type Store = <S, Payload, K >(init?: Init<S>, options?: CreateStoreOptions<K,S>) => IStore<S, Payload, K>
+export type Store = <S, Payload, K extends keyof S, I>(init?: Init<S>, options?: CreateStoreOptions<K, S, I>) => IStore<S, Payload, K>

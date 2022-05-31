@@ -20,8 +20,9 @@ describe('Unit Testing', () => {
   });
 
   it('Array initializer getNormalizedState()', () => {
-    const store = createstore(() => [{ id: 1, name: 'dog' }, { id: 2, name: 'titi' }],
-      { key: 'id' })
+    type Item = { id: number, name: string }
+    const store = createstore<any, any, any, Item>(() => [{ id: 1, name: 'dog' }, { id: 2, name: 'titi' }],
+      { id: 'id' })
     const expected = new Map<number, { id: number, name: string }>()
     expected.set(1, { id: 1, name: 'dog' })
     expected.set(2, { id: 2, name: 'titi' })
@@ -31,7 +32,7 @@ describe('Unit Testing', () => {
 
   it('Array initializer getNormalizedState() with predicat', () => {
     type Item = { id: number, name: string }
-    const store = createstore(() => [{ id: 1, name: 'dog' }, { id: 2, name: 'titi' }],
+    const store = createstore<any, any, any, Item>(() => [{ id: 1, name: 'dog' }, { id: 2, name: 'titi' }],
       {
         keyPredicat: (item) => item.id
       })
@@ -43,30 +44,31 @@ describe('Unit Testing', () => {
     expect(store?.getNormalizedState?.()).toEqual(expected);
   });
 
-  // it('Array initializer getNormalizedState() with nested ID predicat', () => {
-  //   type State = {list: Array<{ id: number, name: string }>, useless: string}
-  //   type Item = { id: number, name: string }
-  //   // const store = createstore(() => ({list: [{ id: 1, name: 'dog' }, { id: 2, name: 'titi' }]}),
-  //   const store = createstore(() => ([{ id: 1, name: 'dog' }, { id: 2, name: 'titi' }]),
-  //     {
-  //       keyPredicat: (item) => item.id
-  //     })
+  it('Array initializer getNormalizedState() with nested ID predicat', () => {
+    type State = { list: Array<Item>, useless: string }
+    type Item = { id: number, name: string }
+    const _state: State = { list: [{ id: 1, name: 'dog' }, { id: 2, name: 'titi' }], useless: '' }
+    const store = createstore<State, any, keyof State, Item>(() => (_state),
+      {
+        normalizeKeys: ['list'],
+        keyPredicat: (item) => item.id
+      })
 
-  //   const expected = new Map<number, Item>()
-  //   expected.set(1, { id: 1, name: 'dog' })
-  //   expected.set(2, { id: 2, name: 'titi' })
+    const expected = new Map<number, Item>()
+    expected.set(1, { id: 1, name: 'dog' })
+    expected.set(2, { id: 2, name: 'titi' })
 
-  //   expect(store?.getNormalizedState?.()).toEqual(expected);
-  // });
+    expect(store?.getNormalizedState?.()).toEqual(expected);
+  });
 
-  // it('Promise initializer', async () => {
-  //   const initial = new Promise<string>((res, rej) => {
-  //     setTimeout(() => { res('Congrats') }, 1000)
-  //   })
-  //   const store = createstore(() => initial)
+  it('Promise initializer', async () => {
+    const initial = new Promise<string>((res, rej) => {
+      setTimeout(() => { res('Congrats') }, 1000)
+    })
+    const store = createstore(() => initial)
 
-  //   return initial.finally(() => expect(store.getSnapshot()).toEqual('Congrats'));
-  // });
+    return initial.finally(() => expect(store.getSnapshot()).toEqual('Congrats'));
+  });
 
   it('Subscribe and get notify on add', () => {
     const store = createstore(() => ['one'])

@@ -21,23 +21,25 @@ declare module "store/types" {
     export type State<S> = S | S[] | {
         [k: string]: S | S[];
     };
+    export type StateListItem<I> = I;
     export type NormalizedState<K, S> = Map<K, S>;
     /**
      * Store input
      */
-    export type Init<S> = () => Promise<State<S>> | State<S>;
-    export type CreateStoreOptions<K, S> = {
-        key?: K;
-        keyPredicat?: (arg: S) => any;
+    export type Init<S> = () => Promise<S> | S;
+    export type CreateStoreOptions<K extends keyof S, S, I> = {
+        id?: K;
+        normalizeKeys?: K[];
+        keyPredicat?: (arg: I) => any;
     };
     /**
      * Store output
      */
-    export type GetState<S> = () => State<S>;
+    export type GetState<S> = () => S;
     export type GetNormalizedState<K, S> = () => NormalizedState<K, State<S>>;
     export type IStore<S, Payload, K = any> = {
-        getSnapshot: GetState<S>;
-        getServerSnapshot?: GetState<S>;
+        getSnapshot: () => S;
+        getServerSnapshot?: () => S;
         getNormalizedState?: GetNormalizedState<K, S>;
         subscribe: (eventhandler: SubscriberEventHandler<S, Payload>) => () => void;
         publish: PublisherEvent<Payload>;
@@ -46,7 +48,7 @@ declare module "store/types" {
     /**
      * Store abstraction
      */
-    export type Store = <S, Payload, K>(init?: Init<S>, options?: CreateStoreOptions<K, S>) => IStore<S, Payload, K>;
+    export type Store = <S, Payload, K extends keyof S, I>(init?: Init<S>, options?: CreateStoreOptions<K, S, I>) => IStore<S, Payload, K>;
 }
 declare module "store/createstore" {
     import { Store } from "store/types";

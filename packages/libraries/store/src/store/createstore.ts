@@ -3,7 +3,7 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
-import { Cookers, CookersEventHandler, CreateStoreOptions, Init, IStore, NormalizedState, PublisherEvent, State, Store, SubscriberEventHandler, Subscribers } from "./types";
+import { Cookers, CookersEventHandler, CreateStoreOptions, Init, IStore, NormalizedState, PublisherEvent, Store, SubscriberEventHandler, Subscribers } from "./types";
 
 
 /**
@@ -11,11 +11,11 @@ import { Cookers, CookersEventHandler, CreateStoreOptions, Init, IStore, Normali
  * @param init State initializer function
  * @returns new store
  */
-const createstore: Store = <S, Payload, K>(init?: Init<S>, options?: CreateStoreOptions<K, S>): IStore<S, Payload, K> => {
+const createstore: Store = <S, Payload, K extends keyof S, I>(init?: Init<S>, options?: CreateStoreOptions<K, S, I>): IStore<S, Payload, K> => {
   const _init = init?.()
   const subscribers: Subscribers<S, Payload> = new Map()
   const cookers: Cookers<S, Payload> = new Map()
-  let state: State<S>;
+  let state: S;
   let normalizedState: NormalizedState<K, typeof state> = new Map();
 
   /**
@@ -26,8 +26,12 @@ const createstore: Store = <S, Payload, K>(init?: Init<S>, options?: CreateStore
    */
   // type Condition<K, NS> = NS extends object ? path extends keyof NS : never
 
-  const normalizeArray = <K, S>(ar: S) => {
-    const {key, keyPredicat} = options ?? {}
+  /**
+   * Private
+   */
+
+  const normalizeArray = (ar: S) => {
+    const { id: key, keyPredicat, normalizeKeys } = options ?? {}
     const normalize: NormalizedState<K, S> = new Map()
 
 
@@ -37,6 +41,14 @@ const createstore: Store = <S, Payload, K>(init?: Init<S>, options?: CreateStore
 
     if (ar && Array.isArray(ar) && keyPredicat) {
       ar.forEach((item) => normalize.set(keyPredicat(item), item))
+    }
+
+    if (ar && typeof ar === 'object' && keyPredicat && normalizeKeys) {
+      normalizeKeys.forEach(_k => {
+        if (Array.isArray(ar[_k])) {
+          (ar[_k] as unknown as Array<typeof ar[typeof _k]>).forEach((item: any) => normalize.set(keyPredicat(item), item))
+        }
+      })
     }
 
     if (ar && Array.isArray(ar) && key) {
@@ -56,12 +68,18 @@ const createstore: Store = <S, Payload, K>(init?: Init<S>, options?: CreateStore
     })
   }
 
+  /**
+   * Initialize
+   */
+
+  /**
+   *
+   * @param _state
+   */
   const initialize = (_state: typeof state) => {
     state = _state
 
-    // if ((options?.key || options?.keyPredicat) && Array.isArray(_state)) {
-      normalizedState = normalizeArray(_state)
-    // }
+    normalizedState = normalizeArray(_state as S)
 
     _notifyAllSubscribers('@initialization')
   }
@@ -71,9 +89,17 @@ const createstore: Store = <S, Payload, K>(init?: Init<S>, options?: CreateStore
   }
 
   if (_init && ('then' in _init)) {
-    (_init as Promise<State<S>>).then?.(initialize)
+    (_init as Promise<S>).then?.(initialize)
       .catch(console.error)
   }
+
+
+
+  /**
+   *
+   * @param event
+   * @param payload
+   */
 
   const _notifyAllCookers: PublisherEvent<Payload> = (event, payload) => {
     cookers.forEach((_callback) => {
@@ -81,6 +107,15 @@ const createstore: Store = <S, Payload, K>(init?: Init<S>, options?: CreateStore
     })
   }
 
+  /**
+   * Public
+   */
+
+  /**
+   *
+   * @param callback
+   * @returns
+   */
   const subscribe = (callback: SubscriberEventHandler<S, Payload>) => {
     const id = Symbol()
     subscribers.set(id, callback)
