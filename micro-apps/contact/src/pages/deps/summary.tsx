@@ -5,7 +5,7 @@
  */
 // import { load } from '@infini-soft/lib-federation';
 import { Tag, Typography } from 'antd';
-import React, { Suspense, useId } from 'react';
+import React, { Suspense, useId, useSyncExternalStore } from 'react';
 // import type { Store } from "store/types";
 import { useMicroContext } from '../../context/micro';
 import { AddressIcon, EmailIcon, NameIcon, PhoneIcon, WebIcon } from '../assets/svg';
@@ -28,18 +28,26 @@ type SummaryProps = {
 const Summary: React.FC<SummaryProps> = ({ hide = [], editable = true, errors = [], values, variant = 'vertical' }) => {
   const _hide = hide.join(' ')
   const isEditable = (fieldName: string) => editable ? fieldName : undefined
-  const { model } = useMicroContext()
-  // const f = useSyncExternalStore(store.subscribe, () => {
-  //   values?.SK ? store.getSnapshot()?.[values.SK] : undefined
-  // })
+  const { model, store } = useMicroContext()
+  const item = useSyncExternalStore(store.subscribe, store.getNormalizedState)
+  const { itemSelectedId } = useSyncExternalStore(store.subscribe, store.getSnapshot)
+
+  const contact = item.get(itemSelectedId ?? '')
+
   const isError = errors.length > 0
   const id = useId()
+
   const onChange = (field: string) => ({
     onChange: (val: string) => {
       model?.item.onChange({ ...model.item.draft, [field]: val }, "summary")
       // model?.item.commit.run()
     }
   })
+
+  console.log(`summary() item  normalized = `, item)
+  if (itemSelectedId) {
+    console.log(`summary() selected item  normalized = `, item.get(itemSelectedId))
+  }
 
   // const onChangeList = (_field: keyof API.Item) => (val: string, index?: number) => {
   //   if (model?.item?.draft?.[_field] && Array.isArray(model?.item?.draft?.[_field])) {
@@ -56,9 +64,17 @@ const Summary: React.FC<SummaryProps> = ({ hide = [], editable = true, errors = 
   //   }
   // }
 
-  const onAdd = () => {alert(`Add`)}
-  const onRemove = () => {alert(`Remove`)}
-  const onChangeTmp = () => {alert(`onChangetmp`)}
+  const onAdd = () => {
+    store.mutate(_state => {
+      return {
+        ..._state,
+
+      }
+    })
+    contact?.telephones?.push('NEW PHONE')
+   }
+  const onRemove = () => { alert(`Remove`) }
+  const onChangeTmp = () => { alert(`onChangetmp`) }
 
 
 
@@ -114,7 +130,7 @@ const Summary: React.FC<SummaryProps> = ({ hide = [], editable = true, errors = 
       </Suspense>
       <Suspense fallback='telephones'>
 
-        <CrudList title={'Telephones'} icon={<PhoneIcon />} list={values?.telephones ?? []} onAdd={onAdd} onChange={onChangeTmp} onRemove={onRemove} />
+        <CrudList title={'Telephones'} icon={<PhoneIcon />} list={contact?.telephones ?? []} onAdd={onAdd} onChange={onChangeTmp} onRemove={onRemove} />
       </Suspense>
 
       {/* @ts-ignore */}

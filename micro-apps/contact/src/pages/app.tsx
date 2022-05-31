@@ -22,14 +22,11 @@ const App = () => {
   const { liveTheme, ...theme } = useMicroTheme();
   const microState = useSyncExternalStore(store.subscribe, store.getSnapshot )
 
-  //@ts-ignore
-  console.log(`list = `, microState?.list)
-
   React.useEffect(() => {
     // document.querySelector('[aria-label="reload"]')?.addEventListener('click', () => model?.operations.list.run({}));
   }, []);
 
-  return <div className={styles.root}>
+return <div className={styles.root}>
     <Suspense fallback={<h1>Liveconfig</h1>}>
       {liveTheme && <LiveConfig {...theme} />}
     </Suspense>
@@ -55,6 +52,7 @@ const App = () => {
           pageSize: 10,
         }}
         className={styles['ant-pro-table']}
+        loading={microState?.list?.length === 0}
         dataSource={microState?.list}
         columns={columns(store) as any}
       />

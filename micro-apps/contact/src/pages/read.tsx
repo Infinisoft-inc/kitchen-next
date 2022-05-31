@@ -15,10 +15,13 @@ const Summary = React.lazy(() => import("./deps/summary"));
 const Read = () => {
   const [visible, setVisible] = React.useState(false);
   const { model, store } = useMicroContext()
-  const list = useSyncExternalStore(store.subscribe, store.getSnapshot)
+  const microState = useSyncExternalStore(store.subscribe, store.getSnapshot)
   // const [isPending, startTransition] = useTransition()
   const [sk, setSk] = useState(-1)
-  const item = list?.list
+  const item = microState?.list
+  // const id = store?.getNormalizedState?.()?.get?.('list')
+  console.log(`id = `, microState?.itemSelectedId)
+
 
   const handleClose = () => setVisible(false)
 

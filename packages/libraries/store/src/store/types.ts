@@ -25,6 +25,12 @@ export type CookersEventHandler<S = unknown, Payload = unknown> = (event: string
 export type Cookers<S, Payload> = Map<Symbol, CookersEventHandler<S, Payload>>
 
 /**
+ * Mutate
+ * data mutation/transformation
+ */
+export type Mutate<S = unknown> = (callback: (state: S) => S) => void
+
+/**
  * Store State
  */
 export type State<S> = S | S[] | {
@@ -53,13 +59,18 @@ export type GetState<S> = () => S
 export type GetNormalizedState<K, S> = () => NormalizedState<K, State<S>>
 
 export type IStore<S, Payload, K = any> = {
+  // Read
   getSnapshot: () => S;
-  getServerSnapshot?: () => S;
-  getNormalizedState?: GetNormalizedState<K, S>;
+  getServerSnapshot: () => S;
+  getNormalizedState: GetNormalizedState<K, S>;
 
+  // Pubsub
   subscribe: (eventhandler: SubscriberEventHandler<S, Payload>) => () => void;
   publish: PublisherEvent<Payload>
   cook: (eventhandler: CookersEventHandler<S, Payload>) => () => void;
+
+  // Mutation
+  mutate: Mutate<S>
 }
 
 /**

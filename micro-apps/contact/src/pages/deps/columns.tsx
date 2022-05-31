@@ -3,6 +3,7 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
+import { ContactStore } from "@/context/micro";
 import type { ProColumns } from "@ant-design/pro-table";
 import { bubble } from "@infini-soft/utils/lib/Sorters";
 import { Avatar } from "antd";
@@ -12,7 +13,7 @@ import { AvatarIcon } from "../components/avatar-upload/assets";
 import css from './index.css';
 
 // export const columns = (store: IStore<API.Item, API.Item, keyof API.Item>): ProColumns<API.Item>[] => [
-export const columns = (store: any): ProColumns<API.Item>[] => [
+export const columns = (store: ContactStore): ProColumns<API.Item>[] => [
   {
     title: 'Name',
     dataIndex: 'name',
@@ -51,6 +52,9 @@ export const columns = (store: any): ProColumns<API.Item>[] => [
           onClick={() => {
             // trigger('ui.open.read', entity)
             store.publish("item.clicked", entity)
+            store.mutate((_state=> {
+              return  {..._state, itemSelectedId: entity.SK}
+            }))
             // store.edit(entity?.SK!)
             // startTransition(() => {
             console.log(`entity `, entity)

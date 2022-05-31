@@ -3,7 +3,7 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
-import { Cookers, CookersEventHandler, CreateStoreOptions, Init, IStore, NormalizedState, PublisherEvent, Store, SubscriberEventHandler, Subscribers } from "./types";
+import { Cookers, CookersEventHandler, CreateStoreOptions, Init, IStore, Mutate, NormalizedState, PublisherEvent, Store, SubscriberEventHandler, Subscribers } from "./types";
 
 
 /**
@@ -24,7 +24,6 @@ const createstore: Store = <S, Payload, K extends keyof S, I>(init?: Init<S>, op
    * @param ar array
    * @returns Mapped items like Map<k, array[k]>
    */
-  // type Condition<K, NS> = NS extends object ? path extends keyof NS : never
 
   /**
    * Private
@@ -34,10 +33,6 @@ const createstore: Store = <S, Payload, K extends keyof S, I>(init?: Init<S>, op
     const { id: key, keyPredicat, normalizeKeys } = options ?? {}
     const normalize: NormalizedState<K, S> = new Map()
 
-
-    // if (ar && typeof ar === 'object' && path && keyPredicat && Array.isArray(ar[path])) {
-    //   ar[path].forEach((item) => normalize.set(keyPredicat(item), item))
-    // }
 
     if (ar && Array.isArray(ar) && keyPredicat) {
       ar.forEach((item) => normalize.set(keyPredicat(item), item))
@@ -54,10 +49,6 @@ const createstore: Store = <S, Payload, K extends keyof S, I>(init?: Init<S>, op
     if (ar && Array.isArray(ar) && key) {
       ar.forEach(item => normalize.set(item[key], item))
     }
-
-    // if (ar && Array.isArray(ar)) {
-    //   ar.forEach(item => normalize.set(Symbol() as unknown as K, item))
-    // }
 
     return normalize;
   }
@@ -94,7 +85,6 @@ const createstore: Store = <S, Payload, K extends keyof S, I>(init?: Init<S>, op
   }
 
 
-
   /**
    *
    * @param event
@@ -128,6 +118,13 @@ const createstore: Store = <S, Payload, K extends keyof S, I>(init?: Init<S>, op
     return () => { subscribers.delete(id) }
   }
 
+  const mutate: Mutate<S> = (callback: (_state: S)=>S) => {
+    state = callback(state)
+
+    _notifyAllCookers('mutation')
+    _notifyAllSubscribers('mutation')
+  }
+
   const cook = (callback: CookersEventHandler<S, Payload>) => {
     const id = Symbol()
     cookers.set(id, callback)
@@ -145,7 +142,9 @@ const createstore: Store = <S, Payload, K extends keyof S, I>(init?: Init<S>, op
     cook,
     getSnapshot: () => state,
     getServerSnapshot: () => state,
-    getNormalizedState: () => normalizedState
+    getNormalizedState: () => normalizedState,
+    mutate
+
   }
 }
 

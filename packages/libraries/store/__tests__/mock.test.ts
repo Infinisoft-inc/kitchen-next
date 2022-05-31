@@ -13,6 +13,15 @@ describe('Unit Testing', () => {
     expect(store.getSnapshot()).toEqual(expect.arrayContaining(['dog', 'bobz']));
   });
 
+  it('Array mutate()', () => {
+    const store = createstore(() => ['dog', 'bobz'])
+    store.mutate((_state)=> {
+      return ['mutation']
+    })
+
+    expect(store.getSnapshot()).toEqual(expect.arrayContaining(['mutation']));
+  });
+
   it('Array initializer getServerSnapshot()', () => {
     const store = createstore(() => [{ id: 1, name: 'dog' }, { id: 2, name: 'bobz' }])
 
