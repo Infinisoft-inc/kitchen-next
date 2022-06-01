@@ -8,13 +8,10 @@ import { Tag, Typography } from 'antd';
 import React, { Suspense, useId, useSyncExternalStore } from 'react';
 // import type { Store } from "store/types";
 import { useMicroContext } from '../../context/micro';
-import { AddressIcon, EmailIcon, NameIcon, PhoneIcon, WebIcon } from '../assets/svg';
-import AvatarUpload from '../components/avatar-upload';
+import { PhoneIcon } from '../assets/svg';
 import css from './index.css';
 
-const ContactDetail = React.lazy(() => import('contactdetails/ContactDetails'))
 const CrudList = React.lazy(() => import(/* webpackPreload: true */ 'crudlist/CrudList'))
-const InputText = React.lazy(() => import(/* webpackPreload: true */ 'inputtext/InputText'));
 
 
 type SummaryProps = {
@@ -27,8 +24,7 @@ type SummaryProps = {
 
 const Summary: React.FC<SummaryProps> = ({ hide = [], editable = true, errors = [], values, variant = 'vertical' }) => {
   const _hide = hide.join(' ')
-  const isEditable = (fieldName: string) => editable ? fieldName : undefined
-  const { model, store } = useMicroContext()
+  const {  store } = useMicroContext()
   const item = useSyncExternalStore(store.subscribe, store.getNormalizedState)
   const { itemSelectedId } = useSyncExternalStore(store.subscribe, store.getSnapshot)
 
@@ -37,17 +33,17 @@ const Summary: React.FC<SummaryProps> = ({ hide = [], editable = true, errors = 
   const isError = errors.length > 0
   const id = useId()
 
-  const onChange = (field: string) => ({
-    onChange: (val: string) => {
-      model?.item.onChange({ ...model.item.draft, [field]: val }, "summary")
-      // model?.item.commit.run()
-    }
-  })
+  // const onChange = (field: string) => ({
+  //   onChange: (val: string) => {
+  //     model?.item.onChange({ ...model.item.draft, [field]: val }, "summary")
+  //     // model?.item.commit.run()
+  //   }
+  // })
 
-  console.log(`summary() item  normalized = `, item)
-  if (itemSelectedId) {
-    console.log(`summary() selected item  normalized = `, item.get(itemSelectedId))
-  }
+  // console.log(`summary() item  normalized = `, item)
+  // if (itemSelectedId) {
+  //   console.log(`summary() selected item  normalized = `, item.get(itemSelectedId))
+  // }
 
   // const onChangeList = (_field: keyof API.Item) => (val: string, index?: number) => {
   //   if (model?.item?.draft?.[_field] && Array.isArray(model?.item?.draft?.[_field])) {
@@ -65,19 +61,35 @@ const Summary: React.FC<SummaryProps> = ({ hide = [], editable = true, errors = 
   // }
 
   const onAdd = () => {
-    store.mutate(_state => ({..._state}))
-    contact?.telephones?.push('NEW PHONE')
-   }
+    store.mutate(_state => {
+      contact?.telephones?.push('NEW PHONE')
+      return { ..._state }
+    })
+  }
+
+  const onRemove = (index: number) => {
+    store.mutate(_state => ({ ..._state }))
+    delete contact?.telephones?.[index]
+  }
 
 
-  const onRemove = () => {
-    store.mutate(_state => ({..._state}))
-    contact?.telephones?.pop()
 
-   }
-  const onChangeTmp = () => { alert(`onChangetmp`) }
+  const onChangeTmp = (field: keyof API.Item, newVal: any) => {
+    store.mutate(_state => {
+      if (contact?.[field]) {
+        contact[field] = newVal
+      }
+      return { ..._state }
+    })
+  }
 
-
+  const configInput = (field: keyof API.Item) => {
+    return {
+      value: contact?.[field] ?? 'Insert here',
+      onChange: (e: React.ChangeEvent<HTMLInputElement> | undefined) => onChangeTmp(field, e?.target.value),
+      copyable: false,
+    }
+  }
 
 
   return <div className={css[`summary-${variant}`] + ` invariant`}>
@@ -96,17 +108,7 @@ const Summary: React.FC<SummaryProps> = ({ hide = [], editable = true, errors = 
 
     {!isError && <>
 
-      {!_hide.includes('avatar') &&
-        <AvatarUpload src={values?.avatar} save={(_avatar) => {
-          model?.item.onChange({ ...model.item.draft, avatar: _avatar })
-          model?.operations.update.run({ ...model.item.draft })
-        }} />}
 
-      {!_hide.includes('name') &&
-        <ContactDetail className='invariant' title='Name' icon={<NameIcon />} content={values?.name ?? 'Add name'} onChange={onChange('name')} />}
-
-      {!_hide.includes('email') &&
-        <ContactDetail className='invariant' onChange={onChange('email')} title='Email' editableFieldName={isEditable('email')} icon={<EmailIcon />} content={values?.email ?? 'Add email'} />}
 
       {!_hide.includes('Subcategory') && values?.SK && values?.Subcategory &&
         // <ContactDetail className='invariant' onChange={onChange('Subcategory')} title='Category' icon={<CategoryIcon size={24} />} content={
@@ -123,18 +125,9 @@ const Summary: React.FC<SummaryProps> = ({ hide = [], editable = true, errors = 
         // } />
       }
 
-
-      <Suspense>
-        {/*@ts-ignore*/}
-          <InputText className='invariant' title='Address' prefix={<AddressIcon />} value={contact?.address ?? 'Add address'} copyable/>
-      </Suspense>
       <Suspense fallback='telephones'>
-
-        <CrudList title={'Telephones'} icon={<PhoneIcon />} list={contact?.telephones ?? []} onAdd={onAdd} onChange={onChangeTmp} onRemove={onRemove} />
+        <CrudList title={'Telephones'} icon={<PhoneIcon />} list={contact?.telephones ?? []} onAdd={onAdd} onChange={() => onChangeTmp} onRemove={() => onRemove(1)} />
       </Suspense>
-
-      {/* @ts-ignore */}
-      {!_hide.includes('website') && <InputText className='invariant' title='Website' prefix={<WebIcon />} value={values?.website ?? 'Add website'} />}
 
       {/*
       {!_hide.includes('relatedWith') && <CrudList list={model?.item?.draft?.relatedWith ?? []} onDelete={onDelete('relatedWith')} onChange={onChangeList('relatedWith')} readonly={!editable} icon={<RelatedwithIcon />} onAdd={onAddList('relatedWith')} onRender={(obj: any) => obj?.label ?? obj} className='invariant' title='Relation' field='relatedWith' />} */}

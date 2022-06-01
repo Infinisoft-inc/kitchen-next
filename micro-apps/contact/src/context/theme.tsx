@@ -1,7 +1,7 @@
 import { defaultTheme, initializeThemeTokens, useTheme } from "@infini-soft/hooks-theme";
 import React from 'react';
 import config from "../../config/config.json";
-import '../integration/antd.css';
+// import '../integration/antd.css';
 
 type MicroThemeState = {
    liveTheme: boolean

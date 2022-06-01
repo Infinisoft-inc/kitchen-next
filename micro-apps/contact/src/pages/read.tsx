@@ -5,23 +5,23 @@
  */
 import { Tag, Typography } from "antd";
 import Drawer from "antd/lib/drawer";
-import React, { startTransition, Suspense, useState, useSyncExternalStore } from "react";
+import React, { Suspense, useSyncExternalStore } from "react";
 import { useMicroContext } from "../context/micro";
+import { AddressIcon, EmailIcon, NameIcon, WebIcon } from "./assets/svg";
 import css from './index.css';
 
 const AvatarUpload = React.lazy(() => import("./components/avatar-upload"));
-const Summary = React.lazy(() => import("./deps/summary"));
+// const Summary = React.lazy(() => import("./deps/summary"));
+const InputText = React.lazy(() => import(/* webpackPreload: true */ 'inputtext/InputText'));
 
 const Read = () => {
   const [visible, setVisible] = React.useState(false);
-  const { model, store } = useMicroContext()
-  const microState = useSyncExternalStore(store.subscribe, store.getSnapshot)
-  // const [isPending, startTransition] = useTransition()
-  const [sk, setSk] = useState(-1)
-  const item = microState?.list
-  // const id = store?.getNormalizedState?.()?.get?.('list')
-  console.log(`id = `, microState?.itemSelectedId)
 
+  const { store } = useMicroContext()
+  const item = useSyncExternalStore(store.subscribe, store.getNormalizedState)
+  const state = useSyncExternalStore(store.subscribe, store.getSnapshot)
+
+  const contact = item.get(state?.itemSelectedId ?? '')
 
   const handleClose = () => setVisible(false)
 
@@ -35,29 +35,22 @@ const Read = () => {
     })
   }, [store])
 
-
-
-  const eventHandler = React.useCallback((payload: any) => {
-    // model?.item.init.run(payload.detail, "init")
-    // background fetch detailed data
-    // model?.operations.read?.run({ SK: payload?.detail?.SK });
-    setVisible(true)
-    startTransition(() => {
-      if (item) {
-        console.log(`index = `, item?.findIndex((_item) => String(_item.SK) === String(payload?.detail?.SK)))
-        setSk(item.findIndex((_item) => String(_item.SK) === String(payload?.detail?.SK)))
+  const onChangeTmp = (field: keyof API.Item, newVal: any) => {
+    store.mutate(_state => {
+      if (contact?.[field]) {
+        contact[field] = newVal
       }
-
+      return { ..._state }
     })
-    console.log(`read() store `, store)
-  }, [store, item])
+  }
 
-  const onChange = (field: string) => ({
-    onChange: (val: string) => {
-      model?.item?.onChange({ ...model.item.draft, [field]: val }, "read")
+  const configInput = (field: keyof API.Item) => {
+    return {
+      value: contact?.[field] ?? 'Insert here',
+      onChange: (e: React.ChangeEvent<HTMLInputElement> | undefined) => onChangeTmp(field, e?.target.value),
+      copyable: false,
     }
-  })
-
+  }
 
   const {
     avatar = '',
@@ -65,7 +58,7 @@ const Read = () => {
     email = '',
     SK,
     Subcategory
-  } = item?.[sk] || {}
+  } = contact || {}
 
   // @ts-ignore
   return <Suspense fallback='Reading...'><Drawer
@@ -78,12 +71,13 @@ const Read = () => {
     <div className={css.read}>
       <div className={css.readHeader}>
         <div>
-          <AvatarUpload src={avatar} save={onChange('avatar').onChange} />
+          <AvatarUpload src={avatar} save={() => { }} />
         </div>
 
-        <Typography.Title level={3} editable={onChange('name')}>{name}</Typography.Title>
-
-        <Typography.Title level={5} editable={onChange('email')}>{email ?? 'Email'}</Typography.Title>
+        { /* @ts-ignore */}
+        <InputText className='invariant' title='Name' prefix={<NameIcon />} {...configInput('name')} />
+        { /* @ts-ignore */}
+        <InputText className='invariant' title='Email' prefix={<EmailIcon />} {...configInput('email')} />
 
       </div>
 
@@ -100,12 +94,17 @@ const Read = () => {
           </Typography.Title>
         </Tag>
       </span>
+      {/* @ts-ignore */}
+      <InputText className='invariant' title='Address' prefix={<AddressIcon />} {...configInput('address')} />
 
-      <div className={css.readContent}>
+      {/* @ts-ignore */}
+      <InputText className='invariant' title='Website' prefix={<WebIcon />} {...configInput('website')} />
+
+      {/* <div className={css.readContent}>
         <Suspense fallback='Summary...'>
-          <Summary values={item?.[sk]!} hide={['name', 'email', 'Subcategory', 'avatar']} />
+          <Summary values={contact!} hide={['name', 'email', 'Subcategory', 'avatar']} />
         </Suspense>
-      </div>
+      </div> */}
     </div>
   </Drawer>
   </Suspense>
