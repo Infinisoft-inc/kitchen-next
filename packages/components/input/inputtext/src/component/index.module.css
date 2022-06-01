@@ -34,6 +34,8 @@ input[name*=':ghost'] {
 }
 
 [data-style*='input:text:root']{
+  display: flex;
+  flex-wrap: nowrap;
   background-color: transparent;
   padding: 0.5rem;
   border: 0;
@@ -65,7 +67,7 @@ input[name*=':ghost'][name*=':focus'] {
   color: var(--text-contrast);
 }
 
-[name*='button:primary'] {
+button[name*='button:primary'] {
   background-color: var(--button-background-primary);
   color: var(--text-primary);
   border: 0;

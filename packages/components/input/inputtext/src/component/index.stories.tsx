@@ -22,8 +22,11 @@ export default {
     onRemove: {
       description: 'Callback called when remove button is clicked'
     },
-    prefix: {
-      description: 'Component prefix'
+    before: {
+      description: 'Component before'
+    },
+    after: {
+      description: 'Component after'
     }
 
   }
@@ -38,19 +41,17 @@ Primary.args = {
   removable: true,
 };
 
-export const Prefix = Template.bind({});
-Prefix.args = {
-  //@ts-ignore
-  prefix: <PhoneIcon />,
+export const Before = Template.bind({});
+Before.args = {
+  before: <PhoneIcon />,
   defaultValue: "Default value",
   ghost: false,
   copyable: true,
   removable: true,
 };
-export const Suffix = Template.bind({});
-Suffix.args = {
-  //@ts-ignore
-  suffix: <LocationIcon />,
+export const After = Template.bind({});
+After.args = {
+  after: <LocationIcon />,
   defaultValue: "Default value",
   ghost: false,
   copyable: false,

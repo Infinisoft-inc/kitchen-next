@@ -17,7 +17,7 @@ const FlexLine = React.lazy(() => import(/* webpackPrefetch: true */'flexline/Fl
 export const CrudList = ({
   title,
   icon,
-  list,
+  list=[],
   onAdd,
   onChange,
   onRemove
@@ -33,13 +33,14 @@ export const CrudList = ({
               {title}
               <button onClick={onAdd}><AddIcon /></button>
             </div>
-
-            {
-              list?.map(
-                (item, i: number) =>
-                  <InputText key={`item${i}`} value={String(list[i])} onChange={onChange} onRemove={onRemove} copyable removable />
-              )
-            }
+            <div className={css.content}>
+              {
+                list?.map(
+                  (item, i: number) =>
+                    <InputText key={i} value={String(item)} onChange={e => onChange(i, item, e.target.value)} onRemove={() => onRemove(i, item)} copyable removable />
+                )
+              }
+            </div>
           </div>
         }
       />

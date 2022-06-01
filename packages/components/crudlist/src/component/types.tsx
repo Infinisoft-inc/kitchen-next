@@ -9,15 +9,15 @@ import React from "react";
 /**
  * CrudList Props
  */
-export type CrudListProps<T = any> = Partial<HTMLElement> & {
+export type CrudListProps<T = any, I=any> = Partial<HTMLElement> & {
   /**
    * List title
    */
   title: React.ReactNode
   icon: React.ReactNode
   onAdd: ()=>void
-  onChange: ()=>void
-  onRemove: ()=>void
+  onChange: (id: I, item: T, newValue: T)=>void
+  onRemove: (id: I, item: T)=>void
   list: T[]
 
 };

@@ -38,4 +38,9 @@ export type InputTextProps = {
   suffix?: React.ReactNode
   after?: React.ReactNode
 
+  /**
+   * Unique identifier
+   */
+  key: React.Key
+
 } & React.InputHTMLAttributes<HTMLInputElement>

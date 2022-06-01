@@ -9,15 +9,15 @@ declare module "component/types" {
     /**
      * CrudList Props
      */
-    export type CrudListProps<T = any> = Partial<HTMLElement> & {
+    export type CrudListProps<T = any, I = any> = Partial<HTMLElement> & {
         /**
          * List title
          */
         title: React.ReactNode;
         icon: React.ReactNode;
         onAdd: () => void;
-        onChange: () => void;
-        onRemove: () => void;
+        onChange: (id: I, item: T, newValue: T) => void;
+        onRemove: (id: I, item: T) => void;
         list: T[];
     };
 }
@@ -29,9 +29,9 @@ declare module "crudlist/CrudList" {
 declare module "bootstrap" { }
 declare module "component/index.stories" {
     import { ComponentMeta, ComponentStory } from '@storybook/react';
-    const _default: ComponentMeta<({ title, icon, list, onAdd, onChange, onRemove }: import("component/types").CrudListProps<any>) => JSX.Element>;
+    const _default: ComponentMeta<({ title, icon, list, onAdd, onChange, onRemove }: import("component/types").CrudListProps<any, any>) => JSX.Element>;
     export default _default;
-    export const StringArgs: ComponentStory<({ title, icon, list, onAdd, onChange, onRemove }: import("component/types").CrudListProps<any>) => JSX.Element>;
+    export const StringArgs: ComponentStory<({ title, icon, list, onAdd, onChange, onRemove }: import("component/types").CrudListProps<any, any>) => JSX.Element>;
 }
 declare module "component/presets/index" {
     export type CrudListPresets = {};

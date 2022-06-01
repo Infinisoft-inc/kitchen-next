@@ -3,7 +3,7 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
-@import '../../integration/antd.css';
+@import url('/integration/antd.css');
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
 
 body {

@@ -5,37 +5,38 @@
  */
 import { Tag, Typography } from "antd";
 import Drawer from "antd/lib/drawer";
-import React, { Suspense, useSyncExternalStore } from "react";
+import { InputTextProps } from "component/types";
+import React, { InputHTMLAttributes, Suspense, useSyncExternalStore } from "react";
 import { useMicroContext } from "../context/micro";
-import { AddressIcon, EmailIcon, NameIcon, WebIcon } from "./assets/svg";
+import { AddressIcon, PhoneIcon, WebIcon } from "./assets/svg";
 import css from './index.css';
 
 const AvatarUpload = React.lazy(() => import("./components/avatar-upload"));
-// const Summary = React.lazy(() => import("./deps/summary"));
 const InputText = React.lazy(() => import(/* webpackPreload: true */ 'inputtext/InputText'));
+const CrudList = React.lazy(() => import(/* webpackPreload: true */ 'crudlist/CrudList'))
 
 const Read = () => {
   const [visible, setVisible] = React.useState(false);
-
   const { store } = useMicroContext()
-  const item = useSyncExternalStore(store.subscribe, store.getNormalizedState)
-  const state = useSyncExternalStore(store.subscribe, store.getSnapshot)
+  const contact = useSyncExternalStore(store.subscribe, ()=>store.getNormalizedState().get(store.getSnapshot()?.itemSelectedId ?? ''))
 
-  const contact = item.get(state?.itemSelectedId ?? '')
-
-  const handleClose = () => setVisible(false)
-
+  /**
+   * Effects
+   */
   React.useEffect(() => {
     return store.subscribe((event, state, payload) => {
       if (event.match(/(clicked)/g)) {
-        console.log(`Event `, event, state, payload)
-        console.log(`Normalized = `, store?.getNormalizedState?.())
         setVisible(true)
       }
     })
   }, [store])
 
-  const onChangeTmp = (field: keyof API.Item, newVal: any) => {
+  /**
+   * Handlers
+   */
+  const handleClose = () => setVisible(false)
+
+  const onChange = (field: keyof API.Item, newVal: any) => {
     store.mutate(_state => {
       if (contact?.[field]) {
         contact[field] = newVal
@@ -44,22 +45,39 @@ const Read = () => {
     })
   }
 
-  const configInput = (field: keyof API.Item) => {
+  const configInput = (field: keyof API.Item): InputHTMLAttributes<HTMLInputElement> & InputTextProps => {
     return {
-      value: contact?.[field] ?? 'Insert here',
-      onChange: (e: React.ChangeEvent<HTMLInputElement> | undefined) => onChangeTmp(field, e?.target.value),
+      key: field,
+      value: (contact?.[field] ?? 'Insert here') as string,
+      onChange: (e: React.ChangeEvent<HTMLInputElement> | undefined) => { onChange(field, e?.target.value) },
       copyable: false,
     }
   }
 
-  const {
-    avatar = '',
-    name = '',
-    email = '',
-    SK,
-    Subcategory
-  } = contact || {}
+  const onAdd = (field: keyof API.Item) => () => {
+    store.mutate(_state => {
+      (contact?.[field] as Array<string>)?.push('Insert here')
+      return { ..._state }
+    })
+  }
 
+  const onRemove = (field: keyof API.Item) =>  (i: number, item: API.Item) => {
+    delete (contact?.[field] as Array<string>)?.[i]
+    store.mutate(_state => ({ ..._state }))
+  }
+
+  const onChangeListItem = (field: keyof API.Item) => (i: number, item: API.Item, newValue: string) => {
+    if ((contact?.[field] as Array<string>)?.[i]) {
+      (contact![field] as Array<string>)[i] = newValue
+    }
+
+    store.mutate(_state => ({ ..._state }))
+  }
+
+
+  /**
+   * Rendering
+   */
   // @ts-ignore
   return <Suspense fallback='Reading...'><Drawer
     destroyOnClose
@@ -71,40 +89,44 @@ const Read = () => {
     <div className={css.read}>
       <div className={css.readHeader}>
         <div>
-          <AvatarUpload src={avatar} save={() => { }} />
+          <AvatarUpload src={contact?.avatar} save={() => { }} />
         </div>
 
-        { /* @ts-ignore */}
-        <InputText className='invariant' title='Name' prefix={<NameIcon />} {...configInput('name')} />
-        { /* @ts-ignore */}
-        <InputText className='invariant' title='Email' prefix={<EmailIcon />} {...configInput('email')} />
+        <InputText className='invariant' title='Name' {...configInput('name')} />
+        <InputText className='invariant' title='Email' {...configInput('email')} />
 
       </div>
 
       <span className={css.readCategory}>
         <Tag>
           <Typography.Title level={4} className='invariant'>
-            {SK?.split('__')?.[0] ?? ''}
+            {contact?.SK?.split('__')?.[0] ?? ''}
           </Typography.Title>
         </Tag>
 
         <Tag>
           <Typography.Title level={4} className='invariant'>
-            {Subcategory}
+            {contact?.Subcategory}
           </Typography.Title>
         </Tag>
       </span>
-      {/* @ts-ignore */}
-      <InputText className='invariant' title='Address' prefix={<AddressIcon />} {...configInput('address')} />
 
-      {/* @ts-ignore */}
-      <InputText className='invariant' title='Website' prefix={<WebIcon />} {...configInput('website')} />
-
-      {/* <div className={css.readContent}>
+      <div className={css.readContent}>
         <Suspense fallback='Summary...'>
-          <Summary values={contact!} hide={['name', 'email', 'Subcategory', 'avatar']} />
+          <InputText className='invariant' title='Address' before={<AddressIcon />} {...configInput('address')} />
+          <InputText className='invariant' title='Website' before={<WebIcon />} {...configInput('website')} />
+
+          <Suspense fallback='telephones'>
+            {/* @ts-ignore */}
+            <CrudList title={<h5>Telephones</h5>} icon={<PhoneIcon />} list={contact?.telephones} onAdd={onAdd('telephones')} onChange={onChangeListItem('telephones')} onRemove={onRemove('telephones')} />
+          </Suspense>
+
+          <Suspense fallback='relatedWith'>
+            {/* @ts-ignore */}
+            <CrudList title={<h5>Relation</h5>} icon={<PhoneIcon />} list={contact?.relatedWith} onAdd={onAdd('relatedWith')} onChange={onChangeListItem('relatedWith')} onRemove={onRemove('relatedWith')} />
+          </Suspense>
         </Suspense>
-      </div> */}
+      </div>
     </div>
   </Drawer>
   </Suspense>

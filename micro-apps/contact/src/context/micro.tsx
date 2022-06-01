@@ -4,7 +4,6 @@ import type { OperationFactoryOptions } from "@infini-soft/useoperationfactory";
 import React, { useSyncExternalStore } from 'react';
 import { IStore, Store } from "store/types";
 import { useModelSdk } from "../hooks/useModelSdk";
-import '../integration/antd.css';
 import * as listService from "../services/contacts/list";
 
 export type UseModelSdkInput = { options?: OperationFactoryOptions }

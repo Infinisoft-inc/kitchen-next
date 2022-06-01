@@ -16,18 +16,23 @@ h1 {
 
 .root {
   display: flex;
-  margin: 1rem;
 }
 
 .header {
   display: flex;
   align-items: center;
-  margin-bottom: 1rem;
+  padding: 0.5rem;
 }
 
 .list {
   display: flex;
   flex-direction: column;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap
 }
 
 button {
@@ -43,7 +48,3 @@ button:hover {
 svg[class*=':primary'] {
   color: var(--colors-primary);
 }
-
-/* input[name*=':ghost'][name*='input:text:focus'] {
-  background-color: red;
-} */
