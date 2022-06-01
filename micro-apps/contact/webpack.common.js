@@ -4,11 +4,15 @@
  * www.infini-soft.com
  */
 const { ModuleFederationPlugin } = require('webpack').container;
+const CopyPlugin = require("copy-webpack-plugin");
 const pkg = require('./package.json')
 const deps = pkg.dependencies
 
 module.exports = {
   plugins: [
+    new CopyPlugin({
+      patterns: [{from: "src/integration", to: "integration"}]
+    }),
     new ModuleFederationPlugin({
       name: pkg.name,
       remotes: pkg.infinisoft.moduleFederation.remotes,

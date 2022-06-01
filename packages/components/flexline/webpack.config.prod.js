@@ -6,7 +6,7 @@
 const { merge } = require('webpack-merge');
 const common = require('../../../dev/config/webpack.common');
 const { ModuleFederationPlugin } = require('webpack').container;
-const {peerDependencies, name} = require('./package.json')
+const {peerDependencies, name, infinisoft} = require('./package.json')
 
 module.exports = merge(common, {
   mode: 'production',
@@ -14,18 +14,10 @@ module.exports = merge(common, {
     new ModuleFederationPlugin({
       name,
       filename: 'remoteEntry.js',
+      remotes: infinisoft.moduleFederation.remotes,
       exposes: {
-        './FlexLine': './src/component',
-      },
-      shared: {
-        ...peerDependencies,
-        react: { singleton: true, eager: true, requiredVersion: peerDependencies.react },
-        'react-dom': {
-          singleton: true,
-          eager: true,
-          requiredVersion: peerDependencies['react-dom'],
-        },
-      },
+        [`./${infinisoft.moduleFederation.component}`]: './src/component',
+      }
     }),
   ],
 });
