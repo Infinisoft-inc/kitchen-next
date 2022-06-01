@@ -4,9 +4,7 @@
  * www.infini-soft.com
  */
 
-import React from "react"
 
-export type BooperProps = {
+export type FaderProps = {
   children?: React.ReactNode
 }
-

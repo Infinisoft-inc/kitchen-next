@@ -10,7 +10,14 @@ export default {
   // https://storybook.js.org/docs/react/essentials/controls
   argTypes: {
     direction: { control: 'select', 'options': ['vertical', 'horizontal'], defaultValue: 'horizontal', description: 'Pulse direction' },
-  }
+  },
+  parameters: {
+    docs: {
+      description: {
+        component: 'Pretty cool pulser.',
+      },
+    },
+  },
 } as ComponentMeta<typeof Pulse>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args

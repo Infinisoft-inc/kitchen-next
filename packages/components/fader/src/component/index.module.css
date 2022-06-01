@@ -4,9 +4,8 @@
  * www.infini-soft.com
  */
 
-import React from "react"
-
-export type BooperProps = {
-  children?: React.ReactNode
+.root {
+  display: flex;
+  margin-bottom: 1.5rem;
 }
 

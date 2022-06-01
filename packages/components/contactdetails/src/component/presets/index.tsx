@@ -4,8 +4,6 @@
  * www.infini-soft.com
  */
 
-import { ContactDetailsProps } from '../types'
-
 
 export type ContactDetailsPresets = { }
 

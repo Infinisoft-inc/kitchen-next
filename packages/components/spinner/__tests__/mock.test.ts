@@ -4,9 +4,8 @@
  * www.infini-soft.com
  */
 
-import React from "react"
+describe('Unit Testing', () => {
 
-export type BooperProps = {
-  children?: React.ReactNode
-}
-
+    it('Test1', async () => {
+    });
+});

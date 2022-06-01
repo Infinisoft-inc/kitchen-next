@@ -1,9 +1,1 @@
-{
-  "name": "crudlist",
-  "component": "CrudList",
-  "port": 8093,
-  "title": "CrudList",
-  "description": "",
-  "categories": ["Display"],
-  "image": ""
-}
+{"name":"spinner","component":"Spinner","port":8099,"title":"Spinner","description":"My amazing spinner","categories":["spinner"],"image":""}
