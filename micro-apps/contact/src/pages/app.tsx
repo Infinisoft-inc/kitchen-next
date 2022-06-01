@@ -17,6 +17,10 @@ const App = () => {
   const { liveTheme, ...theme } = useMicroTheme();
   const microState = useSyncExternalStore(store.subscribe, store.getSnapshot)
 
+microState.list[0].SK
+store.getSnapshot().list[0].SK
+store.getNormalizedState().get('2')?.SK
+
 
   return <div className={styles.root}>
     <Suspense fallback={<h1>Liveconfig</h1>}>

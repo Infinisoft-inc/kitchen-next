@@ -33,11 +33,9 @@ export type Mutate<S = unknown> = (callback: (state: S) => S) => void
 /**
  * Store State
  */
-export type State<S> = S | S[] | {
-  [k: string]: S | S[];
-};
+export type State<S> = S;
 export type StateListItem<I> = I
-export type NormalizedState<K, S> = Map<K, S>
+export type NormalizedState<K, I> = Map<K, I>
 /**
  * Store input
  */
@@ -55,14 +53,12 @@ export type CreateStoreOptions<K extends keyof S, S, I> = {
 /**
  * Store output
  */
-export type GetState<S> = () => S
-export type GetNormalizedState<K, S> = () => NormalizedState<K, State<S>>
 
-export type IStore<S, Payload, K = any> = {
+export type IStore<S, Payload, K, I> = {
   // Read
   getSnapshot: () => S;
   getServerSnapshot: () => S;
-  getNormalizedState: GetNormalizedState<K, S>;
+  getNormalizedState: () => NormalizedState<K, I>;
 
   // Pubsub
   subscribe: (eventhandler: SubscriberEventHandler<S, Payload>) => () => void;
@@ -75,5 +71,10 @@ export type IStore<S, Payload, K = any> = {
 
 /**
  * Store abstraction
+ *
+ * S        State
+ * Payload  Events payload
+ * K        Normalized data id key type
+ * I        Normalized data type
  */
-export type Store = <S, Payload, K extends keyof S, I>(init?: Init<S>, options?: CreateStoreOptions<K, S, I>) => IStore<S, Payload, K>
+export type Store = <S, Payload, K extends keyof S, I>(init?: Init<S>, options?: CreateStoreOptions<K, S, I>) => IStore<S, Payload, K, I>

@@ -41,7 +41,7 @@ declare module "store/types" {
     export type IStore<S, Payload, K, I> = {
         getSnapshot: () => S;
         getServerSnapshot: () => S;
-        getNormalizedState: () => NormalizedState<K, I>;
+        getNormalizedState: () => Map<K, I>;
         subscribe: (eventhandler: SubscriberEventHandler<S, Payload>) => () => void;
         publish: PublisherEvent<Payload>;
         cook: (eventhandler: CookersEventHandler<S, Payload>) => () => void;
@@ -49,13 +49,8 @@ declare module "store/types" {
     };
     /**
      * Store abstraction
-     *
-     * S        State
-     * Payload  Events payload
-     * K        Normalized data id key type
-     * I        Normalized data type
      */
-    export type Store = <S, Payload, K extends keyof S, I>(init?: Init<S>, options?: CreateStoreOptions<K, S, I>) => IStore<S, Payload, K, I>;
+    export type Store = <S, Payload, K, I>(init?: Init<S>, options?: CreateStoreOptions<keyof S, S, I>) => IStore<S, Payload, K, I>;
 }
 declare module "store/createstore" {
     import { Store } from "store/types";

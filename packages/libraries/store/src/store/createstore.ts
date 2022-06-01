@@ -11,12 +11,12 @@ import { Cookers, CookersEventHandler, CreateStoreOptions, Init, IStore, Mutate,
  * @param init State initializer function
  * @returns new store
  */
-const createstore: Store = <S, Payload, K extends keyof S, I>(init?: Init<S>, options?: CreateStoreOptions<K, S, I>): IStore<S, Payload, K> => {
+const createstore: Store = <S, Payload, K extends keyof S, I>(init?: Init<S>, options?: CreateStoreOptions<K, S, I>): IStore<S, Payload, K, I> => {
   const _init = init?.()
   const subscribers: Subscribers<S, Payload> = new Map()
   const cookers: Cookers<S, Payload> = new Map()
   let state: S;
-  let normalizedState: NormalizedState<K, typeof state> = new Map();
+  let normalizedState: NormalizedState<K, I> = new Map();
 
 
   /**
@@ -31,7 +31,7 @@ const createstore: Store = <S, Payload, K extends keyof S, I>(init?: Init<S>, op
 
   const normalizeState = (_state: S) => {
     const { id: key, keyPredicat, normalizeKeys } = options ?? {}
-    const normalize: NormalizedState<K, S> = new Map()
+    const normalize: NormalizedState<K, I> = new Map()
 
 
     /**

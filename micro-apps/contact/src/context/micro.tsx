@@ -18,7 +18,7 @@ export type MicroState =  {
   itemSelectedId?: string
 }
 export type MicroPayload = API.Item
-export type ContactStore = IStore<MicroState, MicroPayload, keyof MicroState>
+export type ContactStore = IStore<MicroState, MicroPayload, string, API.Item>
 
 export type MicroContextState = {
   history: typeof history;
