@@ -16,8 +16,8 @@ const InputText = ({
   ghost = true,
   removable,
   onRemove,
-  prefix,
-  suffix,
+  before,
+  after,
   ...props }: InputTextProps,
   ref: React.ForwardedRef<HTMLInputElement>) => {
   const [focus, setFocus] = React.useState(false);
@@ -30,11 +30,11 @@ const InputText = ({
   }
 
   return <span data-style='input:text:root'>
-    {prefix}
+    {before}
 
     <input {...props} ref={ref} name={`input:text${styleOptions()}`} type='text' onFocus={() => setFocus(true)} onBlur={() => setFocus(false)} />
 
-    {suffix}
+    {after}
 
     {copyable &&
       <button name={`button:${variant}`} onClick={() => navigator.clipboard.writeText(String(props.value))}><CopyIcon /></button>

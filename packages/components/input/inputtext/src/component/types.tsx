@@ -27,11 +27,15 @@ export type InputTextProps = {
   onRemove?: <T, >(...arg: T[]) => void
   /**
    * Prefix component
+   * this attributes collide with @types/react and must be replaced by before
    */
   prefix?: React.ReactNode
+  before?: React.ReactNode
   /**
  * Suffix component
+ * this attributes collide with @types/react and must be replaced by after
  */
   suffix?: React.ReactNode
+  after?: React.ReactNode
 
 } & React.InputHTMLAttributes<HTMLInputElement>

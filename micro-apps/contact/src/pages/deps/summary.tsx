@@ -65,15 +65,16 @@ const Summary: React.FC<SummaryProps> = ({ hide = [], editable = true, errors = 
   // }
 
   const onAdd = () => {
-    store.mutate(_state => {
-      return {
-        ..._state,
-
-      }
-    })
+    store.mutate(_state => ({..._state}))
     contact?.telephones?.push('NEW PHONE')
    }
-  const onRemove = () => { alert(`Remove`) }
+
+
+  const onRemove = () => {
+    store.mutate(_state => ({..._state}))
+    contact?.telephones?.pop()
+
+   }
   const onChangeTmp = () => { alert(`onChangetmp`) }
 
 
@@ -124,9 +125,8 @@ const Summary: React.FC<SummaryProps> = ({ hide = [], editable = true, errors = 
 
 
       <Suspense>
-        {!_hide.includes('address') &&
-          //@ts-ignore
-          <InputText className='invariant' title='Address' prefix={<AddressIcon />} value={values?.address ?? 'Add address'} />}
+        {/*@ts-ignore*/}
+          <InputText className='invariant' title='Address' prefix={<AddressIcon />} value={contact?.address ?? 'Add address'} copyable/>
       </Suspense>
       <Suspense fallback='telephones'>
 

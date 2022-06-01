@@ -1,14 +1,10 @@
 
-import { ActionType } from '@ant-design/pro-table';
 import { LiveConfig } from '@infini-soft/hooks-theme';
-import { PageHeader, Typography } from 'antd';
-import React, { Suspense, useRef, useSyncExternalStore } from 'react';
+import React, { Suspense, useSyncExternalStore } from 'react';
 import { useMicroContext } from '../context/micro';
 import { useMicroTheme } from '../context/theme';
-import { BackArrow } from './assets/svg';
 import { columns } from './deps/columns';
 import styles from './index.css';
-
 
 const ProTable = React.lazy(() => import(/* webpackPreload: true */'@ant-design/pro-table'));
 const Create = React.lazy(() => import(/* webpackPreload: true */'./create'));
@@ -17,37 +13,38 @@ const Read = React.lazy(() => import(/*webpackPreload: true*/'./read'));
 const Search = React.lazy(() => import(/* webpackPreload: true */'./search'));
 
 const App = () => {
-  const actionRef = useRef<ActionType>();
   const { store } = useMicroContext();
   const { liveTheme, ...theme } = useMicroTheme();
-  const microState = useSyncExternalStore(store.subscribe, store.getSnapshot )
+  const microState = useSyncExternalStore(store.subscribe, store.getSnapshot)
 
-  React.useEffect(() => {
-    // document.querySelector('[aria-label="reload"]')?.addEventListener('click', () => model?.operations.list.run({}));
-  }, []);
 
-return <div className={styles.root}>
+  return <div className={styles.root}>
     <Suspense fallback={<h1>Liveconfig</h1>}>
       {liveTheme && <LiveConfig {...theme} />}
     </Suspense>
     <Suspense fallback={<h1>TITLE</h1>}>
-      <PageHeader
+      <div
         className={styles.header}
-        backIcon={<><BackArrow /></>}
-        onBack={() => { }}
-        title={<Typography.Title level={1}>Contacts</Typography.Title>} />
+      >
+        <h1>Contacts</h1>
+      </div>
     </Suspense>
+
+    {
+      [<Search key='search-1' />,
+      <Filter key='filter-2' />,
+      <Create key='create-3' />]
+    }
 
     <Suspense fallback={<h1>Protable</h1>}>
       <ProTable
-        actionRef={actionRef}
         rowKey={record => record?.SK || new Date().getTime()}
         search={false}
-        toolBarRender={() => [
-          <Search key='search-1' />,
-          <Filter key='filter-2' />,
-          <Create key='create-3' />
-        ]}
+        // toolBarRender={() => [
+        //   <Search key='search-1' />,
+        //   <Filter key='filter-2' />,
+        //   <Create key='create-3' />
+        // ]}
         pagination={{
           pageSize: 10,
         }}
