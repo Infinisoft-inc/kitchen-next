@@ -58,5 +58,23 @@
     "storybook": "start-storybook -p 6006",
     "storybook:nocache": "start-storybook -p 6006 --no-manager-cache",
     "build-storybook": "build-storybook"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "<rootDir>/packages/**/*.{ts,tsx}",
+      "!**/node_modules/**",
+      "!**/vendor/**",
+      "!**/template/**"
+    ],
+    "roots": [
+      "<rootDir>/packages/"
+    ],
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "coverageDirectory": "analyze/coverage",
+    "transform": {},
+    "extensionsToTreatAsEsm": [
+      ".ts"
+    ]
   }
 }

@@ -18,40 +18,57 @@ const createstore: Store = <S, Payload, K extends keyof S, I>(init?: Init<S>, op
   let state: S;
   let normalizedState: NormalizedState<K, typeof state> = new Map();
 
-  /**
-   * Convert array to map with k as key
-   * @param k key
-   * @param ar array
-   * @returns Mapped items like Map<k, array[k]>
-   */
 
   /**
-   * Private
+ * Private
+ */
+
+  /**
+   * Convert state to map
+   * @param _state
+   * @returns normalized mapped state
    */
 
-  const normalizeArray = (ar: S) => {
+  const normalizeState = (_state: S) => {
     const { id: key, keyPredicat, normalizeKeys } = options ?? {}
     const normalize: NormalizedState<K, S> = new Map()
 
 
-    if (ar && Array.isArray(ar) && keyPredicat) {
-      ar.forEach((item) => normalize.set(keyPredicat(item), item))
+    /**
+     * Map state when
+     * - Array
+     * - Using predicat callback
+     */
+    if (_state && Array.isArray(_state) && keyPredicat) {
+      _state.forEach((item) => normalize.set(keyPredicat(item), item))
     }
 
-    if (ar && typeof ar === 'object' && keyPredicat && normalizeKeys) {
+    /**
+     * Map state when
+     * - State is an object
+     * - Map only keys within normalizeKeys
+     * - Using predicat callback
+     */
+    if (_state && typeof _state === 'object' && keyPredicat && normalizeKeys) {
       normalizeKeys.forEach(_k => {
-        if (Array.isArray(ar[_k])) {
-          (ar[_k] as unknown as Array<typeof ar[typeof _k]>).forEach((item: any) => normalize.set(keyPredicat(item), item))
+        if (Array.isArray(_state[_k])) {
+          (_state[_k] as unknown as Array<typeof _state[typeof _k]>).forEach((item: any) => normalize.set(keyPredicat(item), item))
         }
       })
     }
 
-    if (ar && Array.isArray(ar) && key) {
-      ar.forEach(item => normalize.set(item[key], item))
+    /**
+     * Map state when
+     * - Array
+     * - Use key
+     */
+    if (_state && Array.isArray(_state) && key) {
+      _state.forEach(item => normalize.set(item[key], item))
     }
 
     return normalize;
   }
+
 
   const _notifyAllSubscribers: PublisherEvent<Payload> = (event, payload) => {
     subscribers.forEach((_callback) => {
@@ -70,7 +87,7 @@ const createstore: Store = <S, Payload, K extends keyof S, I>(init?: Init<S>, op
   const initialize = (_state: typeof state) => {
     state = _state
 
-    normalizedState = normalizeArray(_state as S)
+    normalizedState = normalizeState(_state as S)
 
     _notifyAllSubscribers('@initialization')
   }
@@ -84,13 +101,6 @@ const createstore: Store = <S, Payload, K extends keyof S, I>(init?: Init<S>, op
       .catch(console.error)
   }
 
-
-  /**
-   *
-   * @param event
-   * @param payload
-   */
-
   const _notifyAllCookers: PublisherEvent<Payload> = (event, payload) => {
     cookers.forEach((_callback) => {
       state = _callback(event, state, payload);
@@ -102,9 +112,9 @@ const createstore: Store = <S, Payload, K extends keyof S, I>(init?: Init<S>, op
    */
 
   /**
-   *
-   * @param callback
-   * @returns
+   * Subscribe to store
+   * @param callback Called on events
+   * @returns Unsubscribe method
    */
   const subscribe = (callback: SubscriberEventHandler<S, Payload>) => {
     const id = Symbol()
@@ -112,25 +122,34 @@ const createstore: Store = <S, Payload, K extends keyof S, I>(init?: Init<S>, op
     return () => { subscribers.delete(id) }
   }
 
-  const subscribeFilter = (callback: SubscriberEventHandler<S, Payload>) => {
-    const id = Symbol()
-    subscribers.set(id, callback)
-    return () => { subscribers.delete(id) }
-  }
-
-  const mutate: Mutate<S> = (callback: (_state: S)=>S) => {
+  /**
+   * State mutation
+   * @param callback Called with state, must return new state
+   */
+  const mutate: Mutate<S> = (callback: (_state: S) => S) => {
     state = callback(state)
 
     _notifyAllCookers('mutation')
     _notifyAllSubscribers('mutation')
   }
 
+  /**
+   * Subscribe a new middleware
+   * @param callback Function called on events
+   * @returns Unsubscribe callback
+   */
   const cook = (callback: CookersEventHandler<S, Payload>) => {
     const id = Symbol()
     cookers.set(id, callback)
     return () => { cookers.delete(id) }
   }
 
+
+  /**
+   * Publish an event on the hub
+   * @param event Event name
+   * @param payload Custom payload
+   */
   const publish: PublisherEvent<Payload> = (event, payload) => {
     _notifyAllCookers(event, payload)
     _notifyAllSubscribers(event, payload)
@@ -144,7 +163,6 @@ const createstore: Store = <S, Payload, K extends keyof S, I>(init?: Init<S>, op
     getServerSnapshot: () => state,
     getNormalizedState: () => normalizedState,
     mutate
-
   }
 }
 

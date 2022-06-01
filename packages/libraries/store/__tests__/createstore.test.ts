@@ -29,7 +29,7 @@ describe('Unit Testing', () => {
   });
 
   it('Array initializer getNormalizedState()', () => {
-    type Item = { id: number, name: string }
+    type Item = { id: number, name: string };
     const store = createstore<any, any, any, Item>(() => [{ id: 1, name: 'dog' }, { id: 2, name: 'titi' }],
       { id: 'id' })
     const expected = new Map<number, { id: number, name: string }>()

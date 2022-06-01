@@ -16,7 +16,7 @@ declare module "store/types" {
     export type CookersEventHandler<S = unknown, Payload = unknown> = (event: string, state?: State<S>, payload?: Payload) => S;
     export type Cookers<S, Payload> = Map<Symbol, CookersEventHandler<S, Payload>>;
     /**
-     * Mutate once
+     * Mutate
      * data mutation/transformation
      */
     export type Mutate<S = unknown> = (callback: (state: S) => S) => void;
@@ -41,7 +41,7 @@ declare module "store/types" {
      * Store output
      */
     export type GetState<S> = () => S;
-    export type GetNormalizedState<K, S> = () => NormalizedState<string, API.Item>;
+    export type GetNormalizedState<K, S> = () => NormalizedState<K, State<S>>;
     export type IStore<S, Payload, K = any> = {
         getSnapshot: () => S;
         getServerSnapshot: () => S;
