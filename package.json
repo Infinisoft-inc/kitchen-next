@@ -55,6 +55,7 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
+    "@infini-soft/kli": "^0.0.18",
     "@infini-soft/lib-federation": "^0.0.14"
   },
   "scripts": {

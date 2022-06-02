@@ -8,3 +8,4 @@ src
 webpack*.js
 skeleton.json
 jsconfig.json
+dev

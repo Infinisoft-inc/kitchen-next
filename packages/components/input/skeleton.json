@@ -1,9 +1,9 @@
 {
-  "name": "inputtext",
-  "component": "InputText",
-  "port": 8193,
-  "title": "InputText",
-  "description": "",
-  "categories": ["Input"],
-  "image": ""
+  "name": "uniqueid",
+  "component": "ButtonA",
+  "title": "Button Title",
+  "description": "My amazing button",
+  "category": "input",
+  "tags": ["button"],
+  "image": "wwwwww"
 }

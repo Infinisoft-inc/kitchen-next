@@ -4,7 +4,7 @@
  * www.infini-soft.com
  */
 const { repository, infinisoft } = require('../../../../../package.json');
-const { exec } = require('@/internals/exec');
+const { execIo } = require('@/internals/exec');
 const { join } = require('path');
 
 const REPO_URL = repository.library;
@@ -32,9 +32,9 @@ Cloning repo...
   }
 
   if (!DRYRUN && name) {
-    exec(`git clone ${REPO_URL} ${name}`);
-    exec(`mv -f ${basePath}/src/name ${basePath}/src/${name}`);
-    exec(
+    execIo(`git clone ${REPO_URL} ${name}`);
+    execIo(`mv -f ${basePath}/src/name ${basePath}/src/${name}`);
+    execIo(
       `mv ${basePath}/src/${name}/lib.ts ${basePath}/src/${name}/${lib}.ts`,
     );
   }

@@ -3,7 +3,7 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
-const { exec } = require('@/internals/exec');
+const { execIo } = require('@/internals/exec');
 const { join } = require('path');
 
 const VERBOSE = process.argv.join(' ').includes('--debug');
@@ -23,7 +23,7 @@ Post installation...
   }
 
   if (!DRYRUN && folder) {
-    exec(`rm -rf ${join(folder, '.git')}`);
+    execIo(`rm -rf ${join(folder, '.git')}`);
   }
 };
 module.exports = { postInstall };

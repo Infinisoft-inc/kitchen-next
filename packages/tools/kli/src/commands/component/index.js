@@ -17,12 +17,18 @@ const usage = () => {
 component     create          <json input>      - Create new federated component.
               build                             - Build component dev
                               [--prod]          - Build component prod
+                              [--watch-deploy]  - Watch mode, Auto Update Typescript Types Alias definitions every build
+                              [--watch-nodeploy]- Watch mode, Auto Update Typescript Types Alias definitions every build
+                              [--deploy]        - Deploy after build, if running in watch mode, deploys every build
+
               deploy                            - Deploy component on cloud.
               use             <name>            - Add module to container
-              remove          <name>            - removes module from container`);
+              remove          <name>            - removes module from container
+              `);
 };
 
 module.exports = {
+
   create,
   build,
   deploy,

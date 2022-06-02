@@ -4,7 +4,7 @@
  * www.infini-soft.com
  */
 const { chdir } = require('process');
-const { exec } = require('@/internals/exec');
+const { execIo } = require('@/internals/exec');
 
 const VERBOSE = process.argv.join(' ').includes('--debug');
 const DRYRUN = process.argv.join(' ').includes('--dry-run');
@@ -24,7 +24,7 @@ Installing dependencies...
 
   if (!DRYRUN && folder) {
     chdir(folder);
-    exec(`yarn`);
+    execIo(`yarn`);
   }
 };
 module.exports = { install };

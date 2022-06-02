@@ -52,8 +52,8 @@ declare module "inputtext/InputText" {
      *
      * InputText Federated Micro Component
      */
-    import React from 'react';
-    import './index.module.css';
+    import 'index.module.css';
+  import React from 'react';
     const _default: React.ForwardRefExoticComponent<{
         variant?: string | undefined;
         ghost?: boolean | undefined;
@@ -69,71 +69,7 @@ declare module "inputtext/InputText" {
     export default _default;
 }
 declare module "bootstrap" { }
-declare module "component/index.stories" {
-    import { ComponentMeta, ComponentStory } from '@storybook/react';
-    import React from 'react';
-    const _default_1: ComponentMeta<React.ForwardRefExoticComponent<{
-        variant?: string | undefined;
-        ghost?: boolean | undefined;
-        copyable?: boolean | undefined;
-        removable?: boolean | undefined;
-        onRemove?: (<T>(...arg: T[]) => void) | undefined;
-        prefix?: React.ReactNode;
-        before?: React.ReactNode;
-        suffix?: React.ReactNode;
-        after?: React.ReactNode;
-        key: React.Key;
-    } & React.InputHTMLAttributes<HTMLInputElement> & React.RefAttributes<HTMLInputElement>>>;
-    export default _default_1;
-    export const Primary: ComponentStory<React.ForwardRefExoticComponent<{
-        variant?: string | undefined;
-        ghost?: boolean | undefined;
-        copyable?: boolean | undefined;
-        removable?: boolean | undefined;
-        onRemove?: (<T>(...arg: T[]) => void) | undefined;
-        prefix?: React.ReactNode;
-        before?: React.ReactNode;
-        suffix?: React.ReactNode;
-        after?: React.ReactNode;
-        key: React.Key;
-    } & React.InputHTMLAttributes<HTMLInputElement> & React.RefAttributes<HTMLInputElement>>>;
-    export const Before: ComponentStory<React.ForwardRefExoticComponent<{
-        variant?: string | undefined;
-        ghost?: boolean | undefined;
-        copyable?: boolean | undefined;
-        removable?: boolean | undefined;
-        onRemove?: (<T>(...arg: T[]) => void) | undefined;
-        prefix?: React.ReactNode;
-        before?: React.ReactNode;
-        suffix?: React.ReactNode;
-        after?: React.ReactNode;
-        key: React.Key;
-    } & React.InputHTMLAttributes<HTMLInputElement> & React.RefAttributes<HTMLInputElement>>>;
-    export const After: ComponentStory<React.ForwardRefExoticComponent<{
-        variant?: string | undefined;
-        ghost?: boolean | undefined;
-        copyable?: boolean | undefined;
-        removable?: boolean | undefined;
-        onRemove?: (<T>(...arg: T[]) => void) | undefined;
-        prefix?: React.ReactNode;
-        before?: React.ReactNode;
-        suffix?: React.ReactNode;
-        after?: React.ReactNode;
-        key: React.Key;
-    } & React.InputHTMLAttributes<HTMLInputElement> & React.RefAttributes<HTMLInputElement>>>;
-    export const MyVariant: ComponentStory<React.ForwardRefExoticComponent<{
-        variant?: string | undefined;
-        ghost?: boolean | undefined;
-        copyable?: boolean | undefined;
-        removable?: boolean | undefined;
-        onRemove?: (<T>(...arg: T[]) => void) | undefined;
-        prefix?: React.ReactNode;
-        before?: React.ReactNode;
-        suffix?: React.ReactNode;
-        after?: React.ReactNode;
-        key: React.Key;
-    } & React.InputHTMLAttributes<HTMLInputElement> & React.RefAttributes<HTMLInputElement>>>;
-}
+
 declare module "component/presets/index" {
     export type InputTextPresets = {};
     export const inputtextPresets: InputTextPresets;

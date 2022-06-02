@@ -14,7 +14,7 @@ const { remove } = require('./remove');
  */
 const usage = () => {
   console.log(`
-library     create          <json input>      - Create new federated library.
+library       create          <json input>      - Create new federated library.
               build                             - Build library dev
                               [--prod]          - Build library prod
               deploy                            - Deploy library on cloud.

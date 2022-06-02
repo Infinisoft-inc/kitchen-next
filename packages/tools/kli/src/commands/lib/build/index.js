@@ -3,7 +3,7 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
-const { exec } = require('@/internals/exec');
+const { execIo } = require('@/internals/exec');
 const { readFileSync, writeFileSync } = require('fs');
 const { join } = require('path');
 
@@ -22,7 +22,7 @@ const build = () => {
   }
 
   if (!DRYRUN) {
-    exec(`yarn build:${BUILDENV}`);
+    execIo(`yarn build:${BUILDENV}`);
   }
 
   // const pkg = JSON.parse(

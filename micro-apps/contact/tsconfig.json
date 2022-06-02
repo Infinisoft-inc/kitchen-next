@@ -10,7 +10,6 @@
     "sourceMap": true,
     "baseUrl": "./",
     "strict": true,
-    "skipLibCheck":true,
     "paths": {
       "@/*": ["src/*"]
     },
@@ -18,9 +17,9 @@
   },
   "include": [
     "mock/**/*",
-    "modules/*.d.ts",
     "src/**/*",
     "config/*",
+    "modules/*.d.ts",
     "typings.d.ts" ],
   "exclude": [
     "node_modules",

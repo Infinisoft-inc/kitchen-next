@@ -7,14 +7,21 @@
   "homepage": "https://www.kitchen.infini-soft.com/microapp/contacts",
   "license": "MIT",
   "scripts": {
-    "build:dev": "yarn run build:federated:module:types& webpack -c webpack.config.js",
+    "build:types": "tsc -p tsconfig.json -d --emitDeclarationOnly --outFile dist/types.d.ts --esModuleInterop",
+    "build:dev": "yarn run build:types& webpack -c webpack.config.dev.js",
+    "build:dev:watch": "yarn run build:types& webpack -c webpack.config.dev.js -w",
+    "build:prod": "yarn run build:types& webpack -c webpack.config.prod.js",
+    "build:prod:watch": "yarn run build:types& webpack -c webpack.config.prod.js -w",
+    "build:analyze": "webpack -c webpack.analyze.js& start analyze/bundle-stats.html",
+    "build:analyze:baseline": "webpack -c webpack.analyze.js --env ANALYZEBASELINE=true& start analyze/bundle-stats.html",
     "test": "jest",
+    "test:watchAll": "jest --watchAll",
     "test:coverage": "jest --coverage&& start analyze/coverage/lcov-report/index.html",
-    "build:analyze": "yarn run build:federated:module:types& webpack -c ./webpack.analyze.js",
-    "build:federated:module:types": "tsc -p tsconfig.json -d --emitDeclarationOnly --outFile dist/types.d.ts --esModuleInterop",
-    "build:prod": "yarn run build:federated:module:types& webpack -c ./webpack.prod.js",
-    "start:dev": "webpack serve -c ./webpack.config.js --open --progress",
-    "serve:dist": "serve -s dist"
+    "deploy": "kli component deploy",
+    "start:dev": "webpack serve -c ./webpack.config.dev.js --open",
+    "start:prod": "webpack serve -c ./webpack.config.prod.js --open",
+    "serve:dist": "serve -s dist",
+    "clean": "rm -rf analyze dist node_modules"
   },
   "devDependencies": {
     "@types/react": "^18.0.9",
@@ -36,6 +43,7 @@
     "react-router-dom": "^6.3.0"
   },
   "infinisoft": {
+    "component":"contact",
     "moduleFederation": {
       "remotes": {
         "test1": "test1@https://app.micro.infini-soft.com/test1/remoteEntry.js",

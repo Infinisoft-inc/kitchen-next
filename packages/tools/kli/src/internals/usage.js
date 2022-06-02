@@ -21,10 +21,11 @@ options
 --skeleton                  - Console log json skeleton for the command input
 --input <json file>         - Customized json skeleton for input
 `);
-  console.log(`commands    subcommands    arguments`);
+  console.log(`
+commands      subcommands     arguments         descriptions
+-----------------------------------------------------------------------------------------------------`);
 
-  console.log(`${Object.keys(commands).map((k) => console.log(commands[k]?.usage?.() ?? ''))}
-`);
+  Object.keys(commands).forEach((k) => {commands[k]?.usage?.() ?? ''})
 };
 
 module.exports = { usage };
