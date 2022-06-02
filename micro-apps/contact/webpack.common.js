@@ -13,7 +13,7 @@ const {dependencies, name, infinisoft} = require('./package.json')
 
 module.exports = {
   context: process.cwd(),
-  entry: path.join(process.cwd(), '/src/index.tsx'),
+  entry: path.join(process.cwd(), '/src/app/index.tsx'),
   plugins: [
     new ModuleFederationPlugin({
       name,

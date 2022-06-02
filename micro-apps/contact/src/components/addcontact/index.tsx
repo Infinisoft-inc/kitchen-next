@@ -21,7 +21,7 @@ const Create = () => {
   const [activeStep, setActiveStep] = React.useState(0);
   const [visible, setVisible] = React.useState(false);
   const [form] = Form.useForm<API.Item>();
-  const { model, store } = useMicroContext()
+  const { store } = useMicroContext()
   const { subCategories, categories, filterSubcategory } = useMetaModel()
   const errors = form?.getFieldsError().filter(r => r.errors.length > 0).flatMap(e => e.errors?.[0])
   const isError = errors.length > 0
@@ -45,7 +45,6 @@ const Create = () => {
   const resetModal = () => {
     setActiveStep(0)
     form.resetFields()
-    model?.item.reset.run()
   }
 
   const handleClose = () => { resetModal(); setVisible(false) }
@@ -135,10 +134,8 @@ const Create = () => {
       <Form<API.Item>
         form={form}
         onBlur={() => {
-          model?.item.onChange({ ...model?.item?.draft, ...form.getFieldsValue(), })
         }}
         onFinish={async () => {
-          model?.item?.commit.run("create")
           handleClose();
         }}
         validateTrigger='onChange'

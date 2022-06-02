@@ -9,15 +9,13 @@ import React from 'react';
 import config from "../../../../config/config.json";
 import { AddressIcon, EmailIcon, NameIcon, PhoneIcon, RelatedwithIcon, WebIcon } from '../../../assets/svg';
 import AvatarUpload from "../../../components/avatar-upload";
-import { useMicroSearch } from "../../../hooks/use-micro-search";
 import style from './index.css';
 import './overrides.css';
 const REQUIRED = !config?.devMode
 
 const ContactForm: React.FC<FormInstance> = (form: FormInstance) => {
-  const search = useMicroSearch()
 
-  return <>
+return <>
     <Form.Item name={'avatar'}>
       <AvatarUpload src='' save={(base64Avatar) => { form.setFieldsValue({ ...form.getFieldsValue(), avatar: base64Avatar }) }} />
     </Form.Item>
@@ -56,11 +54,8 @@ const ContactForm: React.FC<FormInstance> = (form: FormInstance) => {
           filterOption={(input, opt)=>{console.log(`input = `, input, `opt = `, opt); return false;}}
           mode="tags"
           size='large'
-          loading={search.isLoading}
           style={{ width: '100%' }}
-          onSearch={search.run}
           onChange={console.log}
-          options={search?.result}
           placeholder="Related with"
         /></Form.Item>
     </Form.Item>

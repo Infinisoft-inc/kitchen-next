@@ -5,12 +5,10 @@
  */
 import { Badge, Radio } from "antd";
 import React from "react";
-import { useMicroContext } from "../../context/micro";
 import { useMetaModel } from "../../hooks/useMetaModel";
 import css from './index.css';
 
 const Filter = () => {
-  const { model } = useMicroContext()
   const meta = useMetaModel()
   const [filterActiveKey, setFilterActiveKey] = React.useState('All');
   const [filters, setFilters] = React.useState<API.Meta>();
@@ -35,11 +33,9 @@ const Filter = () => {
     const newValue = event.target.value
     setFilterActiveKey(newValue)
     if (newValue === 'All') {
-      model?.list.clear.run()
     }
 
     if (newValue !== '' && newValue !== 'All') {
-      model?.list.onFilter?.('Subcategory', newValue)
     }
 
   }
