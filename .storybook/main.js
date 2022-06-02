@@ -28,8 +28,8 @@ module.exports = withStorybookModuleFederation({
   stories: [
     '../stories/**/*.stories.mdx',
     '../stories/**/*.stories.@(js|jsx|ts|tsx)',
-    '../packages/**/*.stories.@(js|jsx|ts|tsx)',
-    '../packages/**/*.stories.mdx',
+    '../packages/components/**/*.stories.@(js|jsx|ts|tsx)',
+    '../packages/components/**/*.stories.mdx',
   ],
   addons: [
     '@storybook/addon-links',
