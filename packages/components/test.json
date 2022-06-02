@@ -1,9 +1,0 @@
-{
-  "name": "test",
-  "component": "Test",
-  "port": 8666,
-  "title": "Test",
-  "description": "Test",
-  "categories": ["Display"],
-  "image": ""
-}
