@@ -18,7 +18,7 @@
     "test:watchAll": "jest --watchAll",
     "test:coverage": "jest --coverage&& start analyze/coverage/lcov-report/index.html",
     "deploy": "kli component deploy",
-    "start:dev": "webpack serve -c ./webpack.config.dev.js --open",
+    "start:dev": "yarn run webpack serve -c ./webpack.config.dev.js --open",
     "start:prod": "webpack serve -c ./webpack.config.prod.js --open",
     "serve:dist": "serve -s dist",
     "clean": "rm -rf analyze dist node_modules"
@@ -43,7 +43,7 @@
     "react-router-dom": "^6.3.0"
   },
   "infinisoft": {
-    "component":"contact",
+    "component": "contact",
     "moduleFederation": {
       "remotes": {
         "test1": "test1@https://app.micro.infini-soft.com/test1/remoteEntry.js",
