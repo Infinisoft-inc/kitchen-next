@@ -3,21 +3,20 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  *
- * Module Federated Micro Component
+ * Booper Federated Micro Component
  */
- import { AnimatePresence, motion } from "framer-motion";
-import React, { Suspense } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import React, { ForwardedRef, forwardRef, Suspense } from 'react';
 import { BooperProps } from './types';
 
-const Booper = (props: BooperProps) => {
+const Booper =  (props: BooperProps, ref: ForwardedRef<unknown>) => {
   const animations = {
     initial: { opacity: 0, scale: 0 },
     animate: { opacity: 1, scale: 1 },
     exit: { opacity: 0, scale: 0 }
   };
 
-
-return <Suspense>
+  return <Suspense>
   <AnimatePresence>
       <motion.div
         variants={animations}
@@ -29,7 +28,7 @@ return <Suspense>
         {props.children}
       </motion.div>
     </AnimatePresence>
-</Suspense>
+  </Suspense>
 }
 
-export default Booper;
+export default forwardRef<unknown, BooperProps>(Booper);

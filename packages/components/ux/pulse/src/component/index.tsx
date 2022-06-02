@@ -3,16 +3,18 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  *
- * Module Federated Micro Component
+ * Pulse Federated Micro Component
  */
 import { AnimatePresence, motion } from "framer-motion";
-import React, { Suspense } from 'react';
+import React, { ForwardedRef, forwardRef, Suspense } from 'react';
 import { directionPreset } from './presets/direction';
 import { PulseProps } from './types';
 
-const Pulse = ({ direction='horizontal', children }: PulseProps) => {
+const Pulse =  ({direction='horizontal', children}: PulseProps, ref: ForwardedRef<unknown>) => {
 
-  return <Suspense><AnimatePresence>
+
+  return <Suspense>
+<AnimatePresence>
     <motion.div
       variants={directionPreset[direction]}
       initial="initial"
@@ -23,7 +25,9 @@ const Pulse = ({ direction='horizontal', children }: PulseProps) => {
     >
       {children}
     </motion.div>
-  </AnimatePresence></Suspense>
+  </AnimatePresence>
+
+  </Suspense>
 }
 
-export default Pulse;
+export default forwardRef<unknown, PulseProps>(Pulse);
