@@ -9,9 +9,25 @@ export default {
   component: CrudList,
   argTypes: {
     onClick: { action: 'clicked',
+    description: '`onClick={onAdd}`',
       table: {
         category: 'Event'
       } },
+      onAdd: {
+        table: {
+          category: 'Event',
+        },
+      },
+      onRemove: {
+        table: {
+          category: 'Event',
+        },
+      },
+      onChange: {
+        table: {
+          category: 'Event',
+        },
+      },
     title: {
       description: 'string',
       table: {
@@ -22,14 +38,22 @@ export default {
       },
     },
     icon: {
-      description: `<PhoneIcon/>`,
+      description: `{<PhoneIcon/>}`,
       table: {
         category: 'Items',
         defaultValue: {
           summary: '.svg',
         },
       },
-      control: { type: 'file', accept: '.svg'}
+      control: { type: 'file', accept: '.svg'},
+    },
+    list: {
+      table: {
+        category: 'Items',
+        defaultValue: {
+          summary: `[]`,
+        },
+      },
     },
   },
   decorators: [
