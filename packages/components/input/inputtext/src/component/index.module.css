@@ -8,10 +8,10 @@
 :root {
   --colors-primary: blue;
 
-  --text-primary: white;
-  --text-contrast: black;
+  --text-primary: rgb(145, 145, 145);
+  --text-contrast: rgb(112, 112, 112);
 
-  --background-contrast: white;
+  --background-contrast: rgb(255, 255, 255);
 
   --input-text-background-contrast: transparent;
 
