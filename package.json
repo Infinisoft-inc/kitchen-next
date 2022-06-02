@@ -33,6 +33,7 @@
     "bundle-stats-webpack-plugin": "^3.3.8",
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.1",
+    "framer-motion": "^6.3.6",
     "html-webpack-plugin": "^5.5.0",
     "jest": "^28.1.0",
     "lerna": "^4.0.0",
@@ -99,7 +100,12 @@
   },
   "infinisoft": {
     "moduleFederation": {
-      "remotes": {}
+      "remotes": {
+        "flexcol": "flexcol@https://app.micro.infini-soft.com/components/flexcol/remoteEntry.js",
+        "flexline": "flexline@https://app.micro.infini-soft.com/components/flexline/remoteEntry.js",
+        "store": "store@https://app.micro.infini-soft.com/libraries/store/remoteEntry.js",
+        "inputtext": "inputtext@https://app.micro.infini-soft.com/components/inputtext/remoteEntry.js"
+      }
     }
   }
 }

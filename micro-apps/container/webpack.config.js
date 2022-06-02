@@ -23,15 +23,16 @@ module.exports = merge(common, {
     new ModuleFederationPlugin({
       name: pkg.name,
       remotes: pkg.infinisoft.moduleFederation.remotes,
-      shared: {
-        ...deps,
-        react: { singleton: true, eager: true, requiredVersion: deps.react },
-        'react-dom': {
-          singleton: true,
-          eager: true,
-          requiredVersion: deps['react-dom'],
-        },
-      },
+      shared: Object.keys(deps),
+      // shared: {
+      //   ...deps,
+      //   react: { singleton: true, eager: true, requiredVersion: deps.react },
+      //   'react-dom': {
+      //     singleton: true,
+      //     eager: true,
+      //     requiredVersion: deps['react-dom'],
+      //   },
+      // },
     }),
   ],
 });

@@ -34,6 +34,7 @@
     "@infini-soft/promises": "^1.1.33",
     "@infini-soft/utils": "^1.3.37",
     "antd": "4.19.3",
+    "framer-motion": "^6.3.6",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-router-dom": "^6.3.0"
@@ -42,11 +43,11 @@
     "component": "contact",
     "moduleFederation": {
       "remotes": {
-        "flexline": "flexline@https://app.micro.infini-soft.com/flexline/remoteEntry.js",
-        "flexcol": "flexcol@https://app.micro.infini-soft.com/flexcol/remoteEntry.js",
-        "store": "store@https://app.micro.infini-soft.com/store/remoteEntry.js",
-        "inputtext": "inputtext@https://app.micro.infini-soft.com/inputtext/remoteEntry.js",
-        "crudlist": "crudlist@https://app.micro.infini-soft.com/crudlist/remoteEntry.js"
+        "flexline": "flexline@https://app.micro.infini-soft.com/components/flexline/remoteEntry.js",
+        "flexcol": "flexcol@https://app.micro.infini-soft.com/components/flexcol/remoteEntry.js",
+        "crudlist": "crudlist@https://app.micro.infini-soft.com/components/crudlist/remoteEntry.js",
+        "inputtext": "inputtext@https://app.micro.infini-soft.com/components/inputtext/remoteEntry.js",
+        "store": "store@https://app.micro.infini-soft.com/libraries/store/remoteEntry.js"
       }
     }
   }

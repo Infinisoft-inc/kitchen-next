@@ -3,6 +3,7 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
+
 import React from "react";
 
 export type MotionDirection = 'vertical' | 'horizontal'

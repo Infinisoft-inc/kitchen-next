@@ -24,7 +24,7 @@ module.exports = {
       },
       shared: {
         ...dependencies,
-        react: { singleton: true, eager: true, requiredVersion: dependencies.react },
+        react: { singleton: true, requiredVersion: dependencies.react },
         'react-dom': {
           singleton: true,
           eager: true,

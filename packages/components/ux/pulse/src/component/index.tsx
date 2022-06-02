@@ -25,7 +25,8 @@ const Pulse = ({ direction = 'horizontal', children }: PulseProps, ref: Forwarde
       >
         {children}
       </motion.div>
-    </AnimatePresence></Suspense>
+    </AnimatePresence>
+  </Suspense>
 }
 
 export default forwardRef<unknown, PulseProps>(Pulse);
