@@ -5,8 +5,8 @@
  *
  * ButtonA Federated Micro Component
  */
-import React, { Suspense, forwardRef, ForwardedRef } from 'react';
-import css from './index.module.css'
+import React, { ForwardedRef, forwardRef, Suspense } from 'react';
+import css from './index.module.css';
 import { ButtonAProps } from './types';
 
 const ButtonA =  (props: ButtonAProps, ref: ForwardedRef<unknown>) => {
@@ -15,7 +15,7 @@ const ButtonA =  (props: ButtonAProps, ref: ForwardedRef<unknown>) => {
   return <Suspense>
     <div className={css.root}>
       <button style={props} >
-        Hello there
+        Hello
       </button>
     </div>
 
