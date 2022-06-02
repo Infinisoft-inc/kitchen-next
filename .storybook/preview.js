@@ -2,6 +2,7 @@ import { load } from '@infini-soft/lib-federation';
 import React, { startTransition } from 'react';
 import(/* webpackPreload: true */ 'store/createstore');
 
+
 /**
  * --- WORKAROUND ---
  * This loader is necessary to load createstore
@@ -43,11 +44,14 @@ export const decorators = [
 ];
 
 export const parameters = {
-  actions: { argTypesRegex: '^on[A-Z].*' },
+  actions: { argTypesRegex: '^on.*' },
+  layout: 'centered',
   controls: {
+    expanded: true,
     matchers: {
       color: /(background|color)$/i,
       date: /Date$/,
     },
   },
 };
+
