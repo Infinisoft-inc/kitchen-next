@@ -1,9 +1,1 @@
-{
-  "name": "inputtext",
-  "component": "InputText",
-  "port": 8193,
-  "title": "InputText",
-  "description": "",
-  "categories": ["Input"],
-  "image": ""
-}
+{"name":"appname","component":"ButtonA","port":8088,"title":"ButtonA","description":"My amazing button","categories":["button"],"image":""}
