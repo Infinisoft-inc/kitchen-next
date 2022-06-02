@@ -82,13 +82,18 @@ const use = () => {
   If you are using webpack watch mode, dev server or hot module reload, it needs to be shutdown and restarted for configuration to be loaded!
   To use component, import it like following:
 
-  Import
-  -----
-  Loads in parallel of parent
-  const Component = React.lazy(() => import(/* webpackPrefetch: true */'name/Component'));
+  Import / Usage / Typescript
+  --------
+  import(/* webpackPreload: true */ 'libuniqueid/mylib')
+  const mylib = await load<Function>('libuniqueid', 'mylib')
+  mylib()
 
-  Loads when browser is idle
-  const Component = React.lazy(() => import(/*webpackPreload: true*/'name/Component'));
+  Import / Usage / Javascript
+  --------
+  import(/* webpackPreload: true */ 'libuniqueid/mylib')
+  const mylib = await load('libuniqueid', 'mylib')
+  mylib()
+
 
   Completed
   ---------

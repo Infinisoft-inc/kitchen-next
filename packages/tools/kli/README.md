@@ -27,7 +27,9 @@ $ npm install @infini-soft/kli -g
 # 🔨 Usage
 
 ```bash
-Kitchen Line Interface v0.0.6
+$ kli --help
+
+Kitchen Line Interface v0.0.20
 Powered 🚀 by Infinisoft
 
 
@@ -42,13 +44,27 @@ options
 --skeleton                  - Console log json skeleton for the command input
 --input <json file>         - Customized json skeleton for input
 
-commands    subcommands    arguments
-mono         create          <target>      - Create new monorepo to <target> folder.
 
+commands      subcommands     arguments         descriptions
+-----------------------------------------------------------------------------------------------------
+mono          create          <target>          - Create new monorepo to <target> folder.
 
 component     create          <json input>      - Create new federated component.
-              build                             - Build component
-              deploy                            - Deploy component on cloud.
+              build                             - Build component dev
+                              [--prod]          - Build component prod
+                              [--watch-deploy]  - Watch mode, Auto Update Typescript Types Alias definitions every build
+                              [--watch-nodeploy]- Watch mode, Auto Update Typescript Types Alias definitions every build
+                              [--deploy]        - Deploy after build, if running in watch mode, deploys every build
+
+              deploy                            - Deploy component on cloud. (ONLY FOR CONTRIBUTOR)
+              use             <name>            - Add module to container
+              remove          <name>            - removes module from container
+
+
+library       create          <json input>      - Create new federated library.
+              build                             - Build library dev
+                              [--prod]          - Build library prod
+              deploy                            - Deploy library on cloud. (ONLY FOR CONTRIBUTOR)
               use             <name>            - Add module to container
               remove          <name>            - removes module from container
 

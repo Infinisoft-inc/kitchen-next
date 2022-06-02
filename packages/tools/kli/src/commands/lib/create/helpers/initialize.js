@@ -26,13 +26,12 @@ const initialize = () => {
 Component sample json input skeleton`);
 
     const skeleton = {
-      name: 'appname',
+      name: 'libuniqueid',
       lib: 'mylib',
-      port: 8088,
-      title: 'My lib',
-      description: 'My amazing lib',
-      categories: ['lib'],
-      image: '',
+      title: 'My lib Ttitle',
+      description: 'My amazing lib description',
+      category: 'state',
+      image: 'https://www.kitchen.infini-soft.com/assets/library.png',
     };
 
     writeFileSync(join(process.cwd(), 'skeleton.json'), JSON.stringify(skeleton));

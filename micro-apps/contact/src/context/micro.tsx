@@ -4,7 +4,12 @@ import { IStore, Store } from "store/types";
 import * as listService from "../services/contacts/list";
 
 import(/* webpackPreload: true */ 'store/createstore')
+
 const createstore: Store = await load('store', 'createstore')
+
+import(/* webpackPreload: true */ 'libuniqueid/mylib')
+const mylib = await load<Function>('libuniqueid', 'mylib')
+mylib()
 
 export type MicroState =  {
   list: API.Item[]

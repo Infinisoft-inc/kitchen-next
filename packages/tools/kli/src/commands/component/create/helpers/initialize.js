@@ -31,7 +31,7 @@ Component sample json input skeleton`);
       title: 'Button Title',
       description: 'My amazing button',
       category: 'input',
-      image: '',
+      image: 'https://www.kitchen.infini-soft.com/assets/components.png',
     };
 
     writeFileSync(join(process.cwd(), 'skeleton.json'), JSON.stringify(skeleton));
