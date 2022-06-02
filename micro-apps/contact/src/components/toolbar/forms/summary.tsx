@@ -3,14 +3,9 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
-// import { load } from '@infini-soft/lib-federation';
 import { Typography } from 'antd';
 import React, { useId } from 'react';
-// import type { Store } from "store/types";
 import css from './index.css';
-
-// const CrudList = React.lazy(() => import(/* webpackPreload: true */ 'crudlist/CrudList'))
-
 
 type SummaryProps = {
   values: API.Item | null,

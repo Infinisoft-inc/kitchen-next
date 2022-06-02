@@ -7,15 +7,15 @@ import { Tag, Typography } from "antd";
 import Drawer from "antd/lib/drawer";
 import { InputTextProps } from "component/types";
 import React, { InputHTMLAttributes, Suspense, useSyncExternalStore } from "react";
-import { useMicroContext } from "../context/micro";
-import { AddressIcon, PhoneIcon, WebIcon } from "./assets/svg";
+import { AddressIcon, PhoneIcon, WebIcon } from "../../assets/svg";
+import { useMicroContext } from "../../context/micro";
 import css from './index.css';
 
-const AvatarUpload = React.lazy(() => import("./components/avatar-upload"));
+const AvatarUpload = React.lazy(() => import("../avatar-upload"));
 const InputText = React.lazy(() => import(/* webpackPreload: true */ 'inputtext/InputText'));
 const CrudList = React.lazy(() => import(/* webpackPreload: true */ 'crudlist/CrudList'))
 
-const Read = () => {
+const ContactDetails = () => {
   const [visible, setVisible] = React.useState(false);
   const { store } = useMicroContext()
   const contact = useSyncExternalStore(store.subscribe, ()=>store.getNormalizedState().get(store.getSnapshot()?.itemSelectedId ?? ''))
@@ -132,4 +132,4 @@ const Read = () => {
   </Suspense>
 }
 
-export default Read
+export default ContactDetails

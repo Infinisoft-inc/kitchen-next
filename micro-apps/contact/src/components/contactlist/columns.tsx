@@ -8,11 +8,9 @@ import type { ProColumns } from "@ant-design/pro-table";
 import { bubble } from "@infini-soft/utils/lib/Sorters";
 import { Avatar } from "antd";
 import React from 'react';
-// import { IStore } from "store/types";
-import { AvatarIcon } from "../components/avatar-upload/assets";
+import { AvatarIcon } from "../avatar-upload/assets";
 import css from './index.css';
 
-// export const columns = (store: IStore<API.Item, API.Item, keyof API.Item>): ProColumns<API.Item>[] => [
 export const columns = (store: ContactStore): ProColumns<API.Item>[] => [
   {
     title: 'Name',
@@ -23,9 +21,12 @@ export const columns = (store: ContactStore): ProColumns<API.Item>[] => [
         <Avatar shape="square" src={entity.avatar} size={48}><AvatarIcon /></Avatar>
         <a
           onClick={() => {
-            // trigger('ui.open.read', entity)
-            // store.edit(entity?.SK!)
+            store.publish("item.clicked", entity)
+            store.mutate((_state => {
+              return { ..._state, itemSelectedId: entity.SK }
+            }))
           }}
+          key={entity.SK}
         >
           {dom}
         </a>
@@ -50,16 +51,10 @@ export const columns = (store: ContactStore): ProColumns<API.Item>[] => [
       return (
         <a
           onClick={() => {
-            // trigger('ui.open.read', entity)
             store.publish("item.clicked", entity)
-            store.mutate((_state=> {
-              return  {..._state, itemSelectedId: entity.SK}
+            store.mutate((_state => {
+              return { ..._state, itemSelectedId: entity.SK }
             }))
-            // store.edit(entity?.SK!)
-            // startTransition(() => {
-            console.log(`entity `, entity)
-            // store.edit(entity?.SK!)
-            // })
           }}
           key={entity.SK}
         >

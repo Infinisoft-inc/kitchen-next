@@ -6,10 +6,10 @@
 import { Form, Input, Select } from 'antd';
 import type { FormInstance } from 'antd/lib/form';
 import React from 'react';
-import config from "../../../config/config.json";
-import { useMicroSearch } from "../../hooks/use-micro-search";
-import { AddressIcon, EmailIcon, NameIcon, PhoneIcon, RelatedwithIcon, WebIcon } from '../assets/svg';
-import AvatarUpload from "../components/avatar-upload";
+import config from "../../../../config/config.json";
+import { AddressIcon, EmailIcon, NameIcon, PhoneIcon, RelatedwithIcon, WebIcon } from '../../../assets/svg';
+import AvatarUpload from "../../../components/avatar-upload";
+import { useMicroSearch } from "../../../hooks/use-micro-search";
 import style from './index.css';
 import './overrides.css';
 const REQUIRED = !config?.devMode

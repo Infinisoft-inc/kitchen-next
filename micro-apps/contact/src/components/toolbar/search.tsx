@@ -5,7 +5,7 @@
  */
 import { Input } from "antd";
 import React from "react";
-import { useMicroContext } from "../context/micro";
+import { useMicroContext } from "../../context/micro";
 
 const Search = () => {
     const { model } = useMicroContext()

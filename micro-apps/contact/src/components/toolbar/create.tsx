@@ -7,14 +7,14 @@
 import { Button, Form, Progress, Typography } from "antd";
 import Modal from "antd/lib/modal/Modal";
 import React from "react";
-import { useMicroContext } from "../context/micro";
-import { useMetaModel } from "../hooks/useMetaModel";
-import { CategoryIcon, ContactIcon, SubcategoryIcon } from "./assets/svg";
+import { CategoryIcon, ContactIcon, SubcategoryIcon } from "../../assets/svg";
+import { useMicroContext } from "../../context/micro";
+import { useMetaModel } from "../../hooks/useMetaModel";
 import style from './index.css';
 
-const CategoryForm = React.lazy(() => import("./deps/category.form"));
-const ContactForm = React.lazy(() => import("./deps/contact.form"));
-const Summary = React.lazy(() => import("./deps/summary"));
+const CategoryForm = React.lazy(() => import("./forms/category.form"));
+const ContactForm = React.lazy(() => import("./forms/contact.form"));
+const Summary = React.lazy(() => import("./forms/summary"));
 
 
 const Create = () => {

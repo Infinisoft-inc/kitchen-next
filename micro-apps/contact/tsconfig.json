@@ -12,7 +12,11 @@
     "strict": true,
     "skipLibCheck":true,
     "paths": {
-      "@/*": ["src/*"]
+      "@/components/*": ["./src/components/*"],
+      "@/hooks/*": ["./src/hooks/*"],
+      "@/config/*": ["./config/*"],
+      "@/assets/*": ["./src/assets/*"]
+
     },
     "allowSyntheticDefaultImports": true
   },
