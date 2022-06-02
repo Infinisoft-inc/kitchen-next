@@ -6,27 +6,19 @@ export default {
   title: 'Ux/Pulse',
   component: Pulse,
   argTypes: {
-    direction: {
-      control: { type: 'select', options: ['horizontal', 'vertical'] },
-      defaultValue: {
-        summary: 'horizontal',
-      },
-      description: 'Pulse direction',
-    },
+    direction: { control: 'select', 'options': ['vertical', 'horizontal'], defaultValue: 'horizontal', description: 'Pulse direction' },
   },
   parameters: {
     docs: {
       description: {
-        component: 'Add component pulse horizontal or vertical effect',
+        component: 'Wrapper component adding pulse effect.',
       },
     },
   },
 } as ComponentMeta<typeof Pulse>;
 
 const Template: ComponentStory<typeof Pulse> = (args) => (
-  <Pulse {...args}>
-    <div style={{ height: '50px', width: '50px', backgroundColor: 'blue' }} />
-  </Pulse>
+  <Pulse {...args}><div style={{ height: '50px', width: '50px', backgroundColor: 'blue' }} /></Pulse>
 );
 
 export const Horizontal = Template.bind({});
