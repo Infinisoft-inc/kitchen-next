@@ -33,6 +33,7 @@
     "bundle-stats-webpack-plugin": "^3.3.8",
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.1",
+    "framer-motion": "^6.3.6",
     "html-webpack-plugin": "^5.5.0",
     "jest": "^28.1.0",
     "lerna": "^4.0.0",
@@ -78,7 +79,6 @@
     "start:prod": "lerna run start:prod --stream --parallel",
     "serve:dist": "lerna run serve:dist --stream --parallel",
     "clean": "lerna run clean --stream --parallel"
-
   },
   "jest": {
     "collectCoverageFrom": [

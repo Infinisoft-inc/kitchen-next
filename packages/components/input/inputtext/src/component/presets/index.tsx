@@ -4,8 +4,6 @@
  * www.infini-soft.com
  */
 
-import { InputTextProps } from '../types'
-
 
 export type InputTextPresets = { }
 

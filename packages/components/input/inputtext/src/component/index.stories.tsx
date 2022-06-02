@@ -15,7 +15,7 @@ export default {
           summary: false,
         },
       },
-      
+
     },
     copyable: {
       action: 'clicked',

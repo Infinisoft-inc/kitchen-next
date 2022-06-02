@@ -11,6 +11,7 @@ const VERBOSE = process.argv.join(' ').includes('--debug');
 const DRYRUN = process.argv.join(' ').includes('--dry-run');
 const REGISTRY = process.env.REGISTRY || 'app.micro.infini-soft.com';
 const CLOUDFRONTID = process.env.CLOUDFRONTID || "E351LZG5E36SJZ"
+const TYPE = "components"
 
 /**
  * Command runner
@@ -28,10 +29,10 @@ const deploy = () => {
     execIo(
       `aws s3 sync dist "s3://${
         pkg?.infinisoft?.moduleFederation?.registry ?? REGISTRY
-      }/${pkg.name}" --acl public-read`,
+      }/${TYPE}/${pkg.name}" --acl public-read`,
     );
     execIo(
-      `aws cloudfront create-invalidation --distribution-id ${CLOUDFRONTID} --paths "/${pkg.name}/*"`,
+      `aws cloudfront create-invalidation --distribution-id ${CLOUDFRONTID} --paths "/${TYPE}/${pkg.name}/*"`,
     );
   }
 };

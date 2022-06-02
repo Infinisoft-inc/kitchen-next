@@ -5,13 +5,11 @@ const {
 module.exports = withStorybookModuleFederation({
   name: 'storybook',
   remotes: {
-    contactdetails:
-      'contactdetails@https://app.micro.infini-soft.com/contactdetails/remoteEntry.js',
     flexcol: 'flexcol@https://app.micro.infini-soft.com/flexcol/remoteEntry.js',
     flexline:
       'flexline@https://app.micro.infini-soft.com/flexline/remoteEntry.js',
     inputtext:
-      'inputtext@https://app.micro.infini-soft.com/inputtext/remoteEntry.js',
+      'inputtext@https://app.micro.infini-soft.com/components/inputtext/remoteEntry.js',
     store: 'store@https://app.micro.infini-soft.com/store/remoteEntry.js',
   },
   shared: {

@@ -10,6 +10,7 @@ const { onErrorContinue } = require('@/internals/onErrorContinue');
 
 const VERBOSE = process.argv.join(' ').includes('--debug');
 const DRYRUN = process.argv.join(' ').includes('--dry-run');
+const TYPE = "libraries"
 
 /**
  * Command runner
@@ -54,7 +55,7 @@ const use = () => {
           ...pkg?.infinisoft?.moduleFederation,
           remotes: {
             ...(pkg?.infinisoft?.moduleFederation?.remotes ?? {}),
-            [`${moduleName}`]: `${moduleName}@${REGISTRY}/${moduleName}/remoteEntry.js`,
+            [`${moduleName}`]: `${moduleName}@${REGISTRY}/${TYPE}/${moduleName}/remoteEntry.js`,
           },
         },
       },
@@ -69,7 +70,7 @@ const use = () => {
   if (!DRYRUN) {
     onErrorContinue(() => mkdirSync(join(process.cwd(), 'modules')));
     execIo(
-      `curl "${REGISTRY}/${moduleName}/types.d.ts" > modules/${moduleName}.d.ts`,
+      `curl "${REGISTRY}/${TYPE}/${moduleName}/types.d.ts" > modules/${moduleName}.d.ts`,
     );
 
     writeFileSync(join(process.cwd(), 'package.json'), JSON.stringify(pkg));
