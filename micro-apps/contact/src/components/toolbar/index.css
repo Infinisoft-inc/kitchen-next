@@ -4,73 +4,27 @@
  * www.infini-soft.com
  */
 
-.root {
+/**
+* Toolbar
+*/
+
+.rootContainer {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  max-width: 1200px;
-  margin: auto;
-  padding: 1rem;
+  padding: 1rem 0;
+  width: 100%;
+  gap: 1rem;
 }
 
-.header {
-  display: flex;
-  align-items: center;
-  height: 300px;
+[data-style*='container:root'] {
+  padding: 1rem 0;
+}
+[data-style*='search:container:root'] {
+  flex: 2;
 }
 
-.ctnCenter {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  max-width: 400px;
-  margin: auto;
-}
-
-.titleLeft {
-  flex: 1 1 80%;
-}
-
-.titleRight {
-  flex: 1 1 20%;
-}
-
-.flex {
-  flex: 1 1;
-}
-
-span.titleIcon {
-  position: absolute;
-  top: 1.5rem;
-  left: 1.5rem;
-}
-
-.read {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
-.readHeader {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 6rem 2rem;
-  background-color: rgba(0, 0, 0, 0.85);
-}
-
-.readCategory {
-  padding-top: 2rem;
+[data-style*='filter:container:root'] {
+  flex: 1;
   text-align: center;
-}
-
-.readContent {
-  display: flex;
-  flex-direction: column;
-  padding: 2rem;
 }
 
 .subCategoryBadgeActive > * {
@@ -82,10 +36,5 @@ span.titleIcon {
 .subCategoryBadge > * {
   margin-left: 0.5rem;
   color: var(--invariant-primary);
-  background: var(--text-contrast);
-}
-
-.filterContainer {
-  display: flex;
-  gap: 0.5rem;
+  background: var(--text-primary);
 }

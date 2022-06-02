@@ -4,10 +4,8 @@
   "private": true,
   "workspaces": {
     "packages": [
-      "micro-apps/contact/*",
-      "packages/components/**/*",
-      "packages/libraries/**/*",
-      "packages/tools/**/*"
+      "micro-apps/*",
+      "packages/**/*"
     ]
   },
   "devDependencies": {

@@ -10,51 +10,53 @@ import { useMetaModel } from "../../hooks/useMetaModel";
 import css from './index.css';
 
 const Filter = () => {
-    const { model } = useMicroContext()
-    const meta = useMetaModel()
-    const [filterActiveKey, setFilterActiveKey] = React.useState('All');
-    const [filters, setFilters] = React.useState<API.Meta>();
+  const { model } = useMicroContext()
+  const meta = useMetaModel()
+  const [filterActiveKey, setFilterActiveKey] = React.useState('All');
+  const [filters, setFilters] = React.useState<API.Meta>();
 
-    React.useEffect(() => {
-        if (!filters) {
-            setFilters(meta?.subCategories)
-        }
-
-    }, [filters, meta?.subCategories])
-
-    const renderBadge = (count: number, active = false) => {
-        return (
-            <Badge
-                count={count}
-                className={active ? css.subCategoryBadgeActive : css.subCategoryBadge}
-            />
-        );
+  React.useEffect(() => {
+    if (!filters) {
+      setFilters(meta?.subCategories)
     }
 
-    const onChange = (event: any) => {
-        const newValue = event.target.value
-        setFilterActiveKey(newValue)
-        if (newValue === 'All') {
-            model?.list.clear.run()
-        }
+  }, [filters, meta?.subCategories])
 
-        if (newValue !== '' && newValue !== 'All') {
-            model?.list.onFilter?.('Subcategory', newValue)
-        }
+  const renderBadge = (count: number, active = false) => {
+    return (
+      <Badge
+        count={count}
+        className={active ? css.subCategoryBadgeActive : css.subCategoryBadge}
+      />
+    );
+  }
 
+  const onChange = (event: any) => {
+    const newValue = event.target.value
+    setFilterActiveKey(newValue)
+    if (newValue === 'All') {
+      model?.list.clear.run()
     }
 
-    return <Radio.Group className={css.filterContainer} value={filterActiveKey} onChange={onChange} >
-        {filters &&
-            <Radio.Button value={'All'} key={'All'} className={css.filterButton}>All</Radio.Button>
-        }
-        {Object.entries(filters ?? {})?.sort(([, a], [, b]) => b - a).slice(0, 3)
-            .map(([name, count], i) =>
-                <Radio.Button value={name} key={i} className={css.filterButton}><span>{name}{renderBadge(count, filterActiveKey === name)} </span></Radio.Button>
+    if (newValue !== '' && newValue !== 'All') {
+      model?.list.onFilter?.('Subcategory', newValue)
+    }
 
-            )
-        }
-    </Radio.Group>
+  }
+
+  return <span data-style='filter:container:root'>
+    <Radio.Group value={filterActiveKey} onChange={onChange} >
+    {filters &&
+      <Radio.Button value={'All'} key={'All'} className={css.filterButton}>All</Radio.Button>
+    }
+    {Object.entries(filters ?? {})?.sort(([, a], [, b]) => b - a).slice(0, 3)
+      .map(([name, count], i) =>
+        <Radio.Button value={name} key={i} className={css.filterButton}><span>{name}{renderBadge(count, filterActiveKey === name)} </span></Radio.Button>
+
+      )
+    }
+  </Radio.Group>
+  </span>
 
 }
 

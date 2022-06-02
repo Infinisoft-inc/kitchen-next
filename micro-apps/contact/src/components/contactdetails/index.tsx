@@ -25,7 +25,7 @@ const ContactDetails = () => {
    */
   React.useEffect(() => {
     return store.subscribe((event, state, payload) => {
-      if (event.match(/(clicked)/g)) {
+      if (event.match(/(item.clicked)/g)) {
         setVisible(true)
       }
     })

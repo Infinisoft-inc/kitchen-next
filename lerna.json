@@ -2,10 +2,8 @@
   "npmClient": "yarn",
   "useWorkspaces": true,
   "packages": [
-    "micro-apps/contact/*",
-    "packages/components/**/*",
-    "packages/libraries/**/*",
-    "packages/tools/**/*"
+    "micro-apps/*",
+    "packages/**/*"
   ],
   "version": "independent"
 }
