@@ -31,7 +31,6 @@ Component sample json input skeleton`);
       title: 'Button Title',
       description: 'My amazing button',
       category: 'input',
-      tags: ['button'],
       image: '',
     };
 

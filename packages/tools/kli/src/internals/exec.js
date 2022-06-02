@@ -10,7 +10,7 @@ const { execSync } = require('child_process');
  * @param {string} cmd Execute command
  * @returns
  */
-const exec = (cmd) => {
+const execIo = (cmd) => {
   execSync(cmd, {
     encoding: 'utf-8',
     stdio: [process.stdin, process.stdout, process.stderr],
@@ -26,6 +26,6 @@ const execNoIo = (cmd) =>
   execSync(cmd, { encoding: 'utf-8', stdio: ['ignore', 'pipe', 'ignore'] });
 
 module.exports = {
-  exec,
+  execIo,
   execNoIo,
 };

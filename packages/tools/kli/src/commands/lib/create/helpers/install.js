@@ -4,7 +4,7 @@
  * www.infini-soft.com
  */
 const { chdir } = require('process');
-const { exec } = require('@/internals/exec');
+const { execIo } = require('@/internals/exec');
 const { render } = require('mustache');
 const { traverse } = require('@/internals/traverse');
 const { writeFileSync, readFileSync } = require('fs');
@@ -34,7 +34,7 @@ Installing dependencies...
     };
 
     traverse(inputParameters.name, visitor);
-    exec(`yarn`);
+    execIo(`yarn`);
   }
 };
 module.exports = { install };

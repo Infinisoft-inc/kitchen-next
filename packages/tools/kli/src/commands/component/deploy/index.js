@@ -3,7 +3,7 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
-const { exec } = require('@/internals/exec');
+const { execIo } = require('@/internals/exec');
 const { readFileSync } = require('fs');
 const { join } = require('path');
 
@@ -25,12 +25,12 @@ const deploy = () => {
   );
 
   if (!DRYRUN) {
-    exec(
+    execIo(
       `aws s3 sync dist "s3://${
         pkg?.infinisoft?.moduleFederation?.registry ?? REGISTRY
       }/${pkg.name}" --acl public-read`,
     );
-    exec(
+    execIo(
       `aws cloudfront create-invalidation --distribution-id ${CLOUDFRONTID} --paths "/${pkg.name}/*"`,
     );
   }

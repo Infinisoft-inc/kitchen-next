@@ -4,7 +4,7 @@
  * www.infini-soft.com
  */
 const { repository } = require('../../../../../package.json');
-const { exec } = require('@/internals/exec');
+const { execIo } = require('@/internals/exec');
 
 const REPO_URL = repository.template;
 const VERBOSE = process.argv.join(' ').includes('--debug');
@@ -24,7 +24,7 @@ Cloning repo...
   }
 
   if (!DRYRUN && folder) {
-    exec(`git clone ${REPO_URL} ${folder}`);
+    execIo(`git clone ${REPO_URL} ${folder}`);
   }
 };
 module.exports = { clone };

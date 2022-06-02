@@ -3,7 +3,7 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
-const { exec } = require('@/internals/exec');
+const { execIo } = require('@/internals/exec');
 const { readFileSync, writeFileSync, mkdirSync } = require('fs');
 const { join } = require('path');
 const { onErrorContinue } = require('@/internals/onErrorContinue');
@@ -68,7 +68,7 @@ const use = () => {
 
   if (!DRYRUN) {
     onErrorContinue(() => mkdirSync(join(process.cwd(), 'modules')));
-    exec(
+    execIo(
       `curl "${REGISTRY}/${moduleName}/types.d.ts" > modules/${moduleName}.d.ts`,
     );
 
