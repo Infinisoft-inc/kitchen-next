@@ -1,7 +1,7 @@
 {
-  "name": "crudlist1",
+  "name": "flexcol",
   "version": "0.0.1",
-  "description": "",
+  "description": "Flex container component",
   "private": true,
   "author": "Infinisoft Inc. <info@infini-soft.com>",
   "homepage": "https://www.kitchen.infini-soft.com/",
@@ -31,16 +31,12 @@
     "react-dom": "^18.1.0"
   },
   "infinisoft": {
-    "devserver":{
-      "port": 8900
-    },
     "moduleFederation": {
-      "component": "CrudList",
-      "remotes": {
-        "store": "store@https://app.micro.infini-soft.com/store/remoteEntry.js",
-        "inputtext": "inputtext@https://app.micro.infini-soft.com/inputtext/remoteEntry.js",
-        "flexline": "flexline@https://app.micro.infini-soft.com/flexline/remoteEntry.js"
-      }
+      "title":"FlexCol",
+      "category":"layout",
+      "image":"https://www.kitchen.infini-soft.com/assets/infinisoftticon.png",
+      "component": "FlexCol",
+      "remotes": {}
     }
   },
   "dependencies": {}

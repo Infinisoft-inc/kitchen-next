@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import React from 'react';
+import React, { startTransition } from 'react';
 import Booper from '.';
 
 export default {
@@ -9,7 +9,7 @@ export default {
     children: {
       description: '`children?: React.ReactNode`',
       table: {
-        defaultValue: { 
+        defaultValue: {
           summary: '{children}',
         },
       },
@@ -27,9 +27,17 @@ export default {
   },
 } as ComponentMeta<typeof Booper>;
 
-const Template: ComponentStory<typeof Booper> = (args) => (
-  <Booper {...args}><div style={{ height: '50px', width: '50px', backgroundColor: 'blue' }} />BooP!</Booper>
-);
+const Template: ComponentStory<typeof Booper> = (args) => {
+  const [state, setState] = React.useState(false);
+
+  startTransition(() => {
+    setInterval(() => { setState(prev => !prev) }, 1500)
+  })
+
+  return (
+    <Booper key={String(state)} {...args}><div style={{ height: '50px', width: '50px', backgroundColor: 'blue' }} />BooP!</Booper>
+  )
+};
 
 export const BooperArgs = Template.bind({});
 BooperArgs.args = {

@@ -5,15 +5,15 @@
  *
  * Module Federated Micro Component
  */
- import React, { Suspense } from 'react';
+import React, { forwardRef, Suspense } from 'react';
 import css from './index.module.css';
+import { FlexColProps } from './types';
 
-const FlexCol = (props:any) => (<Suspense>
-   <div className={css.root} {...props}>
-     {props.children}
-   </div>
- </Suspense>)
+const FlexCol = (props: any) => (<Suspense>
+  <div className={css.root} {...props}>
+    {props.children}
+  </div>
+</Suspense>)
 
 
- export default FlexCol;
-//  export default forwardRef<HTMLDivElement, FlexColProps>(FlexCol);
+export default forwardRef<HTMLDivElement, FlexColProps>(FlexCol);

@@ -1,0 +1,50 @@
+/*
+ * Copyright © All rights reserved 2022
+ * Infinisoft Inc.
+ * www.infini-soft.com
+ */
+
+ :root {
+  --primary-color: pink;
+
+  --text-primary: white;
+}
+
+h1 {
+  color: var(--text-primary);
+}
+
+.root {
+  display: flex;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap
+}
+
+button {
+  background-color: transparent;
+  color: var(--text-primary);
+  border: 0;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+svg[class*=':primary'] {
+  color: var(--colors-primary);
+}

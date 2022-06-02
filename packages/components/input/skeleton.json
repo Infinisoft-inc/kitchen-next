@@ -1,8 +1,8 @@
 {
-  "name": "inputtext",
-  "component": "InputText",
-  "title": "InputText",
-  "description": "Input Text Field",
-  "category": "input",
+  "name": "flexcol",
+  "component": "FlexCol",
+  "title": "FlexCol",
+  "description": "Flex container component",
+  "category": "layout",
   "image": "https://www.kitchen.infini-soft.com/assets/infinisoftticon.png"
 }

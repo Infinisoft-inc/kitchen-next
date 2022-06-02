@@ -9,7 +9,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import React, { ForwardedRef, forwardRef, Suspense } from 'react';
 import { BooperProps } from './types';
 
-const Booper =  (props: BooperProps, ref: ForwardedRef<unknown>) => {
+const Booper = (props: BooperProps, ref: ForwardedRef<HTMLDivElement>) => {
   const animations = {
     initial: { opacity: 0, scale: 0 },
     animate: { opacity: 1, scale: 1 },
@@ -17,8 +17,9 @@ const Booper =  (props: BooperProps, ref: ForwardedRef<unknown>) => {
   };
 
   return <Suspense>
-  <AnimatePresence>
+    <AnimatePresence>
       <motion.div
+        ref={ref}
         variants={animations}
         initial="initial"
         animate="animate"
@@ -31,4 +32,4 @@ const Booper =  (props: BooperProps, ref: ForwardedRef<unknown>) => {
   </Suspense>
 }
 
-export default forwardRef<unknown, BooperProps>(Booper);
+export default forwardRef<HTMLDivElement, BooperProps>(Booper);
