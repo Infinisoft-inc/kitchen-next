@@ -1,8 +1,8 @@
 {
-  "name": "flexline",
-  "component": "FlexLine",
-  "title": "FlexLine",
-  "description": "Flex container component Split In 2 Left Right",
-  "category": "layout",
+  "name": "button",
+  "component": "Button",
+  "title": "Button",
+  "description": "Button",
+  "category": "input",
   "image": "https://www.kitchen.infini-soft.com/assets/infinisoftticon.png"
 }
