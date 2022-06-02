@@ -7,6 +7,5 @@
 import React from "react"
 
 export type BooperProps = {
-  children: React.ReactNode
+  children?: React.ReactNode
 }
-

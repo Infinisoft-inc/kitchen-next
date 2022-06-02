@@ -23,7 +23,7 @@ const Template: ComponentStory<typeof Pulse> = (args) => (
 
 export const Horizontal = Template.bind({});
 Horizontal.args = {
-  direction: 'horizontal'
+  direction: 'horizontal',
 };
 
 Horizontal.parameters = {
@@ -36,7 +36,7 @@ Horizontal.parameters = {
 
 export const Vertical = Template.bind({});
 Vertical.args = {
-  direction: 'vertical'
+  direction: 'vertical',
 };
 
 Vertical.parameters = {
