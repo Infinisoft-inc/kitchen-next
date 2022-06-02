@@ -11,7 +11,6 @@ import { FaderProps } from './types';
 
 
 const Fader =  ({children}: FaderProps, ref: ForwardedRef<unknown>) => {
-const [state, setState] = React.useState(1);
 
   const animations = {
     initial: { opacity: 0 },
@@ -32,12 +31,7 @@ const [state, setState] = React.useState(1);
          {children} 
        </motion.div>
      </AnimatePresence>
-     <button
-        style={{ marginTop: '5rem', color: 'black' }}
-        onClick={() => setState((prev) => prev + 1)}
-      >
-        Retry
-      </button>
+    
   </Suspense>
 }
 
