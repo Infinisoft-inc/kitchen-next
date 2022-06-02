@@ -8,7 +8,29 @@ export default {
   title: 'Input/CrudList',
   component: CrudList,
   argTypes: {
-    onClick: { action: 'clicked' },
+    onClick: { action: 'clicked',
+      table: {
+        category: 'Event'
+      } },
+    title: {
+      description: 'string',
+      table: {
+        category: 'Items',
+        defaultValue: {
+          summary: 'Example List',
+        },
+      },
+    },
+    icon: {
+      description: `<PhoneIcon/>`,
+      table: {
+        category: 'Items',
+        defaultValue: {
+          summary: '.svg',
+        },
+      },
+      control: { type: 'file', accept: '.svg'}
+    },
   },
   decorators: [
     (Story, context) => {
