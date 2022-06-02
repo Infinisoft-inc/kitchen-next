@@ -20,3 +20,5 @@ dist
 caroading
 packages/tools/kli/bin/skeleton.json
 packages/libraries/skeleton.json
+packages/tools/kli/dev/klidev.js
+packages/tools/kli/dev/klidev

@@ -2,10 +2,10 @@
  * Copyright © All rights reserved 2022
  * Infinisoft Inc.
  * www.infini-soft.com
+ *
+ * Webpack PROD customization
  */
 
-.root {
-  display: flex;
-  margin-bottom: 1.5rem;
-}
+module.exports = {
 
+};

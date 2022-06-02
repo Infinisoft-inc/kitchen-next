@@ -26,12 +26,13 @@ const initialize = () => {
 Component sample json input skeleton`);
 
     const skeleton = {
-      name: 'appname',
+      name: 'uniqueid',
       component: 'ButtonA',
       port: 8088,
-      title: 'ButtonA',
+      title: 'Button Title',
       description: 'My amazing button',
-      categories: ['button'],
+      category: 'input',
+      tags: ['button'],
       image: '',
     };
 

@@ -9,7 +9,7 @@ const {create} = require('./create');
  * Command usage informations
  */
 const usage = () => {
-  console.log(`mono         create          <target>      - Create new monorepo to <target> folder.`);
+  console.log(`mono          create          <target>          - Create new monorepo to <target> folder.`);
 };
 
 module.exports = {
