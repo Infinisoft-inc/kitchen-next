@@ -3,33 +3,109 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
+
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 const { ModuleFederationPlugin } = require('webpack').container;
-const CopyPlugin = require('copy-webpack-plugin');
-const pkg = require('./package.json');
-const deps = pkg.dependencies;
-const { resolve} = require('path')
+const {dependencies, name, infinisoft} = require('./package.json')
 
 module.exports = {
+  context: process.cwd(),
+  entry: path.join(process.cwd(), '/src/index.tsx'),
   plugins: [
-    new CopyPlugin({
-      patterns: [{ from: 'src/integration', to: 'integration' }],
-    }),
     new ModuleFederationPlugin({
-      name: pkg.name,
-      remotes: pkg.infinisoft.moduleFederation.remotes,
+      name,
       filename: 'remoteEntry.js',
+      remotes: infinisoft.moduleFederation.remotes,
       exposes: {
-        './Index': './src/pages/index',
+        [`./${infinisoft.moduleFederation.component}`]: './src/app',
       },
       shared: {
-        store: { singleton: true, eager: true },
-        react: { singleton: true, eager: true, requiredVersion: deps.react },
+        ...dependencies,
+        react: { singleton: true, eager: true, requiredVersion: dependencies.react },
         'react-dom': {
           singleton: true,
           eager: true,
-          requiredVersion: deps['react-dom'],
+          requiredVersion: dependencies['react-dom'],
         },
       },
     }),
+    new MomentLocalesPlugin(),
+    new MiniCssExtractPlugin(),
+    new HtmlWebpackPlugin({
+      template: './config/index.html',
+    }),
   ],
+  output: {
+    filename: '[name].[contenthash].js',
+    path: path.join(process.cwd(), 'dist'),
+    publicPath: 'auto',
+  },
+  resolve: {
+    cacheWithContext: false,
+    extensions: ['.tsx', '.ts', '.jsx', '.js'],
+  },
+  experiments: {
+    topLevelAwait: true,
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx|ts|tsx)?$/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              '@babel/preset-typescript',
+              '@babel/preset-env',
+              ['@babel/preset-react', { runtime: 'automatic' }],
+            ],
+            plugins: ['lodash'],
+          },
+        },
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.less$/i,
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+          },
+          {
+            loader: 'less-loader',
+            options: {
+              lessOptions: {
+                javascriptEnabled: true,
+              },
+            },
+          },
+        ],
+      },
+      {
+        test: /\.css$/i,
+        include: path.resolve(process.cwd(), 'src'),
+        exclude: /node_modules/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        include: path.resolve(process.cwd(), 'src'),
+        exclude: /node_modules/,
+        type: 'asset/resource',
+      },
+    ],
+  },
 };

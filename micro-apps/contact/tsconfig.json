@@ -10,21 +10,16 @@
     "sourceMap": true,
     "baseUrl": "./",
     "strict": true,
-    "skipLibCheck":true,
     "paths": {
-      "@/components/*": ["./src/components/*"],
-      "@/hooks/*": ["./src/hooks/*"],
-      "@/config/*": ["./config/*"],
-      "@/assets/*": ["./src/assets/*"]
-
+      "@/*": ["src/*"]
     },
     "allowSyntheticDefaultImports": true
   },
   "include": [
     "mock/**/*",
-    "modules/*.d.ts",
     "src/**/*",
     "config/*",
+    "modules/*.d.ts",
     "typings.d.ts" ],
   "exclude": [
     "node_modules",
