@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import React, { startTransition } from 'react';
+import React, { useEffect } from 'react';
 import Booper from '.';
 
 export default {
@@ -30,8 +30,9 @@ export default {
 const Template: ComponentStory<typeof Booper> = (args) => {
   const [state, setState] = React.useState(false);
 
-  startTransition(() => {
-    setInterval(() => { setState(prev => !prev) }, 1500)
+  useEffect(() => {
+    const timer = setInterval(() => { setState(prev => !prev) }, 1500)
+    return () => clearInterval(timer)
   })
 
   return (

@@ -1,17 +1,11 @@
 const {
   withStorybookModuleFederation,
 } = require('storybook-module-federation');
+const pkg = require('../package.json')
 
 module.exports = withStorybookModuleFederation({
   name: 'storybook',
-  remotes: {
-    flexcol: 'flexcol@https://app.micro.infini-soft.com/flexcol/remoteEntry.js',
-    flexline:
-      'flexline@https://app.micro.infini-soft.com/flexline/remoteEntry.js',
-    inputtext:
-      'inputtext@https://app.micro.infini-soft.com/components/inputtext/remoteEntry.js',
-    store: 'store@https://app.micro.infini-soft.com/store/remoteEntry.js',
-  },
+  remotes: pkg.infinisoft.moduleFederation.remotes,
   shared: {
     react: {
       singleton: true,

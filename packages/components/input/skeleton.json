@@ -1,8 +1,8 @@
 {
-  "name": "flexcol",
-  "component": "FlexCol",
-  "title": "FlexCol",
-  "description": "Flex container component",
+  "name": "flexline",
+  "component": "FlexLine",
+  "title": "FlexLine",
+  "description": "Flex container component Split In 2 Left Right",
   "category": "layout",
   "image": "https://www.kitchen.infini-soft.com/assets/infinisoftticon.png"
 }
