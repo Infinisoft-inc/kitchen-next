@@ -1,10 +1,11 @@
 {
   "name": "@infini-soft/kli",
-  "version": "0.0.19",
+  "version": "0.0.21",
   "description": "Kitchen Line Interface",
   "author": "Infinisoft Inc. <info@infini-soft.com>",
   "homepage": "https://www.kitchen.infini-soft.com/",
   "license": "INFINISOFT",
+  "keywords":["monorepo","react","cli","webpack", "boilerplate", "federation", "module federation", "micro", "micro front-end"],
   "bin": {
     "mono": "./bin/kli.js",
     "kli": "./bin/kli.js",
