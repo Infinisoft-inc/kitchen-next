@@ -22,4 +22,5 @@ packages/tools/kli/bin/skeleton.json
 packages/libraries/skeleton.json
 packages/tools/kli/dev/klidev.js
 packages/tools/kli/dev/klidev
-packages/components/input/skeleton.json
+**/skeleton.json
+packages/components/skeleton.json
