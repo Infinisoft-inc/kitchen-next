@@ -13,7 +13,7 @@ const {dependencies, name, infinisoft} = require('./package.json')
 
 module.exports = {
   context: process.cwd(),
-  entry: path.join(process.cwd(), '/src/app/index.tsx'),
+  // entry: path.join(process.cwd(), '/src/app/index.tsx'),
   plugins: [
     new ModuleFederationPlugin({
       name,
@@ -24,7 +24,7 @@ module.exports = {
       },
       shared: {
         ...dependencies,
-        react: { singleton: true, requiredVersion: dependencies.react },
+        react: { singleton: true, eager: true, requiredVersion: dependencies.react },
         'react-dom': {
           singleton: true,
           eager: true,
