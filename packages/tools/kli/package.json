@@ -1,6 +1,6 @@
 {
   "name": "@infini-soft/kli",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "description": "Kitchen Line Interface",
   "author": "Infinisoft Inc. <info@infini-soft.com>",
   "homepage": "https://www.kitchen.infini-soft.com/",
@@ -20,7 +20,8 @@
     "url": "https://github.com/mouimet-infinisoft/kitchen-next.git",
     "template": "https://github.com/Infinisoft-inc/kitchen-mono-template.git",
     "component": "https://github.com/Infinisoft-inc/template-fm-components.git",
-    "library": "https://github.com/Infinisoft-inc/template-library.git"
+    "library": "https://github.com/Infinisoft-inc/template-library.git",
+    "library-no-mf": "https://github.com/Infinisoft-inc/library.git"
   },
   "gitHead": "2a2dd9af203fe9e9eef3aef9d7c4707e99ef3849",
   "dependencies": {
@@ -28,14 +29,15 @@
   },
   "scripts": {
     "build:dev": "webpack -c ./webpack.config.js",
-    "build:prod": "webpack -c ./webpack.config.prod.js",
     "build:dev:watch": "webpack -c ./webpack.config.js -w",
+    "build:prod": "webpack -c ./webpack.config.prod.js",
+    "build:prod:watch": "webpack -c ./webpack.config.prod.js -w",
     "test": "jest",
     "test:coverage": "jest --coverage&& start analyze/coverage/lcov-report/index.html"
   },
   "infinisoft": {
     "moduleFederation": {
-      "component":"CrudList",
+      "component":"kli",
       "registry": "https://app.micro.infini-soft.com"
     }
   }

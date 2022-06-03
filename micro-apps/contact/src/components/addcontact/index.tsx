@@ -10,7 +10,7 @@ import React from "react";
 import { CategoryIcon, ContactIcon, SubcategoryIcon } from "../../assets/svg";
 import { useMicroContext } from "../../context/micro";
 import { useMetaModel } from "../../hooks/useMetaModel";
-import { Title } from "./title";
+import Title from "./title";
 
 const CategoryForm = React.lazy(() => import("./forms/category.form"));
 const ContactForm = React.lazy(() => import("./forms/contact.form"));
@@ -33,9 +33,7 @@ const Create = () => {
    */
   React.useEffect(() => {
     return store.subscribe((event, state, payload) => {
-      console.log(`event = `, event)
       if (event.match(/(create.clicked)/g)) {
-        console.log(`IN CONDITION event = `, event)
         setVisible(true)
       }
     })
@@ -136,7 +134,8 @@ const Create = () => {
         form={form}
         onBlur={() => {
         }}
-        onFinish={async () => {
+        onFinish={async (val) => {
+          store.publish('add', val)
           handleClose();
         }}
         validateTrigger='onChange'

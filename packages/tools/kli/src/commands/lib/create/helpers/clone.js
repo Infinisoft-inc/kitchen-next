@@ -7,7 +7,8 @@ const { repository, infinisoft } = require('../../../../../package.json');
 const { execIo } = require('@/internals/exec');
 const { join } = require('path');
 
-const REPO_URL = repository.library;
+const WITHMF = !process.argv.join(' ').includes('--no-mf');
+const REPO_URL = WITHMF ? repository.library : repository['library-no-mf'];
 const VERBOSE = process.argv.join(' ').includes('--debug');
 const DRYRUN = process.argv.join(' ').includes('--dry-run');
 
@@ -33,6 +34,9 @@ Cloning repo...
 
   if (!DRYRUN && name) {
     execIo(`git clone ${REPO_URL} ${name}`);
+  }
+
+  if (!DRYRUN && WITHMF) {
     execIo(`mv -f ${basePath}/src/name ${basePath}/src/${name}`);
     execIo(
       `mv ${basePath}/src/${name}/lib.ts ${basePath}/src/${name}/${lib}.ts`,

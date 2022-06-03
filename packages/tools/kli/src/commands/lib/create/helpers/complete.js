@@ -10,7 +10,7 @@
 const complete = () => {
   console.log(`
 
-Library ready implement
+Library ready to implement
 Powered 🚀 by Infinisoft Inc.
 Happy ☠️  Hacking
 `);

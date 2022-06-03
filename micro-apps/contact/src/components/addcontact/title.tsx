@@ -20,19 +20,9 @@ export const Title: React.FC<TitleProps> = ({ title, subtitle }) => {
       <div>{subtitle}</div>
     </FlexItem>
     <FlexItem>
-      <div className={'style.titleRight'}>
         Progress bar
-        {/* <Progress width={80} percent={percent} type='circle' status={progressStatus()} /> */}
-      </div>
     </FlexItem>
   </FlexContainer>
-  // <div className={'style.ctnCenter'}>
-  //   <div className={'style.titleLeft'}>
-  //     <div>{title}</div>
-  //     <div>{subtitle}</div>
 
-  //   </div>
-  //   <div className={'style.titleRight'}><Progress width={80} percent={percent} type='circle' status={progressStatus()} /></div>
-  // </div>
 }
 export default Title

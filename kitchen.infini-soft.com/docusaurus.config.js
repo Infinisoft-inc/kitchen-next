@@ -26,7 +26,20 @@ const config = {
     defaultLocale: 'en',
     locales: ['en'],
   },
+  plugins: [
+    [
+      'docusaurus-plugin-typedoc',
 
+      // Plugin / TypeDoc options
+      {
+        entryPoints: ['../packages/libraries/@infini-soft/promises'],
+        entryPointStrategy: 'packages',
+        sidebar: {
+          fullNames: true,
+        },
+      },
+    ],
+  ],
   presets: [
     [
       'classic',

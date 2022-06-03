@@ -25,3 +25,5 @@ packages/tools/kli/dev/klidev.js
 packages/tools/kli/dev/klidev
 **/skeleton.json
 packages/components/skeleton.json
+packages/libraries/skeleton-nomf.json
+docs

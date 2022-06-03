@@ -1,0 +1,8 @@
+{
+  "name": "@infini-soft/promises",
+  "lib": "promises",
+  "title": "Promises",
+  "description": "Extended Promise with Timeout, Debounce and Timeout Debounce together",
+  "category": "state",
+  "image": "https://www.kitchen.infini-soft.com/assets/library.png"
+}
