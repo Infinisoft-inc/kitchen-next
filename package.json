@@ -31,6 +31,7 @@
     "babel-loader": "^8.2.5",
     "babel-plugin-lodash": "^3.3.4",
     "bundle-stats-webpack-plugin": "^3.3.8",
+    "concurrently": "^7.2.1",
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.1",
     "framer-motion": "^6.3.6",
@@ -56,7 +57,7 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
-    "@infini-soft/kli": "^0.0.18",
+    "@infini-soft/kli": "^0.0.22",
     "@infini-soft/lib-federation": "^0.0.14"
   },
   "scripts": {
