@@ -10,3 +10,6 @@
 [submodule "template/template-library"]
 	path = template/template-library
 	url = https://github.com/Infinisoft-inc/template-library.git
+[submodule "template/library"]
+	path = template/library
+	url = https://github.com/Infinisoft-inc/library.git
