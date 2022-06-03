@@ -18,7 +18,8 @@ const CrudList = React.lazy(() => import(/* webpackPreload: true */ 'crudlist/Cr
 const ContactDetails = () => {
   const [visible, setVisible] = React.useState(false);
   const { store } = useMicroContext()
-  const contact = useSyncExternalStore(store.subscribe, ()=>store.getNormalizedState().get(store.getSnapshot()?.itemSelectedId ?? ''))
+  const state = useSyncExternalStore(store.subscribe, store.getSnapshot)
+  const contact = store.getNormalizedState().get(state?.itemSelectedId ?? '') || {}
 
   /**
    * Effects
@@ -50,7 +51,7 @@ const ContactDetails = () => {
       key: field,
       value: (contact?.[field] ?? 'Insert here') as string,
       onChange: (e: React.ChangeEvent<HTMLInputElement> | undefined) => { onChange(field, e?.target.value) },
-      copyable: false,
+      copyable: true,
     }
   }
 
@@ -61,7 +62,7 @@ const ContactDetails = () => {
     })
   }
 
-  const onRemove = (field: keyof API.Item) =>  (i: number, item: API.Item) => {
+  const onRemove = (field: keyof API.Item) => (i: number, item: API.Item) => {
     delete (contact?.[field] as Array<string>)?.[i]
     store.mutate(_state => ({ ..._state }))
   }
@@ -118,12 +119,12 @@ const ContactDetails = () => {
 
           <Suspense fallback='telephones'>
             {/* @ts-ignore */}
-            <CrudList title={<h5>Telephones</h5>} icon={<PhoneIcon />} list={contact?.telephones} onAdd={onAdd('telephones')} onChange={onChangeListItem('telephones')} onRemove={onRemove('telephones')} />
+            <CrudList title={<>Telephones</>} icon={<PhoneIcon />} list={contact?.telephones ?? []} onAdd={onAdd('telephones')} onChange={onChangeListItem('telephones')} onRemove={onRemove('telephones')} />
           </Suspense>
 
           <Suspense fallback='relatedWith'>
             {/* @ts-ignore */}
-            <CrudList title={<h5>Relation</h5>} icon={<PhoneIcon />} list={contact?.relatedWith} onAdd={onAdd('relatedWith')} onChange={onChangeListItem('relatedWith')} onRemove={onRemove('relatedWith')} />
+            <CrudList data-style='input:text:root' title={<h5>Relation</h5>} icon={<PhoneIcon />} list={contact?.relatedWith} onAdd={onAdd('relatedWith')} onChange={onChangeListItem('relatedWith')} onRemove={onRemove('relatedWith')} />
           </Suspense>
         </Suspense>
       </div>

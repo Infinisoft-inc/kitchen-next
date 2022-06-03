@@ -24,7 +24,8 @@ import { CrudListProps } from './types';
  }: CrudListProps) => {
 
    return <Suspense>
-     <div className={css.root}>
+     <div data-style='input:text:root'>
+
        <FlexLine
          left={icon}
          right={

@@ -26,7 +26,7 @@ export const fswatch = async (target, trigger) => {
         console.log(event);
       }
 
-      trigger();
+      trigger(event);
     }
   } catch (err) {
     if (err.name === 'AbortError') return;

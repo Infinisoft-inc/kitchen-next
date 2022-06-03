@@ -10,7 +10,7 @@
     "sourceMap": true,
     "baseUrl": "./",
     "strict": true,
-    "skipLibCheck":true,
+    "skipLibCheck": true,
     "paths": {
       "@/*": ["src/*"]
     },
@@ -21,7 +21,8 @@
     "src/**/*",
     "config/*",
     "modules/*.d.ts",
-    "typings.d.ts" ],
+    "typings.d.ts"
+  ],
   "exclude": [
     "node_modules",
     "lib",

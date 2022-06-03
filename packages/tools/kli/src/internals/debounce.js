@@ -6,7 +6,7 @@
 
 let timer;
 
-export const debounce = (trigger, duration) => () => {
+export const debounce = (trigger, duration) => {
   clearTimeout(timer);
   timer = setTimeout(() => trigger(), duration);
 };

@@ -57,7 +57,7 @@
 
  [name*='input:text'] {
    background-color: var(--input-text-background-primary);
-   color: var(--text-primary);
+   color: var(--text-contrast);
    border: 1px solid;
    padding: 0.35rem;
  }

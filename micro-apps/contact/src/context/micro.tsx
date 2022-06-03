@@ -7,10 +7,6 @@ import(/* webpackPreload: true */ 'store/createstore')
 
 const createstore: Store = await load('store', 'createstore')
 
-import(/* webpackPreload: true */ 'libuniqueid/mylib')
-const mylib = await load<Function>('libuniqueid', 'mylib')
-mylib()
-
 export type MicroState =  {
   list: API.Item[]
   itemSelectedId?: string

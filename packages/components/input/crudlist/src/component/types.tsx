@@ -21,3 +21,5 @@ export type CrudListProps<T = any, I=any> = Partial<HTMLElement> & {
   list: T[]
 
 };
+
+type d = any

@@ -10,7 +10,6 @@ import React from "react";
 import { CategoryIcon, ContactIcon, SubcategoryIcon } from "../../assets/svg";
 import { useMicroContext } from "../../context/micro";
 import { useMetaModel } from "../../hooks/useMetaModel";
-import style from './index.css';
 
 const CategoryForm = React.lazy(() => import("./forms/category.form"));
 const ContactForm = React.lazy(() => import("./forms/contact.form"));
@@ -60,20 +59,20 @@ const Create = () => {
 
   const steps = [
     {
-      title: <><span className={style.titleIcon}><ContactIcon /></span>Contact</>,
+      title: <><span className={'style.titleIcon'}><ContactIcon /></span>Contact</>,
       description: 'How can you reach this contact?',
       /* @ts-ignore */
       // render: () => <MotionSlider direction={"right"}> <ContactForm form={form} /></MotionSlider>
       render: () => <ContactForm form={form} />
     },
     {
-      title: <><span className={style.titleIcon}><CategoryIcon /></span>Category</>,
+      title: <><span className={'style.titleIcon'}><CategoryIcon /></span>Category</>,
       description: 'What category of contact it is?',
       /* @ts-ignore */
       render: () => <CategoryForm map={categories} onClick={filterSubcategory} field='SK' />
     },
     {
-      title: <><span className={style.titleIcon}><SubcategoryIcon /></span>Category</>,
+      title: <><span className={'style.titleIcon'}><SubcategoryIcon /></span>Category</>,
       description: 'What subcategory of contact it is?',
       render: () => {
         /* @ts-ignore */
@@ -81,7 +80,7 @@ const Create = () => {
       }
     },
     {
-      title: <><span className={style.titleIcon}><SubcategoryIcon /></span>Summary</>,
+      title: <><span className={'style.titleIcon'}><SubcategoryIcon /></span>Summary</>,
       description: 'Is the information correct?',
       /* @ts-ignore */
       render: () => <Summary variant='horizontal' editable={false} hide={['avatar']} values={form?.getFieldsValue() ?? {}} errors={asyncErrors} />
@@ -111,12 +110,12 @@ const Create = () => {
     </>
   }
 
-  const Title = () => <div className={style.ctnCenter}>
-    <div className={style.titleLeft}>
+  const Title = () => <div className={'style.ctnCenter'}>
+    <div className={'style.titleLeft'}>
       <Typography.Title className='invariant' level={1} >{steps[activeStep].title}</Typography.Title>
       <Typography.Text>{steps[activeStep].description} </Typography.Text>
     </div>
-    <div className={style.titleRight}><Progress width={80} percent={percent} type='circle' status={progressStatus()} /></div>
+    <div className={'style.titleRight'}><Progress width={80} percent={percent} type='circle' status={progressStatus()} /></div>
   </div>
 
 
@@ -140,9 +139,9 @@ const Create = () => {
         }}
         validateTrigger='onChange'
       >
-        <div className={style.ctnCenter}>
-          <span className={style.flex}>
-            {steps.map((s, i) => <span hidden={activeStep !== i} key={i} className={style.flex}>{s.render()}</span>)}
+        <div className={'style.ctnCenter'}>
+          <span className={'style.flex'}>
+            {steps.map((s, i) => <span hidden={activeStep !== i} key={i} className={'style.flex'}>{s.render()}</span>)}
           </span>
         </div>
       </Form>

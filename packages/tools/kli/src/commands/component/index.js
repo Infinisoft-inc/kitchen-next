@@ -14,14 +14,14 @@ const { remove } = require('./remove');
  */
 const usage = () => {
   console.log(`
-component     create          <json input>      - Create new federated component.
+component     create          <json input>      - Create new federated component
               build                             - Build component dev
                               [--prod]          - Build component prod
-                              [--watch-deploy]  - Watch mode, Auto Update Typescript Types Alias definitions every build
-                              [--watch-nodeploy]- Watch mode, Auto Update Typescript Types Alias definitions every build
+                              [--watch]         - Watch mode, rebuild code (without types)
+                              [--types]         - Type definition build, can be combined with --watch mode
                               [--deploy]        - Deploy after build, if running in watch mode, deploys every build
 
-              deploy                            - Deploy component on cloud.
+              deploy                            - Deploy component on cloud (No build)
               use             <name>            - Add module to container
               remove          <name>            - removes module from container
               `);
