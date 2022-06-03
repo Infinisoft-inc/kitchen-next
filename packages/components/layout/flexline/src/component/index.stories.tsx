@@ -11,14 +11,14 @@ export default {
 
 const Template: ComponentStory<typeof FlexLine> = (args) => <FlexLine {...args} />;
 
-export const StringArgs = Template.bind({});
-StringArgs.args = {
+export const LeftRightArgs = Template.bind({});
+LeftRightArgs.args = {
   left: 'Left',
   right: 'Right'
 };
 
 export const LeftRightPropsArgs = Template.bind({});
-StringArgs.args = {
+LeftRightPropsArgs.args = {
   left: 'Left',
   leftProps: {
     style: {flex: 1}
