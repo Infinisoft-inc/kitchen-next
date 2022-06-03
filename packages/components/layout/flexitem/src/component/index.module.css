@@ -4,8 +4,7 @@
  * www.infini-soft.com
  */
 
-import React from "react"
-
-export type FlexColProps = {
-  children?: React.ReactNode
+.root {
+  flex: 1 1 auto;
 }
+

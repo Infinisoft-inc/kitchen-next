@@ -18,7 +18,7 @@ export default {
 
 const Template: ComponentStory<typeof FlexContainer> = (args) => (
   <FlexContainer {...args}>
-    <div style={{ flex: 1, backgroundColor: 'blue' }}> I am inside a flex container</div>
+    <div style={{ flex: 1, backgroundColor: 'blue', color: 'white', padding: '1rem'  }}> I am inside a flex container</div>
   </FlexContainer>
 );
 

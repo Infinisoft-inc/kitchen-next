@@ -4,12 +4,13 @@
  * www.infini-soft.com
  */
 
-import { Button, Form, Progress, Typography } from "antd";
+import { Button, Form } from "antd";
 import Modal from "antd/lib/modal/Modal";
 import React from "react";
 import { CategoryIcon, ContactIcon, SubcategoryIcon } from "../../assets/svg";
 import { useMicroContext } from "../../context/micro";
 import { useMetaModel } from "../../hooks/useMetaModel";
+import { Title } from "./title";
 
 const CategoryForm = React.lazy(() => import("./forms/category.form"));
 const ContactForm = React.lazy(() => import("./forms/contact.form"));
@@ -110,13 +111,14 @@ const Create = () => {
     </>
   }
 
-  const Title = () => <div className={'style.ctnCenter'}>
-    <div className={'style.titleLeft'}>
-      <Typography.Title className='invariant' level={1} >{steps[activeStep].title}</Typography.Title>
-      <Typography.Text>{steps[activeStep].description} </Typography.Text>
-    </div>
-    <div className={'style.titleRight'}><Progress width={80} percent={percent} type='circle' status={progressStatus()} /></div>
-  </div>
+
+  // const Title = () => <div className={'style.ctnCenter'}>
+  //   <div className={'style.titleLeft'}>
+  //     <Typography.Title className='invariant' level={1} >{steps[activeStep].title}</Typography.Title>
+  //     <Typography.Text>{steps[activeStep].description} </Typography.Text>
+  //   </div>
+  //   <div className={'style.titleRight'}><Progress width={80} percent={percent} type='circle' status={progressStatus()} /></div>
+  // </div>
 
 
   return <>
@@ -128,7 +130,7 @@ const Create = () => {
       onCancel={handleClose}
       destroyOnClose
       footer={<Footer />}
-      title={<Title />}
+      title={<Title title={'Contact'} subtitle={'How can you reach this contact?'} />}
     >
       <Form<API.Item>
         form={form}
