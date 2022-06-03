@@ -38,14 +38,11 @@ export default {
       },
     },
     icon: {
-      description: `{<PhoneIcon/>}`,
+      description: `<PhoneIcon/>`,
       table: {
         category: 'Items',
-        defaultValue: {
-          summary: '.svg',
-        },
       },
-      control: { type: 'file', accept: '.svg'},
+      control: { type: 'file' },
     },
     list: {
       table: {
@@ -74,8 +71,8 @@ export default {
 } as ComponentMeta<typeof CrudList>;
 
 
-const Template: ComponentStory<typeof CrudList> = (args, context) => {
-
+const Template: ComponentStory<typeof CrudList> = ({icon, ...args}, context) => {
+  const customIcon = String(icon).includes('blob:http') ? <img src={String(icon)}/>: icon
   const state = useSyncExternalStore<string[]>(context.store.subscribe, context.store.getSnapshot)
   const store: IStore<string[], string, string, string> = context.store
 
@@ -99,7 +96,7 @@ const Template: ComponentStory<typeof CrudList> = (args, context) => {
     })
   }
 
-  return <CrudList {...args} onAdd={onAdd} onChange={onChange} onRemove={onRemove} list={state} />
+  return <CrudList {...args} onAdd={onAdd} onChange={onChange} onRemove={onRemove} list={state} icon={customIcon} />
 
 }
 export const StringArgs = Template.bind({});
