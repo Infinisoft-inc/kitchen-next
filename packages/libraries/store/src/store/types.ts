@@ -8,8 +8,20 @@
 /**
  * Subscriber get notified on state change immutable only
  */
+export type SubscribeOptions = {
+  /**
+   * Filter events
+   */
+  filter?: string | RegExp
+}
 export type SubscriberEventHandler<S = unknown, Payload = unknown> = (event: string, state?: State<S>, payload?: Payload) => void
-export type Subscribers<S, Payload> = Map<Symbol, SubscriberEventHandler<S, Payload>>
+export type Subscription<S, Payload> = {
+  callback: SubscriberEventHandler<S, Payload>
+  options?: SubscribeOptions
+}
+
+export type Subscribers<S, Payload> = Map<Symbol, Subscription<S, Payload>>
+
 
 /**
  * Publisher emit events with optionnal payload
@@ -61,7 +73,7 @@ export type IStore<S, Payload, K, I> = {
   getNormalizedState: () => NormalizedState<K, I>;
 
   // Pubsub
-  subscribe: (eventhandler: SubscriberEventHandler<S, Payload>) => () => void;
+  subscribe: (eventhandler: SubscriberEventHandler<S, Payload>, options?: SubscribeOptions) => () => void;
   publish: PublisherEvent<Payload>
   cook: (eventhandler: CookersEventHandler<S, Payload>) => () => void;
 

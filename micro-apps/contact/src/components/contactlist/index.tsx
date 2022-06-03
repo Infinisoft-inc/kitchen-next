@@ -1,27 +1,16 @@
 
 import ProTable from '@ant-design/pro-table';
-import React, { Suspense, useSyncExternalStore } from 'react';
+import React, { Suspense } from 'react';
 import { useMicroContext } from '../../context/micro';
 import { columns } from './columns';
 import styles from './index.css';
+import { useSearchFilter } from './useSearchFilter';
 
 const ContactList = () => {
+  const list = useSearchFilter()
   const { store } = useMicroContext();
-  const microState = useSyncExternalStore(store.subscribe, store.getSnapshot)
 
-  //   () => {
-  //   const _state = store?.getSnapshot?.() || {}
-
-  //   return {
-  //     ..._state,
-  //   }
-  // })
-
-  const filter = () => {
-
-  }
-
-  return <Suspense fallback={<h1>Protable</h1>}>
+return <Suspense fallback={<h1>Protable</h1>}>
     <ProTable
       rowKey={record => record?.SK || new Date().getTime()}
       search={false}
@@ -29,8 +18,7 @@ const ContactList = () => {
         pageSize: 10,
       }}
       className={styles['ant-pro-table']}
-      loading={microState?.list?.length === 0}
-      dataSource={microState?.list}
+      dataSource={list}
       columns={columns(store) as any}
     />
   </Suspense>

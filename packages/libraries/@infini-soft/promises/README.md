@@ -83,7 +83,7 @@ const test = async () => {
     const start = new Date().getTime();
     await promiseDeffered({
       request: factoryPromiseFuncResolveIn(50),
-      debounce: 2000,
+      deffered: 2000,
     });
     alert(`Request success deffered after ${new Date().getTime() - start} ms`);
   } catch (error) {
@@ -119,7 +119,7 @@ const test = async () => {
     const start = new Date().getTime();
     await promiseTimeOutDeffered({
       request: factoryPromiseFuncResolveIn(50),
-      debounce: 2000,
+      Deffered: 2000,
     });
     alert(`Request success deffered after ${new Date().getTime() - start} ms`);
   } catch (error) {

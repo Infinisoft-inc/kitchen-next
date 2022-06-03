@@ -89,6 +89,22 @@ describe('Unit Testing', () => {
     expect(store.getSnapshot()).toEqual(expect.arrayContaining(['one']));
   });
 
+  it('Subscribe on specific event and get notify once', () => {
+    const store = createstore(() => ['one'])
+    let receivedPayload = ''
+    const mock = jest.fn().mockImplementation((event, state, payload) => receivedPayload = payload)
+    store.subscribe(mock, {filter: /(filter.test)/})
+    store.publish('nottriggered1', 'useless')
+    store.publish('nottriggered2')
+    store.publish('filter.test')
+    store.publish('filter.test', 'payload')
+    store.publish('nottriggered3')
+    store.publish('nottriggered3', 'useless')
+
+    expect(mock).toBeCalledTimes(2);
+    expect(receivedPayload).toEqual('payload');
+  });
+
   it('Subscribe and Cook', () => {
     const store = createstore(() => ['one'])
     const mock = jest.fn().mockImplementation()

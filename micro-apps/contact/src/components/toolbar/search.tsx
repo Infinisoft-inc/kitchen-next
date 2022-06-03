@@ -5,10 +5,11 @@
  */
 import { Input } from "antd";
 import React from "react";
+import { useMicroContext } from "../../context/micro";
 
 const Search = () => {
-
-  const handleSearch = (term: string) => {}
+  const { store } = useMicroContext()
+  const handleSearch = (term: string) => { store.publish('search.term', term) }
 
   return <div data-style='search:container:root'><Input.Search placeholder='What are you searching ?' allowClear onChange={e => handleSearch(e.target.value)} onSearch={handleSearch} /></div>
 }

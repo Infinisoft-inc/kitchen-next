@@ -3,7 +3,7 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
-import { Cookers, CookersEventHandler, CreateStoreOptions, Init, IStore, Mutate, NormalizedState, PublisherEvent, Store, SubscriberEventHandler, Subscribers } from "./types";
+import { Cookers, CookersEventHandler, CreateStoreOptions, Init, IStore, Mutate, NormalizedState, PublisherEvent, Store, SubscribeOptions, SubscriberEventHandler, Subscribers } from "./types";
 
 
 /**
@@ -70,19 +70,27 @@ const createstore: Store = <S, Payload, K extends keyof S, I>(init?: Init<S>, op
   }
 
 
+  /**
+   * Notify all subscribers
+   * @param event   Event name
+   * @param payload Event payload
+   */
   const _notifyAllSubscribers: PublisherEvent<Payload> = (event, payload) => {
-    subscribers.forEach((_callback) => {
-      _callback(event, state, payload);
+    subscribers.forEach(({callback, options}) => {
+      if (
+        !options?.filter ||
+        event.match(options.filter)
+      ){
+        callback(event, state, payload);
+      }
+
     })
   }
 
-  /**
-   * Initialize
-   */
 
   /**
-   *
-   * @param _state
+   * Initialize store
+   * @param _state Initial store state
    */
   const initialize = (_state: typeof state) => {
     state = _state
@@ -116,9 +124,9 @@ const createstore: Store = <S, Payload, K extends keyof S, I>(init?: Init<S>, op
    * @param callback Called on events
    * @returns Unsubscribe method
    */
-  const subscribe = (callback: SubscriberEventHandler<S, Payload>) => {
+  const subscribe = (callback: SubscriberEventHandler<S, Payload>, options?: SubscribeOptions) => {
     const id = Symbol()
-    subscribers.set(id, callback)
+    subscribers.set(id, {callback, options})
     return () => { subscribers.delete(id) }
   }
 

@@ -4,14 +4,13 @@ import { IStore, Store } from "store/types";
 import * as listService from "../services/contacts/list";
 
 import(/* webpackPreload: true */ 'store/createstore')
-
 const createstore: Store = await load('store', 'createstore')
 
 export type MicroState = {
   list: API.Item[]
   itemSelectedId?: string
 }
-export type MicroPayload = API.Item
+export type MicroPayload = API.Item | string
 export type ContactStore = IStore<MicroState, MicroPayload, string, API.Item>
 
 export type MicroContextState = {
@@ -23,30 +22,13 @@ export type MicroContextState = {
   store: ContactStore
 }
 
-const store = createstore<MicroState, any, keyof MicroState, API.Item>(async () => {
+const fetchData = async () => {
   const result = await listService.list({}) as API.Success
 
   return { list: result?.data ?? [], itemSelectedId: '' }
-}, { normalizeKeys: ['list'], keyPredicat: item => item.SK })
+}
 
-
-// const filterCooker: CookersEventHandler<MicroState, any> = (event, state, payload) => {
-//   console.log(`COOKER `, event, payload)
-
-//   if (event.includes('filter.add')) {
-//     console.log(`Add filter`);
-//     return {...state, list: state?.list.filter(item => JSON.stringify(item).includes(payload)) ?? []}
-//   }
-
-//   if (event.includes('filter.clear')) {
-//     console.log(`clear filter`);
-//     return state || {list:[]}
-//   }
-
-//   return state || {list:[]}
-// }
-
-// store.cook(filterCooker)
+const store = createstore<MicroState, any, keyof MicroState, API.Item>(fetchData, { normalizeKeys: ['list'], keyPredicat: item => item.SK })
 
 const initialContext: MicroContextState = {
   history,
