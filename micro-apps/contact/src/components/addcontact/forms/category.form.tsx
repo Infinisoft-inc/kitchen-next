@@ -25,6 +25,7 @@ export type CategoryFormProps = {
 const CategoryForm: React.FC<CategoryFormProps> = ({ map, field, onClick }) => {
 
   return <>
+  <input type='text' name='doguette' />
     <Form.Item name={field} initialValue={''} rules={[{ required: true, message: 'Select a contact category' }]}>
       <Radio.Group
         size="large"

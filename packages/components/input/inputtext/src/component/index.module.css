@@ -3,84 +3,88 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
- @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
 
- :root {
-   --colors-primary: blue;
+:root {
+  --colors-primary: blue;
 
-   --text-primary: rgb(145, 145, 145);
-   --text-contrast: rgb(112, 112, 112);
+  --text-primary: rgb(145, 145, 145);
+  --text-contrast: rgb(112, 112, 112);
 
-   --background-contrast: rgb(255, 255, 255);
+  --background-contrast: rgb(255, 255, 255);
 
-   --input-text-background-contrast: transparent;
+  --input-text-background-contrast: transparent;
 
-   --button-background-primary: transparent;
-   --button-background-secondary: green;
- }
+  --button-background-primary: transparent;
+  --button-background-secondary: green;
+}
 
- .root {
-   display: flex;
-   margin-bottom: 1.5rem;
- }
+.root {
+  display: flex;
+  margin-bottom: 1.5rem;
+}
 
- input {
-   font-family: Orbitron !important;
- }
+input {
+  font-family: Orbitron !important;
+}
 
- input[name*=':ghost'] {
-   background-color: transparent;
-   border: 0;
- }
+input[data-style*=':ghost'] {
+  background-color: transparent;
+  border: 0;
+}
 
- [data-style*='input:text:root']{
-   display: flex;
-   flex-wrap: nowrap;
-   background-color: transparent;
-   padding: 0.5rem;
-   border: 0;
- }
+[data-style*='input:text:root'] {
+  display: flex;
+  flex-wrap: nowrap;
+  background-color: transparent;
+  padding: 0.5rem;
+  border: 0;
+}
 
- [data-style*=':prefix'] {
-   background-color: transparent;
-   padding-right: 0.5rem;
- }
- [data-style*=':suffix'] {
-   background-color: transparent;
-   padding-left: 0.5rem;
- }
+[data-style*=':prefix'] {
+  background-color: transparent;
+  padding-right: 0.5rem;
+}
+[data-style*=':suffix'] {
+  background-color: transparent;
+  padding-left: 0.5rem;
+}
 
- input[name*=':ghost'][name*=':focus'] {
-   background-color: var(--background-contrast);
-   color: var(--text-contrast);
- }
+input[data-style*=':ghost'][data-style*=':focus'] {
+  background-color: var(--background-contrast);
+  color: var(--text-contrast);
+}
 
- [name*='input:text'] {
-   background-color: var(--input-text-background-primary);
-   color: var(--text-contrast);
-   border: 1px solid;
-   padding: 0.35rem;
- }
+[data-style*='input:text'] {
+  background-color: var(--input-text-background-primary);
+  color: var(--text-contrast);
+  border: 1px solid;
+  padding: 0.35rem;
+}
 
- [name*='input:text:focus'] {
-   background-color: var(--background-contrast);
-   color: var(--text-contrast);
- }
+[data-style*='input:text:focus'] {
+  background-color: var(--background-contrast);
+  color: var(--text-contrast);
+}
 
- button[name*='button:primary'] {
-   background-color: var(--button-background-primary);
-   color: var(--text-primary);
-   border: 0;
- }
+input:invalid {
+  border: 2px dashed red;
+}
 
- [name*='button:secondary'] {
-   background-color: var(--button-background-secondary);
-   color: var(--colors-primary);
-   border: 0;
- }
+button[data-style*='button:primary'] {
+  background-color: var(--button-background-primary);
+  color: var(--text-primary);
+  border: 0;
+}
 
- [name*='button:myvariant'] {
-   background-color: var(--button-background-primary);
-   color: red;
-   border: 0;
- }
+[data-style*='button:secondary'] {
+  background-color: var(--button-background-secondary);
+  color: var(--colors-primary);
+  border: 0;
+}
+
+[data-style*='button:myvariant'] {
+  background-color: var(--button-background-primary);
+  color: red;
+  border: 0;
+}

@@ -118,7 +118,7 @@ const Create = () => {
   //   <div className={'style.titleRight'}><Progress width={80} percent={percent} type='circle' status={progressStatus()} /></div>
   // </div>
 
-
+  const [state, setState] = React.useState<object>();
   return <>
 
     { /* @ts-ignore */}
@@ -130,7 +130,7 @@ const Create = () => {
       footer={<Footer />}
       title={<Title title={'Contact'} subtitle={'How can you reach this contact?'} />}
     >
-      <Form<API.Item>
+      {/* <Form<API.Item>
         form={form}
         onBlur={() => {
         }}
@@ -139,11 +139,30 @@ const Create = () => {
           handleClose();
         }}
         validateTrigger='onChange'
-      >
+      > */}
+      <Form onChangeCapture={e => {
+        e.preventDefault()
+        // @ts-ignore
+        const { name, value } = e.target
+
+        setState(prev => ({
+          ...prev,
+          [name]: value
+        }))
+
+      }}>
         <div className={'style.ctnCenter'}>
           <span className={'style.flex'}>
             {steps.map((s, i) => <span hidden={activeStep !== i} key={i} className={'style.flex'}>{s.render()}</span>)}
           </span>
+
+          <button type='submit' onClick={e => {
+            e.preventDefault()
+            e.stopPropagation()
+
+            console.log(`FORM = `, state)
+            console.log(`e = `, e)
+          }}>Submit DOG</button>
         </div>
       </Form>
     </Modal>

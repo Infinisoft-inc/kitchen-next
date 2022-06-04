@@ -3,46 +3,59 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
-import { Form, Input, Select } from 'antd';
+import { Form } from 'antd';
 import type { FormInstance } from 'antd/lib/form';
 import React from 'react';
-import config from "../../../../config/config.json";
-import { AddressIcon, EmailIcon, NameIcon, PhoneIcon, RelatedwithIcon, WebIcon } from '../../../assets/svg';
+import { AddressIcon, EmailIcon, NameIcon, WebIcon } from '../../../assets/svg';
 import AvatarUpload from "../../../components/avatar-upload";
-import style from './index.css';
 import './overrides.css';
-const REQUIRED = !config?.devMode
+
+const InputText = React.lazy(() => import(/* webpackChunkName: 'InputText' */ 'inputtext/InputText'))
 
 const ContactForm: React.FC<FormInstance> = (form: FormInstance) => {
 
-return <>
-    <Form.Item name={'avatar'}>
-      <AvatarUpload src='' save={(base64Avatar) => { form.setFieldsValue({ ...form.getFieldsValue(), avatar: base64Avatar }) }} />
-    </Form.Item>
+  const [state, setState] = React.useState<object>();
+  return <>
 
-    <Form.Item name={'name'} rules={[{ required: REQUIRED }]}>
-      <Input prefix={<NameIcon />} placeholder='Name' />
-    </Form.Item>
+    {/* <Form onChangeCapture={e => {
+      // @ts-ignore
+      const { name, value } = e.target
 
-    <Form.Item name={['address']} rules={[{ required: REQUIRED }]}>
-      <Input prefix={<AddressIcon />} placeholder='Address' />
-    </Form.Item>
+      setState(prev => ({
+        ...prev,
+        [name]: value
+      }))
 
-    <Form.Item style={{ position: 'relative' }}>
+    }}> */}
+      <Form.Item name={'avatar'}>
+        <AvatarUpload src='' save={(base64Avatar) => { form.setFieldsValue({ ...form.getFieldsValue(), avatar: base64Avatar }) }} />
+      </Form.Item>
+
+      <fieldset>
+        <input type='text' onError={console.log} name='test' placeholder='Test' required onInvalid={e => console.log(` INVALID `, e)}/>
+        <label htmlFor='test' >Required connard!</label>
+      </fieldset>
+
+      <fieldset>
+        <InputText onError={console.log} name='name' before={<NameIcon />} placeholder='Name' required />
+        {/* <label htmlFor='name' >Required connard!</label> */}
+      </fieldset>
+
+      <InputText name='address' before={<AddressIcon />} placeholder='Address' required />
+
+
+      {/* <Form.Item style={{ position: 'relative' }}>
       <span className={style.prefixIcon}>
         <PhoneIcon /></span>
       <Form.Item name={['telephones']} noStyle><Select mode="tags" size='large' style={{ width: '100%' }} placeholder="Telephones" /></Form.Item>
-    </Form.Item>
+    </Form.Item> */}
 
-    <Form.Item name={['email']} rules={[{ type: 'email' }]}>
-      <Input prefix={<EmailIcon />} placeholder='Email' />
-    </Form.Item>
+      <InputText name='email' before={<EmailIcon />} pattern='(... ... ....)' placeholder='Email' />
 
-    <Form.Item name={['website']}>
-      <Input prefix={<WebIcon />} placeholder='Website' />
-    </Form.Item>
 
-    <Form.Item style={{ position: 'relative' }}>
+      <InputText name='website' before={<WebIcon />} placeholder='Website' />
+
+      {/* <Form.Item style={{ position: 'relative' }}>
       <span className={style.prefixIcon}>
         <RelatedwithIcon />
       </span>
@@ -51,15 +64,17 @@ return <>
         <Select
           // labelInValue
           notFoundContent={<>Search by keyword</>}
-          filterOption={(input, opt)=>{console.log(`input = `, input, `opt = `, opt); return false;}}
+          filterOption={(input, opt) => { console.log(`input = `, input, `opt = `, opt); return false; }}
           mode="tags"
           size='large'
           style={{ width: '100%' }}
           onChange={console.log}
           placeholder="Related with"
         /></Form.Item>
-    </Form.Item>
+    </Form.Item> */}
 
+
+    {/* </Form> */}
   </>;
 }
 export default ContactForm

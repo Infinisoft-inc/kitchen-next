@@ -32,16 +32,16 @@ import { InputTextProps } from './types';
    return <span data-style='input:text:root'>
      {before}
 
-     <input {...props} ref={ref} name={`input:text${styleOptions()}`} type='text' onFocus={() => setFocus(true)} onBlur={() => setFocus(false)} />
+     <input {...props} ref={ref} data-style={`input:text${styleOptions()}`} type='text' onFocus={() => setFocus(true)} onBlur={() => setFocus(false)} />
 
      {after}
 
      {copyable &&
-       <button name={`button:${variant}`} onClick={() => navigator.clipboard.writeText(String(props.value))}><CopyIcon /></button>
+       <button data-style={`button:${variant}`} onClick={() => navigator.clipboard.writeText(String(props.value))}><CopyIcon /></button>
      }
 
      {removable &&
-       <button name={`button:${variant}`} onClick={onRemove}><DeleteIcon /></button>
+       <button data-style={`button:${variant}`} onClick={onRemove}><DeleteIcon /></button>
      }
    </span>
  }

@@ -4,7 +4,7 @@
  * www.infini-soft.com
  */
 
- /*
+/*
   * Override file is imported where required and CANT be a css module
   */
 
@@ -17,3 +17,29 @@ span.ant-select-selection-placeholder {
   left: 0 !important;
   margin-left: 45px !important;
 } */
+
+input:invalid {
+  background-color: red;
+}
+
+form {
+  border: 0;
+}
+
+form:invalid {
+  border: 5px solid red;
+}
+
+form:valid {
+  border: 5px solid green;
+}
+
+input~label {
+  display: block;
+  color: transparent;
+}
+input:invalid~label  {
+  display: block;
+  color: red;
+}
+

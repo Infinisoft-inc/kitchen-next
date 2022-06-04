@@ -26,21 +26,14 @@ export type InputTextProps = {
   removable?: boolean
   onRemove?: <T, >(...arg: T[]) => void
   /**
-   * Prefix component
+   * Before component
    * this attributes collide with @types/react and must be replaced by before
    */
-  prefix?: React.ReactNode
   before?: React.ReactNode
   /**
- * Suffix component
+ * After component
  * this attributes collide with @types/react and must be replaced by after
  */
-  suffix?: React.ReactNode
   after?: React.ReactNode
-
-  /**
-   * Unique identifier
-   */
-  key: React.Key
 
 } & React.InputHTMLAttributes<HTMLInputElement>
