@@ -13,7 +13,7 @@ import css from './index.css';
 
 const AvatarUpload = React.lazy(() => import("../avatar-upload"));
 
-const CrudList = React.lazy(() => import(/* webpackPreload: true */ '../../../../../packages/components/input/crudlist/src/component/index'))
+const CrudList = React.lazy(() => import(/* webpackPreload: true */ 'crudlist/CrudList'))
 
 const ContactDetails = () => {
   const [visible, setVisible] = React.useState(false);

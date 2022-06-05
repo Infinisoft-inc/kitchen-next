@@ -10,13 +10,12 @@ const { onErrorContinue } = require('@/internals/onErrorContinue');
 
 const VERBOSE = process.argv.join(' ').includes('--debug');
 const DRYRUN = process.argv.join(' ').includes('--dry-run');
-const TYPE = "libraries"
+const TYPE = 'libraries';
 
 /**
  * Command runner
  */
 const use = () => {
-
   if (VERBOSE) {
     console.log(`use() `);
   }
@@ -29,8 +28,6 @@ const use = () => {
   console.log(`Configuring ${moduleName}, one moment...
 --------------------------------------------`);
 
-
-
   if (VERBOSE) {
     console.log(`use() modulename = `, moduleName);
     console.log(`use() pkg`, pkg);
@@ -40,22 +37,33 @@ const use = () => {
     pkg?.infinisoft?.moduleFederation?.registry ??
     'https://app.micro.infini-soft.com';
 
+
+    const LOCALREGISTRY =
+    pkg?.infinisoft?.moduleFederation?.localregistry ?? 'http://localhost:5000';
+
   if (
     !(
       pkg?.infinisoft?.moduleFederation?.remotes?.hasOwnProperty(moduleName) ??
       false
     )
   ) {
-
     pkg = {
       ...pkg,
       infinisoft: {
         ...pkg?.infinisoft,
         moduleFederation: {
           ...pkg?.infinisoft?.moduleFederation,
-          remotes: {
-            ...(pkg?.infinisoft?.moduleFederation?.remotes ?? {}),
-            [`${moduleName}`]: `${moduleName}@${REGISTRY}/${TYPE}/${moduleName}/remoteEntry.js`,
+          dev: {
+            remotes: {
+              ...(pkg?.infinisoft?.moduleFederation?.dev?.remotes ?? {}),
+              [`${moduleName}`]: `${moduleName}@${LOCALREGISTRY}/${TYPE}/${moduleName}/dev/remoteEntry.js`,
+            },
+          },
+          prod: {
+            remotes: {
+              ...(pkg?.infinisoft?.moduleFederation?.prod?.remotes ?? {}),
+              [`${moduleName}`]: `${moduleName}@${REGISTRY}/${TYPE}/${moduleName}/remoteEntry.js`,
+            },
           },
         },
       },

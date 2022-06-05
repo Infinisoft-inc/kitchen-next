@@ -10,13 +10,12 @@ const { onErrorContinue } = require('@/internals/onErrorContinue');
 
 const VERBOSE = process.argv.join(' ').includes('--debug');
 const DRYRUN = process.argv.join(' ').includes('--dry-run');
-const TYPE = "components"
+const TYPE = 'components';
 
 /**
  * Command runner
  */
 const use = () => {
-
   if (VERBOSE) {
     console.log(`use() `);
   }
@@ -29,8 +28,6 @@ const use = () => {
   console.log(`Configuring ${moduleName}, one moment...
 --------------------------------------------`);
 
-
-
   if (VERBOSE) {
     console.log(`use() modulename = `, moduleName);
     console.log(`use() pkg`, pkg);
@@ -41,8 +38,7 @@ const use = () => {
     'https://app.micro.infini-soft.com';
 
   const LOCALREGISTRY =
-    pkg?.infinisoft?.moduleFederation?.localregistry ??
-    'http://localhost:5000';
+    pkg?.infinisoft?.moduleFederation?.localregistry ?? 'http://localhost:5000';
 
   if (
     !(
@@ -50,7 +46,6 @@ const use = () => {
       false
     )
   ) {
-
     pkg = {
       ...pkg,
       infinisoft: {
@@ -58,19 +53,17 @@ const use = () => {
         moduleFederation: {
           ...pkg?.infinisoft?.moduleFederation,
           dev: {
-            ...(pkg?.infinisoft?.moduleFederation?.dev.remotes ?? {}),
             remotes: {
               ...(pkg?.infinisoft?.moduleFederation?.dev?.remotes ?? {}),
               [`${moduleName}`]: `${moduleName}@${LOCALREGISTRY}/${TYPE}/${moduleName}/dev/remoteEntry.js`,
             },
           },
           prod: {
-            ...(pkg?.infinisoft?.moduleFederation?.prod.remotes ?? {}),
             remotes: {
               ...(pkg?.infinisoft?.moduleFederation?.prod?.remotes ?? {}),
               [`${moduleName}`]: `${moduleName}@${REGISTRY}/${TYPE}/${moduleName}/remoteEntry.js`,
             },
-          }
+          },
         },
       },
     };
