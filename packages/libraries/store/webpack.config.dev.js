@@ -6,12 +6,29 @@
 
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common');
-const { infinisoft } = require('./package.json');
+const path = require('path');
+const { ModuleFederationPlugin } = require('webpack').container;
+const { name, infinisoft } = require('./package.json');
 
 module.exports = merge(common, {
   mode: 'development',
-  devServer: {
-    port: infinisoft.port,
-  },
   devtool: 'eval-source-map',
+  output: {
+    path: path.resolve(__dirname, 'dev'),
+    filename: 'index.js',
+    library: 'createstore',
+    publicPath: 'auto',
+  },
+  plugins: [
+    new ModuleFederationPlugin({
+      name,
+      filename: 'remoteEntry.js',
+      library: {
+        type: 'var',
+        name,
+      },
+      remotes: infinisoft.moduleFederation.dev.remotes,
+      exposes: infinisoft.moduleFederation.exposes,
+    }),
+  ],
 });

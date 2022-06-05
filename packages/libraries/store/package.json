@@ -10,7 +10,7 @@
   "module": "dist/index.js",
   "types": "dist/types.d.ts",
   "scripts": {
-    "build:types": "tsc -p tsconfig.json -d --emitDeclarationOnly --outFile dist/types.d.ts --esModuleInterop",
+    "build:types": "tsc -p tsconfig.json -d --emitDeclarationOnly --outFile dev/types.d.ts --esModuleInterop",
     "build:dev": "yarn run build:types& webpack -c webpack.config.dev.js",
     "build:dev:watch": "yarn run build:types& webpack -c webpack.config.dev.js -w",
     "build:prod": "yarn run build:types& webpack -c webpack.config.prod.js",
@@ -29,7 +29,6 @@
   "devDependencies": {},
   "peerDependencies": {},
   "infinisoft": {
-    "port": 8999,
     "moduleFederation": {
       "dev": {
         "remotes": {}

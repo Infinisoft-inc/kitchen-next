@@ -17,7 +17,6 @@
     "test": "jest",
     "test:watchAll": "jest --watchAll",
     "test:coverage": "jest --coverage&& start analyze/coverage/lcov-report/index.html",
-    "deploy": "kli component deploy",
     "start:dev": "yarn run webpack serve -c ./webpack.config.dev.js --open",
     "start:prod": "webpack serve -c ./webpack.config.prod.js --open",
     "serve:dist": "serve -s dist",
@@ -42,25 +41,32 @@
   "infinisoft": {
     "component": "contact",
     "moduleFederation": {
-      "dev":{
+      "dev": {
         "remotes": {
-          "crudlist": "crudlist@http://localhost:5000/components/input/crudlist/dev/remoteEntry.js",
-          "store": "store@http://localhost:5000/libraries/store/dev/remoteEntry.js",
-          "inputtext": "inputtext@http://localhost:5000/components/input/inputtext/dev/remoteEntry.js",
-          "flexcontainer": "flexcontainer@http://localhost:5000/components/layout/flexcontainer/dev/remoteEntry.js",
-          "flexitem": "flexitem@http://localhost:5000/components/layout/flexitem/dev/remoteEntry.js"
+          "crudlist": "crudlist@http://localhost:5000/components/unknown/crudlist/dev/remoteEntry.js",
+          "store": "store@http://localhost:5000/components/unknown/store/dev/remoteEntry.js",
+          "inputtext": "inputtext@http://localhost:5000/components/unknown/inputtext/dev/remoteEntry.js",
+          "flexcontainer": "flexcontainer@http://localhost:5000/components/unknown/flexcontainer/dev/remoteEntry.js",
+          "flexitem": "flexitem@http://localhost:5000/components/unknown/flexitem/dev/remoteEntry.js"
         }
       },
-      "prod":{
+      "prod": {
+        "crudlist": "crudlist@https://app.micro.infini-soft.com/components/unknown/crudlist/remoteEntry.js",
+        "store": "store@https://app.micro.infini-soft.com/components/unknown/store/remoteEntry.js",
+        "inputtext": "inputtext@https://app.micro.infini-soft.com/components/unknown/inputtext/remoteEntry.js",
+        "flexcontainer": "flexcontainer@https://app.micro.infini-soft.com/components/unknown/flexcontainer/remoteEntry.js",
+        "flexitem": "flexitem@https://app.micro.infini-soft.com/components/unknown/flexitem/remoteEntry.js",
         "remotes": {
-          "crudlist": "crudlist@https://app.micro.infini-soft.com/components/input/crudlist/remoteEntry.js",
-          "store": "store@https://app.micro.infini-soft.com/libraries/store/remoteEntry.js",
-          "inputtext": "inputtext@https://app.micro.infini-soft.com/components/input/inputtext/remoteEntry.js",
-          "flexcontainer": "flexcontainer@https://app.micro.infini-soft.com/components/layout/flexcontainer/remoteEntry.js",
-          "flexitem": "flexitem@https://app.micro.infini-soft.com/components/layout/flexitem/remoteEntry.js"
+          "crudlist": "crudlist@https://app.micro.infini-soft.com/components/unknown/crudlist/remoteEntry.js",
+          "store": "store@https://app.micro.infini-soft.com/components/unknown/store/remoteEntry.js",
+          "inputtext": "inputtext@https://app.micro.infini-soft.com/components/unknown/inputtext/remoteEntry.js",
+          "flexcontainer": "flexcontainer@https://app.micro.infini-soft.com/components/unknown/flexcontainer/remoteEntry.js",
+          "flexitem": "flexitem@https://app.micro.infini-soft.com/components/unknown/flexitem/remoteEntry.js"
         }
+      },
+      "remotes": {
+        "store": "store@https://app.micro.infini-soft.com/libraries/store/remoteEntry.js"
       }
-
     }
   }
 }
