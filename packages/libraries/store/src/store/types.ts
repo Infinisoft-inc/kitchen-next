@@ -41,6 +41,7 @@ export type Cookers<S, Payload> = Map<Symbol, CookersEventHandler<S, Payload>>
  * data mutation/transformation
  */
 export type Mutate<S = unknown> = (callback: (state: S) => S) => void
+export type MutateNormalized<K, I> = (callback: (normalized: NormalizedState<K, I>) => NormalizedState<K, I>) => void
 
 /**
  * Store State
@@ -79,6 +80,7 @@ export type IStore<S, Payload, K, I> = {
 
   // Mutation
   mutate: Mutate<S>
+  mutateNormalized: MutateNormalized<K,I>
 }
 
 /**

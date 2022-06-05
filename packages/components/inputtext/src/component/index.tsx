@@ -18,6 +18,7 @@ const InputText = ({
   onRemove,
   before,
   after,
+  name,
   invalidMessage = 'Invalid!',
   ...props }: InputTextProps,
   ref: React.ForwardedRef<HTMLInputElement>) => {
@@ -28,13 +29,13 @@ const InputText = ({
     return styles
   }
 
-  return <fieldset key={new Date().getTime()} data-style='input:text:container' data-variant={variant}>
+  return <fieldset key={name} data-style='input:text:container' data-variant={variant}>
     <div>
       {before}
     </div>
 
     <div>
-      <input {...props} ref={ref} data-style={`input:text:control`} data-options={styleOptions()} data-variant={variant} type='text'/>
+      <input {...props} name={name} ref={ref} data-style={`input:text:control`} data-options={styleOptions()} data-variant={variant} type='text'/>
 
       <label data-style='input:text:label'>{invalidMessage}</label>
     </div>

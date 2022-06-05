@@ -1,5 +1,4 @@
 
-import { LiveConfig } from '@infini-soft/hooks-theme';
 import React from 'react';
 import { useMicroTheme } from '../context/theme';
 import styles from './index.css';
@@ -23,7 +22,7 @@ const App = () => {
     <AddContact />
     <ContactDetails />
 
-    {liveTheme && <LiveConfig {...theme} />}
+    {/* {liveTheme && <LiveConfig {...theme} />} */}
 
   </div>
 };

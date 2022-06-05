@@ -30,6 +30,7 @@ declare module "store/types" {
      * data mutation/transformation
      */
     export type Mutate<S = unknown> = (callback: (state: S) => S) => void;
+    export type MutateNormalized<K, I> = (callback: (normalized: NormalizedState<K, I>) => NormalizedState<K, I>) => void;
     /**
      * Store State
      */
@@ -56,6 +57,7 @@ declare module "store/types" {
         publish: PublisherEvent<Payload>;
         cook: (eventhandler: CookersEventHandler<S, Payload>) => () => void;
         mutate: Mutate<S>;
+        mutateNormalized: MutateNormalized<K, I>;
     };
     /**
      * Store abstraction

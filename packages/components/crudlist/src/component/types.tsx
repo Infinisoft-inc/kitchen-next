@@ -19,7 +19,5 @@ export type CrudListProps<T = any, I = any> = Partial<HTMLInputElement> & {
   onChange: (id: I, item: T, newValue: T) => void
   onRemove: (id: I, item: T) => void
   itemList: T[]
-  k?: string
-  keyPredicat?: (arg: T) => string
 };
 

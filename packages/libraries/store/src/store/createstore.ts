@@ -3,7 +3,7 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
-import { Cookers, CookersEventHandler, CreateStoreOptions, Init, IStore, Mutate, NormalizedState, PublisherEvent, Store, SubscribeOptions, SubscriberEventHandler, Subscribers } from "./types";
+import { Cookers, CookersEventHandler, CreateStoreOptions, Init, IStore, Mutate, MutateNormalized, NormalizedState, PublisherEvent, Store, SubscribeOptions, SubscriberEventHandler, Subscribers } from "./types";
 
 
 /**
@@ -15,7 +15,7 @@ const createstore: Store = <S, Payload, K extends keyof S, I>(init?: Init<S>, op
   const _init = init?.()
   const subscribers: Subscribers<S, Payload> = new Map()
   const cookers: Cookers<S, Payload> = new Map()
-  let state: S;
+  let state: S
   let normalizedState: NormalizedState<K, I> = new Map();
 
 
@@ -142,6 +142,17 @@ const createstore: Store = <S, Payload, K extends keyof S, I>(init?: Init<S>, op
   }
 
   /**
+   * State mutation
+   * @param callback Called with state, must return new state
+   */
+  const mutateNormalized: MutateNormalized<K, I> = (callback) => {
+    normalizedState = callback(normalizedState)
+
+    _notifyAllCookers('mutation')
+    _notifyAllSubscribers('mutation')
+  }
+
+  /**
    * Subscribe a new middleware
    * @param callback Function called on events
    * @returns Unsubscribe callback
@@ -170,7 +181,8 @@ const createstore: Store = <S, Payload, K extends keyof S, I>(init?: Init<S>, op
     getSnapshot: () => state,
     getServerSnapshot: () => state,
     getNormalizedState: () => normalizedState,
-    mutate
+    mutate,
+    mutateNormalized
   }
 }
 

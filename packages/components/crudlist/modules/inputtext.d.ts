@@ -27,21 +27,19 @@ declare module "component/types" {
         removable?: boolean;
         onRemove?: <T>(...arg: T[]) => void;
         /**
-         * Prefix component
+         * Before component
          * this attributes collide with @types/react and must be replaced by before
          */
-        prefix?: React.ReactNode;
         before?: React.ReactNode;
         /**
-       * Suffix component
+       * After component
        * this attributes collide with @types/react and must be replaced by after
        */
-        suffix?: React.ReactNode;
         after?: React.ReactNode;
         /**
-         * Unique identifier
+         * Invalid component
          */
-        key: React.Key;
+        invalidMessage?: string;
     } & React.InputHTMLAttributes<HTMLInputElement>;
 }
 declare module "inputtext/InputText" {
@@ -52,19 +50,17 @@ declare module "inputtext/InputText" {
      *
      * InputText Federated Micro Component
      */
-    import 'index.module.css';
-  import React from 'react';
+    import React from 'react';
+  import './index.module.css';
     const _default: React.ForwardRefExoticComponent<{
         variant?: string | undefined;
         ghost?: boolean | undefined;
         copyable?: boolean | undefined;
         removable?: boolean | undefined;
         onRemove?: (<T>(...arg: T[]) => void) | undefined;
-        prefix?: React.ReactNode;
         before?: React.ReactNode;
-        suffix?: React.ReactNode;
         after?: React.ReactNode;
-        key: React.Key;
+        invalidMessage?: string | undefined;
     } & React.InputHTMLAttributes<HTMLInputElement> & React.RefAttributes<HTMLInputElement>>;
     export default _default;
 }
@@ -78,11 +74,9 @@ declare module "component/index.stories" {
         copyable?: boolean | undefined;
         removable?: boolean | undefined;
         onRemove?: (<T>(...arg: T[]) => void) | undefined;
-        prefix?: React.ReactNode;
         before?: React.ReactNode;
-        suffix?: React.ReactNode;
         after?: React.ReactNode;
-        key: React.Key;
+        invalidMessage?: string | undefined;
     } & React.InputHTMLAttributes<HTMLInputElement> & React.RefAttributes<HTMLInputElement>>>;
     export default _default_1;
     export const Primary: ComponentStory<React.ForwardRefExoticComponent<{
@@ -91,11 +85,9 @@ declare module "component/index.stories" {
         copyable?: boolean | undefined;
         removable?: boolean | undefined;
         onRemove?: (<T>(...arg: T[]) => void) | undefined;
-        prefix?: React.ReactNode;
         before?: React.ReactNode;
-        suffix?: React.ReactNode;
         after?: React.ReactNode;
-        key: React.Key;
+        invalidMessage?: string | undefined;
     } & React.InputHTMLAttributes<HTMLInputElement> & React.RefAttributes<HTMLInputElement>>>;
     export const Before: ComponentStory<React.ForwardRefExoticComponent<{
         variant?: string | undefined;
@@ -103,11 +95,9 @@ declare module "component/index.stories" {
         copyable?: boolean | undefined;
         removable?: boolean | undefined;
         onRemove?: (<T>(...arg: T[]) => void) | undefined;
-        prefix?: React.ReactNode;
         before?: React.ReactNode;
-        suffix?: React.ReactNode;
         after?: React.ReactNode;
-        key: React.Key;
+        invalidMessage?: string | undefined;
     } & React.InputHTMLAttributes<HTMLInputElement> & React.RefAttributes<HTMLInputElement>>>;
     export const After: ComponentStory<React.ForwardRefExoticComponent<{
         variant?: string | undefined;
@@ -115,11 +105,9 @@ declare module "component/index.stories" {
         copyable?: boolean | undefined;
         removable?: boolean | undefined;
         onRemove?: (<T>(...arg: T[]) => void) | undefined;
-        prefix?: React.ReactNode;
         before?: React.ReactNode;
-        suffix?: React.ReactNode;
         after?: React.ReactNode;
-        key: React.Key;
+        invalidMessage?: string | undefined;
     } & React.InputHTMLAttributes<HTMLInputElement> & React.RefAttributes<HTMLInputElement>>>;
     export const MyVariant: ComponentStory<React.ForwardRefExoticComponent<{
         variant?: string | undefined;
@@ -127,11 +115,9 @@ declare module "component/index.stories" {
         copyable?: boolean | undefined;
         removable?: boolean | undefined;
         onRemove?: (<T>(...arg: T[]) => void) | undefined;
-        prefix?: React.ReactNode;
         before?: React.ReactNode;
-        suffix?: React.ReactNode;
         after?: React.ReactNode;
-        key: React.Key;
+        invalidMessage?: string | undefined;
     } & React.InputHTMLAttributes<HTMLInputElement> & React.RefAttributes<HTMLInputElement>>>;
 }
 declare module "component/presets/index" {

@@ -3,11 +3,10 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
-import { Tag, Typography } from "antd";
+import { PhoneIcon } from "@/assets/svg";
 import Drawer from "antd/lib/drawer";
 import { InputTextProps } from "component/types";
-import React, { InputHTMLAttributes, Suspense, useSyncExternalStore } from "react";
-import { AddressIcon, PhoneIcon, WebIcon } from "../../assets/svg";
+import React, { InputHTMLAttributes, Suspense, useDeferredValue, useSyncExternalStore } from "react";
 import { useMicroContext } from "../../context/micro";
 import css from './index.css';
 
@@ -18,8 +17,8 @@ const CrudList = React.lazy(() => import(/* webpackPreload: true */ 'crudlist/Cr
 const ContactDetails = () => {
   const [visible, setVisible] = React.useState(false);
   const { store } = useMicroContext()
-  const state = useSyncExternalStore(store.subscribe, store.getSnapshot)
-  const contact = store.getNormalizedState().get(state?.itemSelectedId ?? '') || {}
+  const contactList = useSyncExternalStore(store.subscribe, () => store.getNormalizedState())
+  const contact = useDeferredValue(contactList?.get?.(store.getSnapshot()?.itemSelectedId ?? '') || {})
 
   const InputText = React.lazy(() => import(/* webpackPreload: true */ 'inputtext/InputText'));
 
@@ -34,7 +33,7 @@ const ContactDetails = () => {
 
       }
     })
-  }, [store])
+  }, [])
 
   /**
    * Handlers
@@ -42,12 +41,10 @@ const ContactDetails = () => {
   const handleClose = () => setVisible(false)
 
   const onChange = (field: keyof API.Item, newVal: any) => {
-    store.mutate(_state => {
-      if (contact?.[field]) {
-        contact[field] = newVal
-      }
-      return { ..._state }
-    })
+    // contact[field] = newVal
+    // store.mutate(_state => {
+    //   return { ..._state }
+    // })
   }
 
   const configInput = (field: keyof API.Item): InputHTMLAttributes<HTMLInputElement> & InputTextProps => {
@@ -76,7 +73,7 @@ const ContactDetails = () => {
       (contact![field] as Array<string>)[i] = newValue
     }
 
-    store.mutate(_state => ({ ..._state }))
+    // store.mutate(_state => ({ ..._state }))
   }
 
 
@@ -91,18 +88,18 @@ const ContactDetails = () => {
     closable={false}
     bodyStyle={{ padding: 0 }}
   >
-    <div className={css.read} onChangeCapture={console.log}>
+    <div className={css.read}>
       <div className={css.readHeader}>
-        <div>
+        {/* <div>
           <AvatarUpload src={contact?.avatar} save={() => { }} />
-        </div>
+        </div> */}
 
-        <InputText className='invariant' placeholder='Name' {...configInput('name')} />
-        <InputText className='invariant' placeholder='Email' {...configInput('email')} />
+        <InputText key={111111} className='invariant' placeholder='Name' name='name' defaultValue={contact?.name} />
+        <InputText className='invariant' placeholder='Email' name='email' defaultValue={contact?.email} />
 
       </div>
 
-      <span className={css.readCategory}>
+      {/* <span className={css.readCategory}>
         <Tag>
           <Typography.Title level={4} className='invariant'>
             {contact?.SK?.split('__')?.[0] ?? ''}
@@ -114,25 +111,54 @@ const ContactDetails = () => {
             {contact?.Subcategory}
           </Typography.Title>
         </Tag>
-      </span>
+      </span> */}
 
       <div className={css.readContent} >
-        <Suspense fallback='Summary...'>
-          <InputText className='invariant' placeholder='Address' before={<AddressIcon />} {...configInput('address')} />
-          <InputText className='invariant' placeholder='Website' before={<WebIcon />} {...configInput('website')} />
+        {/* <Suspense fallback='Summary...'> */}
+        {/* <InputText className='invariant' placeholder='Address' before={<AddressIcon />} {...configInput('address')} />
+          <InputText className='invariant' placeholder='Website' before={<WebIcon />} {...configInput('website')} /> */}
 
-          <span onChangeCapture={(e) => console.log(`telephone `, e)}>
-            <Suspense fallback='telephones'>
-              {/* @ts-ignore */}
-              <CrudList title={<>Telephones</>} icon={<PhoneIcon />} name='telephones' keyPredicat={item => item.SK} itemList={contact?.telephones ?? []} onAdd={onAdd('telephones')} onChange={onChangeListItem('telephones')} onRemove={onRemove('telephones')} />
-            </Suspense>
-          </span>
 
-          <Suspense fallback='relatedWith'>
+        <span key={contact.telephones?.length} onChangeCapture={e => {
+          const target = e.target as HTMLInputElement
+          // store.mutateNormalized((_state) => {
+          //   _state.set(contact?.SK!, {
+          //     ...contact,
+
+          //   })
+          //   return _state
+          // })
+          console.log({
+            index: target.dataset.index,
+            value: target.value
+          })
+        }}>
+          <Suspense fallback='telephones' >
             {/* @ts-ignore */}
-            <CrudList data-style='input:text:root' name='relatedwith' title={<h5>Relation</h5>} icon={<PhoneIcon />} itemList={contact?.relatedWith ?? []} onAdd={onAdd('relatedWith')} onChange={onChangeListItem('relatedWith')} onRemove={onRemove('relatedWith')} />
+            <CrudList key={contact?.telephones?.length}  title={<>Telephones</>} icon={<PhoneIcon />} name='telephones' itemList={[...(contact?.telephones || [''])]} onAdd={() => {
+
+
+
+
+              // store.mutateNormalized(_state => {
+              //@ts-ignore
+              // contact.telephones = ['new', ...contact.telephones!]
+              contact.telephones?.push('NEW DE MARDE')
+              // _state.set(contact?.SK!, {
+              //   ...contact,
+              // })
+
+              //   return _state;
+              // })
+
+
+            }} onRemove={onRemove('telephones')} />
           </Suspense>
-        </Suspense>
+        </span>
+
+
+
+        {/* </Suspense> */}
       </div>
     </div>
   </Drawer>
