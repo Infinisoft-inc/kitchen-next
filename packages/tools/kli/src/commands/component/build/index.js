@@ -16,6 +16,8 @@ const VERBOSE = ARGV.includes('--debug');
 const DRYRUN = ARGV.includes('--dry-run');
 const BUILDENV =
   ARGV.includes('--prod') || ARGV.includes('--analyze') ? 'prod' : 'dev';
+const TYPEOUTDIR =
+  ARGV.includes('--prod') ? 'dist' : 'dev';
 
 let [TYPESFLAG, TYPESMODE] = ARGV.includes('--types')
   ? [true, ' types']
@@ -51,7 +53,7 @@ const build = async () => {
 
   if (!DRYRUN && WATCHFLAG && TYPESFLAG) {
     execIo(
-      `yarn run tsc -p tsconfig.json -d --emitDeclarationOnly --outFile dist/types.d.ts --esModuleInterop -w`,
+      `yarn run tsc -p tsconfig.json -d --emitDeclarationOnly --outFile ${TYPEOUTDIR}/types.d.ts --esModuleInterop -w`,
     );
   }
 
@@ -66,14 +68,14 @@ const build = async () => {
 
   if (!DRYRUN && !ANALYZEMODE) {
     execIo(
-      `yarn run tsc -p tsconfig.json -d --emitDeclarationOnly --outFile dist/types.d.ts --esModuleInterop`,
+      `yarn run tsc -p tsconfig.json -d --emitDeclarationOnly --outFile ${TYPEOUTDIR}/types.d.ts --esModuleInterop`,
     );
     execIo(`yarn run webpack -c webpack.config.${BUILDENV}.js ${WATCHFLAG}`);
   }
 
   if (!DRYRUN && ANALYZEMODE) {
     execIo(
-      `yarn run tsc -p tsconfig.json -d --emitDeclarationOnly --outFile dist/types.d.ts --esModuleInterop`,
+      `yarn run tsc -p tsconfig.json -d --emitDeclarationOnly --outFile ${TYPEOUTDIR}/types.d.ts --esModuleInterop`,
     );
     execIo(`yarn run webpack -c webpack.analyze.js ${ANALYZEFLAG}`);
 
@@ -91,15 +93,15 @@ Bundle graph:  ${join(process.cwd(), 'analyze', 'deps.graph.htm')}
   );
 
   const originalType = readFileSync(
-    join(process.cwd(), 'dist', 'types.d.ts'),
+    join(process.cwd(), TYPEOUTDIR, 'types.d.ts'),
   ).toString('utf8');
 
   const defaultComponent = pkg.infinisoft.moduleFederation.component;
 
   if (VERBOSE) {
-    console.log(`original dist/types = `, originalType);
+    console.log(`original ${TYPEOUTDIR}/types = `, originalType);
     console.log(
-      `transformed dist/types = `,
+      `transformed ${TYPEOUTDIR}/types = `,
       originalType.replace(
         `declare module "component/index"`,
         `declare module "${pkg.name}/${defaultComponent}"`,
@@ -109,7 +111,7 @@ Bundle graph:  ${join(process.cwd(), 'analyze', 'deps.graph.htm')}
 
   if (!DRYRUN) {
     writeFileSync(
-      join(process.cwd(), 'dist', 'types.d.ts'),
+      join(process.cwd(), TYPEOUTDIR, 'types.d.ts'),
       originalType.replace(
         `declare module "component/index"`,
         `declare module "${pkg.name}/${defaultComponent}"`,

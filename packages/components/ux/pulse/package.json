@@ -38,7 +38,12 @@
       "category": "ux",
       "image": "https://www.kitchen.infini-soft.com/assets/infinisoftticon.png",
       "component": "Pulse",
-      "remotes": {}
+      "dev": {
+        "remotes": {}
+      },
+      "prod": {
+        "remotes": {}
+      }
     }
   },
   "dependencies": {}

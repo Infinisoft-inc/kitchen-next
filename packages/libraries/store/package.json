@@ -31,7 +31,12 @@
   "infinisoft": {
     "port": 8999,
     "moduleFederation": {
-      "remotes": {},
+      "dev": {
+        "remotes": {}
+      },
+      "prod": {
+        "remotes": {}
+      },
       "exposes": {
         "./createstore": "./src/store/createstore"
       }

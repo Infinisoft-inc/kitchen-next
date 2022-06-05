@@ -8,7 +8,6 @@ const path = require('path');
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common');
 const custom = require('./config/custom.webpack.config.dev');
-const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin');

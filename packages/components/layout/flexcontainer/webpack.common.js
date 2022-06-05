@@ -5,43 +5,10 @@
  */
 
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
-const { ModuleFederationPlugin } = require('webpack').container;
-const {peerDependencies, name, infinisoft} = require('./package.json')
 
 module.exports = {
   context: process.cwd(),
-  plugins: [
-    new ModuleFederationPlugin({
-      name,
-      filename: 'remoteEntry.js',
-      remotes: infinisoft.moduleFederation.remotes,
-      exposes: {
-        [`./${infinisoft.moduleFederation.component}`]: './src/component',
-      },
-      shared: {
-        ...peerDependencies,
-        react: { singleton: true, eager: true, requiredVersion: peerDependencies.react },
-        'react-dom': {
-          singleton: true,
-          eager: true,
-          requiredVersion: peerDependencies['react-dom'],
-        },
-      },
-    }),
-    new MomentLocalesPlugin(),
-    new MiniCssExtractPlugin(),
-    new HtmlWebpackPlugin({
-      template: './config/index.html',
-    }),
-  ],
-  output: {
-    filename: '[name].[contenthash].js',
-    path: path.join(process.cwd(), 'dist'),
-    publicPath: 'auto',
-  },
   resolve: {
     cacheWithContext: false,
     extensions: ['.tsx', '.ts', '.jsx', '.js'],

@@ -65,7 +65,7 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
-    "@infini-soft/kli": "^0.0.26",
+    "@infini-soft/kli": "^0.0.27",
     "@infini-soft/lib-federation": "^0.0.14"
   },
   "scripts": {
@@ -88,7 +88,8 @@
     "start:prod": "lerna run start:prod --stream --parallel",
     "serve:dist": "lerna run serve:dist --stream --parallel",
     "clean": "lerna run clean --stream --parallel",
-    "start:local": "serve -s packages"
+    "start:local:federation": "serve -s packages",
+    "config:update": "lerna run config:update --stream --parallel"
   },
   "jest": {
     "collectCoverageFrom": [

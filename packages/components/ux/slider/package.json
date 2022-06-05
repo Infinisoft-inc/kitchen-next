@@ -37,7 +37,12 @@
       "category": "ux",
       "image": "",
       "component": "Slider",
-      "remotes": {}
+      "dev": {
+        "remotes": {}
+      },
+      "prod": {
+        "remotes": {}
+      }
     }
   },
   "dependencies": {

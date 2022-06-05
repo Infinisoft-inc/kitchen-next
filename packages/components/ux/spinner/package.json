@@ -37,7 +37,12 @@
       "category":"ux",
       "image":"",
       "component": "Spinner",
-      "remotes": {}
+      "dev": {
+        "remotes": {}
+      },
+      "prod": {
+        "remotes": {}
+      }
     }
   },
   "dependencies": {}
