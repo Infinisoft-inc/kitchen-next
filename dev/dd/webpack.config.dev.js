@@ -3,16 +3,17 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
+
 const { merge } = require('webpack-merge');
-const common = require('./webpack.common.js');
+const common = require('./webpack.common');
+const custom = require('./config/custom.webpack.config.dev');
 const path = require('path');
 
-module.exports = merge(common, {
+module.exports = merge(custom, common, {
   mode: 'development',
-  plugins: [],
-  devtool: 'eval-source-map',
   devServer: {
     static: path.join(process.cwd(), 'dist'),
     hot: true,
   },
+  devtool: 'eval-source-map',
 });

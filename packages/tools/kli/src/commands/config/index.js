@@ -3,7 +3,6 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
-const {checksum} = require('./checksum');
 const {update} = require('./update');
 
 /**
@@ -11,14 +10,10 @@ const {update} = require('./update');
  */
 const usage = () => {
   console.log(`
-config        update          <target>          - Update config <target> folder
-
-              rollback        <target>          - Rollback to last config
-              checksum        <file>            - Compute <target> file checksum.`);
+config        update          <target>          - Update config <target> folder`);
 };
 
 module.exports = {
-  checksum,
   update,
   usage
 };

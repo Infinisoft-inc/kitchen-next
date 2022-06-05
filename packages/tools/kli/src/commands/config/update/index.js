@@ -13,7 +13,6 @@ const update = () => {
   const destPath = process.argv[4];
   const command = `cp -Ru . ${destPath}`;
 
-  console.log(rootPath);
   console.log(`
   Config update
   ------------------------------------
@@ -23,6 +22,7 @@ const update = () => {
     console.log(`source folder = `, configPath);
     console.log(`dest folder = `, destPath);
     console.log(`copy command = `, command);
+    console.log(`process.cwd() = `, process.cwd());
   }
 
   if (!DRYRUN) {

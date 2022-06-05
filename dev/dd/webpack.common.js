@@ -5,20 +5,36 @@
  */
 
 const path = require('path');
-const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-// const TerserPlugin = require("terser-webpack-plugin"); // Issue with module federation
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
+const { ModuleFederationPlugin } = require('webpack').container;
+const {peerDependencies, name, infinisoft} = require('./package.json')
 
 module.exports = {
   context: process.cwd(),
   plugins: [
+    new ModuleFederationPlugin({
+      name,
+      filename: 'remoteEntry.js',
+      remotes: infinisoft.moduleFederation.remotes,
+      exposes: {
+        [`./${infinisoft.moduleFederation.component}`]: './src/component',
+      },
+      shared: {
+        ...peerDependencies,
+        react: { singleton: true, eager: true, requiredVersion: peerDependencies.react },
+        'react-dom': {
+          singleton: true,
+          eager: true,
+          requiredVersion: peerDependencies['react-dom'],
+        },
+      },
+    }),
     new MomentLocalesPlugin(),
     new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, '../templates/index.html'),
-      title: 'Infinisoft Boilerplate',
+      template: './config/index.html',
     }),
   ],
   output: {
