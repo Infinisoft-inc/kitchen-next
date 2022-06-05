@@ -12,7 +12,6 @@ const {update} = require('./update');
 const usage = () => {
   console.log(`
 config        update          <target>          - Update config <target> folder
-                              --all             - Update config for all folders
 
               rollback        <target>          - Rollback to last config
               checksum        <file>            - Compute <target> file checksum.`);

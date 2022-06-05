@@ -12,5 +12,5 @@ module.exports = {
   mono,
   component,
   lib,
-  config,
+  config
 };

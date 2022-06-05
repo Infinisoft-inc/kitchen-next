@@ -9,7 +9,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 const { ModuleFederationPlugin } = require('webpack').container;
-const {dependencies, name, infinisoft} = require('./package.json')
+const { dependencies, name, infinisoft } = require('./package.json');
 
 module.exports = {
   context: process.cwd(),
@@ -24,7 +24,11 @@ module.exports = {
       },
       shared: {
         ...dependencies,
-        react: { singleton: true, eager: true, requiredVersion: dependencies.react },
+        react: {
+          singleton: true,
+          eager: true,
+          requiredVersion: dependencies.react,
+        },
         'react-dom': {
           singleton: true,
           eager: true,
@@ -46,6 +50,9 @@ module.exports = {
   resolve: {
     cacheWithContext: false,
     extensions: ['.tsx', '.ts', '.jsx', '.js'],
+    alias: {
+      '@/context/micro': path.resolve(__dirname, 'src/context/micro'),
+    },
   },
   experiments: {
     topLevelAwait: true,
