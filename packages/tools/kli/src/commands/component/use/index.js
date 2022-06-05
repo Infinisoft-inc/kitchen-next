@@ -40,6 +40,14 @@ const use = () => {
     pkg?.infinisoft?.moduleFederation?.registry ??
     'https://app.micro.infini-soft.com';
 
+  const LOCALREGISTRY =
+    pkg?.infinisoft?.moduleFederation?.localregistry ??
+    'http://localhost:5000';
+
+  const CATEGORY =
+    pkg?.infinisoft?.moduleFederation?.category ??
+    'unknown';
+
   if (
     !(
       pkg?.infinisoft?.moduleFederation?.remotes?.hasOwnProperty(moduleName) ??
@@ -53,10 +61,20 @@ const use = () => {
         ...pkg?.infinisoft,
         moduleFederation: {
           ...pkg?.infinisoft?.moduleFederation,
-          remotes: {
-            ...(pkg?.infinisoft?.moduleFederation?.remotes ?? {}),
-            [`${moduleName}`]: `${moduleName}@${REGISTRY}/${TYPE}/${moduleName}/remoteEntry.js`,
+          dev: {
+            ...(pkg?.infinisoft?.moduleFederation?.dev.remotes ?? {}),
+            remotes: {
+              ...(pkg?.infinisoft?.moduleFederation?.dev?.remotes ?? {}),
+              [`${moduleName}`]: `${moduleName}@${LOCALREGISTRY}/${TYPE}/${CATEGORY}/${moduleName}/dev/remoteEntry.js`,
+            },
           },
+          prod: {
+            ...(pkg?.infinisoft?.moduleFederation?.prod.remotes ?? {}),
+            remotes: {
+              ...(pkg?.infinisoft?.moduleFederation?.prod?.remotes ?? {}),
+              [`${moduleName}`]: `${moduleName}@${REGISTRY}/${TYPE}/${CATEGORY}/${moduleName}/remoteEntry.js`,
+            },
+          }
         },
       },
     };

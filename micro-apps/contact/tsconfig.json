@@ -22,7 +22,7 @@
     "config/*",
     "modules/*.d.ts",
     "typings.d.ts"
-  ],
+, "modules/flexline.d.ts.old", "modules/flexitem.d.ts.old"  ],
   "exclude": [
     "node_modules",
     "lib",

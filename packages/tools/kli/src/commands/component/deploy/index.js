@@ -25,14 +25,21 @@ const deploy = () => {
     readFileSync(join(process.cwd(), 'package.json')).toString('utf8'),
   );
 
+  const CATEGORY =
+  pkg?.infinisoft?.moduleFederation?.category;
+
+  if (!CATEGORY) {
+    throw new Error(`Error deploying, missing category!`)
+  }
+
   if (!DRYRUN) {
     execIo(
       `aws s3 sync dist "s3://${
         pkg?.infinisoft?.moduleFederation?.registry ?? REGISTRY
-      }/${TYPE}/${pkg.name}" --acl public-read`,
+      }/${TYPE}/${CATEGORY}/${pkg.name}" --acl public-read`,
     );
     execIo(
-      `aws cloudfront create-invalidation --distribution-id ${CLOUDFRONTID} --paths "/${TYPE}/${pkg.name}/*"`,
+      `aws cloudfront create-invalidation --distribution-id ${CLOUDFRONTID} --paths "/${TYPE}/${CATEGORY}/${pkg.name}/*"`,
     );
   }
 };

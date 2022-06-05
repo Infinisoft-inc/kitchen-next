@@ -42,15 +42,25 @@
   "infinisoft": {
     "component": "contact",
     "moduleFederation": {
-      "remotes": {
-        "flexline": "flexline@https://app.micro.infini-soft.com/components/flexline/remoteEntry.js",
-        "flexcol": "flexcol@https://app.micro.infini-soft.com/components/flexcol/remoteEntry.js",
-        "crudlist": "crudlist@http://localhost:5000/components/input/crudlist/dist/remoteEntry.js",
-        "store": "store@https://app.micro.infini-soft.com/libraries/store/remoteEntry.js",
-        "inputtext": "inputtext@https://app.micro.infini-soft.com/components/inputtext/remoteEntry.js",
-        "flexcontainer": "flexcontainer@https://app.micro.infini-soft.com/components/flexcontainer/remoteEntry.js",
-        "flexitem": "flexitem@https://app.micro.infini-soft.com/components/flexitem/remoteEntry.js"
+      "dev":{
+        "remotes": {
+          "crudlist": "crudlist@http://localhost:5000/components/input/crudlist/dev/remoteEntry.js",
+          "store": "store@http://localhost:5000/libraries/store/dev/remoteEntry.js",
+          "inputtext": "inputtext@http://localhost:5000/components/input/inputtext/dev/remoteEntry.js",
+          "flexcontainer": "flexcontainer@http://localhost:5000/components/layout/flexcontainer/dev/remoteEntry.js",
+          "flexitem": "flexitem@http://localhost:5000/components/layout/flexitem/dev/remoteEntry.js"
+        }
+      },
+      "prod":{
+        "remotes": {
+          "crudlist": "crudlist@https://app.micro.infini-soft.com/components/input/crudlist/remoteEntry.js",
+          "store": "store@https://app.micro.infini-soft.com/libraries/store/remoteEntry.js",
+          "inputtext": "inputtext@https://app.micro.infini-soft.com/components/input/inputtext/remoteEntry.js",
+          "flexcontainer": "flexcontainer@https://app.micro.infini-soft.com/components/layout/flexcontainer/remoteEntry.js",
+          "flexitem": "flexitem@https://app.micro.infini-soft.com/components/layout/flexitem/remoteEntry.js"
+        }
       }
+
     }
   }
 }

@@ -8,7 +8,7 @@
   "license": "INFINISOFT",
   "scripts": {
     "build:dev": "kli component build",
-    "build:dev:watch": "kli component build --watch-deploy",
+    "build:dev:watch": "kli component build --watch",
     "build:prod": "kli component build --prod",
     "build:prod:watch": "kli component build --prod --watch-deploy",
     "build:analyze": "kli component build --analyze& start analyze/bundle-stats.html",
@@ -20,8 +20,8 @@
     "start:dev": "webpack serve -c webpack.config.dev.js --open",
     "start:prod": "webpack serve -c webpack.config.prod.js --open",
     "serve:dist": "serve -s dist",
-    "clean": "rm -rf analyze dist node_modules",
-    "federation:hotreload":"concurrently \"kli component build --prod --watch\" \"kli component build --prod --watch --deploy\" \"kli component build --prod --watch --types\"",
+    "clean": "rm -rf analyze dist node_modules dev",
+    "federation:hotreload": "concurrently \"kli component build --prod --watch\" \"kli component build --prod --watch --deploy\" \"kli component build --prod --watch --types\"",
     "config:update": "node config.js"
   },
   "devDependencies": {
@@ -38,9 +38,17 @@
       "category": "input",
       "image": "https://www.kitchen.infini-soft.com/assets/infinisoftticon.png",
       "component": "CrudList",
-      "remotes": {
-        "inputtext": "inputtext@http://localhost:5000/components/input/inputtext/dist/remoteEntry.js",
-        "store": "store@http://localhost:5000/libraries/store/dist/remoteEntry.js"
+      "dev": {
+        "remotes": {
+          "inputtext": "inputtext@http://localhost:5000/components/input/inputtext/dev/remoteEntry.js",
+          "store": "store@http://localhost:5000/libraries/store/dev/remoteEntry.js"
+        }
+      },
+      "prod": {
+        "remotes": {
+          "inputtext": "inputtext@https://app.micro.infini-soft.com/components/input/inputtext/remoteEntry.js",
+          "store": "store@https://app.micro.infini-soft.com/libraries/store/remoteEntry.js"
+        }
       }
     }
   },
