@@ -5,46 +5,53 @@
  *
  * InputText Federated Micro Component
  */
- import React from 'react';
+import React from 'react';
 import { CopyIcon, DeleteIcon } from './assets/svg';
 import './index.module.css';
 import { InputTextProps } from './types';
 
- const InputText = ({
-   variant = 'primary',
-   copyable,
-   ghost = true,
-   removable,
-   onRemove,
-   before,
-   after,
-   ...props }: InputTextProps,
-   ref: React.ForwardedRef<HTMLInputElement>) => {
-   const [focus, setFocus] = React.useState(false);
-   const styleOptions = () => {
-     let styles = ''
+const InputText = ({
+  variant = 'primary',
+  copyable,
+  ghost = true,
+  removable,
+  onRemove,
+  before,
+  after,
+  invalidMessage = 'Invalid!',
+  ...props }: InputTextProps,
+  ref: React.ForwardedRef<HTMLInputElement>) => {
+  const styleOptions = () => {
+    let styles = ''
 
-     styles = focus ? ':focus' : '';
-     styles = `${styles}${ghost ? ':ghost' : ''}`
-     return styles
-   }
+    styles = `${styles}${ghost ? ':ghost' : ''}`
+    return styles
+  }
 
-   return <span data-style='input:text:root'>
-     {before}
+  return <fieldset key={new Date().getTime()} data-style='input:text:container' data-variant={variant}>
+    <div>
+      {before}
+    </div>
 
-     <input {...props} ref={ref} data-style={`input:text${styleOptions()}`} type='text' onFocus={() => setFocus(true)} onBlur={() => setFocus(false)} />
+    <div>
+      <input {...props} ref={ref} data-style={`input:text:control`} data-options={styleOptions()} data-variant={variant} type='text'/>
 
-     {after}
+      <label data-style='input:text:label'>{invalidMessage}</label>
+    </div>
 
-     {copyable &&
-       <button data-style={`button:${variant}`} onClick={() => navigator.clipboard.writeText(String(props.value))}><CopyIcon /></button>
-     }
+    <div>
+      {after}
+      {copyable &&
+        <button data-style={`input:text:button:copy`} data-options={styleOptions()} data-variant={variant} onClick={() => navigator.clipboard.writeText(String(props.value))}><CopyIcon /></button>
+      }
+      {removable &&
+        <button data-style={`input:text:button:removable`} data-options={styleOptions()} data-variant={variant} onClick={onRemove}><DeleteIcon /></button>
+      }
+    </div>
 
-     {removable &&
-       <button data-style={`button:${variant}`} onClick={onRemove}><DeleteIcon /></button>
-     }
-   </span>
- }
+
+  </fieldset>
+}
 
 
- export default React.forwardRef(InputText);
+export default React.forwardRef(InputText);

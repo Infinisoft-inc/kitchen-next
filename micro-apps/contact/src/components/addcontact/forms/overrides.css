@@ -34,8 +34,8 @@ form:valid {
   border: 5px solid green;
 }
 
-input~label {
-  display: block;
+label {
+  display: none;
   color: transparent;
 }
 input:invalid~label  {

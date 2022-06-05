@@ -33,6 +33,19 @@
       "url": "http://localhost:6006",
       "protocol": "inspector",
       "webRoot": "${workspaceFolder}"
-    }
+    },
+    {
+      "name":"TEST",
+      "type": "pwa-chrome",
+      "request": "launch",
+      "trace": true,
+      "url": "http://localhost:8080",
+      "webRoot": "${workspaceFolder}",
+      "sourceMaps": true,
+      "sourceMapPathOverrides": {
+          "webpack://@${workspaceFolderBasename}/*": "${workspaceFolder}/packages/*"
+
+      }
+  }
   ]
 }

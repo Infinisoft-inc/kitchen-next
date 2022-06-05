@@ -9,7 +9,7 @@ declare module "component/types" {
     /**
      * CrudList Props
      */
-    export type CrudListProps<T = any, I = any> = Partial<HTMLElement> & {
+    export type CrudListProps<T = any, I = any> = Partial<HTMLInputElement> & {
         /**
          * List title
          */
@@ -18,20 +18,22 @@ declare module "component/types" {
         onAdd: () => void;
         onChange: (id: I, item: T, newValue: T) => void;
         onRemove: (id: I, item: T) => void;
-        list: T[];
+        itemList: T[];
+        k?: string;
+        keyPredicat?: (arg: T) => string;
     };
 }
 declare module "crudlist/CrudList" {
     import { CrudListProps } from "component/types";
-    export const CrudList: ({ title, icon, list, onAdd, onChange, onRemove }: CrudListProps) => JSX.Element;
+    export const CrudList: ({ title, icon, itemList, onAdd, onChange, onRemove, name, k, keyPredicat, ...props }: CrudListProps) => JSX.Element;
     export default CrudList;
 }
 declare module "bootstrap" { }
 declare module "component/index.stories" {
     import { ComponentMeta, ComponentStory } from '@storybook/react';
-    const _default: ComponentMeta<({ title, icon, list, onAdd, onChange, onRemove }: import("component/types").CrudListProps<any, any>) => JSX.Element>;
+    const _default: ComponentMeta<({ title, icon, itemList, onAdd, onChange, onRemove, name, k, keyPredicat, ...props }: import("component/types").CrudListProps<any, any>) => JSX.Element>;
     export default _default;
-    export const StringArgs: ComponentStory<({ title, icon, list, onAdd, onChange, onRemove }: import("component/types").CrudListProps<any, any>) => JSX.Element>;
+    export const Example: ComponentStory<({ title, icon, itemList, onAdd, onChange, onRemove, name, k, keyPredicat, ...props }: import("component/types").CrudListProps<any, any>) => JSX.Element>;
 }
 declare module "component/presets/index" {
     export type CrudListPresets = {};

@@ -5,6 +5,6 @@
  */
 
 
-[data-style*='container:root'] {
+[data-style*='flexcontainer:container:root'] {
   display: flex;
 }

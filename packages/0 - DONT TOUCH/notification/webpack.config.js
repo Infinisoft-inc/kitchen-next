@@ -17,7 +17,7 @@ module.exports = merge(common, {
     hot: true,
     port: 8192,
   },
-  devtool: 'inline-source-map',
+  devtool: 'eval-source-map',
   plugins: [
     new ModuleFederationPlugin({
       name,

@@ -12,8 +12,8 @@ import { useMicroContext } from "../../context/micro";
 import css from './index.css';
 
 const AvatarUpload = React.lazy(() => import("../avatar-upload"));
-const InputText = React.lazy(() => import(/* webpackPreload: true */ 'inputtext/InputText'));
-const CrudList = React.lazy(() => import(/* webpackPreload: true */ 'crudlist/CrudList'))
+
+const CrudList = React.lazy(() => import(/* webpackPreload: true */ '../../../../../packages/components/input/crudlist/src/component/index'))
 
 const ContactDetails = () => {
   const [visible, setVisible] = React.useState(false);
@@ -21,13 +21,17 @@ const ContactDetails = () => {
   const state = useSyncExternalStore(store.subscribe, store.getSnapshot)
   const contact = store.getNormalizedState().get(state?.itemSelectedId ?? '') || {}
 
+  const InputText = React.lazy(() => import(/* webpackPreload: true */ 'inputtext/InputText'));
+
   /**
    * Effects
    */
   React.useEffect(() => {
+
     return store.subscribe((event, state, payload) => {
       if (event.match(/(item.clicked)/g)) {
         setVisible(true)
+
       }
     })
   }, [store])
@@ -48,8 +52,8 @@ const ContactDetails = () => {
 
   const configInput = (field: keyof API.Item): InputHTMLAttributes<HTMLInputElement> & InputTextProps => {
     return {
-      key: field,
-      value: (contact?.[field] ?? 'Insert here') as string,
+      name: field,
+      value: (contact?.[field]) as string,
       onChange: (e: React.ChangeEvent<HTMLInputElement> | undefined) => { onChange(field, e?.target.value) },
       copyable: true,
     }
@@ -87,14 +91,14 @@ const ContactDetails = () => {
     closable={false}
     bodyStyle={{ padding: 0 }}
   >
-    <div className={css.read}>
+    <div className={css.read} onChangeCapture={console.log}>
       <div className={css.readHeader}>
         <div>
           <AvatarUpload src={contact?.avatar} save={() => { }} />
         </div>
 
-        <InputText className='invariant' title='Name' {...configInput('name')} />
-        <InputText className='invariant' title='Email' {...configInput('email')} />
+        <InputText className='invariant' placeholder='Name' {...configInput('name')} />
+        <InputText className='invariant' placeholder='Email' {...configInput('email')} />
 
       </div>
 
@@ -112,19 +116,21 @@ const ContactDetails = () => {
         </Tag>
       </span>
 
-      <div className={css.readContent}>
+      <div className={css.readContent} >
         <Suspense fallback='Summary...'>
-          <InputText className='invariant' title='Address' before={<AddressIcon />} {...configInput('address')} />
-          <InputText className='invariant' title='Website' before={<WebIcon />} {...configInput('website')} />
+          <InputText className='invariant' placeholder='Address' before={<AddressIcon />} {...configInput('address')} />
+          <InputText className='invariant' placeholder='Website' before={<WebIcon />} {...configInput('website')} />
 
-          <Suspense fallback='telephones'>
-            {/* @ts-ignore */}
-            <CrudList title={<>Telephones</>} icon={<PhoneIcon />} list={contact?.telephones ?? []} onAdd={onAdd('telephones')} onChange={onChangeListItem('telephones')} onRemove={onRemove('telephones')} />
-          </Suspense>
+          <span onChangeCapture={(e) => console.log(`telephone `, e)}>
+            <Suspense fallback='telephones'>
+              {/* @ts-ignore */}
+              <CrudList title={<>Telephones</>} icon={<PhoneIcon />} name='telephones' keyPredicat={item => item.SK} itemList={contact?.telephones ?? []} onAdd={onAdd('telephones')} onChange={onChangeListItem('telephones')} onRemove={onRemove('telephones')} />
+            </Suspense>
+          </span>
 
           <Suspense fallback='relatedWith'>
             {/* @ts-ignore */}
-            <CrudList data-style='input:text:root' title={<h5>Relation</h5>} icon={<PhoneIcon />} list={contact?.relatedWith} onAdd={onAdd('relatedWith')} onChange={onChangeListItem('relatedWith')} onRemove={onRemove('relatedWith')} />
+            <CrudList data-style='input:text:root' name='relatedwith' title={<h5>Relation</h5>} icon={<PhoneIcon />} itemList={contact?.relatedWith ?? []} onAdd={onAdd('relatedWith')} onChange={onChangeListItem('relatedWith')} onRemove={onRemove('relatedWith')} />
           </Suspense>
         </Suspense>
       </div>

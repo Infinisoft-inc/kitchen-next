@@ -13,5 +13,5 @@ module.exports = merge(common, {
   devServer: {
     port: infinisoft.port,
   },
-  devtool: 'inline-source-map',
+  devtool: 'eval-source-map',
 });

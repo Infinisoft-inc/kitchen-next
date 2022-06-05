@@ -15,9 +15,12 @@
   gap: 1rem;
 }
 
-[data-style*='container:root'] {
+[data-style*='filter:container:root'],
+[data-style*='search:container:root'],
+[data-style*='create:container:root'] {
   padding: 1rem 0;
 }
+
 [data-style*='search:container:root'] {
   flex: 2;
 }

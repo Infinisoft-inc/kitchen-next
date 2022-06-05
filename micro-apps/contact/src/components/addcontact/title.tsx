@@ -14,13 +14,18 @@ const FlexContainer = React.lazy(() => import(/* webpackChunkName: 'FlexContaine
 const FlexItem = React.lazy(() => import(/* webpackChunkName: 'FlexItem' */ 'flexitem/FlexItem'))
 
 export const Title: React.FC<TitleProps> = ({ title, subtitle }) => {
-  return <FlexContainer>
+  return <FlexContainer data-style='flexcontainer:container:root'>
     <FlexItem>
-      <div>{title}</div>
-      <div>{subtitle}</div>
+      <FlexContainer style={{ flexDirection: 'column' }}>
+
+        <div>{title}</div>
+        <div>{subtitle}</div>
+
+      </FlexContainer>
     </FlexItem>
+
     <FlexItem>
-        Progress bar
+      Progress bar
     </FlexItem>
   </FlexContainer>
 

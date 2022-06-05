@@ -36,6 +36,10 @@ declare module "component/types" {
        * this attributes collide with @types/react and must be replaced by after
        */
         after?: React.ReactNode;
+        /**
+         * Invalid component
+         */
+        invalidMessage?: string;
     } & React.InputHTMLAttributes<HTMLInputElement>;
 }
 declare module "inputtext/InputText" {
@@ -47,7 +51,7 @@ declare module "inputtext/InputText" {
      * InputText Federated Micro Component
      */
     import React from 'react';
-  import './index.module.css';
+    import './index.module.css';
     const _default: React.ForwardRefExoticComponent<{
         variant?: string | undefined;
         ghost?: boolean | undefined;
@@ -56,13 +60,14 @@ declare module "inputtext/InputText" {
         onRemove?: (<T>(...arg: T[]) => void) | undefined;
         before?: React.ReactNode;
         after?: React.ReactNode;
+        invalidMessage?: string | undefined;
     } & React.InputHTMLAttributes<HTMLInputElement> & React.RefAttributes<HTMLInputElement>>;
     export default _default;
 }
 declare module "bootstrap" { }
 declare module "component/index.stories" {
     import { ComponentMeta, ComponentStory } from '@storybook/react';
-  import React from 'react';
+    import React from 'react';
     const _default_1: ComponentMeta<React.ForwardRefExoticComponent<{
         variant?: string | undefined;
         ghost?: boolean | undefined;
@@ -71,6 +76,7 @@ declare module "component/index.stories" {
         onRemove?: (<T>(...arg: T[]) => void) | undefined;
         before?: React.ReactNode;
         after?: React.ReactNode;
+        invalidMessage?: string | undefined;
     } & React.InputHTMLAttributes<HTMLInputElement> & React.RefAttributes<HTMLInputElement>>>;
     export default _default_1;
     export const Primary: ComponentStory<React.ForwardRefExoticComponent<{
@@ -81,6 +87,7 @@ declare module "component/index.stories" {
         onRemove?: (<T>(...arg: T[]) => void) | undefined;
         before?: React.ReactNode;
         after?: React.ReactNode;
+        invalidMessage?: string | undefined;
     } & React.InputHTMLAttributes<HTMLInputElement> & React.RefAttributes<HTMLInputElement>>>;
     export const Before: ComponentStory<React.ForwardRefExoticComponent<{
         variant?: string | undefined;
@@ -90,6 +97,7 @@ declare module "component/index.stories" {
         onRemove?: (<T>(...arg: T[]) => void) | undefined;
         before?: React.ReactNode;
         after?: React.ReactNode;
+        invalidMessage?: string | undefined;
     } & React.InputHTMLAttributes<HTMLInputElement> & React.RefAttributes<HTMLInputElement>>>;
     export const After: ComponentStory<React.ForwardRefExoticComponent<{
         variant?: string | undefined;
@@ -99,6 +107,7 @@ declare module "component/index.stories" {
         onRemove?: (<T>(...arg: T[]) => void) | undefined;
         before?: React.ReactNode;
         after?: React.ReactNode;
+        invalidMessage?: string | undefined;
     } & React.InputHTMLAttributes<HTMLInputElement> & React.RefAttributes<HTMLInputElement>>>;
     export const MyVariant: ComponentStory<React.ForwardRefExoticComponent<{
         variant?: string | undefined;
@@ -108,6 +117,7 @@ declare module "component/index.stories" {
         onRemove?: (<T>(...arg: T[]) => void) | undefined;
         before?: React.ReactNode;
         after?: React.ReactNode;
+        invalidMessage?: string | undefined;
     } & React.InputHTMLAttributes<HTMLInputElement> & React.RefAttributes<HTMLInputElement>>>;
 }
 declare module "component/presets/index" {

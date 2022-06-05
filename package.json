@@ -1,6 +1,6 @@
 {
   "license": "INFINISOFT",
-  "name": "@infini-soft/root",
+  "name": "root",
   "private": true,
   "workspaces": {
     "packages": [
@@ -87,7 +87,8 @@
     "start:dev": "lerna run start:dev --stream --parallel",
     "start:prod": "lerna run start:prod --stream --parallel",
     "serve:dist": "lerna run serve:dist --stream --parallel",
-    "clean": "lerna run clean --stream --parallel"
+    "clean": "lerna run clean --stream --parallel",
+    "prd":"pwd"
   },
   "jest": {
     "collectCoverageFrom": [

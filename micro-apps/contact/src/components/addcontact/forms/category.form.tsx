@@ -3,7 +3,7 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
-import { Form, Radio } from 'antd';
+import { Radio } from 'antd';
 import React from 'react';
 import style from './index.css';
 
@@ -25,12 +25,12 @@ export type CategoryFormProps = {
 const CategoryForm: React.FC<CategoryFormProps> = ({ map, field, onClick }) => {
 
   return <>
-  <input type='text' name='doguette' />
-    <Form.Item name={field} initialValue={''} rules={[{ required: true, message: 'Select a contact category' }]}>
+    {/* <Form.Item name={field} initialValue={''} rules={[{ required: true, message: 'Select a contact category' }]}> */}
       <Radio.Group
         size="large"
         buttonStyle="solid"
         className={style.group}
+        name='SK'
       >
         {
           Object.entries(map ?? {}).sort(([, a], [, b]) => b - a).slice(0, 3).map(([name], i) => <Radio.Button key={i} value={name} onClick={() => { onClick?.(name) }} className={style.btn}>
@@ -38,7 +38,7 @@ const CategoryForm: React.FC<CategoryFormProps> = ({ map, field, onClick }) => {
           </Radio.Button>)
         }
       </Radio.Group>
-    </Form.Item>
+    {/* </Form.Item> */}
 
   </>;
 }

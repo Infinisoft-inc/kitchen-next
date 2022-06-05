@@ -37,8 +37,7 @@ const Template: ComponentStory<typeof Button> = (args) => (
 
 export const StringArgs = Template.bind({});
 StringArgs.args = {
-  title: 'Title',
-  content: 'Content',
+
 };
 
 StringArgs.parameters = {
@@ -51,8 +50,6 @@ StringArgs.parameters = {
 
 export const StringArgs2 = Template.bind({});
 StringArgs2.args = {
-  title: 'Title',
-  content: 'Content',
 };
 
 StringArgs2.parameters = {

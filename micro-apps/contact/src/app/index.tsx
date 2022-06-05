@@ -17,11 +17,11 @@ const App = React.lazy(() => import('./app'));
 const Index = () => {
   return (
     // <ConfigProvider locale={enUS}>
-      <MicroThemeProvider>
-        <MicroContextProvider>
-          <App />
-        </MicroContextProvider>
-      </MicroThemeProvider>
+    <MicroThemeProvider>
+      <MicroContextProvider>
+        <App />
+      </MicroContextProvider>
+    </MicroThemeProvider>
     // </ConfigProvider>
   );
 };

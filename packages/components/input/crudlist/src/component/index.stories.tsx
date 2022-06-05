@@ -44,7 +44,7 @@ export default {
       },
       control: { type: 'file' },
     },
-    list: {
+    itemList: {
       table: {
         category: 'Items',
         defaultValue: {
@@ -96,11 +96,11 @@ const Template: ComponentStory<typeof CrudList> = ({icon, ...args}, context) => 
     })
   }
 
-  return <CrudList {...args} onAdd={onAdd} onChange={onChange} onRemove={onRemove} list={state} icon={customIcon} />
+  return <CrudList {...args} onAdd={onAdd} onChange={onChange} onRemove={onRemove} itemList={state} icon={customIcon} />
 
 }
-export const StringArgs = Template.bind({});
-StringArgs.args = {
+export const Example = Template.bind({});
+Example.args = {
   title: 'Example List',
   icon: <PhoneIcon />,
 };

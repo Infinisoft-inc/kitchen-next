@@ -117,6 +117,7 @@ Before.args = {
   ghost: false,
   copyable: true,
   removable: true,
+  variant: 'doguette'
 };
 Before.parameters = {
   docs: {

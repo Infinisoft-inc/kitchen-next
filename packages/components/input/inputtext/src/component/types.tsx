@@ -35,5 +35,9 @@ export type InputTextProps = {
  * this attributes collide with @types/react and must be replaced by after
  */
   after?: React.ReactNode
+  /**
+   * Invalid component
+   */
+  invalidMessage?: string
 
 } & React.InputHTMLAttributes<HTMLInputElement>

@@ -5,48 +5,53 @@
  *
  * CrudList Federated Micro Component
  */
- import React, { Suspense } from 'react';
+import React, { Suspense } from 'react';
 import { AddIcon } from './assets/svg';
-import css from './index.module.css';
+// import css from './index.module.css';
 import { CrudListProps } from './types';
 
- const InputText = React.lazy(() => import(/* webpackPrefetch: true */'inputtext/InputText'));
- const FlexLine = React.lazy(() => import(/* webpackPrefetch: true */'flexline/FlexLine'));
+const InputText = React.lazy(() => import(/* webpackPrefetch: true */'inputtext/InputText'));
 
+export const CrudList = ({
+  title,
+  icon,
+  itemList,
+  onAdd,
+  onChange,
+  onRemove,
+  name,
+  k,
+  keyPredicat = () => new Date().getTime().toFixed(0).toString(),
+  ...props
+}: CrudListProps) => {
 
- export const CrudList = ({
-   title,
-   icon,
-   list=[],
-   onAdd,
-   onChange,
-   onRemove
- }: CrudListProps) => {
+  return <Suspense>
+    <div data-style='input:text:root'>
 
-   return <Suspense>
-     <div data-style='input:text:root'>
-
-       <FlexLine
+      {/* <FlexLine
          left={icon}
-         right={
-           <div className={css.list}>
-             <div className={css.header}>
-               {title}
-               <button onClick={onAdd}><AddIcon /></button>
-             </div>
-             <div className={css.content}>
-               {
-                 list?.map(
-                   (item, i: number) =>
-                     <InputText key={i} value={String(item)} onChange={e => onChange(i, item, e.target.value)} onRemove={() => onRemove(i, item)} copyable removable />
-                 )
-               }
-             </div>
-           </div>
-         }
-       />
-     </div>
-   </Suspense>
- }
+         right={ */}
+      <div className={'css.list'}>
+        <div className={'css.header'}>
+          {title}
+          milieskiodoo
+          <button onClick={onAdd}><AddIcon /></button>
+        </div>
+        <div className={'css.content'}>
+          {
+            itemList?.map(
+              (item, i: number) => {
+                console.log(`keypredicat11111 `, item)
+                return <InputText key={i} value={String(item)} name={name} id={`${name}----${i}`} onChange={e => onChange(i, item, e.target.value)} onRemove={() => onRemove(i, item)} copyable removable />
+              }
+            )
+          }
+        </div>
+      </div>
+      {/* } */}
+      {/* /> */}
+    </div>
+  </Suspense>
+}
 
- export default CrudList;
+export default CrudList;

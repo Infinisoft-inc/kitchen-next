@@ -69,11 +69,6 @@ const build = async () => {
       `yarn run tsc -p tsconfig.json -d --emitDeclarationOnly --outFile dist/types.d.ts --esModuleInterop`,
     );
     execIo(`yarn run webpack -c webpack.config.${BUILDENV}.js ${WATCHFLAG}`);
-
-    if (DEPLOYFLAG) {
-      console.log(`${new Date().toISOString()} Deploying`);
-      deploy();
-    }
   }
 
   if (!DRYRUN && ANALYZEMODE) {
@@ -120,6 +115,11 @@ Bundle graph:  ${join(process.cwd(), 'analyze', 'deps.graph.htm')}
         `declare module "${pkg.name}/${defaultComponent}"`,
       ),
     );
+  }
+
+  if (!DRYRUN && !ANALYZEMODE && DEPLOYFLAG) {
+    console.log(`${new Date().toISOString()} Deploying`);
+    deploy();
   }
 };
 

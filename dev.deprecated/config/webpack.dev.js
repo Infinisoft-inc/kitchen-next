@@ -10,7 +10,7 @@ const path = require('path');
 module.exports = merge(common, {
   mode: 'development',
   plugins: [],
-  devtool: 'inline-source-map',
+  devtool: 'eval-source-map',
   devServer: {
     static: path.join(process.cwd(), 'dist'),
     hot: true,

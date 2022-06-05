@@ -38,9 +38,8 @@
       "image": "https://www.kitchen.infini-soft.com/assets/infinisoftticon.png",
       "component": "CrudList",
       "remotes": {
-        "inputtext": "inputtext@https://app.micro.infini-soft.com/components/inputtext/remoteEntry.js",
-        "flexline": "flexline@https://app.micro.infini-soft.com/components/flexline/remoteEntry.js",
-        "store": "store@https://app.micro.infini-soft.com/libraries/store/remoteEntry.js"
+        "inputtext": "inputtext@http://localhost:5000/components/input/inputtext/dist/remoteEntry.js",
+        "store": "store@http://localhost:5000/libraries/store/dist/remoteEntry.js"
       }
     }
   },

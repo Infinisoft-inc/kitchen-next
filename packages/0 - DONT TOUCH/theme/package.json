@@ -7,13 +7,7 @@
   "homepage": "https://www.kitchen.infini-soft.com/microapp/contacts",
   "license": "MIT",
   "scripts": {
-    "build:dev": "webpack -c webpack.config.js",
-    "test": "jest",
-    "test:coverage": "jest --coverage&& start analyze/coverage/lcov-report/index.html",
-    "build:analyze": "webpack -c ../../dev/config/webpack.analyze.js",
-    "build:prod": "webpack -c ../../dev/config/webpack.prod.js",
-    "start:dev": "webpack serve -c webpack.config.js --open",
-    "serve:dist": "serve -s dist"
+
   },
   "devDependencies": {
     "@types/react": "^18.0.9",

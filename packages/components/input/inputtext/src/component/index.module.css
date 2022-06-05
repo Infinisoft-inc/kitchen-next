@@ -10,6 +10,7 @@
 
   --text-primary: rgb(145, 145, 145);
   --text-contrast: rgb(112, 112, 112);
+  --text-error: red;
 
   --background-contrast: rgb(255, 255, 255);
 
@@ -19,72 +20,42 @@
   --button-background-secondary: green;
 }
 
-.root {
+[data-style*='input:text:container'] {
   display: flex;
-  margin-bottom: 1.5rem;
-}
-
-input {
-  font-family: Orbitron !important;
-}
-
-input[data-style*=':ghost'] {
-  background-color: transparent;
-  border: 0;
-}
-
-[data-style*='input:text:root'] {
-  display: flex;
+  align-items: baseline;
   flex-wrap: nowrap;
   background-color: transparent;
   padding: 0.5rem;
   border: 0;
 }
 
-[data-style*=':prefix'] {
+[data-style*='input:text:button:copy'],
+[data-style*='input:text:button:removeable'] {
   background-color: transparent;
-  padding-right: 0.5rem;
-}
-[data-style*=':suffix'] {
-  background-color: transparent;
-  padding-left: 0.5rem;
-}
-
-input[data-style*=':ghost'][data-style*=':focus'] {
-  background-color: var(--background-contrast);
-  color: var(--text-contrast);
-}
-
-[data-style*='input:text'] {
-  background-color: var(--input-text-background-primary);
-  color: var(--text-contrast);
-  border: 1px solid;
-  padding: 0.35rem;
-}
-
-[data-style*='input:text:focus'] {
-  background-color: var(--background-contrast);
-  color: var(--text-contrast);
-}
-
-input:invalid {
-  border: 2px dashed red;
-}
-
-button[data-style*='button:primary'] {
-  background-color: var(--button-background-primary);
   color: var(--text-primary);
   border: 0;
 }
 
-[data-style*='button:secondary'] {
-  background-color: var(--button-background-secondary);
-  color: var(--colors-primary);
-  border: 0;
+[data-style*='input:text:control'] {
+  padding: 0.35rem;
 }
 
-[data-style*='button:myvariant'] {
-  background-color: var(--button-background-primary);
-  color: red;
-  border: 0;
+[data-style*='input:text:label'] ,
+[data-style*='input:text:control'] {
+  margin: 0 0.5rem;
 }
+
+[data-style*='input:text:prefix'] {
+  padding: 0.5rem;
+}
+
+[data-style*='input:text:label'] {
+  display: block;
+  margin-top: 0.35rem;
+  color: transparent;
+}
+
+input:invalid~label {
+  color: red;
+}
+

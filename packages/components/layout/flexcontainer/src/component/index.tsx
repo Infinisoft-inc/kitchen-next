@@ -6,11 +6,12 @@
  * FlexContainer Federated Micro Component
  */
 import React, { ForwardedRef, forwardRef, Suspense } from 'react';
+import './index.module.css';
 import { FlexContainerProps } from './types';
 
 const FlexContainer = ({ children, ...props }: FlexContainerProps, ref: ForwardedRef<HTMLDivElement>) => {
   return <Suspense>
-    <div {...props} ref={ref} data-style='container:root'>
+    <div {...props} ref={ref} data-style='flexcontainer:container:root'>
       {children}
     </div>
   </Suspense>
