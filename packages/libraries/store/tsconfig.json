@@ -8,13 +8,15 @@
     "esModuleInterop": true,
     "sourceMap": true,
     "baseUrl": "./",
+    "outDir":"dist",
     "strict": true,
+    "skipLibCheck": true,
     "paths": {
       "@/*": ["src/*"]
     },
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
   },
-  "include": ["mock/**/*", "src/**/*", "config/*"],
+  "include": [ "mock/**/*", "src/**/*", "config/*"],
   "exclude": [
     "node_modules",
     "lib",
@@ -25,5 +27,9 @@
     "test",
     "docs",
     "tests"
-  ]
+  ],
+  "typedocOptions": {
+    "entryPoints": ["src/index.ts"],
+    "out": "docs"
+  }
 }

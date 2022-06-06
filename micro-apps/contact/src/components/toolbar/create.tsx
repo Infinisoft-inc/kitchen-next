@@ -6,15 +6,13 @@
 
 import { Button } from "antd";
 import React from "react";
-import { useMicroContext } from "../../context/micro";
 
 
 
 const Create = () => {
-  const { store } = useMicroContext()
 
   return <div data-style='create:container:root'>
-    <Button type="primary" key="primary" onClick={() => { store.publish('create.clicked')}}>
+    <Button type="primary" key="primary">
       Create
     </Button>
   </div>

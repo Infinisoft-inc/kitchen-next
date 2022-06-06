@@ -1,14 +1,12 @@
 
 import ProTable from '@ant-design/pro-table';
 import React, { Suspense } from 'react';
-import { useMicroContext } from '../../context/micro';
-import { columns } from './columns';
 import styles from './index.css';
 import { useSearchFilter } from './useSearchFilter';
 
 const ContactList = () => {
   const list = useSearchFilter()
-  const { store } = useMicroContext();
+  // const { store } = useMicroContext();
 
 return <Suspense fallback={<h1>Protable</h1>}>
     <ProTable
@@ -18,8 +16,8 @@ return <Suspense fallback={<h1>Protable</h1>}>
         pageSize: 10,
       }}
       className={styles['ant-pro-table']}
-      dataSource={list}
-      columns={columns(store) as any}
+      // dataSource={list}
+      // columns={columns(store) as any}
     />
   </Suspense>
 };

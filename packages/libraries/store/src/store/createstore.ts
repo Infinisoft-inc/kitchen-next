@@ -3,7 +3,7 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
-import { Cookers, CookersEventHandler, CreateStoreOptions, Init, IStore, Mutate, MutateNormalized, NormalizedState, PublisherEvent, Store, SubscribeOptions, SubscriberEventHandler, Subscribers } from "./types";
+import { Cookers, CookersEventHandler, CreateStore, CreateStoreOptions, Init, Mutate, MutateNormalized, NormalizedState, PublisherEvent, Store, SubscribeOptions, SubscriberEventHandler, Subscribers } from "./types";
 
 
 /**
@@ -11,7 +11,7 @@ import { Cookers, CookersEventHandler, CreateStoreOptions, Init, IStore, Mutate,
  * @param init State initializer function
  * @returns new store
  */
-const createstore: Store = <S, Payload, K extends keyof S, I>(init?: Init<S>, options?: CreateStoreOptions<K, S, I>): IStore<S, Payload, K, I> => {
+export const createstore: CreateStore = <S, Payload, K extends keyof S, I>(init?: Init<S>, options?: CreateStoreOptions<K, S, I>): Store<S, Payload, K, I> => {
   const _init = init?.()
   const subscribers: Subscribers<S, Payload> = new Map()
   const cookers: Cookers<S, Payload> = new Map()
@@ -185,5 +185,3 @@ const createstore: Store = <S, Payload, K extends keyof S, I>(init?: Init<S>, op
     mutateNormalized
   }
 }
-
-export default createstore
