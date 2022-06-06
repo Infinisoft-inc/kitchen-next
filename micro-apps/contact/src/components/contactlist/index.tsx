@@ -1,25 +1,30 @@
 
+import { MicroState, useMicroContext } from '@/context/micro';
 import ProTable from '@ant-design/pro-table';
-import React, { Suspense } from 'react';
-import styles from './index.css';
-import { useSearchFilter } from './useSearchFilter';
+import React from 'react';
+import { useStore } from '../store';
+import { columns } from './columns';
 
 const ContactList = () => {
-  const list = useSearchFilter()
-  // const { store } = useMicroContext();
+  // const list = useSearchFilter()
+  const { store } = useMicroContext();
+  const _list = useStore(
+    store,
+    (state: MicroState) => state?.array)
 
-return <Suspense fallback={<h1>Protable</h1>}>
-    <ProTable
-      rowKey={record => record?.SK || new Date().getTime()}
-      search={false}
-      pagination={{
-        pageSize: 10,
-      }}
-      className={styles['ant-pro-table']}
-      // dataSource={list}
-      // columns={columns(store) as any}
-    />
-  </Suspense>
+  return <div style={{ color: 'white' }}>
+
+      <ProTable
+        rowKey={'SK'}
+        search={false}
+        pagination={{
+          pageSize: 10,
+        }}
+        // className={styles['ant-pro-table']}
+        dataSource={_list || []}
+        columns={columns(store) as any}
+      />
+  </div>
 };
 
 export default ContactList
