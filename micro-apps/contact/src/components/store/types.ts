@@ -66,3 +66,14 @@ export type Store<S, P> = {
  */
 export type CreateStore = <S, P>(init?: InitStore<S>) => Store<S, P>
 
+
+
+
+export type UseMutatorGeneric<T, V> = (field: T, newValue: V) => void
+export type UseMutator = UseMutatorGeneric<keyof API.Item, any>
+
+export type InputMutatorGeneric<T, E> = (field: T) => (e: E) => void
+export type InputMutator = InputMutatorGeneric<keyof API.Item, React.ChangeEvent<HTMLInputElement>>
+
+export type UseItemGeneric<T> = (field: string) => { item: T, inputMutator: InputMutator}
+export type UseItem = UseItemGeneric<API.Item>
