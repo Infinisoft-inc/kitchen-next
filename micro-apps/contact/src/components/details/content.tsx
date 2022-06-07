@@ -3,12 +3,13 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
+import { AddressIcon, EmailIcon, NameIcon, PhoneIcon, RelatedwithIcon, WebIcon } from '@/assets/svg';
 import React from 'react';
 import { useItem } from '../store/src/useItem';
 import css from './index.module.css';
 
 const InputText = React.lazy(() => import(/* webpackPreload: true */ 'inputtext/InputText'));
-const CrudList = React.lazy(()=>import(/* webpackPreload: true */ 'crudlist/CrudList'))
+const CrudList = React.lazy(() => import(/* webpackPreload: true */ 'crudlist/CrudList'))
 
 export type ContentProps = {
   SK: string
@@ -22,7 +23,7 @@ export const Content = ({ SK }: ContentProps) => {
     className: 'invariant',
     placeholder: field,
     name: field,
-    defaultValue: contact?.[field] ? String(contact?.[field]):'',
+    defaultValue: contact?.[field] ? String(contact?.[field]) : '',
     onChange: inputMutator(field)
   })
 
@@ -30,16 +31,17 @@ export const Content = ({ SK }: ContentProps) => {
     <div className={css.headerContent}>
       <h2>Header</h2>
 
-      <InputText {...props('name')} />
-      <InputText {...props('email')} />
+      <InputText before={<NameIcon />} {...props('name')} />
+      <InputText before={<EmailIcon />} {...props('email')} />
 
     </div>
 
     <div className={css.content}>
-      <InputText {...props('address')} />
-      <InputText {...props('website')} />
+      <InputText before={<AddressIcon />} {...props('address')} />
+      <InputText before={<WebIcon />} {...props('website')} />
 
-      <CrudList title='telephones' icon={undefined} {...listMutator('telephones')} itemList={contact?.telephones ?? []} />
+      <CrudList title='telephones' icon={<PhoneIcon />} {...listMutator('telephones')} itemList={contact?.telephones} />
+      <CrudList title='relatedwith' icon={<RelatedwithIcon />} {...listMutator('relatedWith')} itemList={contact?.relatedWith} />
     </div>
   </span>
 

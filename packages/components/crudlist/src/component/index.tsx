@@ -17,7 +17,7 @@ const FlexItem = React.lazy(() => import(/* webpackPrefetch: true */'flexitem/Fl
 export const CrudList = ({
   title,
   icon,
-  itemList,
+  itemList=[],
   onAdd,
   onChange,
   onRemove,

@@ -18,6 +18,6 @@ export type CrudListProps<T = any, I = any> = Partial<HTMLInputElement> & {
   onAdd: (newValue?: T) => void
   onChange: (newValue: T, id: I) => void
   onRemove: (id: I) => void
-  itemList: T[]
+  itemList?: T[]
 };
 

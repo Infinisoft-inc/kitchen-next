@@ -18,7 +18,7 @@ declare module "component/types" {
       onAdd: (newValue?: T) => void;
       onChange: (newValue: T, id: I) => void;
       onRemove: (id: I) => void;
-      itemList: T[];
+      itemList?: T[];
   };
 }
 declare module "crudlist/CrudList" {

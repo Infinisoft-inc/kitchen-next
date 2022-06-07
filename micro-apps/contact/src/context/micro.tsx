@@ -1,6 +1,9 @@
 import React from 'react';
+import config from '../../config/config.json';
 import { createstore, Store } from '../components/store';
 import * as listService from "../services/contacts/list";
+
+const devtool = config?.devMode
 
 /**
  * STATE
@@ -37,7 +40,7 @@ export type MicroContext = {
   store: MicroStore
 }
 const initialContext: MicroContext = {
-  store: createstore(fetchData)
+  store: createstore(fetchData, { devtool})
 };
 const MicroContext = React.createContext(initialContext);
 const MicroContextProvider = ({ children }: { children: React.ReactNode }) => {

@@ -63,7 +63,10 @@ export type Store<S, P> = {
  * K        Normalized data id key type
  * I        Normalized data type
  */
-export type CreateStore = <S, P>(init?: InitStore<S>) => Store<S, P>
+ export type CreateStoreOptions = {
+   devtool?: boolean
+ }
+export type CreateStore = <S, P>(init?: InitStore<S>, opt?: CreateStoreOptions) => Store<S, P>
 
 
 

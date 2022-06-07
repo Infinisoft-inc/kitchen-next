@@ -3,18 +3,36 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
-import { CreateStore, EmitEvent, InitStore, Mutate, Store, SubscribeOptions, SubscriberEventHandler, Subscribers } from "../types";
+import { CreateStore, CreateStoreOptions, EmitEvent, InitStore, Mutate, Store, SubscribeOptions, SubscriberEventHandler, Subscribers } from "../types";
+import { devtool } from "./devtool";
 
 /**
  * Store Creator
  * @param init State initializer function
  * @returns new store
  */
-export const createstore: CreateStore = <S, P>(init?: InitStore<S>): Store<S, P> => {
+export const createstore: CreateStore = <S, P>(init?: InitStore<S>, opt?: CreateStoreOptions): Store<S, P> => {
   const subscribers: Subscribers<S, P> = new Map()
   let state: S
   let initialized = false
 
+  const getStore = (): Store<S, P> => ({
+    subscribe,
+    emit,
+    getState: () => state,
+    mutate,
+  })
+
+  /**
+ * Middleware initialization
+ */
+  const initializeMiddlewares = () => {
+    devtool(getStore())
+  }
+
+  /**
+   * Initialize once
+   */
   if (!initialized) {
     init?.()
       .then(result => {
@@ -22,10 +40,13 @@ export const createstore: CreateStore = <S, P>(init?: InitStore<S>): Store<S, P>
         _notifyAllSubscribers('@initialization')
       })
       .catch(console.error)
-      .finally(() => {
+      .finally(()=> {
+        initializeMiddlewares()
         initialized = true
       })
+
   }
+
 
   /**
    * Notify all subscribers
