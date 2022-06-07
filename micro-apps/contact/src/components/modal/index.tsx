@@ -9,6 +9,7 @@ import './index.module.css';
 import { ModalProps } from './types';
 
 export const Modal = React.forwardRef(({ children, visible, ...props }: ModalProps, ref: ForwardedRef<HTMLSpanElement>) => {
+
   return <span {...props} ref={ref}>
 
     <div data-component='backdrop' data-visible={String(visible)} />

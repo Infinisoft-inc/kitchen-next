@@ -16,6 +16,10 @@ export const Details = ({ children }: DetailsProps) => {
   const [visible, setVisible] = React.useState(false);
   const { store } = useMicroContext()
 
+  /**
+   * Captures bubbled click event, set record id on store
+   * @param e Event
+   */
   const onClickCapture: React.MouseEventHandler<HTMLSpanElement> = (e) => {
     startTransition(() => {
       store.mutate(prev => ({ ...prev, editItemId: (e.target as HTMLElement).id }))

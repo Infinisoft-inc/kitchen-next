@@ -3,37 +3,24 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
-import { MicroStore } from "@/context/micro";
 import type { ProColumns } from "@ant-design/pro-table";
 import { bubble } from "@infini-soft/utils/lib/Sorters";
 import { Avatar } from "antd";
 import React from 'react';
 import { AvatarIcon } from "../avatar-upload/assets";
 
-export const columns = (store: MicroStore): ProColumns<API.Item>[] => [
+export const columns = (): ProColumns<API.Item>[] => [
   {
     title: 'Name',
     dataIndex: 'name',
     sorter: bubble('name'),
-    // render: (dom, entity) => {
-    //   return (<div className={css.mobileColumnContainer} onClickCapture={console.log}>
-    //     <Avatar shape="square" src={entity.avatar} size={48}><AvatarIcon /></Avatar>
-    //     <button
-    //       // onClick={() => {
-    //       //   store.emit("item.clicked", entity)
-    //       //   // store.mutate((_state => {
-    //       //   //   return { ..._state, itemSelectedId: entity.SK }
-    //       //   // }))
-    //       // }}
-    //       key={entity.SK}
-    //       data-entity={JSON.stringify(entity)}
-    //     >
-    //       {dom}
-    //     </button>
-
-    //     {entity.email}
-    //   </div>);
-    // },
+    render: (dom, entity) => {
+      return (<div onClickCapture={console.log}>
+        <Avatar shape="square" src={entity.avatar} size={48}><AvatarIcon /></Avatar>
+          {dom}
+        {entity.email}
+      </div>);
+    },
     responsive: ['xs']
   },
   {

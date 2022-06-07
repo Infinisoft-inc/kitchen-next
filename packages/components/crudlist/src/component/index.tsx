@@ -30,25 +30,24 @@ export const CrudList = ({
 
       <FlexContainer>
         <FlexItem>{icon}</FlexItem>
-          <FlexItem>
-            <div className={css.list}>
-              <div className={css.header}>
-                {title}
+        <FlexItem>
+          <div className={css.list}>
+            <div className={css.header}>
+              {title}
 
-                <button onClick={onAdd}><AddIcon /></button>
-              </div>
-              <div className={css.content}>
-                {
-                  itemList?.map(
-                    (item, i: number) => {
-                      return <InputText key={i} defaultValue={String(item)}  id={name + `${i}`} data-index={i} name={name + `${i}`} onRemove={() => onRemove(i, item)} copyable removable />
-                      // return <InputText key={i} value={String(item)} name={name + `${i}`} onChange={e => onChange(i, item, e.target.value)} onRemove={() => onRemove(i, item)} copyable removable />
-                    }
-                  )
-                }
-              </div>
+              <button onClick={()=> {onAdd('Insert here')}}><AddIcon /></button>
             </div>
-          </FlexItem>
+            <div className={css.content}>
+              {
+                itemList?.map(
+                  (item, i: number) => {
+                    return <InputText key={i} defaultValue={String(item)} id={name + `${i}`} onChange={e => onChange(i, e.target.value)} data-index={i} name={name + `${i}`} onRemove={() => onRemove(i)} copyable removable />
+                  }
+                )
+              }
+            </div>
+          </div>
+        </FlexItem>
       </FlexContainer>
     </div>
   </Suspense>

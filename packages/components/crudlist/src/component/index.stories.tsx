@@ -84,12 +84,12 @@ const Template: ComponentStory<typeof CrudList> = ({icon, ...args}, context) => 
     })
   }
 
-  const onRemove = (i: number, item: string) => {
+  const onRemove = (i: number) => {
     store.mutate(_state => {
       return [..._state.filter((_, index) => i !== index)];
     })
   }
-  const onChange = (i: number, item: string, newValue: string) => {
+  const onChange = (i: number, newValue: string) => {
     store.mutate(_state => {
       _state[i] = newValue
       return [..._state];

@@ -7,5 +7,5 @@ import React from 'react';
 
 export type ModalProps = {
   children: React.ReactNode;
-  visible: boolean;
+  visible?: boolean;
 } & React.HTMLProps<HTMLSpanElement>;
