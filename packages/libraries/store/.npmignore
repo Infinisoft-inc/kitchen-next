@@ -4,3 +4,8 @@ config
 models
 __tests__
 src
+jest.config.js
+tsconfig.json
+webpack.*
+*.log
+docs

@@ -3,34 +3,21 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
-import { ContactStore } from "@/context/micro";
 import type { ProColumns } from "@ant-design/pro-table";
 import { bubble } from "@infini-soft/utils/lib/Sorters";
 import { Avatar } from "antd";
 import React from 'react';
 import { AvatarIcon } from "../avatar-upload/assets";
-import css from './index.css';
 
-export const columns = (store: ContactStore): ProColumns<API.Item>[] => [
+export const columns = (): ProColumns<API.Item>[] => [
   {
     title: 'Name',
     dataIndex: 'name',
     sorter: bubble('name'),
     render: (dom, entity) => {
-      return (<div className={css.mobileColumnContainer}>
+      return (<div onClickCapture={console.log}>
         <Avatar shape="square" src={entity.avatar} size={48}><AvatarIcon /></Avatar>
-        <a
-          onClick={() => {
-            store.publish("item.clicked", entity)
-            store.mutate((_state => {
-              return { ..._state, itemSelectedId: entity.SK }
-            }))
-          }}
-          key={entity.SK}
-        >
           {dom}
-        </a>
-
         {entity.email}
       </div>);
     },
@@ -47,21 +34,27 @@ export const columns = (store: ContactStore): ProColumns<API.Item>[] => [
     title: 'Name',
     dataIndex: 'name',
     sorter: bubble('name'),
-    render: (dom, entity) => {
-      return (
-        <a
-          onClick={() => {
-            store.publish("item.clicked", entity)
-            store.mutate((_state => {
-              return { ..._state, itemSelectedId: entity.SK }
-            }))
-          }}
-          key={entity.SK}
-        >
-          {dom}
-        </a>
-      );
-    },
+    // render: (dom, entity) => {
+    //   return (
+    //     <div className={css.mobileColumnContainer} onClickCapture={console.log}>
+    //     <Avatar shape="square" src={entity.avatar} size={48}><AvatarIcon /></Avatar>
+    //     <button
+    //       // onClick={() => {
+    //       //   store.emit("item.clicked", entity)
+    //       //   // store.mutate((_state => {
+    //       //   //   return { ..._state, itemSelectedId: entity.SK }
+    //       //   // }))
+    //       // }}
+    //       key={entity.SK}
+    //       data-entity={JSON.stringify(entity)}
+    //     >
+    //       {dom}
+    //     </button>
+
+    //     {entity.email}
+    //   </div>
+    //   );
+    // },
     responsive: ['sm']
   },
   {
@@ -77,14 +70,14 @@ export const columns = (store: ContactStore): ProColumns<API.Item>[] => [
     dataIndex: 'Subcategory',
     sorter: bubble('Subcategory'),
     filters: true,
-    render: (_, record) => record.Subcategory?.split('__')?.[0] ?? 'Unknown',
+    render: (_, record) => <span key={record.SK}>{record.Subcategory?.split('__')?.[0] ?? 'Unknown'}</span>,
     responsive: ['lg'],
   },
   {
     title: 'Address',
     dataIndex: 'address',
     sorter: bubble('address'),
-    render: (_, record) => record.address,
+    render: (_, record) => <span key={record.SK} id={record.SK}>{record.address}</span>,
     responsive: ['md'],
   },
   {

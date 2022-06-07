@@ -67,7 +67,7 @@ export type CreateStoreOptions<K extends keyof S, S, I> = {
  * Store output
  */
 
-export type IStore<S, Payload, K, I> = {
+export type Store<S, Payload, K, I> = {
   // Read
   getSnapshot: () => S;
   getServerSnapshot: () => S;
@@ -80,15 +80,17 @@ export type IStore<S, Payload, K, I> = {
 
   // Mutation
   mutate: Mutate<S>
-  mutateNormalized: MutateNormalized<K,I>
+  mutateNormalized: MutateNormalized<K, I>
 }
 
 /**
- * Store abstraction
+ * Create store abstraction
  *
  * S        State
  * Payload  Events payload
  * K        Normalized data id key type
  * I        Normalized data type
  */
-export type Store = <S, Payload, K extends keyof S, I>(init?: Init<S>, options?: CreateStoreOptions<K, S, I>) => IStore<S, Payload, K, I>
+export type CreateStore = <S, Payload, K extends keyof S, I>(init?: Init<S>, options?: CreateStoreOptions<K, S, I>) => Store<S, Payload, K, I>
+export type UseStore = <S, Payload, K, I, R>(store: Store<S, Payload, K, I>, selector: (a:S)=>R) => R;
+

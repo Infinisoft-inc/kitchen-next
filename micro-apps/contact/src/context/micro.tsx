@@ -1,53 +1,55 @@
-import { load } from "@infini-soft/lib-federation";
 import React from 'react';
-import { IStore, Store } from "store/types";
+import config from '../../config/config.json';
+import { createstore, Store } from '../components/store';
 import * as listService from "../services/contacts/list";
 
-import(/* webpackPreload: true */ 'store/createstore')
-const createstore: Store = await load('store', 'createstore')
+const devtool = config?.devMode
 
+/**
+ * STATE
+ */
 export type MicroState = {
-  list: API.Item[]
-  itemSelectedId?: string
+  list: Map<string, API.Item>
+  array: Array<API.Item>
+  editItemId: string
 }
-export type MicroPayload = API.Item | string
-export type ContactStore = IStore<MicroState, MicroPayload, string, API.Item>
+export type MicroPayload = any
+export type MicroStore = Store<MicroState, MicroPayload>
 
-export type MicroContextState = {
-  history: typeof history;
-  user: {
-    isAdmin: boolean;
-    Email?: string;
-  };
-  store: ContactStore
-}
-
-const fetchData = async () => {
+/**
+ * OPERATION
+ * @returns
+ */
+export const fetchData = async (): Promise<MicroState> => {
   const result = await listService.list({}) as API.Success
 
-  return { list: result?.data ?? [], itemSelectedId: '' }
+  const normalized: Map<string, API.Item> = new Map()
+  result?.data?.forEach(item => normalized.set(item.SK!, item))
+
+  return {
+    array: result?.data ?? [],
+    list: normalized,
+    editItemId: ''
+  }
 }
 
-const store = createstore<MicroState, any, keyof MicroState, API.Item>(fetchData, { normalizeKeys: ['list'], keyPredicat: item => item.SK })
-
-const initialContext: MicroContextState = {
-  history,
-  user: {
-    isAdmin: false
-  },
-  store
+/**
+ * CONTEXT
+ */
+export type MicroContext = {
+  store: MicroStore
+}
+const initialContext: MicroContext = {
+  store: createstore(fetchData, { devtool})
 };
-
-const MicroContext = React.createContext<MicroContextState>(initialContext);
-
-const MicroContextProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  return <MicroContext.Provider value={{ ...initialContext, store }}>
+const MicroContext = React.createContext(initialContext);
+const MicroContextProvider = ({ children }: { children: React.ReactNode }) => {
+  return <MicroContext.Provider value={{ ...initialContext }}>
     {children}
   </MicroContext.Provider>
 }
-
 export const useMicroContext = () => {
-  return React.useContext<MicroContextState>(MicroContext);
+  return React.useContext(MicroContext);
 };
 
 export default MicroContextProvider

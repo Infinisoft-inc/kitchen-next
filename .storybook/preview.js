@@ -1,45 +1,45 @@
-import { load } from '@infini-soft/lib-federation';
+// import { load } from '@infini-soft/lib-federation';
 import React, { startTransition } from 'react';
-import(/* webpackPreload: true */ 'store/createstore');
+// import(/* webpackPreload: true */ 'store/createstore');
 
 
-/**
- * --- WORKAROUND ---
- * This loader is necessary to load createstore
- * So far, cant find a way to use top-level await
- */
-const Loader = ({ children }) => {
-  const [state, setState] = React.useState(false);
-  const createstore = React.useRef(null);
-  const store = React.useRef(null);
+// /**
+//  * --- WORKAROUND ---
+//  * This loader is necessary to load createstore
+//  * So far, cant find a way to use top-level await
+//  */
+// const Loader = ({ children }) => {
+//   const [state, setState] = React.useState(false);
+//   const createstore = React.useRef(null);
+//   const store = React.useRef(null);
 
-  startTransition(async ()=>{
-    createstore.current = await load('store', 'createstore');
-    store.current = createstore.current(() => ['514-796-0626']);
-    setState(true);
-  })
+//   startTransition(async ()=>{
+//     createstore.current = await load('store', 'createstore');
+//     store.current = createstore.current(() => ['514-796-0626']);
+//     setState(true);
+//   })
 
-  return (
-    <>
-      {!state && <h1>Loading...</h1>}
-      {state && (
-        <>
-          {React.cloneElement(
-            children,
-            { ...children.props, createstore: createstore.current},
-            children?.children,
-          )}
-        </>
-      )}
-    </>
-  );
-};
+//   return (
+//     <>
+//       {!state && <h1>Loading...</h1>}
+//       {state && (
+//         <>
+//           {React.cloneElement(
+//             children,
+//             { ...children.props, createstore: createstore.current},
+//             children?.children,
+//           )}
+//         </>
+//       )}
+//     </>
+//   );
+// };
 
 export const decorators = [
   (Story) => (
-    <Loader>
+    // <Loader>
       <Story store={store} />
-    </Loader>
+    // </Loader>
   ),
 ];
 

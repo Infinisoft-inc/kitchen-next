@@ -15,9 +15,9 @@ export type CrudListProps<T = any, I = any> = Partial<HTMLInputElement> & {
    */
   title: React.ReactNode
   icon: React.ReactNode
-  onAdd: () => void
-  onChange: (id: I, item: T, newValue: T) => void
-  onRemove: (id: I, item: T) => void
-  itemList: T[]
+  onAdd: (newValue?: T) => void
+  onChange: (newValue: T, id: I) => void
+  onRemove: (id: I) => void
+  itemList?: T[]
 };
 
