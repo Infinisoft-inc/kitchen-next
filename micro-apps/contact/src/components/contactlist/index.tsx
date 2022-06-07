@@ -1,9 +1,8 @@
 
 import { MicroState, useMicroContext } from '@/context/micro';
-import ProTable from '@ant-design/pro-table';
 import React from 'react';
 import { useStore } from '../store';
-import { columns } from './columns';
+import Table from '../table';
 
 const ContactList = () => {
   // const list = useSearchFilter()
@@ -14,7 +13,7 @@ const ContactList = () => {
   const _list = state?.list
   return <div style={{ color: 'white' }}>
 
-    <ProTable
+    {/* <ProTable
       rowKey={(r) => r?.SK ?? new Date().getTime().toFixed(0)}
       search={false}
       pagination={{
@@ -23,7 +22,9 @@ const ContactList = () => {
       // className={styles['ant-pro-table']}
       dataSource={_list ? Array.from(_list?.values()) : []}
       columns={columns()}
-    />
+    />*/}
+
+    <Table columns={['name', 'address', 'website']} data={_list} />
   </div>
 };
 
