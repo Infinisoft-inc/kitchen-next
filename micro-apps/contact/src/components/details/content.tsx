@@ -5,6 +5,7 @@
  */
 import { AddressIcon, EmailIcon, NameIcon, PhoneIcon, RelatedwithIcon, WebIcon } from '@/assets/svg';
 import React from 'react';
+import AvatarUpload from '../avatar-upload';
 import { useItem } from '../store/src/useItem';
 import css from './index.module.css';
 
@@ -28,12 +29,17 @@ export const Content = ({ SK }: ContentProps) => {
   })
 
   return <span key={SK}>
-    <div className={css.headerContent}>
-      <h2>Header</h2>
+    <div className={css.header}>
+      <div className={css.headerContent}>
+        <h2>Header</h2>
 
-      <InputText before={<NameIcon />} {...props('name')} />
-      <InputText before={<EmailIcon />} {...props('email')} />
+        <AvatarUpload save={function (bse64: string): void {
+          throw new Error('Function not implemented.');
+        }} />
+        <InputText before={<NameIcon />} {...props('name')} />
+        <InputText before={<EmailIcon />} {...props('email')} />
 
+      </div>
     </div>
 
     <div className={css.content}>

@@ -10,8 +10,11 @@ const devtool = config?.devMode
  */
 export type MicroState = {
   list: Map<string, API.Item>
-  // array: Array<API.Item>
   editItemId: string
+  // meta: {
+  //   categories?: API.Meta
+  //   subCategories?: API.Meta
+  // }
 }
 export type MicroPayload = any
 export type MicroStore = Store<MicroState, MicroPayload>
@@ -31,7 +34,11 @@ export const fetchData = async (): Promise<MicroState> => {
 
   return {
     list: normalized,
-    editItemId: ''
+    editItemId: '',
+    // meta:{
+    //   categories,
+    //   subCategories
+    // }
   }
 }
 

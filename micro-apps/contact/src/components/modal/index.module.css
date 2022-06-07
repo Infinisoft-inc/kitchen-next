@@ -21,7 +21,7 @@
 
 [data-component='backdrop'][data-visible='true'] {
   display: block;
-  opacity: var(--opacity-backdrop);
+  opacity: 0.6;
 }
 
 [data-component='modal'] {
@@ -32,10 +32,12 @@
   right: 0;
   height: 100vh;
   width: 0px;
+  opacity: 0;
   background-color: var(--color-primary-contrast-background);
   transition: all ease 700ms;
 }
 
 [data-component='modal'][data-visible='true'] {
   width: 360px;
+  opacity: 1;
 }

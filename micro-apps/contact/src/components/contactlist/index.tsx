@@ -1,21 +1,17 @@
 
-import { useMicroContext } from '@/context/micro';
+import { MicroState, useMicroContext } from '@/context/micro';
 import ProTable from '@ant-design/pro-table';
-import React, { useCallback, useSyncExternalStore } from 'react';
+import React from 'react';
+import { useStore } from '../store';
 import { columns } from './columns';
 
 const ContactList = () => {
   // const list = useSearchFilter()
   const { store } = useMicroContext();
-  // const _list = useStore(
-  //   store,
-  //   (state: MicroState) => state?.list)
-
-    const {list:_list} = useSyncExternalStore(
-      store.subscribe,
-      useCallback(() => store.getState(), [store])
-    )
-
+  const state = useStore(
+    store,
+    (state: MicroState) => state)
+  const _list = state?.list
   return <div style={{ color: 'white' }}>
 
     <ProTable
