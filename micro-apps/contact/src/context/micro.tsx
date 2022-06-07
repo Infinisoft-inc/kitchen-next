@@ -10,7 +10,7 @@ const devtool = config?.devMode
  */
 export type MicroState = {
   list: Map<string, API.Item>
-  array: Array<API.Item>
+  // array: Array<API.Item>
   editItemId: string
 }
 export type MicroPayload = any
@@ -22,12 +22,14 @@ export type MicroStore = Store<MicroState, MicroPayload>
  */
 export const fetchData = async (): Promise<MicroState> => {
   const result = await listService.list({}) as API.Success
+  /**
+   * Add useMetaModel also
+   */
 
   const normalized: Map<string, API.Item> = new Map()
   result?.data?.forEach(item => normalized.set(item.SK!, item))
 
   return {
-    array: result?.data ?? [],
     list: normalized,
     editItemId: ''
   }

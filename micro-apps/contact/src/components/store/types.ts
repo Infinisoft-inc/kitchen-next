@@ -4,6 +4,8 @@
  * www.infini-soft.com
  */
 
+import { MicroPayload, MicroState } from "@/context/micro"
+
 /**
  * Subscriber get notified on state change immutable only
  */
@@ -19,7 +21,7 @@ export type SubscribeOptions = {
  * P = Payload
  */
 
-export type SubscriberEventHandler<S = unknown, P= unknown> = (event: string, state?: S, payload?: P) => void
+export type SubscriberEventHandler<S = unknown, P = unknown> = (event: string, state?: S, payload?: P) => void
 export type Subscription<S, P> = {
   callback: SubscriberEventHandler<S, P>
   options?: SubscribeOptions
@@ -63,10 +65,12 @@ export type Store<S, P> = {
  * K        Normalized data id key type
  * I        Normalized data type
  */
- export type CreateStoreOptions = {
-   devtool?: boolean
- }
-export type CreateStore = <S, P>(init?: InitStore<S>, opt?: CreateStoreOptions) => Store<S, P>
+export type CreateStoreOptions = {
+  devtool?: boolean
+}
+export type CreateStoreGeneric<S, P> = (init?: InitStore<S>, opt?: CreateStoreOptions) => Store<S, P>
+export type CreateStore = CreateStoreGeneric<MicroState, MicroPayload>
+
 
 
 
@@ -106,5 +110,5 @@ export type InputListMutator = InputMutatorGeneric<keyof API.Item, React.ChangeE
 /**
  * Store Item Mutator/Selector
  */
-export type UseItemGeneric<T> = (field: string) => { item: T, inputMutator: InputMutator, listMutator: UseListMutator}
+export type UseItemGeneric<T> = (field: string) => { item: T, inputMutator: InputMutator, listMutator: UseListMutator }
 export type UseItem = UseItemGeneric<API.Item>

@@ -4,25 +4,27 @@
  * www.infini-soft.com
  */
 
+import { MicroPayload, MicroState } from "@/context/micro";
 import { Store } from "../types";
 
-export const devtool = <S, P>(store: Store<S, P>) => {
+export const devtool = (store: Store<MicroState, MicroPayload>) => {
 
-if (typeof window === 'object' && typeof (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ !== 'undefined') {
-  //@ts-ignore
-  const devTools = window.__REDUX_DEVTOOLS_EXTENSION__.connect();
+  if (typeof window === 'object' && typeof (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ !== 'undefined') {
+    //@ts-ignore
+    const devTools = window.__REDUX_DEVTOOLS_EXTENSION__.connect({trace: true});
 
-  devTools.subscribe((message: any) => {
-    if (message.type === 'DISPATCH' && message.state) {
-      console.log('DevTools requested to change the state to', message.state);
-    }
-  });
+    store.subscribe(devTools.send)
 
-  devTools.init(store.getState());
+    devTools.subscribe((message: any) => {
+      if (message.type === 'DISPATCH' && message.state) {
+        console.log('DevTools requested to change the state to', message.state);
+      }
+    });
 
-  store.subscribe(devTools.send)
-} else {
-  console.error(`
+    devTools.init(Array.from(store.getState()?.list?.values()));
+
+  } else {
+    console.error(`
 *******************************************************************
                       DEVMODE ENABLED
               Redux devtool extension not found!
@@ -34,7 +36,7 @@ if (typeof window === 'object' && typeof (window as any).__REDUX_DEVTOOLS_EXTENS
               https://www.kitchen.infini-soft.com
 
 *******************************************************************`)
-}
+  }
 
 
 

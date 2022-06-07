@@ -3,7 +3,8 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
-import { CreateStore, CreateStoreOptions, EmitEvent, InitStore, Mutate, Store, SubscribeOptions, SubscriberEventHandler, Subscribers } from "../types";
+import { MicroPayload, MicroState } from "@/context/micro";
+import { CreateStore, EmitEvent, Mutate, SubscribeOptions, SubscriberEventHandler, Subscribers } from "../types";
 import { devtool } from "./devtool";
 
 /**
@@ -11,40 +12,31 @@ import { devtool } from "./devtool";
  * @param init State initializer function
  * @returns new store
  */
-export const createstore: CreateStore = <S, P>(init?: InitStore<S>, opt?: CreateStoreOptions): Store<S, P> => {
+export const createstore: CreateStore = (init?, opt?) => {
+  type S = MicroState
+  type P = MicroPayload
   const subscribers: Subscribers<S, P> = new Map()
   let state: S
   let initialized = false
-
-  const getStore = (): Store<S, P> => ({
-    subscribe,
-    emit,
-    getState: () => state,
-    mutate,
-  })
-
-  /**
- * Middleware initialization
- */
-  const initializeMiddlewares = () => {
-    devtool(getStore())
-  }
-
   /**
    * Initialize once
    */
   if (!initialized) {
+    initialized = true
+
     init?.()
       .then(result => {
-        state = result
-        _notifyAllSubscribers('@initialization')
+        state = { list: result.list, editItemId: '' }
+        devtool({
+          getState: () => ({ list: result.list, editItemId: '' }),
+          subscribe,
+          mutate,
+          emit
+        })
+
+        emit('@initialization', state)
       })
       .catch(console.error)
-      .finally(()=> {
-        initializeMiddlewares()
-        initialized = true
-      })
-
   }
 
 
@@ -75,9 +67,22 @@ export const createstore: CreateStore = <S, P>(init?: InitStore<S>, opt?: Create
    * @param callback Called with state, must return new state
    */
   const mutate: Mutate<S> = (callback: (_state: S) => S) => {
-    state = callback(state)
+    const newState = callback(state)
 
-    _notifyAllSubscribers('mutation')
+    console.log(`state === newState ? `, state === {
+      ...state,
+      ...newState
+    })
+
+    state = {
+      ...state,
+      ...newState
+    };
+
+
+
+    console.log(`mutation = `, state)
+    emit('mutation', state)
   }
 
   /**

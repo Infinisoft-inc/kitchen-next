@@ -17,7 +17,7 @@ import { useStore } from "./usestore"
 export const useItem: UseItem = (SK) => {
   const { store } = useMicroContext()
 
-  const item = useStore(store, state => state?.list?.get?.(SK))
+  const item = useStore(store, state => state?.list?.get?.(SK)!)
 
   const useMutator: UseMutator = (field, newValue) => store.mutate(prev => {
     prev.list.set(SK, {
@@ -31,14 +31,12 @@ export const useItem: UseItem = (SK) => {
 
   const listMutator: UseListMutator = (field) => {
 
-    const onAdd = <T>(newValue?: T) => {
+    const onAdd = (newValue?: any) => {
       store.mutate(prev => {
-        const arrayField = item[field] as T[]
+        const arrayField = item[field]
 
-        if (newValue) {
+        if (newValue && Array.isArray(arrayField)) {
           arrayField.push(newValue)
-        } else {
-          arrayField.push()
         }
 
         prev.list.set(SK, {
@@ -50,10 +48,14 @@ export const useItem: UseItem = (SK) => {
       })
     }
 
-    const onChange = <T>(index: number, newValue: T) => {
+    const onChange = (index: number, newValue: any) => {
       store.mutate(prev => {
-        const arrayField = item[field] as T[]
-        arrayField.splice(index, 1, newValue)
+        const arrayField = item[field]
+
+        if (newValue && Array.isArray(arrayField)) {
+          arrayField.splice(index, 1, newValue)
+        }
+
 
         prev.list.set(SK, {
           ...item,

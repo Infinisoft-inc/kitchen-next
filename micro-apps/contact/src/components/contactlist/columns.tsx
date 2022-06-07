@@ -17,7 +17,7 @@ export const columns = (): ProColumns<API.Item>[] => [
     render: (dom, entity) => {
       return (<div onClickCapture={console.log}>
         <Avatar shape="square" src={entity.avatar} size={48}><AvatarIcon /></Avatar>
-          {dom}
+        {dom}
         {entity.email}
       </div>);
     },

@@ -22,7 +22,15 @@ export const Details = ({ children }: DetailsProps) => {
    */
   const onClickCapture: React.MouseEventHandler<HTMLSpanElement> = (e) => {
     startTransition(() => {
-      store.mutate(prev => ({ ...prev, editItemId: (e.target as HTMLElement).id }))
+      /**
+       * REFACTOR
+       * SEPARATE CONCERNS
+       * id mutation has nothing related to modal state
+       */
+      if (!visible) {
+        store.mutate(prev => ({ ...prev, editItemId: (e.target as HTMLElement).id }))
+      }
+
       setVisible(!Boolean((e.target as HTMLElement).dataset.component?.includes('backdrop')))
     })
   }
