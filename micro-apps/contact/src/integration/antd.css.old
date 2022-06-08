@@ -3,7 +3,7 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
-
+/*
 [class*='button-wrapper-checked'],
 [class*='ant-tree-checkbox-inner'] {
   color: var(--text-primary) !important;
@@ -76,4 +76,4 @@ svg {
 
 [class*='ant-pro-table-column-setting-list-item-title'] {
   color: var(--invariant-primary);
-}
+} */

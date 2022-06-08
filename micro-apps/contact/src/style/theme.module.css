@@ -6,6 +6,12 @@
 @import 'typography.css';
 
 :root {
+  --color-primary: blue;
+
+  --text-primary: white;
+  --text-primary-contrast: black;
+
+
   --color-primary-background: black;
   --color-primary-background-60: rgba(0, 0, 0, 0.9);
 
@@ -16,4 +22,10 @@
   --z-modal: 1000;
   --z-backdrop: 500;
   --opacity-backdrop: 0.7;
+}
+
+
+body {
+  font-family: 'Orbitron', sans-serif;
+  background-color: var(--color-primary-background);
 }

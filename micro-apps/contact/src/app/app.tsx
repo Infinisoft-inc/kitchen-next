@@ -4,7 +4,6 @@ import React from 'react';
 import '../style/theme.module.css';
 import styles from './index.css';
 
-// const ContactDetails = React.lazy(() => import(/*webpackPreload: true*/'../components/contactdetails'));
 const Toolbar = React.lazy(() => import(/*webpackPreload: true*/'../components/toolbar'));
 const Header = React.lazy(() => import(/*webpackPreload: true*/'../components/header'));
 const ContactList = React.lazy(() => import(/*webpackPreload: true*/'../components/contactlist'));
@@ -24,7 +23,6 @@ const App = () => {
 
 
     {/* <AddContact />
-    <ContactDetails /> */}
 
     {/* {liveTheme && <LiveConfig {...theme} />} */}
 

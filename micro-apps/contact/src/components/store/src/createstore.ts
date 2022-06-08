@@ -69,19 +69,11 @@ export const createstore: CreateStore = (init?, opt?) => {
   const mutate: Mutate<S> = (callback: (_state: S) => S) => {
     const newState = callback(state)
 
-    console.log(`state === newState ? `, state === {
-      ...state,
-      ...newState
-    })
-
     state = {
       ...state,
       ...newState
     };
 
-
-
-    console.log(`mutation = `, state)
     emit('mutation', state)
   }
 

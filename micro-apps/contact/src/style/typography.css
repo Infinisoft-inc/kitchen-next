@@ -85,6 +85,7 @@ overline,
 caption {
   font-family: var(--font-family);
   text-transform: capitalize;
+  color: var(--text-primary);
 }
 
 h1 {

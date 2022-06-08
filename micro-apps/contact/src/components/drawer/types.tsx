@@ -5,7 +5,7 @@
  */
 import React from 'react';
 
-export type ModalProps = {
+export type DrawerProps = {
   children: React.ReactNode;
   visible?: boolean;
 } & React.HTMLProps<HTMLSpanElement>;

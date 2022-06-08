@@ -6,7 +6,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
 
 :root {
-  --colors-primary: blue;
+  /* --colors-primary: blue;
 
   --text-primary: rgb(145, 145, 145);
   --text-contrast: rgb(112, 112, 112);
@@ -17,7 +17,7 @@
   --input-text-background-contrast: transparent;
 
   --button-background-primary: transparent;
-  --button-background-secondary: green;
+  --button-background-secondary: green; */
 }
 
 [data-style*='input:text:container'] {

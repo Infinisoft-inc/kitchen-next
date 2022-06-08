@@ -5,12 +5,12 @@
  */
 import { AddressIcon, PhoneIcon, RelatedwithIcon, WebIcon } from '@/assets/svg';
 import React from 'react';
-import AvatarUpload from '../avatar-upload';
 import { useItem } from '../store/src/useItem';
 import css from './index.module.css';
 
 const InputText = React.lazy(() => import(/* webpackPreload: true */ 'inputtext/InputText'));
 const CrudList = React.lazy(() => import(/* webpackPreload: true */ 'crudlist/CrudList'))
+const AvatarUpload = React.lazy(() => import(/* webpackChunkName: 'AvatarUpload' */ '../avatar-upload'))
 
 export type ContentProps = {
   SK: string
@@ -46,9 +46,9 @@ export const Content = ({ SK }: ContentProps) => {
       <InputText before={<AddressIcon />} {...props('address')} multiline />
       <InputText before={<WebIcon />} {...props('website')} />
 
-      <CrudList title={<h6 className={css.listTitle}>Telephones</h6>} icon={<PhoneIcon />} {...listMutator('telephones')} itemList={contact?.telephones} />
+      <CrudList listTitle={<h6 className={css.listTitle}>Telephones</h6>} icon={<PhoneIcon />} {...listMutator('telephones')} itemList={contact?.telephones} />
 
-      <CrudList title={<h6 className={css.listTitle}>Relation</h6>} icon={<RelatedwithIcon />} {...listMutator('relatedWith')} itemList={contact?.relatedWith} />
+      <CrudList listTitle={<h6 className={css.listTitle}>Relation</h6>} icon={<RelatedwithIcon />} {...listMutator('relatedWith')} itemList={contact?.relatedWith} />
     </div>
   </span>
 

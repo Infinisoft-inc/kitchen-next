@@ -5,8 +5,9 @@
  */
 import { useMicroContext } from '@/context/micro';
 import React, { startTransition } from 'react';
-import { Modal } from '../modal';
-import Content from './content';
+
+const Drawer = React.lazy(() => import(/* webpackChunkName: 'Drawer' */ '../Drawer'))
+const Content = React.lazy(() => import(/* webpackChunkName: 'Content' */ './Content'))
 
 export type DetailsProps = {
   children: React.ReactNode
@@ -36,9 +37,9 @@ export const Details = ({ children }: DetailsProps) => {
   }
 
   return <div onClickCapture={onClickCapture} >
-    <Modal visible={visible}>
+    <Drawer visible={visible}>
       <Content SK={store.getState()?.editItemId} />
-    </Modal>
+    </Drawer>
     {children}
   </div>
 }

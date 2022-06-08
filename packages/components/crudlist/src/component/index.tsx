@@ -15,7 +15,7 @@ const FlexContainer = React.lazy(() => import(/* webpackPrefetch: true */'flexco
 const FlexItem = React.lazy(() => import(/* webpackPrefetch: true */'flexitem/FlexItem'));
 
 export const CrudList = ({
-  title,
+  listTitle,
   icon,
   itemList = [],
   onAdd,
@@ -33,9 +33,9 @@ export const CrudList = ({
         <FlexItem>
           <div className={css.list}>
             <div className={css.header}>
-              {title}
+              {listTitle}
 
-              <button onClick={() => { onAdd('Insert here') }}><AddIcon /></button>
+              <button onClick={() => { onAdd('Insert here') }} data-style='input:text:button:add'><AddIcon /></button>
             </div>
             <div className={css.content}>
               {
