@@ -17,6 +17,7 @@ module.exports = {
       '@/infini-soft/store': path.resolve(__dirname, 'src/packages/store'),
       '@/context/micro': path.resolve(__dirname, 'src/context/micro'),
       '@/assets/svg': path.resolve(__dirname, 'src/assets/svg'),
+      '@/style': path.resolve(__dirname, 'src/style/theme.module.css'),
     },
   },
   experiments: {

@@ -22,11 +22,15 @@
 
 [data-style*='input:text:container'] {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   flex-wrap: nowrap;
   background-color: transparent;
   padding: 0.5rem;
   border: 0;
+}
+
+[data-style='input:text:label:group'] {
+  flex: 1 1 auto;
 }
 
 [data-style*='input:text:button:copy'],
@@ -40,7 +44,7 @@
   padding: 0.35rem;
 }
 
-[data-style*='input:text:label'] ,
+[data-style*='input:text:label'],
 [data-style*='input:text:control'] {
   margin: 0 0.5rem;
 }
@@ -55,7 +59,6 @@
   color: transparent;
 }
 
-input:invalid~label {
+input:invalid ~ label {
   color: red;
 }
-

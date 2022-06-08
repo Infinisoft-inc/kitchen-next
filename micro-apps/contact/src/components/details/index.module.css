@@ -21,3 +21,30 @@
 .content {
   padding: 1rem;
 }
+
+.listTitle {
+  margin: 0;
+}
+
+textarea {
+  resize: none;
+  width: 100%;
+}
+
+[data-style*='input:text:control'][name='name'],
+[data-style*='input:text:control'][name='email'] {
+  text-align: center;
+  background: transparent;
+  border: 0;
+  color: var(--color-invariant);
+}
+[data-style*='input:text:control'][name='name'] {
+  font-size: var(--h5-size);
+}
+[data-style*='input:text:control'][name='email'] {
+  font-size: var(--h6-size);
+}
+
+[data-style*='input:text:control'] {
+  width: 100%;
+}

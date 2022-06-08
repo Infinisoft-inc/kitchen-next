@@ -35,13 +35,13 @@ import React, { startTransition } from 'react';
 //   );
 // };
 
-export const decorators = [
-  (Story) => (
-    // <Loader>
-      <Story store={store} />
-    // </Loader>
-  ),
-];
+// export const decorators = [
+//   (Story) => (
+//     // <Loader>
+//       <Story store={store} />
+//     // </Loader>
+//   ),
+// ];
 
 export const parameters = {
   actions: { argTypesRegex: '^on.*' },

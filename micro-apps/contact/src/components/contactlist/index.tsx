@@ -11,20 +11,16 @@ const ContactList = () => {
     store,
     (state: MicroState) => state)
   const _list = state?.list
+  const columns = {
+    name: {
+    },
+    address: {},
+    website: {},
+    telephones: { render: (item: API.Item) => item?.telephones?.map((phone, i) => <div key={phone}>{phone}</div>) },
+  }
+
   return <div style={{ color: 'white' }}>
-
-    {/* <ProTable
-      rowKey={(r) => r?.SK ?? new Date().getTime().toFixed(0)}
-      search={false}
-      pagination={{
-        pageSize: 10,
-      }}
-      // className={styles['ant-pro-table']}
-      dataSource={_list ? Array.from(_list?.values()) : []}
-      columns={columns()}
-    />*/}
-
-    <Table columns={['name', 'address', 'website']} data={_list} />
+    <Table columns={columns} data={_list} />
   </div>
 };
 

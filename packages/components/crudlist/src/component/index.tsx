@@ -17,7 +17,7 @@ const FlexItem = React.lazy(() => import(/* webpackPrefetch: true */'flexitem/Fl
 export const CrudList = ({
   title,
   icon,
-  itemList=[],
+  itemList = [],
   onAdd,
   onChange,
   onRemove,
@@ -26,7 +26,7 @@ export const CrudList = ({
 }: CrudListProps) => {
 
   return <Suspense>
-    <div data-style='input:text:root'>
+    <div data-style='input:text:container'>
 
       <FlexContainer>
         <FlexItem>{icon}</FlexItem>
@@ -35,13 +35,13 @@ export const CrudList = ({
             <div className={css.header}>
               {title}
 
-              <button onClick={()=> {onAdd('Insert here')}}><AddIcon /></button>
+              <button onClick={() => { onAdd('Insert here') }}><AddIcon /></button>
             </div>
             <div className={css.content}>
               {
                 itemList?.map(
                   (item, i: number) => {
-                    return <InputText key={i} defaultValue={String(item)} id={name + `${i}`} onChange={e => onChange(i, e.target.value)} data-index={i} name={name + `${i}`} onRemove={() => onRemove(i)} copyable removable />
+                    return <InputText key={i} defaultValue={String(item)} id={name + `${i}`} onChange={e => onChange(i, e.target.value)} data-index={i} name={name + `${i}`} onRemove={() => onRemove(i)} removable />
                   }
                 )
               }

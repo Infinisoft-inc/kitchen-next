@@ -5,8 +5,8 @@
  */
 
 th {
-  font-size: 3rem;
-  padding-bottom: 1rem;
+  font-size: var(--subtitle1-size);
+  text-transform: capitalize;
 }
 
 table {
@@ -17,11 +17,13 @@ table {
   color: white;
 }
 
-th, td {
+th,
+td {
   text-align: left;
   padding: 16px;
+
 }
 
-tr:nth-child(even) {
+/* tr:nth-child(even) {
   background-color: var(--color-primary-background-60);
-}
+} */

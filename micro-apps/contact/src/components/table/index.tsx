@@ -4,28 +4,42 @@
  * www.infini-soft.com
  */
 
+import '@/style';
 import React from 'react';
 import './index.css';
 
-type TableProps = {
-  columns: string[]
-  data: Map<string, API.Item>
+
+type TableRowConfig<T> = {
+  render?: (row: T) => React.ReactNode
 }
 
-const Table = ({ columns, data }: TableProps) => {
+type TableProps<T> = {
+  columns: Record<string, TableRowConfig<T>>
+  data: Map<string, T>
+}
+
+const Table = <T,>({ columns, data }: TableProps<T>) => {
   const rows = []
 
-  if (data) {
-    for (let [k, v] of data.entries()) {
 
-      rows.push(
-        <tr key={`${k}-row`} id={k}>
-          {columns.map((kk, i: number) =>
-            // @ts-ignore
-            <td key={k + `${i}`} id={k}>{String(v[kk])}</td>)
-          }
-        </tr>
+  if (data) {
+    for (let [rowKey, rowColumns] of data.entries()) {
+
+      const cols = Object.keys(columns).map((columnsKey, i) => columns[columnsKey]?.render
+        ?
+        columns[columnsKey]?.render?.(rowColumns)
+        :
+        //@ts-ignore
+        rowColumns[columnsKey] ? String(rowColumns[columnsKey]) : null
       )
+
+      const row = <tr key={`${rowKey}-row-${new Date().getTime().toFixed(0)}`} id={rowKey}>
+        {cols.map((c = ' ', i) =>
+          <td key={`${rowKey}-${i}-${c}`} id={rowKey}>{c}</td>
+        )}
+      </tr>
+
+      rows.push(row)
     }
   }
 
@@ -34,7 +48,7 @@ const Table = ({ columns, data }: TableProps) => {
     <thead>
       <tr>
         {
-          columns.map((t, i: number) => <th key={i + '-th'}>{t}</th>)
+          Object.keys(columns).map((t, i: number) => <th key={i + '-th'}>{t}</th>)
         }
       </tr>
     </thead>

@@ -12,6 +12,10 @@ export type InputTextProps = {
    */
   variant?: "primary" | 'secondary' | string
   /**
+   * Multiline
+   */
+  multiline?: boolean
+  /**
    * Transparent background, no border
    */
   ghost?: boolean
@@ -40,4 +44,7 @@ export type InputTextProps = {
    */
   invalidMessage?: string
 
-} & React.InputHTMLAttributes<HTMLInputElement>
+
+
+} & React.InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement>
+
