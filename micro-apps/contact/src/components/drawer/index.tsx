@@ -12,8 +12,8 @@ const Drawer = React.forwardRef(({ children, visible, ...props }: DrawerProps, r
 
   return <span {...props} ref={ref}>
 
-    <div data-component='backdrop' data-visible={String(visible)} />
-    <div data-component='modal' data-visible={String(visible)}>
+    <div data-component='backdrop:drawer' data-visible={String(visible)} />
+    <div data-component='drawer' data-visible={String(visible)}>
       {children}
     </div>
 

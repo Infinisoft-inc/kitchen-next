@@ -4,7 +4,7 @@
  * www.infini-soft.com
  */
 
-[data-component='backdrop'] {
+[data-component='backdrop:drawer'] {
   display: none;
   position: fixed;
   z-index: var(--z-backdrop);
@@ -19,12 +19,12 @@
   transition: all ease 900ms;
 }
 
-[data-component='backdrop'][data-visible='true'] {
+[data-component='backdrop:drawer'][data-visible='true'] {
   display: block;
   opacity: 0.6;
 }
 
-[data-component='modal'] {
+[data-component='drawer'] {
   display: block;
   position: fixed;
   z-index: var(--z-backdrop);
@@ -37,7 +37,7 @@
   transition: all ease 700ms;
 }
 
-[data-component='modal'][data-visible='true'] {
+[data-component='drawer'][data-visible='true'] {
   width: 360px;
   opacity: 1;
 }

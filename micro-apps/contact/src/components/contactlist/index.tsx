@@ -12,13 +12,13 @@ const ContactList = () => {
 
   const columns = {
     avatar: {
-      render: (item: API.Item) => <img src={item?.avatar ?? _defaultConfig.src} style={{ height: '50px', maxWidth: '50px' }} />
+      render: (item: API.Item) => <img src={item?.avatar ?? _defaultConfig.src}  id={item.SK} style={{ height: '50px', maxWidth: '50px' }} />
     },
-    Subcategory: {},
-    name: {},
-    telephones: { render: (item: API.Item) => item?.telephones?.map((phone, i) => <div key={phone}>{phone}</div>) },
-    email: {},
-    address: {},
+    // Subcategory: {},
+    name: { render: (item: API.Item) => <div key={item?.name} id={item.SK}>{item?.name}</div> },
+    telephones: { render: (item: API.Item) => item?.telephones?.map((phone, i) => <div key={phone} id={item.SK}>{phone}</div>) },
+    email:  { render: (item: API.Item) => <div key={item?.email} id={item.SK}>{item?.email}</div> },
+    address: { render: (item: API.Item) => <div key={item?.address} id={item.SK}>{item?.address}</div> },
   }
 
   return <div style={{ color: 'white' }}>

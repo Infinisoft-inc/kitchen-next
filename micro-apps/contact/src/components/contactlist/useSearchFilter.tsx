@@ -12,27 +12,47 @@ export const useSearchFilter = () => {
   const [filterTerm, setFilter] = React.useState<string>();
   const [searchTerm, setSearchTerm] = React.useState<string>();
 
+
   /**
    * Apply filter
    * @returns Filtered state
+   *
+   * Same method as search but needs to stay separated.
+   * Filter is going to be refactored.
    */
   const applyFilter = () => {
-    const result = filterTerm //? [...microState?.list.values()].filter(item => JSON.stringify(item).includes(filterTerm)) : microState?.list
-    return result
-  }
 
-  /**
-   * Apply filter
-   * @returns Filtered state
-   */
-  const search = () => {
-
-    if (!searchTerm) {
+    if (!filterTerm) {
       return microState?.list;
     }
     const result = new Map<string, API.Item>()
 
     microState?.list?.forEach((item, key) => {
+      if (JSON.stringify(item).includes(filterTerm)) {
+        result.set(key, item)
+      }
+    })
+
+    return result;
+
+  }
+
+  /**
+   * Search
+   * @returns Result
+   */
+  const search = (list?: Map<string, API.Item>) => {
+
+    if (!searchTerm && !list) {
+      return microState?.list;
+    }
+
+    if (!searchTerm) {
+      return list
+    }
+    const result = new Map<string, API.Item>()
+
+    list?.forEach((item, key) => {
       if (JSON.stringify(item).includes(searchTerm)) {
         result.set(key, item)
       }
@@ -42,35 +62,35 @@ export const useSearchFilter = () => {
 
   }
 
-    /**
-     * Add filter
-     */
-    useEffect(() => store.subscribe((event, state, payload) => {
-      if (typeof payload === 'string') {
-        startTransition(() => {
-          setFilter(payload)
-        })
-      }
-      if (config.verbose) {
-        console.log(`useSearchFilter event/state/payload = `, event, state, payload)
-      }
-    }, { filter: /(filter.add)/ }), [microState])
-
-    /**
-     * Clear filter
-     */
-    useEffect(() => store.subscribe((event, state, payload) => {
-      startTransition(() => {
-        setFilter('')
-      })
-      if (config.verbose) {
-        console.log(`useSearchFilter CLEAR = `, event, state, payload)
-      }
-    }, { filter: /(filter.clear)/ }), [microState])
-
-    /**
-   * Search term
+  /**
+   * Add filter
    */
+  useEffect(() => store.subscribe((event, state, payload) => {
+    if (typeof payload === 'string') {
+      startTransition(() => {
+        setFilter(payload)
+      })
+    }
+    if (config.verbose) {
+      console.log(`useSearchFilter event/state/payload = `, event, state, payload)
+    }
+  }, { filter: /(filter.add)/ }), [microState])
+
+  /**
+   * Clear filter
+   */
+  useEffect(() => store.subscribe((event, state, payload) => {
+    startTransition(() => {
+      setFilter('')
+    })
+    if (config.verbose) {
+      console.log(`useSearchFilter CLEAR = `, event, state, payload)
+    }
+  }, { filter: /(filter.clear)/ }), [microState])
+
+  /**
+ * Search term
+ */
   useEffect(() => store.subscribe((event, state, payload) => {
     if (typeof payload === 'string') {
       startTransition(() => {
@@ -96,5 +116,5 @@ export const useSearchFilter = () => {
   }, { filter: /(search.clear)/ }), [microState])
 
 
-  return search()
+  return search(applyFilter())
 }

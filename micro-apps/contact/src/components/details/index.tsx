@@ -32,7 +32,7 @@ export const Details = ({ children }: DetailsProps) => {
         store.mutate(prev => ({ ...prev, editItemId: (e.target as HTMLElement).id }))
       }
 
-      setVisible(!Boolean((e.target as HTMLElement).dataset.component?.includes('backdrop')))
+      setVisible(!Boolean((e.target as HTMLElement).dataset.component?.includes('backdrop:drawer')))
     })
   }
 

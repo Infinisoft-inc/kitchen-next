@@ -40,12 +40,10 @@ const Dialog = React.forwardRef(({ children, openEvents, closeEvents, ...props }
 
 
   return <span {...props} ref={ref} onClickCapture={onClickCapture}>
-
     <div data-component='backdrop' data-visible={String(_visible)} />
     <div data-component='dialog' data-visible={String(_visible)}>
       {children}
     </div>
-
   </span>;
 });
 

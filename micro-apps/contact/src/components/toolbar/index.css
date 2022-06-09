@@ -21,8 +21,29 @@
   padding: 1rem 0;
 }
 
+.searchContainer {
+  display: flex;
+}
+
+.searchInput {
+  font-family: var(--font-family);
+}
+
+.searchIcon {
+  width: 28px;
+  height: 28px;
+}
+
+.searchButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid;
+  padding: 0.5rem 1rem;
+}
+
 [data-style*='search:container:root'] {
-  flex: 2;
+  flex: 0;
 }
 
 [data-style*='filter:container:root'] {
@@ -33,7 +54,7 @@
 [data-tag='contact'][data-style*='search:container:control'] {
   padding: 0.5rem;
   min-width: 300px;
-  font-size: var(--subtitle1-size)
+  font-size: var(--subtitle1-size);
 }
 
 .subCategoryBadgeActive > * {
