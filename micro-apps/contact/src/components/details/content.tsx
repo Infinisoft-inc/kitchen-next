@@ -48,14 +48,16 @@ export const Content = ({ SK }: ContentProps) => {
       </span>
 
       <span className={css.detailsContainer}>
-      <InputText before={<AddressIcon />} {...props('address')} multiline />
-      <InputText before={<WebIcon />} {...props('website')} />
+        <InputText before={<AddressIcon />} {...props('address')} multiline />
+        <InputText before={<WebIcon />} {...props('website')} />
 
-      <CrudList icon={<PhoneIcon />} placeholder={'(514) 864-5742'} {...listMutator('telephones')} itemList={contact?.telephones} itemRender={(item: string, i: number) => <Chip key={`telephone${i}`} onRemove={() => listMutator('telephones').onRemove(i)}>{item}</Chip>} />
+        <CrudList icon={<PhoneIcon />} placeholder={'(514) 864-5742'} {...listMutator('telephones')} itemList={contact?.telephones} itemRender={(item: string, i: number) => <Chip key={`telephone${i}`} onRemove={() => listMutator('telephones').onRemove(i)}>{item}</Chip>} />
 
-      <CrudList icon={<RelatedwithIcon />} placeholder={'Relation ?'} {...listMutator('relatedWith')} itemList={contact?.relatedWith} itemRender={(item: string, i: number) => <Chip key={`relation${i}`} onRemove={()=>listMutator('relatedWith').onRemove(i)}>{item}</Chip>} />
+        <CrudList icon={<RelatedwithIcon />} placeholder={'Relation ?'} {...listMutator('relatedWith')} itemList={contact?.relatedWith} itemRender={(item: string, i: number) => <Chip key={`relation${i}`} onRemove={() => listMutator('relatedWith').onRemove(i)}>{item}</Chip>} />
       </span>
     </div>
+
+    <div style={{ display: "flex", justifyContent: 'center'}}><button style={{color: "red"}}>Delete</button></div>
   </span>
 
 }

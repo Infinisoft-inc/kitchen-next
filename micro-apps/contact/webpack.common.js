@@ -16,6 +16,7 @@ module.exports = {
     alias: {
       '@/infini-soft/store': path.resolve(__dirname, 'src/packages/store'),
       '@/context/micro': path.resolve(__dirname, 'src/context/micro'),
+      '@/components': path.resolve(__dirname, 'src/components'),
       '@/assets/svg': path.resolve(__dirname, 'src/assets/svg'),
       '@/style': path.resolve(__dirname, 'src/style/theme.module.css'),
     },

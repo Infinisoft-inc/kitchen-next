@@ -9,9 +9,8 @@ import React from "react";
 
 
 const Create = () => {
-
   return <div data-style='create:container:root'>
-    <button key="primary">
+    <button key="primary" onClick={() => { window.dispatchEvent(new CustomEvent('create.click')) }}>
       Create
     </button>
   </div>

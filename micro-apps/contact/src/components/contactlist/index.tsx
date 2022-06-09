@@ -15,6 +15,7 @@ const ContactList = () => {
     store,
     (state: MicroState) => state)
   const _list = state?.list
+
   const columns = {
     avatar: {
       render: (item: API.Item) => <img src={item?.avatar ?? _defaultConfig.src} style={{ height: '50px', maxWidth: '50px' }} />

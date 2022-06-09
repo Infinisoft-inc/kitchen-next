@@ -1,4 +1,5 @@
 
+import Create from '@/components/create';
 import React from 'react';
 // import { useMicroTheme } from '../context/theme';
 import '../style/theme.module.css';
@@ -20,8 +21,11 @@ const App = () => {
     <Details>
       <ContactList />
     </Details>
-    {/* <AddContact />
-    {/* {liveTheme && <LiveConfig {...theme} />} */}
+
+    {/* <Dialog openEvents={['create.click']}>Hello</Dialog> */}
+    <Create  />
+
+    {/* {liveTheme && <LiveConfig {...theme} /> */}
   </div>
 };
 

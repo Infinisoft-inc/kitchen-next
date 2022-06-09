@@ -5,7 +5,7 @@
  *
  * CrudList Federated Micro Component
  */
-import React, { startTransition, Suspense } from 'react';
+import React, { startTransition, Suspense, useRef } from 'react';
 import { AddIcon } from './assets/svg';
 import css from './index.module.css';
 import { CrudListProps } from './types';
@@ -24,11 +24,15 @@ export const CrudList = ({
   ...props
 }: CrudListProps) => {
   const [state, setState] = React.useState<string | undefined>(undefined);
+  const inputRef = useRef<HTMLInputElement>(null)
 
   const handleAdd = () => {
     startTransition(() => {
       onAdd?.(state);
-      setState('')
+      setState(undefined)
+      if (inputRef.current) {
+        inputRef.current.value = ""
+      }
     })
   }
 
@@ -41,7 +45,7 @@ export const CrudList = ({
             listTitle
             :
             <>
-              <InputText before={icon} value={state} onKeyDown={e => { if (e.key === 'Enter') { handleAdd() } }} placeholder={placeholder} onChange={e => setState(e.target.value)} />
+              <InputText before={icon} ref={inputRef} defaultValue={state} onKeyDown={e => { if (e.key === 'Enter') { handleAdd() } }} placeholder={placeholder} onChange={e => setState(e.target.value)} />
               <button onClick={handleAdd} data-style='input:text:button:add'><AddIcon /></button>
             </>
           }

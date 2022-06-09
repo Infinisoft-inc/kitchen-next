@@ -47,7 +47,7 @@ const Table = <T,>({ columns, data }: TableProps<T>) => {
   return <table>
     <thead>
       <tr>
-        {Object.keys(columns).map((t, i: number) => <th key={i + '-th'}>{t}</th>)}
+        {Object.keys(columns).map((t, i: number) => <th key={i + '-th'}><h4>{t}</h4></th>)}
       </tr>
     </thead>
 
