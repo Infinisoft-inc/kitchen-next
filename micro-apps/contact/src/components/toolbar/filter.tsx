@@ -3,10 +3,8 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
-import { Badge, Radio } from "antd";
 import React from "react";
 import { useMetaModel } from "../../hooks/useMetaModel";
-import css from './index.css';
 
 const Filter = () => {
   const meta = useMetaModel()
@@ -22,11 +20,11 @@ const Filter = () => {
   // }, [filters, meta?.subCategories])
 
   const renderBadge = (count: number, active = false) => {
-    return (
-      <Badge
-        count={count}
-        className={active ? css.subCategoryBadgeActive : css.subCategoryBadge}
-      />
+    return (<></>
+      // <Badge
+      //   count={count}
+      //   className={active ? css.subCategoryBadgeActive : css.subCategoryBadge}
+      // />
     );
   }
 
@@ -45,17 +43,17 @@ const Filter = () => {
   }
 
   return <span data-style='filter:container:root'>
-    <Radio.Group value={filterActiveKey} onChange={onChange} >
-      {true &&
+    {/* <Radio.Group value={filterActiveKey} onChange={onChange} > */}
+      {/* {true &&
         <Radio.Button value={'All'} key={'All'} className={css.filterButton}>All</Radio.Button>
-      }
+      } */}
       {/* {Object.entries(filters ?? {})?.sort(([, a], [, b]) => b - a).slice(0, 3)
         .map(([name, count], i) =>
           <Radio.Button value={name} key={i} className={css.filterButton}><span>{name}{renderBadge(count, filterActiveKey === name)} </span></Radio.Button>
 
         )
       } */}
-    </Radio.Group>
+    {/* </Radio.Group> */}
   </span>
 
 }

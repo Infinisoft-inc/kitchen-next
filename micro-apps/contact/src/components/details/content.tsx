@@ -3,22 +3,24 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
-import { AddressIcon, EmailIcon, NameIcon, PhoneIcon, RelatedwithIcon, WebIcon } from '@/assets/svg';
+import { AddressIcon, PhoneIcon, RelatedwithIcon, WebIcon } from '@/assets/svg';
 import React from 'react';
-import AvatarUpload from '../avatar-upload';
+import Chip from '../chip';
 import { useItem } from '../store/src/useItem';
 import css from './index.module.css';
 
 const InputText = React.lazy(() => import(/* webpackPreload: true */ 'inputtext/InputText'));
 const CrudList = React.lazy(() => import(/* webpackPreload: true */ 'crudlist/CrudList'))
+const AvatarUpload = React.lazy(() => import(/* webpackChunkName: 'AvatarUpload' */ '../avatar-upload'))
 
 export type ContentProps = {
   SK: string
+  onClose?: () => void
 };
 
 
-export const Content = ({ SK }: ContentProps) => {
-  const { item: contact, inputMutator, listMutator } = useItem(SK)
+export const Content = ({ SK, onClose }: ContentProps) => {
+  const { item: contact, inputMutator, listMutator, useMutator, destroy } = useItem(SK)
 
   const props = (field: keyof API.Item) => ({
     className: 'invariant',
@@ -31,24 +33,32 @@ export const Content = ({ SK }: ContentProps) => {
   return <span key={SK}>
     <div className={css.header}>
       <div className={css.headerContent}>
-        <h2>Header</h2>
 
-        <AvatarUpload save={function (bse64: string): void {
-          throw new Error('Function not implemented.');
-        }} />
-        <InputText before={<NameIcon />} {...props('name')} />
-        <InputText before={<EmailIcon />} {...props('email')} />
+
+        <AvatarUpload src={contact?.avatar} save={base64 => useMutator('avatar', base64)} />
+        <InputText {...props('name')} />
+        <InputText {...props('email')} />
 
       </div>
     </div>
 
     <div className={css.content}>
-      <InputText before={<AddressIcon />} {...props('address')} />
-      <InputText before={<WebIcon />} {...props('website')} />
+      <span className={css.categoryContainer}>
+        <Chip>Person</Chip>
+        <Chip>Friend</Chip>
+      </span>
 
-      <CrudList title='telephones' icon={<PhoneIcon />} {...listMutator('telephones')} itemList={contact?.telephones} />
-      <CrudList title='relatedwith' icon={<RelatedwithIcon />} {...listMutator('relatedWith')} itemList={contact?.relatedWith} />
+      <span className={css.detailsContainer}>
+        <InputText before={<AddressIcon />} {...props('address')} multiline />
+        <InputText before={<WebIcon />} {...props('website')} />
+
+        <CrudList icon={<PhoneIcon />} placeholder={'(514) 864-5742'} {...listMutator('telephones')} itemList={contact?.telephones} itemRender={(item: string, i: number) => <Chip key={`telephone${i}`} onRemove={() => listMutator('telephones').onRemove(i)}>{item}</Chip>} />
+
+        <CrudList icon={<RelatedwithIcon />} placeholder={'Relation ?'} {...listMutator('relatedWith')} itemList={contact?.relatedWith} itemRender={(item: string, i: number) => <Chip key={`relation${i}`} onRemove={() => listMutator('relatedWith').onRemove(i)}>{item}</Chip>} />
+      </span>
     </div>
+
+    <div style={{ display: "flex", justifyContent: 'center' }} onClick={()=>{destroy();onClose?.()}}><button style={{ color: "red" }}>Delete</button></div>
   </span>
 
 }

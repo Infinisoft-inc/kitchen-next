@@ -11,9 +11,9 @@ export const devtool = (store: Store<MicroState, MicroPayload>) => {
 
   if (typeof window === 'object' && typeof (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ !== 'undefined') {
     //@ts-ignore
-    const devTools = window.__REDUX_DEVTOOLS_EXTENSION__.connect({trace: true});
+    const devTools = window.__REDUX_DEVTOOLS_EXTENSION__.connect({ trace: true });
 
-    store.subscribe(devTools.send)
+
 
     devTools.subscribe((message: any) => {
       if (message.type === 'DISPATCH' && message.state) {
@@ -21,7 +21,13 @@ export const devtool = (store: Store<MicroState, MicroPayload>) => {
       }
     });
 
-    devTools.init(Array.from(store.getState()?.list?.values()));
+    devTools.init(store.getState);
+    const state = {item: {}, list: {hi: 0}}
+
+
+    devTools.send('event', state, 'paylaod')
+
+        store.subscribe(devTools.send)
 
   } else {
     console.error(`

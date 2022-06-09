@@ -4,17 +4,15 @@
  * www.infini-soft.com
  */
 
-import { Button } from "antd";
 import React from "react";
 
 
 
 const Create = () => {
-
   return <div data-style='create:container:root'>
-    <Button type="primary" key="primary">
+    <button key="primary" onClick={() => { window.dispatchEvent(new CustomEvent('create.click')) }}>
       Create
-    </Button>
+    </button>
   </div>
 }
 

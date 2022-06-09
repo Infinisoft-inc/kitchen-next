@@ -10,7 +10,6 @@ const custom = require('./config/custom.webpack.config.dev');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 const { ModuleFederationPlugin } = require('webpack').container;
 const { dependencies, name, infinisoft } = require('./package.json');
 
@@ -38,7 +37,6 @@ module.exports = merge(custom, common, {
         },
       },
     }),
-    new MomentLocalesPlugin(),
     new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
       template: './config/index.html',

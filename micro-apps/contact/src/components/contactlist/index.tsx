@@ -1,29 +1,28 @@
 
-import { MicroState, useMicroContext } from '@/context/micro';
-import ProTable from '@ant-design/pro-table';
 import React from 'react';
-import { useStore } from '../store';
-import { columns } from './columns';
+import Table from '../table';
+import { useSearchFilter } from './useSearchFilter';
+
+const _defaultConfig = {
+  src: "https://cdn.pixabay.com/photo/2016/03/31/20/31/amazed-1295833__340.png"
+}
 
 const ContactList = () => {
-  // const list = useSearchFilter()
-  const { store } = useMicroContext();
-  const state = useStore(
-    store,
-    (state: MicroState) => state)
-  const _list = state?.list
-  return <div style={{ color: 'white' }}>
+  const list = useSearchFilter()
 
-    <ProTable
-      rowKey={(r) => r?.SK ?? new Date().getTime().toFixed(0)}
-      search={false}
-      pagination={{
-        pageSize: 10,
-      }}
-      // className={styles['ant-pro-table']}
-      dataSource={_list ? Array.from(_list?.values()) : []}
-      columns={columns()}
-    />
+  const columns = {
+    avatar: {
+      render: (item: API.Item) => <img src={item?.avatar ?? _defaultConfig.src} style={{ height: '50px', maxWidth: '50px' }} />
+    },
+    Subcategory: {},
+    name: {},
+    telephones: { render: (item: API.Item) => item?.telephones?.map((phone, i) => <div key={phone}>{phone}</div>) },
+    email: {},
+    address: {},
+  }
+
+  return <div style={{ color: 'white' }}>
+    <Table columns={columns} data={list} />
   </div>
 };
 

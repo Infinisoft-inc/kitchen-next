@@ -6,9 +6,9 @@
 
 import React, { ForwardedRef } from 'react';
 import './index.module.css';
-import { ModalProps } from './types';
+import { DrawerProps } from './types';
 
-export const Modal = React.forwardRef(({ children, visible, ...props }: ModalProps, ref: ForwardedRef<HTMLSpanElement>) => {
+const Drawer = React.forwardRef(({ children, visible, ...props }: DrawerProps, ref: ForwardedRef<HTMLSpanElement>) => {
 
   return <span {...props} ref={ref}>
 
@@ -19,3 +19,5 @@ export const Modal = React.forwardRef(({ children, visible, ...props }: ModalPro
 
   </span>;
 });
+
+export default Drawer

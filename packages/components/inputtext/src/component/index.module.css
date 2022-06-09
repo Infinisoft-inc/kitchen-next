@@ -6,7 +6,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
 
 :root {
-  --colors-primary: blue;
+  /* --colors-primary: blue;
 
   --text-primary: rgb(145, 145, 145);
   --text-contrast: rgb(112, 112, 112);
@@ -17,16 +17,19 @@
   --input-text-background-contrast: transparent;
 
   --button-background-primary: transparent;
-  --button-background-secondary: green;
+  --button-background-secondary: green; */
 }
 
 [data-style*='input:text:container'] {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   flex-wrap: nowrap;
   background-color: transparent;
-  padding: 0.5rem;
   border: 0;
+}
+
+[data-style='input:text:label:group'] {
+  flex: 1 1 auto;
 }
 
 [data-style*='input:text:button:copy'],
@@ -40,7 +43,7 @@
   padding: 0.35rem;
 }
 
-[data-style*='input:text:label'] ,
+[data-style*='input:text:label'],
 [data-style*='input:text:control'] {
   margin: 0 0.5rem;
 }
@@ -55,7 +58,6 @@
   color: transparent;
 }
 
-input:invalid~label {
+input:invalid ~ label {
   color: red;
 }
-

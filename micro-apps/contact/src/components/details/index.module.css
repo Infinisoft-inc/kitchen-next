@@ -21,3 +21,49 @@
 .content {
   padding: 1rem;
 }
+
+.listTitle {
+  margin: 0;
+}
+
+textarea {
+  resize: none;
+  width: 100%;
+}
+
+.categoryContainer {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.detailsContainer {
+  margin: 1rem 0;
+}
+
+[data-style*='input:text:control'][name='name'],
+[data-style*='input:text:control'][name='email'] {
+  text-align: center;
+  background: transparent;
+  border: 0;
+  color: var(--color-invariant);
+}
+[data-style*='input:text:control'][name='name'] {
+  font-size: var(--h5-size);
+}
+[data-style*='input:text:control'][name='email'] {
+  font-size: var(--h6-size);
+}
+
+input[data-style*='input:text:control']{
+  width: 100%;
+  color: var(--text-primary-contrast);
+}
+
+textarea,
+h6,
+[data-style='input:text:button:add'] {
+  color: var(--text-primary-contrast);
+}
+
+

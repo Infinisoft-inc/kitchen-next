@@ -5,7 +5,17 @@
  */
 import React from 'react';
 
-export type ModalProps = {
+export type DialogProps = {
+/**
+ * Dialog content
+ */
   children: React.ReactNode;
-  visible?: boolean;
+  /**
+   * Events opening dialog
+   */
+  openEvents: string[]
+  /**
+   * Events closing dialog
+   */
+  closeEvents: string[]
 } & React.HTMLProps<HTMLSpanElement>;

@@ -1,7 +1,5 @@
 {
   "appName": "contacts",
-  "debounce": 2000,
-  "format": true,
   "verbose": true,
   "devMode": false,
   "liveTheme": true,

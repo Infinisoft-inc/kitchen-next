@@ -1,0 +1,43 @@
+/*
+ * Copyright © All rights reserved 2022
+ * Infinisoft Inc.
+ * www.infini-soft.com
+ */
+
+th {
+  font-size: var(--subtitle1-size);
+  text-transform: capitalize;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+  color: white;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 16px;
+}
+
+td {
+  cursor: pointer;
+}
+
+div.paginator-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  padding: 1rem;
+}
+
+span.paginator-item {
+  flex: 0 0;
+}
+
+span.paginator-item:active {
+  border: 1px solid var(--color-primary);
+}

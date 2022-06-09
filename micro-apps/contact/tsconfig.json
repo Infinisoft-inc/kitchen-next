@@ -21,8 +21,7 @@
     "src/**/*",
     "config/*",
     "modules/*.d.ts",
-    "typings.d.ts"
-, "modules/flexline.d.ts.old", "modules/flexitem.d.ts.old"  ],
+    "typings.d.ts" ],
   "exclude": [
     "node_modules",
     "lib",

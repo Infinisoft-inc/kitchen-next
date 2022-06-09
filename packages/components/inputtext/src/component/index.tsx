@@ -12,6 +12,7 @@ import { InputTextProps } from './types';
 
 const InputText = ({
   variant = 'primary',
+  multiline = false,
   copyable,
   ghost = true,
   removable,
@@ -29,15 +30,19 @@ const InputText = ({
     return styles
   }
 
-  return <fieldset key={name} data-style='input:text:container' data-variant={variant}>
-    <div>
-      {before}
-    </div>
 
-    <div>
-      <input {...props} name={name} ref={ref} data-style={`input:text:control`} data-options={styleOptions()} data-variant={variant} type='text'/>
+  return <div key={name} data-style='input:text:container' data-variant={variant}>
+    {before &&
+      <div>
+        {before}
+      </div>
+    }
 
-      <label data-style='input:text:label'>{invalidMessage}</label>
+    <div data-style='input:text:label:group'>
+      {multiline && <textarea {...props} name={name} data-style={`input:text:control`} data-options={styleOptions()} data-variant={variant} />}
+
+      {!multiline && <input {...props} name={name} ref={ref} data-style={`input:text:control`} data-options={styleOptions()} data-variant={variant} type='text' />}
+
     </div>
 
     <div>
@@ -51,7 +56,7 @@ const InputText = ({
     </div>
 
 
-  </fieldset>
+  </div>
 }
 
 

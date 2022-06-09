@@ -4,7 +4,7 @@
  * www.infini-soft.com
  */
 
-.ant-upload {
-  background-color: transparent !important;
-  border: 0px !important;
+[data-style='avatar:upload:fieldset'] {
+  background-color: transparent;
+  border: 0px;
 }

@@ -10,7 +10,6 @@ const custom = require('./config/custom.webpack.config.prod');
 const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 const { ModuleFederationPlugin } = require('webpack').container;
 const {peerDependencies, name, infinisoft} = require('./package.json')
 
@@ -43,7 +42,6 @@ module.exports = merge(custom, common, {
         },
       },
     }),
-    new MomentLocalesPlugin(),
     new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
       template: './config/index.html',

@@ -10,7 +10,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
+// const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 const { ModuleFederationPlugin } = require('webpack').container;
 const { dependencies, name, infinisoft } = require('./package.json');
 
@@ -19,11 +19,11 @@ module.exports = merge(custom, common, {
   plugins: [
     new ModuleFederationPlugin({
       name,
-      filename: 'remoteEntry.js',
+      // filename: 'remoteEntry.js',
       remotes: infinisoft.moduleFederation.prod.remotes,
-      exposes: {
-        [`./${infinisoft.moduleFederation.component}`]: './src/app',
-      },
+      // exposes: {
+      //   [`./${infinisoft.moduleFederation.component}`]: './src/app',
+      // },
       shared: {
         ...dependencies,
         react: {
@@ -38,7 +38,7 @@ module.exports = merge(custom, common, {
         },
       },
     }),
-    new MomentLocalesPlugin(),
+    // new MomentLocalesPlugin(),
     new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
       template: './config/index.html',

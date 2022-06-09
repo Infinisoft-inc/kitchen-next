@@ -4,24 +4,13 @@
  * www.infini-soft.com
  */
 
- :root {
-  --primary-color: pink;
-
-  --text-primary: white;
-}
-
-h1 {
-  color: var(--text-primary);
-}
-
 .root {
   display: flex;
 }
 
 .header {
   display: flex;
-  align-items: center;
-  padding: 0.5rem;
+  margin: 0.35rem 0;
 }
 
 .list {
@@ -31,20 +20,18 @@ h1 {
 
 .content {
   display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem;
 }
 
 button {
   background-color: transparent;
-  color: var(--text-primary);
   border: 0;
 }
 
 button:hover {
   cursor: pointer;
-}
-
-svg[class*=':primary'] {
-  color: var(--colors-primary);
 }

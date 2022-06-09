@@ -1,0 +1,20 @@
+/*
+ * Copyright © All rights reserved 2022
+ * Infinisoft Inc.
+ * www.infini-soft.com
+ */
+
+[data-style='ux:notification:container'] {
+  display: none;
+  position: absolute;
+}
+
+[data-style='ux:notification:content'] {
+  background-color: blue;
+  width: 200px;
+  display: none;
+}
+
+[data-style*='ux:notification'][data-state*='show=true'] {
+  display: block;
+}

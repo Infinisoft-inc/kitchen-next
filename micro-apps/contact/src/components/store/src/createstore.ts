@@ -47,7 +47,9 @@ export const createstore: CreateStore = (init?, opt?) => {
    */
   const _notifyAllSubscribers: EmitEvent<P> = (event, payload) => {
     subscribers.forEach(({ callback, options }) => {
-      callback(event, state, payload);
+      if (event.match(options?.filter ?? /[\s\S]*/g)) {
+        callback(event, state, payload);
+      }
     })
   }
 
@@ -69,19 +71,11 @@ export const createstore: CreateStore = (init?, opt?) => {
   const mutate: Mutate<S> = (callback: (_state: S) => S) => {
     const newState = callback(state)
 
-    console.log(`state === newState ? `, state === {
-      ...state,
-      ...newState
-    })
-
     state = {
       ...state,
       ...newState
     };
 
-
-
-    console.log(`mutation = `, state)
     emit('mutation', state)
   }
 
