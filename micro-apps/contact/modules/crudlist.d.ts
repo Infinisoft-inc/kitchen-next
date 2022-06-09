@@ -9,29 +9,33 @@ declare module "component/types" {
   /**
    * CrudList Props
    */
-  export type CrudListProps<T = any, I = any> = Partial<HTMLInputElement> & {
+  type Crud<T = any, I = any> = {
+      itemList?: T[];
+      onAdd?: (newValue?: T) => void;
+      onChange?: (newValue: T, id: I) => void;
+      onRemove?: (id: I) => void;
+  };
+  export type CrudListProps<T = any, I = any> = Partial<HTMLInputElement> & Crud<T, I> & {
       /**
        * List title
        */
-      listTitle: React.ReactNode;
-      icon: React.ReactNode;
-      onAdd: (newValue?: T) => void;
-      onChange: (newValue: T, id: I) => void;
-      onRemove: (id: I) => void;
-      itemList?: T[];
+      listTitle?: React.ReactNode;
+      icon?: React.ReactNode;
+      itemRender?: (item: T, index: number, array: T[]) => React.ReactNode;
+      Item?: React.FC<Partial<Crud<T, I>>>;
   };
 }
 declare module "crudlist/CrudList" {
   import { CrudListProps } from "component/types";
-  export const CrudList: ({ title, icon, itemList, onAdd, onChange, onRemove, name, ...props }: CrudListProps) => JSX.Element;
+  export const CrudList: ({ listTitle, icon, itemList, onAdd, onChange, onRemove, Item, ...props }: CrudListProps) => JSX.Element;
   export default CrudList;
 }
 declare module "bootstrap" { }
 declare module "component/index.stories" {
   import { ComponentMeta, ComponentStory } from '@storybook/react';
-  const _default: ComponentMeta<({ title, icon, itemList, onAdd, onChange, onRemove, name, ...props }: import("component/types").CrudListProps<any, any>) => JSX.Element>;
+  const _default: ComponentMeta<({ listTitle, icon, itemList, onAdd, onChange, onRemove, Item, ...props }: import("component/types").CrudListProps<any, any>) => JSX.Element>;
   export default _default;
-  export const Example: ComponentStory<({ title, icon, itemList, onAdd, onChange, onRemove, name, ...props }: import("component/types").CrudListProps<any, any>) => JSX.Element>;
+  export const Example: ComponentStory<({ listTitle, icon, itemList, onAdd, onChange, onRemove, Item, ...props }: import("component/types").CrudListProps<any, any>) => JSX.Element>;
 }
 declare module "component/presets/index" {
   export type CrudListPresets = {};

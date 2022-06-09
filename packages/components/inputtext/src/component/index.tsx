@@ -31,7 +31,7 @@ const InputText = ({
   }
 
 
-  return <fieldset key={name} data-style='input:text:container' data-variant={variant}>
+  return <div key={name} data-style='input:text:container' data-variant={variant}>
     {before &&
       <div>
         {before}
@@ -43,7 +43,6 @@ const InputText = ({
 
       {!multiline && <input {...props} name={name} ref={ref} data-style={`input:text:control`} data-options={styleOptions()} data-variant={variant} type='text' />}
 
-      {/* <label data-style='input:text:label'>{invalidMessage}</label> */}
     </div>
 
     <div>
@@ -57,7 +56,7 @@ const InputText = ({
     </div>
 
 
-  </fieldset>
+  </div>
 }
 
 

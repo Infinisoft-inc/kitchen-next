@@ -5,6 +5,7 @@
  */
 import { AddressIcon, PhoneIcon, RelatedwithIcon, WebIcon } from '@/assets/svg';
 import React from 'react';
+import Chip from '../chip';
 import { useItem } from '../store/src/useItem';
 import css from './index.module.css';
 
@@ -41,12 +42,19 @@ export const Content = ({ SK }: ContentProps) => {
     </div>
 
     <div className={css.content}>
+      <span className={css.categoryContainer}>
+        <Chip>Person</Chip>
+        <Chip>Friend</Chip>
+      </span>
+
+      <span className={css.detailsContainer}>
       <InputText before={<AddressIcon />} {...props('address')} multiline />
       <InputText before={<WebIcon />} {...props('website')} />
 
-      <CrudList listTitle={<h6 className={css.listTitle}>Telephones</h6>} icon={<PhoneIcon />} {...listMutator('telephones')} itemList={contact?.telephones} />
+      <CrudList icon={<PhoneIcon />} placeholder={'(514) 864-5742'} {...listMutator('telephones')} itemList={contact?.telephones} itemRender={(item: string, i: number) => <Chip key={`telephone${i}`} onRemove={() => listMutator('telephones').onRemove(i)}>{item}</Chip>} />
 
-      <CrudList listTitle={<h6 className={css.listTitle}>Relation</h6>} icon={<RelatedwithIcon />} {...listMutator('relatedWith')} itemList={contact?.relatedWith} />
+      <CrudList icon={<RelatedwithIcon />} placeholder={'Relation ?'} {...listMutator('relatedWith')} itemList={contact?.relatedWith} itemRender={(item: string, i: number) => <Chip key={`relation${i}`} onRemove={()=>listMutator('relatedWith').onRemove(i)}>{item}</Chip>} />
+      </span>
     </div>
   </span>
 

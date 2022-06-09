@@ -14,7 +14,7 @@ const Button = ({ size = 'large' }: ButtonProps, ref: ForwardedRef<HTMLButtonEle
 
 
   return <Suspense>
-    <div className={css.root}>
+    <div className={css.root} data-style='test'>
       <button ref={ref} {...buttonSizePresets[size]} >
         Button
       </button>

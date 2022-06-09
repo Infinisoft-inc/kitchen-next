@@ -10,7 +10,6 @@
 
 .header {
   display: flex;
-  padding: 0 1rem;
   margin: 0.35rem 0;
 }
 
@@ -21,8 +20,11 @@
 
 .content {
   display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem;
 }
 
 button {
