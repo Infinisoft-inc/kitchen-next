@@ -87,6 +87,12 @@ export const useItem: UseItem = (SK) => {
     }
   }
 
+  const destroy = () => store.mutate(prev => {
+    prev.list.delete(SK)
+
+    return prev
+  })
+
 
 
   const inputMutator: InputMutator = (field) => useCallback((e) => useMutator(field, e?.target?.value), [field, useMutator])
@@ -95,7 +101,8 @@ export const useItem: UseItem = (SK) => {
     item,
     inputMutator,
     listMutator,
-    useMutator
+    useMutator,
+    destroy
   }
 }
 

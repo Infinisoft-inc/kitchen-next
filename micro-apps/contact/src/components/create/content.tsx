@@ -4,33 +4,15 @@
  * www.infini-soft.com
  */
 import React from 'react';
-import { useItem } from '../store/src/useItem';
 import css from './index.module.css';
 import Step1 from './steps/step1';
 import Step2 from './steps/step2';
-
-const InputText = React.lazy(() => import(/* webpackPreload: true */ 'inputtext/InputText'));
-const CrudList = React.lazy(() => import(/* webpackPreload: true */ 'crudlist/CrudList'))
-const AvatarUpload = React.lazy(() => import(/* webpackChunkName: 'AvatarUpload' */ '../avatar-upload'))
 
 export type ContentProps = {
   SK: string
 };
 
-
 export const Content = ({ SK }: ContentProps) => {
-  const { item: contact, inputMutator, listMutator, useMutator } = useItem(SK)
-
-  console.log(`Create Content SK = `, SK)
-  console.log(`Create Content contact = `, contact)
-
-  const props = (field: keyof API.Item) => ({
-    // className: 'invariant',
-    placeholder: field,
-    name: field,
-    value: contact?.[field] ? String(contact?.[field]) : '',
-    onChange: inputMutator(field)
-  })
   const [step, setStep] = React.useState(1);
 
   return <span key={SK}>

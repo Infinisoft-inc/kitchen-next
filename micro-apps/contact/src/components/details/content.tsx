@@ -15,11 +15,12 @@ const AvatarUpload = React.lazy(() => import(/* webpackChunkName: 'AvatarUpload'
 
 export type ContentProps = {
   SK: string
+  onClose?: () => void
 };
 
 
-export const Content = ({ SK }: ContentProps) => {
-  const { item: contact, inputMutator, listMutator, useMutator } = useItem(SK)
+export const Content = ({ SK, onClose }: ContentProps) => {
+  const { item: contact, inputMutator, listMutator, useMutator, destroy } = useItem(SK)
 
   const props = (field: keyof API.Item) => ({
     className: 'invariant',
@@ -57,7 +58,7 @@ export const Content = ({ SK }: ContentProps) => {
       </span>
     </div>
 
-    <div style={{ display: "flex", justifyContent: 'center'}}><button style={{color: "red"}}>Delete</button></div>
+    <div style={{ display: "flex", justifyContent: 'center' }} onClick={()=>{destroy();onClose?.()}}><button style={{ color: "red" }}>Delete</button></div>
   </span>
 
 }

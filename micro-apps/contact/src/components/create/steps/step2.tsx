@@ -21,9 +21,6 @@ export type Step2Props = Partial<HTMLAttributes<HTMLDivElement>> & {
 export const Step2 = ({ SK, hidden }: Step2Props) => {
   const { item: contact, inputMutator, listMutator, useMutator } = useItem(SK)
 
-  console.log(`Create Content SK = `, SK)
-  console.log(`Create Content contact = `, contact)
-
   const props = (field: keyof API.Item) => ({
     placeholder: field,
     name: field,

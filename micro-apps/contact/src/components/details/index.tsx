@@ -38,7 +38,7 @@ export const Details = ({ children }: DetailsProps) => {
 
   return <div onClickCapture={onClickCapture} >
     <Drawer visible={visible}>
-      <Content SK={store.getState()?.editItemId} />
+      <Content SK={store.getState()?.editItemId} onClose={() => setVisible(false)} />
     </Drawer>
     {children}
   </div>

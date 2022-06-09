@@ -4,13 +4,15 @@
  * www.infini-soft.com
  */
 
-import '@/style';
+// import '@/style';
 import React from 'react';
 import './index.css';
+import Paginator from './paginator';
 
 
 type TableRowConfig<T> = {
   render?: (row: T) => React.ReactNode
+  sort?: () => void
 }
 
 type TableProps<T> = {
@@ -44,7 +46,7 @@ const Table = <T,>({ columns, data }: TableProps<T>) => {
   }
 
 
-  return <table>
+  return <><table>
     <thead>
       <tr>
         {Object.keys(columns).map((t, i: number) => <th key={i + '-th'}><h4>{t}</h4></th>)}
@@ -54,7 +56,11 @@ const Table = <T,>({ columns, data }: TableProps<T>) => {
     <tbody>
       {rows}
     </tbody>
+
   </table>
+
+  <Paginator count={36} rowPerPage={5} nextToken="dddd" />
+  </>
 }
 
 export default Table;

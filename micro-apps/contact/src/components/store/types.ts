@@ -101,6 +101,8 @@ type CrudMutators = {
   onRemove: (index: number) => void
 }
 
+type Destroy =   () => void
+
 /**
  * Input List field mutator
  */
@@ -110,5 +112,5 @@ export type InputListMutator = InputMutatorGeneric<keyof API.Item, React.ChangeE
 /**
  * Store Item Mutator/Selector
  */
-export type UseItemGeneric<T> = (field: string) => { item: T, inputMutator: InputMutator, listMutator: UseListMutator, useMutator: UseMutator }
+export type UseItemGeneric<T> = (field: string) => { item: T, inputMutator: InputMutator, listMutator: UseListMutator, useMutator: UseMutator, destroy: Destroy }
 export type UseItem = UseItemGeneric<API.Item>

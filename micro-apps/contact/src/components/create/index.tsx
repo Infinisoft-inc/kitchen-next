@@ -26,15 +26,7 @@ export const Create = ({ children }: DetailsProps) => {
           ...state,
           editItemId: SK
         }
-
-        console.log(`handleAdd SK = `, newState.editItemId)
-        console.log(`handleAdd state before set = `, state)
-        console.log(`handleAdd newState before set = `, newState)
-
         newState?.list?.set(newState.editItemId, { SK: newState.editItemId, relatedWith: [], telephones: [] })
-
-        console.log(`handleAdd state after set = `, state)
-        console.log(`handleAdd newState after set = `, newState)
         return newState
       })
     })
