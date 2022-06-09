@@ -1,13 +1,17 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import NotificationProvider from '.';
+import NotificationProvider, { useNotification } from '.';
+import './index.module.css';
 
-// https://storybook.js.org/docs/react/writing-stories/introduction
-// More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
   title: 'TEMPLATE/NotificationProvider',
   component: NotificationProvider,
-  // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
-  // https://storybook.js.org/docs/react/essentials/controls
+  decorators: [
+    (Story) => (
+      <NotificationProvider>
+        <Story />
+      </NotificationProvider>
+    ),
+  ],
   argTypes: {
     backgroundColor: {
       description: "Backgroundcolor descrpition",
@@ -22,18 +26,31 @@ export default {
   }
 } as ComponentMeta<typeof NotificationProvider>;
 
-// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof NotificationProvider> = (args) => <NotificationProvider {...args} />;
+const Template: ComponentStory<typeof NotificationProvider> = (args) => {
+
+
+  return <NotificationProvider {...args}><MyComponent /></NotificationProvider>
+};
+
+const MyComponent = () => {
+  const { Notification, notification } = useNotification()
+
+
+  return <div>
+    <button onClick={() => notification?.show?.({ header: 'Hello', content: 'World!' })}>Show me</button>
+    <Notification />
+  </div>
+}
 
 export const Primary = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 Primary.args = {
-  message: 'ORINMATRY',
-  size: 'small'
+  // message: 'ORINMATRY',
+  // size: 'small'
 };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
-  message: 'SECONDARY',
-  size: 'large'
+  // message: 'SECONDARY',
+  // size: 'large'
 };

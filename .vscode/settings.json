@@ -1,3 +1,5 @@
 {
-    "debug.allowBreakpointsEverywhere": true
+    "debug.allowBreakpointsEverywhere": true,
+    "xd.globalEditor": true,
+    "xd.lastPackage": "/C:/SHARED/WORKSPACE/kitchen-next/micro-apps/contact/src/style/material-theme"
 }

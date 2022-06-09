@@ -14,18 +14,14 @@ const App = () => {
   // const { liveTheme, ...theme } = useMicroTheme();
 
   return <div className={styles.root}>
-
     <Header />
     <Toolbar />
+
     <Details>
       <ContactList />
     </Details>
-
-
     {/* <AddContact />
-
     {/* {liveTheme && <LiveConfig {...theme} />} */}
-
   </div>
 };
 

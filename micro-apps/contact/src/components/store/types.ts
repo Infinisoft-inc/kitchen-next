@@ -110,5 +110,5 @@ export type InputListMutator = InputMutatorGeneric<keyof API.Item, React.ChangeE
 /**
  * Store Item Mutator/Selector
  */
-export type UseItemGeneric<T> = (field: string) => { item: T, inputMutator: InputMutator, listMutator: UseListMutator }
+export type UseItemGeneric<T> = (field: string) => { item: T, inputMutator: InputMutator, listMutator: UseListMutator, useMutator: UseMutator }
 export type UseItem = UseItemGeneric<API.Item>

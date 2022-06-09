@@ -94,7 +94,8 @@ export const useItem: UseItem = (SK) => {
   return {
     item,
     inputMutator,
-    listMutator
+    listMutator,
+    useMutator
   }
 }
 

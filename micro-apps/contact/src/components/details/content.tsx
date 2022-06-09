@@ -18,7 +18,7 @@ export type ContentProps = {
 
 
 export const Content = ({ SK }: ContentProps) => {
-  const { item: contact, inputMutator, listMutator } = useItem(SK)
+  const { item: contact, inputMutator, listMutator, useMutator } = useItem(SK)
 
   const props = (field: keyof API.Item) => ({
     className: 'invariant',
@@ -33,9 +33,7 @@ export const Content = ({ SK }: ContentProps) => {
       <div className={css.headerContent}>
 
 
-        <AvatarUpload save={function (bse64: string): void {
-          throw new Error('Function not implemented.');
-        }} />
+        <AvatarUpload src={contact?.avatar} save={base64 => useMutator('avatar', base64)} />
         <InputText {...props('name')} />
         <InputText {...props('email')} />
 

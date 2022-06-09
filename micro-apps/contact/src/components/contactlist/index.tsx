@@ -4,6 +4,10 @@ import React from 'react';
 import { useStore } from '../store';
 import Table from '../table';
 
+const _defaultConfig = {
+  src: "https://cdn.pixabay.com/photo/2016/03/31/20/31/amazed-1295833__340.png"
+}
+
 const ContactList = () => {
   // const list = useSearchFilter()
   const { store } = useMicroContext();
@@ -12,6 +16,9 @@ const ContactList = () => {
     (state: MicroState) => state)
   const _list = state?.list
   const columns = {
+    avatar: {
+      render: (item: API.Item) => <img src={item?.avatar ?? _defaultConfig.src} style={{ height: '50px', maxWidth: '50px' }} />
+    },
     name: {
     },
     address: {},

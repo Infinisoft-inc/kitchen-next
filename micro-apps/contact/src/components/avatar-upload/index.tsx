@@ -5,10 +5,11 @@
  */
 
 import React from 'react';
+import { defaultAvatar } from './assets';
 import './index.css';
 
 const _defaultConfig = {
-  src: "https://cdn.pixabay.com/photo/2016/03/31/20/31/amazed-1295833__340.png"
+  src: defaultAvatar
 }
 
 type AvatarUploadProps = {
@@ -23,10 +24,7 @@ type AvatarUploadProps = {
 }
 
 const AvatarUpload = ({ src = _defaultConfig.src, save }: AvatarUploadProps) => {
-  const [state, setState] = React.useState({
-    loading: false,
-    imageUrl: src
-  });
+
 
   const onChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
 
@@ -35,12 +33,9 @@ const AvatarUpload = ({ src = _defaultConfig.src, save }: AvatarUploadProps) => 
       file.readAsDataURL(e.target.files[0])
       file.addEventListener('load', (e) => {
         const imageUrl = e.target?.result as string
-        setState({
-          imageUrl,
-          loading: false,
-        })
-
-        save?.(imageUrl)
+        if (imageUrl) {
+          save?.(imageUrl)
+        }
       })
     }
 
@@ -50,7 +45,7 @@ const AvatarUpload = ({ src = _defaultConfig.src, save }: AvatarUploadProps) => 
     <fieldset data-style={'avatar:upload:fieldset'}>
       <label htmlFor='avatar'>
         <input type='file' onChange={onChange} id='avatar' style={{ display: 'none' }} />
-        <img src={state.imageUrl} alt="avatar" style={{ width: '100%', maxWidth: '100px' }} />
+        <img src={src} alt="avatar" style={{ width: '100%', maxWidth: '100px' }} />
       </label>
     </fieldset>
   </div>
