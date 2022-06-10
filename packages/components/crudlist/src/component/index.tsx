@@ -45,8 +45,10 @@ export const CrudList = ({
             listTitle
             :
             <>
-              <InputText before={icon} ref={inputRef} defaultValue={state} onKeyDown={e => { if (e.key === 'Enter') { handleAdd() } }} placeholder={placeholder} onChange={e => setState(e.target.value)} />
+            <div className={css.box}>
+              <InputText data-style='input:text:control' before={icon} ref={inputRef} defaultValue={state} onKeyDown={e => { if (e.key === 'Enter') { handleAdd() } }} placeholder={placeholder} onChange={e => setState(e.target.value)} />
               <button onClick={handleAdd} data-style='input:text:button:add'><AddIcon /></button>
+              </div>
             </>
           }
         </div>

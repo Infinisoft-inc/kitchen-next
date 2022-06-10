@@ -24,7 +24,7 @@ input[data-style*='input:text:control'] {
 
 textarea,
 h6,
-[data-style='input:text:button:add'] {
+[data-style*='input:text:button:add'] {
   color: var(--text-primary-contrast);
   position: relative;
   left: 208px;

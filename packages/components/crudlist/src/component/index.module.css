@@ -27,9 +27,25 @@
   padding: 1rem;
 }
 
-button {
-  background-color: transparent;
-  border: 0;
+.box {
+  display: flex;
+  flex-direction: row;
+  width: 240px;
+  height: 20px;
+}
+
+[data-style*='input:text:control'] {
+  width: 100%;
+  color: var(--text-primary-contrast);
+  position: absolute;
+  border: 1px solid black;
+}
+
+button[data-style*='input:text:button:add'] {
+  color: var(--text-primary-contrast);
+  position: relative;
+  /* left: 208px;
+  bottom: 2px; */
 }
 
 button:hover {

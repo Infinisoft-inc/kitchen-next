@@ -1,5 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import React, { useSyncExternalStore } from 'react';
+import { useSyncExternalStore } from 'react';
 import type { IStore } from 'store/types';
 import CrudList from '.';
 import { PhoneIcon } from './assets/svg';
@@ -102,5 +102,5 @@ const Template: ComponentStory<typeof CrudList> = ({icon, ...args}, context) => 
 export const Example = Template.bind({});
 Example.args = {
   title: 'Example List',
-  icon: <PhoneIcon />,
+  icon: <PhoneIcon/>,
 };
