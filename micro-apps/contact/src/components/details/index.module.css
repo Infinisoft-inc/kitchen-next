@@ -55,7 +55,7 @@ textarea {
   font-size: var(--h6-size);
 }
 
-input[data-style*='input:text:control']{
+input[data-style*='input:text:control'] {
   width: 100%;
   color: var(--text-primary-contrast);
 }
@@ -66,4 +66,6 @@ h6,
   color: var(--text-primary-contrast);
 }
 
-
+.root {
+  width: 100%;
+}

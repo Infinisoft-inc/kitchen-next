@@ -5,6 +5,7 @@
  */
 import { useMicroContext } from '@/context/micro';
 import React, { startTransition } from 'react';
+import css from './index.module.css';
 
 const Drawer = React.lazy(() => import(/* webpackChunkName: 'Drawer' */ '../Drawer'))
 const Content = React.lazy(() => import(/* webpackChunkName: 'Content' */ './Content'))
@@ -36,7 +37,7 @@ export const Details = ({ children }: DetailsProps) => {
     })
   }
 
-  return <div onClickCapture={onClickCapture} >
+  return <div onClickCapture={onClickCapture} className={css.root}>
     <Drawer visible={visible}>
       <Content SK={store.getState()?.editItemId} onClose={() => setVisible(false)} />
     </Drawer>

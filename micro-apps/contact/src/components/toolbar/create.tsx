@@ -5,11 +5,11 @@
  */
 
 import '@/style';
-import React from "react";
+import css from './index.css';
 
 const Create = () => {
   return <div data-style='create:container:root'>
-    <button className='baseButton' key="primary" onClick={() => { window.dispatchEvent(new CustomEvent('create.click')) }}>
+    <button className={css.baseButton} key="primary" onClick={() => { window.dispatchEvent(new CustomEvent('create.click')) }}>
       Create
     </button>
   </div>
