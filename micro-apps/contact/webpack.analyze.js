@@ -11,6 +11,8 @@ const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BundleAnalyzerPlugin =
   require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const { ModuleFederationPlugin } = require('webpack').container;
+const { dependencies, name, infinisoft } = require('./package.json');
 
 module.exports = (env, argv) =>
   merge(common, {
@@ -19,7 +21,30 @@ module.exports = (env, argv) =>
       minimize: true,
       minimizer: [new TerserPlugin()],
     },
+
     plugins: [
+      new ModuleFederationPlugin({
+        name,
+        filename: 'remoteEntry.js',
+        remotes: infinisoft.moduleFederation.dev.remotes,
+        exposes: {
+          [`./${infinisoft.moduleFederation.component}`]: './src/app',
+        },
+        shared: {
+          ...dependencies,
+          react: {
+            singleton: true,
+            eager: true,
+            requiredVersion: dependencies.react,
+          },
+          'react-dom': {
+            singleton: true,
+            eager: true,
+            requiredVersion: dependencies['react-dom'],
+          },
+        },
+      }),
+
       new MiniCssExtractPlugin(),
       new BundleAnalyzerPlugin({
         analyzerMode: 'static',

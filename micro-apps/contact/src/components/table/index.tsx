@@ -17,7 +17,7 @@ type TableRowConfig<T> = {
 
 type TableProps<T> = {
   columns: Record<string, TableRowConfig<T>>
-  data: Map<string, T>
+  data?: Map<string, T>
 }
 
 const Table = <T,>({ columns, data }: TableProps<T>) => {

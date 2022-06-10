@@ -5,9 +5,9 @@
  */
 import React from 'react';
 import css from './index.module.css';
-import Step1 from './steps/step1';
-import Step2 from './steps/step2';
 
+const Step1 = React.lazy(() => import(/*webpackPreload: true*//* webpackChunkName: 'Step1' */ './steps/step1'))
+const Step2 = React.lazy(() => import(/*webpackPreload: true*//* webpackChunkName: 'Step2' */ './steps/step2'))
 export type ContentProps = {
   SK: string
 };

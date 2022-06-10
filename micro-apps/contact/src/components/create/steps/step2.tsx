@@ -4,7 +4,7 @@
  * www.infini-soft.com
  */
 import { RelatedwithIcon, WebIcon } from '@/assets/svg';
-import Chip from '@/components/chip';
+import Chip from '@/components/mychip';
 import { useItem } from '@/components/store/src/useItem';
 import React, { HTMLAttributes } from 'react';
 import css from './index.module.css';
