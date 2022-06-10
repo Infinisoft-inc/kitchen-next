@@ -5,13 +5,13 @@
  */
 import { AddressIcon, PhoneIcon, RelatedwithIcon, WebIcon } from '@/assets/svg';
 import React from 'react';
-import Chip from '../chip';
 import { useItem } from '../store/src/useItem';
 import css from './index.module.css';
 
-const InputText = React.lazy(() => import(/* webpackPreload: true */ 'inputtext/InputText'));
-const CrudList = React.lazy(() => import(/* webpackPreload: true */ 'crudlist/CrudList'))
-const AvatarUpload = React.lazy(() => import(/* webpackChunkName: 'AvatarUpload' */ '../avatar-upload'))
+const Chip = React.lazy(() => import(/*  webpackPreload: true */ /* webpackChunkName: 'Chip' */ '../mychip'))
+const InputText = React.lazy(() => import(/* webpackPreload: true */ /*  webpackChunkName: 'InputText'*/ 'inputtext/InputText'));
+const CrudList = React.lazy(() => import(/* webpackPreload: true */ /*  webpackChunkName: 'CrudList'*/ 'crudlist/CrudList'))
+const AvatarUpload = React.lazy(() => import(/* webpackPreload: true */ /*  webpackChunkName: 'AvatarUpload' */ '../avatar-upload'))
 
 export type ContentProps = {
   SK: string
@@ -58,7 +58,7 @@ export const Content = ({ SK, onClose }: ContentProps) => {
       </span>
     </div>
 
-    <div style={{ display: "flex", justifyContent: 'center' }} onClick={()=>{destroy();onClose?.()}}><button style={{ color: "red" }}>Delete</button></div>
+    <div style={{ display: "flex", justifyContent: 'center' }} onClick={() => { destroy(); onClose?.() }}><button style={{ color: "red" }}>Delete</button></div>
   </span>
 
 }

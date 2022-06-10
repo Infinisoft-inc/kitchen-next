@@ -27,17 +27,19 @@ td {
   cursor: pointer;
 }
 
-div.paginator-container {
+div.paginatorContainer {
   display: flex;
   justify-content: flex-end;
   gap: 0.5rem;
   padding: 1rem;
 }
 
-span.paginator-item {
+span.paginatorItem {
   flex: 0 0;
+  padding: 0.35rem 0.75rem
 }
 
-span.paginator-item:active {
+span.paginatorItemActive {
   border: 1px solid var(--color-primary);
+  padding: 0.35rem 0.75rem
 }

@@ -5,8 +5,8 @@
  */
 
 // import '@/style';
-import React, { useMemo } from 'react';
-import './index.css';
+import React, { startTransition, useMemo } from 'react';
+import css from './index.css';
 
 
 type PaginatorProps<T> = {
@@ -22,9 +22,27 @@ const Paginator = <T,>({ rowPerPage, count = 1, nextToken }: PaginatorProps<T>) 
   const _endIndex = useMemo(() => currentPage * rowPerPage - 1 + rowPerPage, [currentPage, rowPerPage])
   const _numberOfPage = useMemo(() => Math.ceil(count / rowPerPage), [rowPerPage])
 
-  return <div className='paginator-container'>
+  const handleNextPage = () => {
+    startTransition(()=> {
+      setCurrentPage(prev=>prev+1)
+    })
+  }
+
+  const handleBackPage = () => {
+    startTransition(()=> {
+      setCurrentPage(prev=>prev-1)
+    })
+  }
+
+  const handleGotoPage = (_page: number) => {
+    startTransition(()=> {
+      setCurrentPage(_page)
+    })
+  }
+
+  return <div className={css.paginatorContainer}>
     {new Array(_numberOfPage).fill(0).map((a, i) =>
-      <span key={`page-${i + 1}`} className={i + 1 === currentPage ? 'paginator-item:active' : 'paginator-item'}>
+      <span key={`page-${i + 1}`} onClick={()=>{handleGotoPage(i+1)}} className={(i + 1) === currentPage ? css['paginatorItemActive'] : css['paginatorItem']}>
         {i + 1}
       </span>
     )

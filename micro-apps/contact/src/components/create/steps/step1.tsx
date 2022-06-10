@@ -4,14 +4,13 @@
  * www.infini-soft.com
  */
 import { AddressIcon, EmailIcon, NameIcon, PhoneIcon } from '@/assets/svg';
-import Chip from '@/components/chip';
+import Chip from '@/components/mychip';
 import { useItem } from '@/components/store/src/useItem';
 import React, { HTMLAttributes } from 'react';
 import css from './index.module.css';
 
-const InputText = React.lazy(() => import(/* webpackPreload: true */ 'inputtext/InputText'));
-const CrudList = React.lazy(() => import(/* webpackPreload: true */ 'crudlist/CrudList'))
-const AvatarUpload = React.lazy(() => import(/* webpackChunkName: 'AvatarUpload' */ '../../avatar-upload'))
+const InputText = React.lazy(() => import(/* webpackPreload: true */ /* webpackChunkName: 'inputtext' */'inputtext/InputText'));
+const CrudList = React.lazy(() => import(/* webpackPreload: true */ /* webpackChunkName: 'crudlist' */'crudlist/CrudList'))
 
 export type Step1 = Partial<HTMLAttributes<HTMLDivElement>> & {
   SK: string
@@ -32,7 +31,6 @@ export const Step1 = ({ SK, hidden }: Step1) => {
     <div className={css.header}>
       <div className={css.headerContent}>
         <h2 className={css.headerTitle}>Contact</h2>
-        {/* <AvatarUpload src={contact?.avatar} save={base64 => useMutator('avatar', base64)} /> */}
       </div>
     </div>
 

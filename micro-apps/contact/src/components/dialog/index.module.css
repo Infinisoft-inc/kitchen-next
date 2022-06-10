@@ -37,6 +37,7 @@
   opacity: 0;
   background-color: var(--color-primary-contrast-background);
   transition: all ease 400ms;
+  overflow: hidden;
 }
 
 [data-component='dialog'][data-visible='true'] {
