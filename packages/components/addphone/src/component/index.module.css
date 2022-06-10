@@ -9,3 +9,24 @@
   margin-bottom: 1.5rem;
 }
 
+.box {
+  display: flex;
+  flex-direction: row;
+  width: 225px;
+  height: 35px;
+}
+
+input[data-style*='input:text:control'] {
+  width: 225px;
+  color: var(--text-primary-contrast);
+  position: absolute;
+}
+
+textarea,
+h6,
+[data-style='input:text:button:add'] {
+  color: var(--text-primary-contrast);
+  position: relative;
+  left: 208px;
+  bottom: 2px;
+}
