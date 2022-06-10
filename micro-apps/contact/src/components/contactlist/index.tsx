@@ -1,7 +1,7 @@
 
 import { useMicroContext } from '@/context/micro';
-import { Suspense } from 'react';
 import Table from '../table';
+import usePaginator, { Paginator } from '../table/paginator';
 import { useSearchFilter } from './useSearchFilter';
 
 const _defaultConfig = {
@@ -10,6 +10,7 @@ const _defaultConfig = {
 
 const ContactList = () => {
   const list = useSearchFilter()
+  const { paginate, handleGotoPage, currentPage,  ...props } = usePaginator({ rowPerPage: 5, count: list?.size ?? 0, nextToken: '000' })
   const { store } = useMicroContext()
 
 
@@ -19,6 +20,10 @@ const ContactList = () => {
   }
 
 
+  /**
+   * Refactor in seperate file
+   *
+   */
   const columns = {
     avatar: {
       render: (item: API.Item) => <img src={item?.avatar ?? _defaultConfig.src} id={item.SK} style={{ height: '50px', maxWidth: '50px' }} />
@@ -31,9 +36,9 @@ const ContactList = () => {
   }
 
   return <div style={{ color: 'white' }}>
-    <Suspense>
-      <Table columns={columns} data={list} />
-    </Suspense>
+    <Table columns={columns} data={paginate(list)} />
+
+    <Paginator currentPage={currentPage} handleGotoPage={handleGotoPage} numberOfPage={Math.round((list?.size ?? 1) / 5)} rowPerPage={5} nextToken='d' />
   </div>
 };
 

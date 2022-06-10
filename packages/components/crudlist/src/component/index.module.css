@@ -11,6 +11,7 @@
 .header {
   display: flex;
   margin: 0.35rem 0;
+  position: relative;
 }
 
 .list {
@@ -34,4 +35,13 @@ button {
 
 button:hover {
   cursor: pointer;
+}
+
+[data-style='input:text:button:add'] {
+  position: absolute;
+  right: 0;
+}
+
+[data-style='input:text:container'] {
+  width: 100%;
 }

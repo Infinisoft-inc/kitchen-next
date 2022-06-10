@@ -7,7 +7,6 @@
 // import '@/style';
 import React from 'react';
 import './index.css';
-import Paginator from './paginator';
 
 
 type TableRowConfig<T> = {
@@ -59,7 +58,7 @@ const Table = <T,>({ columns, data }: TableProps<T>) => {
 
   </table>
 
-  <Paginator count={36} rowPerPage={5} nextToken="dddd" />
+  {/* <usePaginator count={36} rowPerPage={5} nextToken="dddd" /> */}
   </>
 }
 
