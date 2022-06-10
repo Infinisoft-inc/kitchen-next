@@ -8,7 +8,7 @@ import '@/style';
 import css from './index.css';
 
 const Create = () => {
-  return <div data-style='create:container:root'>
+  return <div data-style='create:container:root' onDragStart={console.log} onDragEnd={console.log} draggable >
     <button className={css.baseButton} key="primary" onClick={() => { window.dispatchEvent(new CustomEvent('create.click')) }}>
       Create
     </button>
