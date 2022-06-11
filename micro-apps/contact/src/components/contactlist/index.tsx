@@ -1,22 +1,24 @@
 
 import { useMicroContext } from '@/context/micro';
-import React from 'react';
+import React, { useMemo } from 'react';
 import Table from '../table';
 import usePaginator, { Paginator } from '../table/paginator';
+import css from './index.module.css';
 import { useSearchFilter } from './useSearchFilter';
 
 const _defaultConfig = {
   src: "https://cdn.pixabay.com/photo/2016/03/31/20/31/amazed-1295833__340.png"
 }
 
-const ROWS_PER_PAGE = 15
+const ROWS_PER_PAGE = 5
 
 const ContactList = () => {
   const list = useSearchFilter()
-  const { paginate, handleGotoPage, currentPage, ...props } = usePaginator({ rowPerPage: ROWS_PER_PAGE, count: list?.size ?? 0, nextToken: '000' })
+  const { paginate, handleGotoPage, currentPage, _numberOfPage } = usePaginator({ rowPerPage: ROWS_PER_PAGE, count: list?.size ?? 0, nextToken: '000' })
   const { store } = useMicroContext()
   const [pageSize, setPageSize] = React.useState(ROWS_PER_PAGE);
   const [nextToken, setNextToken] = React.useState('mocktoken');
+  const pagedList = useMemo(()=>paginate(list), [paginate, list])
 
 
   const onClick = (SK: string) => {
@@ -40,10 +42,10 @@ const ContactList = () => {
     address: { render: (item: API.Item) => <div key={item?.address} id={item.SK}>{item?.address}</div> },
   }
 
-  return <div style={{ color: 'white', width: '100%'}}>
-    <Table columns={columns} data={paginate(list)} />
+  return <div className={css.listContainer}>
+    <Table columns={columns} data={pagedList} />
 
-    <Paginator currentPage={currentPage} handleGotoPage={handleGotoPage} numberOfPage={Math.round((list?.size ?? 1) / pageSize)} rowPerPage={pageSize} nextToken={nextToken} />
+    <Paginator currentPage={currentPage} handleGotoPage={handleGotoPage} numberOfPage={_numberOfPage} rowPerPage={pageSize} nextToken={nextToken} />
   </div>
 };
 

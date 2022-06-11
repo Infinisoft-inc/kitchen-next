@@ -6,7 +6,7 @@
 
 import { IStore } from "../types";
 
-export const devtool = <S, P>(store: IStore<S, P>) => {
+export const devtool = <S, P>(store: IStore<S, P> & {state: S}) => {
 
   if (typeof window === 'object' && typeof (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ !== 'undefined') {
     //@ts-ignore
@@ -16,13 +16,22 @@ export const devtool = <S, P>(store: IStore<S, P>) => {
         console.log('DevTools requested to change the state to', message.state);
       }
       console.log(`message  = `, message)
+
     });
 
-    // devTools.init(store.getState());
-    store.subscribe((event, state, payload) => {
-      console.log(`subscribe event state opaylaod`, event, state, payload)
-      devTools.send(event, { ...store?.getState(), payload })
-    })
+    setTimeout(()=>{
+      devTools.init(store.state);
+
+      store.subscribe((event, state, payload) => {
+        console.log(`subscribe event state opaylaod`, event, state, payload)
+        devTools.send(event, state)
+      })
+
+    }, 1500)
+
+
+
+
 
   } else {
     console.error(`

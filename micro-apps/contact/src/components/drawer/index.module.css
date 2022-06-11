@@ -21,6 +21,7 @@
 
 [data-component='backdrop:drawer'][data-visible='true'] {
   display: block;
+  background-color: var(--color-primary-contrast-background);
   opacity: 0.6;
 }
 
@@ -34,7 +35,7 @@
   height: 100vh;
   width: 0px;
   opacity: 0;
-  background-color: var(--color-primary-contrast-background);
+  background-color: var(--color-invariant-contrast);
   transition: all ease 700ms;
 }
 

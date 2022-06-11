@@ -19,7 +19,7 @@
 
 .baseToggleActive {
   background-color: var(--color-primary-contrast-background);
-  color: var(--text-orimary-contrast);
+  color: var(--text-primary-contrast);
   font-size: var(--subtitle1-size);
 }
 

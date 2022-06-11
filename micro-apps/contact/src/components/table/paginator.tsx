@@ -31,9 +31,12 @@ export const Paginator = <T,>({numberOfPage, handleGotoPage, currentPage}: any) 
 
 export const usePaginator = <T,>({ rowPerPage, count = 1, nextToken }: PaginatorProps<T>) => {
   const [currentPage, setCurrentPage] = React.useState(1);
-  const _startIndex = useMemo(() => currentPage * rowPerPage - 1, [currentPage, rowPerPage])
-  const _endIndex = useMemo(() => currentPage * rowPerPage - 1 + rowPerPage, [currentPage, rowPerPage])
-  const _numberOfPage = useMemo(() => Math.ceil(count / rowPerPage), [rowPerPage])
+  const _startIndex = useMemo(() => (currentPage-1) * rowPerPage, [currentPage, rowPerPage])
+  const _endIndex = useMemo(() => (currentPage - 1) * rowPerPage + rowPerPage, [currentPage, rowPerPage])
+  const _numberOfPage = useMemo(() => {
+    startTransition(()=>{setCurrentPage(1)})
+    return Math.ceil(count / rowPerPage)
+  }, [count, rowPerPage])
 
   const handleNextPage = () => {
     startTransition(() => {
@@ -52,16 +55,6 @@ export const usePaginator = <T,>({ rowPerPage, count = 1, nextToken }: Paginator
       setCurrentPage(_page)
     })
   }
-
-  // const Paginator = () => <div className={css.paginatorContainer}>
-  //   {new Array(_numberOfPage).fill(0).map((a, i) =>
-  //     <span key={`page-${i + 1}`} onClick={() => { handleGotoPage(i + 1) }} data-tag='paginatorItem' className={(i + 1) === currentPage ? css['paginatorItemActive'] : css['paginatorItem']}>
-  //       {i + 1}
-  //     </span>
-  //   )
-  //   }
-
-  // </div>
 
   const paginate = (_list?: Map<string, API.Item>) => {
     return _list ? new Map(Array.from(_list).slice(_startIndex, _endIndex)) : new Map<string, API.Item>()

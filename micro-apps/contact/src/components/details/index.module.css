@@ -6,7 +6,7 @@
 
 .header {
   height: 300px;
-  background-color: var(--color-primary-background-60);
+  background-color: var(--color-invariant-90);
   display: flex;
   align-items: center;
   jusitfy-content: center;
@@ -46,7 +46,7 @@ textarea {
   text-align: center;
   background: transparent;
   border: 0;
-  color: var(--color-invariant);
+  color: var(--text-primary-contrast);
 }
 [data-style*='input:text:control'][name='name'] {
   font-size: var(--h5-size);
@@ -57,13 +57,13 @@ textarea {
 
 input[data-style*='input:text:control'] {
   width: 100%;
-  color: var(--text-primary-contrast);
+  color: var(--text-primary);
 }
 
 textarea,
 h6,
 [data-style='input:text:button:add'] {
-  color: var(--text-primary-contrast);
+  color: var(--text-primary);
 }
 
 .root {
