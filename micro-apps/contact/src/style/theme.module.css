@@ -43,6 +43,8 @@
   --color-primary-contrast-background: white;
 
   --color-invariant: white;
+  --color-invariant-90: rgba(0, 0, 0, 0.9);
+  --color-invariant-contrast: white;
 
   --z-dialog: 1200;
   --z-drawer: 1000;
