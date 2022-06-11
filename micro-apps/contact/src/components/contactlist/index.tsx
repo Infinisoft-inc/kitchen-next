@@ -40,7 +40,7 @@ const ContactList = () => {
     address: { render: (item: API.Item) => <div key={item?.address} id={item.SK}>{item?.address}</div> },
   }
 
-  return <div style={{ color: 'white'}}>
+  return <div style={{ color: 'white', width: '100%'}}>
     <Table columns={columns} data={paginate(list)} />
 
     <Paginator currentPage={currentPage} handleGotoPage={handleGotoPage} numberOfPage={Math.round((list?.size ?? 1) / pageSize)} rowPerPage={pageSize} nextToken={nextToken} />

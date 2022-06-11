@@ -17,6 +17,7 @@
 .list {
   display: flex;
   flex-direction: column;
+  flex: 1;
 }
 
 .content {
@@ -37,9 +38,10 @@ button:hover {
   cursor: pointer;
 }
 
-[data-style='input:text:button:add'] {
+.addButton {
   position: absolute;
   right: 0;
+  top: 35%;
 }
 
 [data-style='input:text:container'] {

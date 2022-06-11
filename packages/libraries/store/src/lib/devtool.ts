@@ -15,10 +15,14 @@ export const devtool = <S, P>(store: IStore<S, P>) => {
       if (message.type === 'DISPATCH' && message.state) {
         console.log('DevTools requested to change the state to', message.state);
       }
+      console.log(`message  = `, message)
     });
 
-    devTools.init(store.getState);
-    store.subscribe(devTools.send)
+    // devTools.init(store.getState());
+    store.subscribe((event, state, payload) => {
+      console.log(`subscribe event state opaylaod`, event, state, payload)
+      devTools.send(event, { ...store?.getState(), payload })
+    })
 
   } else {
     console.error(`
