@@ -16,7 +16,7 @@ import { Store } from "../types"
 type Selector<S, R> = (arg: S) => R
 type UseStoreGeneric = <S, P, R>(store: Store<S, P>, selector: Selector<S, R>) => R
 
-export const useStore = <S, P, R>(store: Store<S, P>, selector: Selector<S, R>) => {
+export const useStore: UseStoreGeneric = (store, selector) => {
   return useSyncExternalStore(
     store.subscribe,
     useCallback(() => selector(store.getState()), [store, selector])

@@ -32,7 +32,7 @@ export const devtool = (store: Store<MicroState, MicroPayload>) => {
   } else {
     console.error(`
 *******************************************************************
-                      DEVMODE ENABLED
+                      verbose ENABLED
               Redux devtool extension not found!
 
               Powered 🚀 by Infinisoft Inc.

@@ -1,0 +1,57 @@
+{
+  "$id": "schema 1 2 3",
+  "description": "this is a JSON SChema test for typescript conversion",
+  "type": "object",
+  "properties": {
+    "name": {
+      "$ref": "#/$defs/name"
+    },
+    "list": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/address" }
+    },
+    "intersectionNameAddress": {
+      "type": "object",
+      "allOf": [{ "$ref": "#/$defs/address" }, { "$ref": "#/$defs/name" }]
+    },
+    "unionNameAddress": {
+      "type": "object",
+      "anyOf": [{ "$ref": "#/$defs/address" }, { "$ref": "#/$defs/name" }]
+    },
+    "oneNameAddress": {
+      "not": {
+        "type": "object",
+        "oneOf": [{ "$ref": "#/$defs/address" }, { "$ref": "#/$defs/name" }]
+      }
+    }
+  },
+  "required": ["name", "unionNameAddress"],
+  "additionalProperties": false,
+  "$defs": {
+    "address": {
+      "type": "object",
+      "properties": {
+        "phone": { "type": "number" },
+        "house": { "type": "string" },
+        "street": { "enum": ["Street", "Avenue", "Boulevard"] },
+        "orientation": { "enum": ["NW", "NE", "SW", "SE"] }
+      }
+    },
+    "name": {
+      "type": "object",
+      "properties": {
+        "props1": {
+          "type": "string",
+          "min": 10
+        },
+        "props2": {
+          "type": "string"
+        },
+        "country": {
+          "const": "United States of America"
+        }
+      },
+      "required": ["props1"]
+    }
+  }
+}
