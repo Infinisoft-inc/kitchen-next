@@ -5,8 +5,9 @@
  */
 import { AddressIcon, EmailIcon, NameIcon, PhoneIcon } from '@/assets/svg';
 import Chip from '@/components/mychip';
-import { useItem } from '@/components/store/src/useItem';
+import { useMicroContext } from '@/context/micro';
 import React, { HTMLAttributes } from 'react';
+import { useItem } from '../../../context/useItem';
 import css from './index.module.css';
 
 const InputText = React.lazy(() => import(/* webpackPreload: true */ /* webpackChunkName: 'inputtext' */'inputtext/InputText'));
@@ -18,6 +19,7 @@ export type Step1 = Partial<HTMLAttributes<HTMLDivElement>> & {
 
 
 export const Step1 = ({ SK, hidden }: Step1) => {
+  const {store} = useMicroContext()
   const { item: contact, inputMutator, listMutator, useMutator } = useItem(SK)
 
   const props = (field: keyof API.Item) => ({

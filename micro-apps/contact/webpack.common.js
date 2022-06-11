@@ -14,7 +14,7 @@ module.exports = {
     cacheWithContext: false,
     extensions: ['.tsx', '.ts', '.jsx', '.js'],
     alias: {
-      '@/infini-soft/store': path.resolve(__dirname, 'src/packages/store'),
+      // '@/infini-soft/store': path.resolve(__dirname, 'src/packages/store'),
       '@/context/micro': path.resolve(__dirname, 'src/context/micro'),
       '@/components': path.resolve(__dirname, 'src/components'),
       '@/assets/svg': path.resolve(__dirname, 'src/assets/svg'),

@@ -5,8 +5,9 @@
  */
 import { RelatedwithIcon, WebIcon } from '@/assets/svg';
 import Chip from '@/components/mychip';
-import { useItem } from '@/components/store/src/useItem';
+import { useMicroContext } from '@/context/micro';
 import React, { HTMLAttributes } from 'react';
+import { useItem } from '../../../context/useItem';
 import css from './index.module.css';
 
 const InputText = React.lazy(() => import(/* webpackPreload: true */ 'inputtext/InputText'));
@@ -19,6 +20,7 @@ export type Step2Props = Partial<HTMLAttributes<HTMLDivElement>> & {
 
 
 export const Step2 = ({ SK, hidden }: Step2Props) => {
+  const {store} = useMicroContext()
   const { item: contact, inputMutator, listMutator, useMutator } = useItem(SK)
 
   const props = (field: keyof API.Item) => ({

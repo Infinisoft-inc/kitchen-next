@@ -7,17 +7,17 @@
     "resolveJsonModule": true,
     "importHelpers": true,
     "esModuleInterop": true,
-    "sourceMap": true,
+    "sourceMap": false,
     "baseUrl": "./",
     "outDir":"dist",
-    "strict": true,
+    "strict": false,
     "skipLibCheck": true,
     "paths": {
       "@/*": ["src/*"]
     },
     "allowSyntheticDefaultImports": true,
   },
-  "include": [ "mock/**/*", "src/**/*", "config/*", "../../../micro-apps/contact/src/context/useItem.ts"],
+  "include": [ "mock/**/*", "src/**/*", "config/*"],
   "exclude": [
     "node_modules",
     "lib",

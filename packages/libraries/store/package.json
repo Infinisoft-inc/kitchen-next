@@ -1,12 +1,16 @@
 {
   "name": "@infini-soft/store",
-  "version": "0.0.1",
+  "version": "0.0.5",
   "description": "",
   "author": "Infinisoft Inc. <info@infini-soft.com>",
   "homepage": "https://www.kitchen.infini-soft.com/",
   "license": "INFINISOFT",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "scripts": {
     "build:dev": "kli lib build",
     "build:dev:watch": "kli lib build --watch",

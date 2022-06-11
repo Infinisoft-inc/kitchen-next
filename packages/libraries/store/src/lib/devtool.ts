@@ -4,17 +4,13 @@
  * www.infini-soft.com
  */
 
-import { MicroPayload, MicroState } from "@/context/micro";
-import { Store } from "../types";
+import { IStore } from "../types";
 
-export const devtool = (store: Store<MicroState, MicroPayload>) => {
+export const devtool = <S, P>(store: IStore<S, P>) => {
 
   if (typeof window === 'object' && typeof (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ !== 'undefined') {
     //@ts-ignore
     const devTools = window.__REDUX_DEVTOOLS_EXTENSION__.connect({ trace: true });
-
-
-
     devTools.subscribe((message: any) => {
       if (message.type === 'DISPATCH' && message.state) {
         console.log('DevTools requested to change the state to', message.state);
@@ -22,18 +18,21 @@ export const devtool = (store: Store<MicroState, MicroPayload>) => {
     });
 
     devTools.init(store.getState);
-    const state = {item: {}, list: {hi: 0}}
-
-
-    devTools.send('event', state, 'paylaod')
-
-        store.subscribe(devTools.send)
+    store.subscribe(devTools.send)
 
   } else {
     console.error(`
 *******************************************************************
                       verbose ENABLED
               Redux devtool extension not found!
+
+ _____ _   _ ______ _____ _   _ _____  _____  ____  ______ _______
+ |_   _| \ | |  ____|_   _| \ | |_   _|/ ____|/ __ \|  ____|__   __|
+   | | |  \| | |__    | | |  \| | | | | (___ | |  | | |__     | |
+   | | | .   |  __|   | | | .   | | |  \___ \| |  | |  __|    | |
+  _| |_| |\  | |     _| |_| |\  |_| |_ ____) | |__| | |       | |
+ |_____|_| \_|_|    |_____|_| \_|_____|_____/ \____/|_|       |_|
+
 
               Powered 🚀 by Infinisoft Inc.
               https://www.infini-soft.com

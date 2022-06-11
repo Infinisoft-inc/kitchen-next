@@ -4,8 +4,9 @@
  * www.infini-soft.com
  */
 import { AddressIcon, PhoneIcon, RelatedwithIcon, WebIcon } from '@/assets/svg';
+import { useMicroContext } from '@/context/micro';
 import React from 'react';
-import { useItem } from '../store/src/useItem';
+import { useItem } from '../../context/useItem';
 import css from './index.module.css';
 
 const Chip = React.lazy(() => import(/*  webpackPreload: true */ /* webpackChunkName: 'Chip' */ '../mychip'))
@@ -20,6 +21,7 @@ export type ContentProps = {
 
 
 export const Content = ({ SK, onClose }: ContentProps) => {
+  const {store} = useMicroContext()
   const { item: contact, inputMutator, listMutator, useMutator, destroy } = useItem(SK)
 
   const props = (field: keyof API.Item) => ({
@@ -34,7 +36,7 @@ export const Content = ({ SK, onClose }: ContentProps) => {
     <div className={css.header}>
       <div className={css.headerContent}>
 
-
+      {/* @ts-ignore */}
         <AvatarUpload src={contact?.avatar} save={base64 => useMutator('avatar', base64)} />
         <InputText {...props('name')} />
         <InputText {...props('email')} />

@@ -5,7 +5,7 @@
  */
 
 import { useCallback, useSyncExternalStore } from "react"
-import { Store } from "../types"
+import { IStore } from "../types"
 
 /**
  * Store selector
@@ -14,11 +14,11 @@ import { Store } from "../types"
  * @returns
  */
 type Selector<S, R> = (arg: S) => R
-type UseStoreGeneric = <S, P, R>(store: Store<S, P>, selector: Selector<S, R>) => R
+type UseStoreGeneric = <S, P, R>(store: IStore<S, P>, selector: Selector<S, R>) => R
 
 export const useStore: UseStoreGeneric = (store, selector) => {
   return useSyncExternalStore(
     store.subscribe,
-    useCallback(() => selector(store.getState()), [store, selector])
+    useCallback(() => selector(store.getState()!), [store, selector])
   )
 }
