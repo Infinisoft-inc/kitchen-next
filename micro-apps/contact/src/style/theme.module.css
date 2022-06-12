@@ -31,8 +31,8 @@
   --font-family: 'Orbitron', sans-serif;
 }
 
-
-/* :root {
+/*
+:root {
   --color-primary: blue;
 
   --text-primary: white;
@@ -41,10 +41,10 @@
   --color-primary-background: black;
   --color-primary-background-60: rgba(0, 0, 0, 0.9);
 
-  --color-primary-contrast-background: white;
+  --color-primary-contrast-background: black;
 
   --color-invariant: white;
-  --color-invariant-90: rgba(0, 0, 0, 0.9);
+  --color-invariant-90:  rgba(0, 0, 0, 0.9);
   --color-invariant-contrast: white;
 
   --z-dialog: 1200;
@@ -58,4 +58,5 @@
 body {
   font-family: 'Orbitron', sans-serif;
   background-color: var(--color-primary-background);
+  overflow-x: hidden;
 }

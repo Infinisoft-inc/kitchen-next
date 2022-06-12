@@ -8,6 +8,7 @@
   display: none;
   z-index: var(--z-backdrop);
   background-color: var(--color-primary-background);
+  position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
@@ -28,6 +29,7 @@
 [data-component='drawer'] {
   display: block;
   z-index: var(--z-backdrop);
+  position: absolute;
   top: 0;
   right: 0;
   min-height: 100vh;

@@ -52,24 +52,26 @@ textarea {
   text-align: center;
   background: transparent;
   border: 0;
-  color: var(--text-primary-contrast);
+  color: var(--color-invariant);
 }
 [data-style*='input:text:control'][name='name'] {
   font-size: var(--h5-size);
+  color: var(--color-invariant);
 }
 [data-style*='input:text:control'][name='email'] {
   font-size: var(--h6-size);
+  color: var(--color-invariant);
 }
 
 input[data-style*='input:text:control'] {
   width: 100%;
-  color: var(--text-primary);
+  color: var(--text-primary-contrast);
 }
 
 textarea,
 h6,
 [data-style='input:text:button:add'] {
-  color: var(--text-primary);
+  color: var(--text-primary-contrast);
 }
 
 .root {
