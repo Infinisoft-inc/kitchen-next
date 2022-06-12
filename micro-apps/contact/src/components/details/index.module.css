@@ -12,6 +12,12 @@
   jusitfy-content: center;
 }
 
+@media only screen and (max-height:768px){
+  .header {
+    height: 200px;
+  }
+}
+
 .headerContent {
   flex: 1 1 auto;
   text-align: center;

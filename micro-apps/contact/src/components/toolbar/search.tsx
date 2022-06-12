@@ -5,6 +5,7 @@
  */
 import { useMicroContext } from "@/context/micro";
 import React, { useRef } from "react";
+import Responsive from "../responsive";
 import { SearchIcon } from "./assets/svg";
 import css from './index.css';
 
@@ -35,7 +36,9 @@ const Search = () => {
 
 
   return <div data-style='search:container:root' className={css.searchContainer}>
-    <button onClick={handleClick} className={css.searchButton}><SearchIcon className={css.searchIcon} data-tag='contact' />Search</button>
+    <button onClick={handleClick} className={css.searchButton}><SearchIcon className={css.searchIcon} data-tag='contact' />
+    <Responsive showUp='laptop'>Search</Responsive>
+    </button>
     <input data-tag='contact' className={css.searchInput} ref={inputRef} data-style='search:container:control' type='search' placeholder='What are you searching ?' onKeyDown={handleSearch} onInput={handleInput} />
 
   </div>

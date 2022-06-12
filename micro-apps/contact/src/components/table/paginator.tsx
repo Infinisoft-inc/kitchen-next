@@ -4,19 +4,9 @@
  * www.infini-soft.com
  */
 
-// import '@/style';
 import React, { startTransition, useMemo } from 'react';
 import css from './index.css';
-
-
-type PaginatorProps<T> = {
-  rowPerPage: number
-  nextToken: string | number
-  count?: number
-
-}
-
-
+import { PaginatorProps } from './types';
 
 export const Paginator = <T,>({numberOfPage, handleGotoPage, currentPage}: any) => <div className={css.paginatorContainer}>
 

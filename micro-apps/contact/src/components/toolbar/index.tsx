@@ -6,16 +6,21 @@
 import React from 'react';
 import css from './index.css';
 
-const Create = React.lazy(() => import(/* webpackPreload: true */'./create'));
-const Filter = React.lazy(() => import(/* webpackPrefetch: true */'./filter'));
-const Search = React.lazy(() => import(/* webpackPreload: true */'./search'));
+const Responsive = React.lazy(() => import(/* webpackPreload: true */ /* webpackChunkName: 'Responsive' */ '../responsive'))
+const Create = React.lazy(() => import(/* webpackPreload: true */ /* webpackChunkName: 'Toolbar.Create' */'./create'));
+const Filter = React.lazy(() => import(/* webpackPrefetch: true */ /* webpackChunkName: 'Toolbar.Filter' */'./filter'));
+const Search = React.lazy(() => import(/* webpackPreload: true */ /* webpackChunkName: 'Toolbar.Search' */'./search'));
 
 export type ToolBarProps = {};
 
 export const ToolBar: React.FC<ToolBarProps> = (props) => {
   return <span className={css.rootContainer}>
     <Search />
-    <Filter />
+
+    <Responsive showUp='laptop'>
+      <Filter />
+    </Responsive>
+
     <Create />
   </span>;
 }
