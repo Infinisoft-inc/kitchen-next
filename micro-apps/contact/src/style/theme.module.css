@@ -8,51 +8,55 @@
 @import 'responsive.css';
 
 /* light */
-:root {
-  --color-primary: blue;
 
-  --text-primary: black;
-  --text-primary-contrast: white;
+/* @media (prefers-color-scheme: dark) { */
+  :root {
+    --color-primary: blue;
 
-  --color-primary-background: white;
-  --color-primary-background-60: rgba(255, 255, 255, 0.9);
+    --text-primary: black;
+    --text-primary-contrast: white;
 
-  --color-primary-contrast-background: black;
+    --color-primary-background: white;
+    --color-primary-background-60: rgba(255, 255, 255, 0.9);
 
-  --color-invariant: white;
-  --color-invariant-90: rgba(0, 0, 0, 0.9);
-  --color-invariant-contrast: white;
+    --color-primary-contrast-background: black;
 
-  --z-dialog: 1200;
-  --z-drawer: 1000;
-  --z-backdrop: 500;
-  --z-control-icon: 250;
-  --opacity-backdrop: 0.7;
-  --font-family: 'Orbitron', sans-serif;
-}
+    --color-invariant: white;
+    --color-invariant-90: rgba(0, 0, 0, 0.9);
+    --color-invariant-contrast: white;
 
+    --z-dialog: 1200;
+    --z-drawer: 1000;
+    --z-backdrop: 500;
+    --z-control-icon: 250;
+    --opacity-backdrop: 0.7;
+    --font-family: 'Orbitron', sans-serif;
+  }
+/* } */
 /*
-:root {
-  --color-primary: blue;
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-primary: blue;
 
-  --text-primary: white;
-  --text-primary-contrast: black;
+    --text-primary: white;
+    --text-primary-contrast: black;
 
-  --color-primary-background: black;
-  --color-primary-background-60: rgba(0, 0, 0, 0.9);
+    --color-primary-background: black;
+    --color-primary-background-60: rgba(0, 0, 0, 0.9);
 
-  --color-primary-contrast-background: black;
+    --color-primary-contrast-background: black;
 
-  --color-invariant: white;
-  --color-invariant-90:  rgba(0, 0, 0, 0.9);
-  --color-invariant-contrast: white;
+    --color-invariant: white;
+    --color-invariant-90: rgba(0, 0, 0, 0.9);
+    --color-invariant-contrast: white;
 
-  --z-dialog: 1200;
-  --z-drawer: 1000;
-  --z-backdrop: 500;
-  --z-control-icon: 250;
-  --opacity-backdrop: 0.7;
-  --font-family: 'Orbitron', sans-serif;
+    --z-dialog: 1200;
+    --z-drawer: 1000;
+    --z-backdrop: 500;
+    --z-control-icon: 250;
+    --opacity-backdrop: 0.7;
+    --font-family: 'Orbitron', sans-serif;
+  }
 } */
 
 body {
