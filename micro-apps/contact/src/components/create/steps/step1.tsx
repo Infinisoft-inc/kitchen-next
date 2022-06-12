@@ -4,12 +4,12 @@
  * www.infini-soft.com
  */
 import { AddressIcon, EmailIcon, NameIcon, PhoneIcon } from '@/assets/svg';
-import Chip from '@/components/mychip';
-import { useMicroContext } from '@/context/micro';
+
 import React, { HTMLAttributes } from 'react';
 import { useItem } from '../../../context/useItem';
 import css from './index.module.css';
 
+const Chip = React.lazy(() => import(/* webpackChunkName: 'Chip' */ '@/package/mychip'))
 const InputText = React.lazy(() => import(/* webpackPreload: true */ /* webpackChunkName: 'inputtext' */'inputtext/InputText'));
 const CrudList = React.lazy(() => import(/* webpackPreload: true */ /* webpackChunkName: 'crudlist' */'crudlist/CrudList'))
 
@@ -17,10 +17,8 @@ export type Step1 = Partial<HTMLAttributes<HTMLDivElement>> & {
   SK: string
 };
 
-
 export const Step1 = ({ SK, hidden }: Step1) => {
-  const {store} = useMicroContext()
-  const { item: contact, inputMutator, listMutator, useMutator } = useItem(SK)
+  const { item: contact, inputMutator, listMutator } = useItem(SK)
 
   const props = (field: keyof API.Item) => ({
     placeholder: field,

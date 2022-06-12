@@ -5,7 +5,7 @@
  */
 import { useMicroContext } from "@/context/micro";
 import React, { useRef } from "react";
-import Responsive from "../responsive";
+import Responsive from "../../package/responsive";
 import { SearchIcon } from "./assets/svg";
 import css from './index.css';
 

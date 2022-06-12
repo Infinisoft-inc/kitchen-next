@@ -4,15 +4,15 @@
  * www.infini-soft.com
  */
 import { RelatedwithIcon, WebIcon } from '@/assets/svg';
-import Chip from '@/components/mychip';
 import { useMicroContext } from '@/context/micro';
+import Chip from '@/package/mychip';
 import React, { HTMLAttributes } from 'react';
 import { useItem } from '../../../context/useItem';
 import css from './index.module.css';
 
 const InputText = React.lazy(() => import(/* webpackPreload: true */ 'inputtext/InputText'));
 const CrudList = React.lazy(() => import(/* webpackPreload: true */ 'crudlist/CrudList'))
-const AvatarUpload = React.lazy(() => import(/* webpackChunkName: 'AvatarUpload' */ '../../avatar-upload'))
+const AvatarUpload = React.lazy(() => import(/* webpackChunkName: 'AvatarUpload' */ '../../../package/avatar-upload'))
 
 export type Step2Props = Partial<HTMLAttributes<HTMLDivElement>> & {
   SK: string

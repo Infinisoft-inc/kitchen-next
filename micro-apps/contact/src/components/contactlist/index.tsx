@@ -1,9 +1,9 @@
 
 import { useMicroContext } from '@/context/micro';
 import React, { useMemo } from 'react';
+import Table from '../../package/table';
+import usePaginator, { Paginator } from '../../package/table/paginator';
 import '../../style/responsive.css';
-import Table from '../table';
-import usePaginator, { Paginator } from '../table/paginator';
 import { columns } from './columns';
 import css from './index.module.css';
 import { useSearchFilter } from './useSearchFilter';

@@ -7,7 +7,7 @@ import { useMicroContext } from '@/context/micro';
 import React, { startTransition, useEffect } from 'react';
 import Content from './content';
 
-const Dialog = React.lazy(() => import(/* webpackChunkName: 'Dialog' */ '../dialog'))
+const Dialog = React.lazy(() => import(/* webpackChunkName: 'Dialog' */ '../../package/dialog'))
 
 export type DetailsProps = {
   children?: React.ReactNode

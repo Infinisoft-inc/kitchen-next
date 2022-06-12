@@ -5,7 +5,7 @@
  */
 
 import { MicroStore } from "@/context/micro"
-import { defaultAvatar } from "../avatar-upload/assets"
+import { defaultAvatar } from "../../package/avatar-upload/assets"
 import { TableConfig } from "../table/types"
 
 

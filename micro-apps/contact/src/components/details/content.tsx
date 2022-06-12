@@ -9,10 +9,10 @@ import React from 'react';
 import { useItem } from '../../context/useItem';
 import css from './index.module.css';
 
-const Chip = React.lazy(() => import(/*  webpackPreload: true */ /* webpackChunkName: 'Chip' */ '../mychip'))
+const Chip = React.lazy(() => import(/*  webpackPreload: true */ /* webpackChunkName: 'Chip' */ '../../package/mychip'))
 const InputText = React.lazy(() => import(/* webpackPreload: true */ /*  webpackChunkName: 'InputText'*/ 'inputtext/InputText'));
 const CrudList = React.lazy(() => import(/* webpackPreload: true */ /*  webpackChunkName: 'CrudList'*/ 'crudlist/CrudList'))
-const AvatarUpload = React.lazy(() => import(/* webpackPreload: true */ /*  webpackChunkName: 'AvatarUpload' */ '../avatar-upload'))
+const AvatarUpload = React.lazy(() => import(/* webpackPreload: true */ /*  webpackChunkName: 'AvatarUpload' */ '../../package/avatar-upload'))
 
 export type ContentProps = {
   SK: string
