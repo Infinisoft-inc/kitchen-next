@@ -3,10 +3,17 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
+ :root {
+  --color-primary-background: black;
+  --subtitle1-size: 16px;
+  --color-primary-contrast-background: white;
+  --text-primary: white;
+  --text-primary-contrast: black;
+}
 
- .toggleContainer {
-   display: flex;
- }
+.toggleContainer {
+  display: flex;
+}
 
 .baseToggle {
   display: flex;
@@ -22,4 +29,3 @@
   color: var(--text-primary-contrast);
   font-size: var(--subtitle1-size);
 }
-

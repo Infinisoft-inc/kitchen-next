@@ -5,12 +5,14 @@
  */
 import { useMicroContext } from "@/context/micro";
 import React, { useRef } from "react";
-import Responsive from "../../package/responsive";
 import { SearchIcon } from "./assets/svg";
 import css from './index.css';
 
+const Responsive = React.lazy(() => import(/* webpackChunkName: 'Responsive' */ 'responsive/Responsive'))
+
 const Search = () => {
   const { store } = useMicroContext()
+
   const inputRef = useRef<HTMLInputElement>(null)
   const handleSearch = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && inputRef?.current?.value) {

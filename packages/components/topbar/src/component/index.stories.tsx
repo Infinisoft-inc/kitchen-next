@@ -7,7 +7,7 @@ const Menu = React.lazy(() => import(/* webpackChunkName: 'Menu' */ 'menu/Menu')
 const COMPONENT = "TopBar"
 
 export default {
-  title: 'TEMPLATE/TopBar',
+  title: 'Layout/TopBar',
   component: TopBar,
   argTypes: {
     overrideTokens: { description: 'Enable/Disable token overrides', default: false },

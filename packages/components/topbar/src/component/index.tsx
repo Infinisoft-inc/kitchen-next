@@ -9,7 +9,10 @@ import { ForwardedRef, forwardRef, Suspense, useEffect } from 'react';
 import css from './index.module.css';
 import { TopBarProps } from './types';
 
-const useTheme = <T extends { [k: string]: any },>(props?: T, overrideTokens?: boolean) => {
+/**
+ * Refactor into a component
+ */
+const useTheme = <T extends { [k: string]: any },>(name: string, props?: T, overrideTokens?: boolean) => {
   useEffect(() => {
     if (overrideTokens) {
       const setCssVar = (name: string, val: string) => document.querySelector<HTMLElement>(":root")?.style?.setProperty(name, val)
@@ -17,15 +20,17 @@ const useTheme = <T extends { [k: string]: any },>(props?: T, overrideTokens?: b
       let k: string;
       for (k in props) {
         if (props?.[k] && typeof props[k] === 'string') {
-          setCssVar(`--topbar-${k}`, props[k]! as string)
+          setCssVar(`--${name}-${k}`, props[k]! as string)
         }
       }
+
     }
   }, [props])
 }
 
+
 const TopBar = ({ overrideTokens = false, ...props }: TopBarProps, ref: ForwardedRef<HTMLDivElement>) => {
-  useTheme(props, overrideTokens)
+  useTheme("topbar", props, overrideTokens)
 
   return <Suspense>
     <div className={css.root} ref={ref}>

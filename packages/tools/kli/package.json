@@ -39,10 +39,10 @@
     "mustache": "^4.2.0"
   },
   "scripts": {
-    "build:dev": "webpack -c ./webpack.config.js",
-    "build:dev:watch": "webpack -c ./webpack.config.js -w",
-    "build:prod": "webpack -c ./webpack.config.prod.js",
-    "build:prod:watch": "webpack -c ./webpack.config.prod.js -w",
+    "build:tool:dev": "webpack -c ./webpack.config.js",
+    "build:dev:tool:watch": "webpack -c ./webpack.config.js -w",
+    "build:prod:tool": "webpack -c ./webpack.config.prod.js",
+    "build:prod:tool:watch": "webpack -c ./webpack.config.prod.js -w",
     "test": "jest",
     "test:coverage": "jest --coverage&& start analyze/coverage/lcov-report/index.html",
     "task": "kli task run",
