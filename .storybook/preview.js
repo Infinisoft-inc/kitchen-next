@@ -45,7 +45,7 @@ import React, { startTransition } from 'react';
 
 export const parameters = {
   actions: { argTypesRegex: '^on.*' },
-  layout: 'centered',
+  // layout: 'centered',
   controls: {
     expanded: true,
     matchers: {

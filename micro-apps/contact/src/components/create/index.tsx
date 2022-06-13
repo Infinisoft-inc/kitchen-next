@@ -7,7 +7,7 @@ import { useMicroContext } from '@/context/micro';
 import React, { startTransition, useEffect } from 'react';
 import Content from './content';
 
-const Dialog = React.lazy(() => import(/* webpackChunkName: 'Dialog' */ '../dialog'))
+const Dialog = React.lazy(() => import(/* webpackChunkName: 'Dialog' */ 'dialog/Dialog'))
 
 export type DetailsProps = {
   children?: React.ReactNode
@@ -21,6 +21,7 @@ export const Create = ({ children }: DetailsProps) => {
     const SK = `person__${new Date().getTime().toFixed(0)}`
 
     startTransition(() => {
+      // @ts-ignore
       store.mutate((state) => {
         const newState = {
           ...state,

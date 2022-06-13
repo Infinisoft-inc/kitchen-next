@@ -8,8 +8,11 @@ import React, { useRef } from "react";
 import { SearchIcon } from "./assets/svg";
 import css from './index.css';
 
+const Responsive = React.lazy(() => import(/* webpackChunkName: 'Responsive' */ 'responsive/Responsive'))
+
 const Search = () => {
   const { store } = useMicroContext()
+
   const inputRef = useRef<HTMLInputElement>(null)
   const handleSearch = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && inputRef?.current?.value) {
@@ -35,7 +38,9 @@ const Search = () => {
 
 
   return <div data-style='search:container:root' className={css.searchContainer}>
-    <button onClick={handleClick} className={css.searchButton}><SearchIcon className={css.searchIcon} data-tag='contact' />Search</button>
+    <button onClick={handleClick} className={css.searchButton}><SearchIcon className={css.searchIcon} data-tag='contact' />
+    <Responsive showUp='laptop'>Search</Responsive>
+    </button>
     <input data-tag='contact' className={css.searchInput} ref={inputRef} data-style='search:container:control' type='search' placeholder='What are you searching ?' onKeyDown={handleSearch} onInput={handleInput} />
 
   </div>

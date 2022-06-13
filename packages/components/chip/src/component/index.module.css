@@ -1,0 +1,16 @@
+/*
+ * Copyright © All rights reserved 2022
+ * Infinisoft Inc.
+ * www.infini-soft.com
+ */
+
+
+ [data-style='data:chip:control'] {
+  display: flex;
+  background-color: var(--color-primary-background-60);
+  color: var(--text-primary);
+  padding: 0.5rem;
+  border-radius: 15px;
+  font-size: var(--body2-size);
+  border: 1px solid var(--color-primary-contrast-background);
+}

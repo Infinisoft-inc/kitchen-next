@@ -9,16 +9,13 @@
 import React from 'react';
 
 const MicroContextProvider = React.lazy(() => import('../context/micro'))
-// const MicroThemeProvider = React.lazy(() => import('../context/theme'))
 const App = React.lazy(() => import('./app'));
 
 const Index = () => {
   return (
-    // <MicroThemeProvider>
       <MicroContextProvider>
         <App />
       </MicroContextProvider>
-    // </MicroThemeProvider>
   );
 };
 

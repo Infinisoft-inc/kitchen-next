@@ -3,7 +3,7 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
-const { execNoIo } = require("@/internals/exec");
+const { execNoIo } = require("./exec");
 
 const VERBOSE = process.argv.join(' ').includes('--debug');
 

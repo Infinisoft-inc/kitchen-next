@@ -5,29 +5,62 @@
  */
 @import 'typography.css';
 @import 'button.css';
+@import 'responsive.css';
 
-:root {
-  --color-primary: blue;
+/* light */
 
-  --text-primary: white;
-  --text-primary-contrast: black;
+/* @media (prefers-color-scheme: dark) { */
+  :root {
+    --color-primary: blue;
 
-  --color-primary-background: black;
-  --color-primary-background-60: rgba(0, 0, 0, 0.9);
+    --text-primary: black;
+    --text-primary-contrast: white;
 
-  --color-primary-contrast-background: white;
+    --color-primary-background: white;
+    --color-primary-background-60: rgba(255, 255, 255, 0.9);
 
-  --color-invariant: white;
+    --color-primary-contrast-background: black;
 
-  --z-dialog: 1200;
-  --z-drawer: 1000;
-  --z-backdrop: 500;
-  --z-control-icon: 250;
-  --opacity-backdrop: 0.7;
-  --font-family: 'Orbitron', sans-serif;
-}
+    --color-invariant: white;
+    --color-invariant-90: rgba(0, 0, 0, 0.9);
+    --color-invariant-contrast: white;
+
+    --z-dialog: 1200;
+    --z-drawer: 1000;
+    --z-backdrop: 500;
+    --z-control-icon: 250;
+    --opacity-backdrop: 0.7;
+    --font-family: 'Orbitron', sans-serif;
+  }
+/* } */
+/*
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-primary: blue;
+
+    --text-primary: white;
+    --text-primary-contrast: black;
+
+    --color-primary-background: black;
+    --color-primary-background-60: rgba(0, 0, 0, 0.9);
+
+    --color-primary-contrast-background: black;
+
+    --color-invariant: white;
+    --color-invariant-90: rgba(0, 0, 0, 0.9);
+    --color-invariant-contrast: white;
+
+    --z-dialog: 1200;
+    --z-drawer: 1000;
+    --z-backdrop: 500;
+    --z-control-icon: 250;
+    --opacity-backdrop: 0.7;
+    --font-family: 'Orbitron', sans-serif;
+  }
+} */
 
 body {
   font-family: 'Orbitron', sans-serif;
   background-color: var(--color-primary-background);
+  overflow-x: hidden;
 }

@@ -17,7 +17,7 @@ const { signal } = ac;
 
 const VERBOSE = process.argv.join(' ').includes('--debug');
 
-export const fswatch = async (target, trigger) => {
+const fswatch = async (target, trigger) => {
   try {
     const watcher = watch(target, { signal });
 
@@ -33,3 +33,7 @@ export const fswatch = async (target, trigger) => {
     throw err;
   }
 };
+
+module.exports = {
+  fswatch
+}

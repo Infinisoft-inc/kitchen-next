@@ -7,7 +7,7 @@ import { useMicroContext } from '@/context/micro';
 import React, { useEffect } from 'react';
 import css from './index.module.css';
 
-const Drawer = React.lazy(() => import(/* webpackChunkName: 'Drawer' */ '../Drawer'))
+const Drawer = React.lazy(() => import(/* webpackChunkName: 'Drawer' */ 'drawer/Drawer'))
 const Content = React.lazy(() => import(/* webpackChunkName: 'Content' */ './Content'))
 
 export type DetailsProps = {

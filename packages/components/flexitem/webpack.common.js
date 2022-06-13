@@ -5,11 +5,14 @@
  */
 
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { ModuleFederationPlugin } = require('webpack').container;
+const {peerDependencies, name, infinisoft} = require('./package.json')
 
 module.exports = {
   context: process.cwd(),
-  resolve: {
+   resolve: {
     cacheWithContext: false,
     extensions: ['.tsx', '.ts', '.jsx', '.js'],
   },
@@ -31,26 +34,7 @@ module.exports = {
             plugins: ['lodash'],
           },
         },
-        exclude: /node_modules/,
-      },
-      {
-        test: /\.less$/i,
-        use: [
-          {
-            loader: 'style-loader',
-          },
-          {
-            loader: 'css-loader',
-          },
-          {
-            loader: 'less-loader',
-            options: {
-              lessOptions: {
-                javascriptEnabled: true,
-              },
-            },
-          },
-        ],
+        exclude: /(node_modules|\*.stories.\*)/,
       },
       {
         test: /\.css$/i,

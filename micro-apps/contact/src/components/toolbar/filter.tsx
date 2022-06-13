@@ -7,7 +7,7 @@ import { useMicroContext } from "@/context/micro";
 import React, { startTransition } from "react";
 import { useMetaModel } from "../../hooks/useMetaModel";
 
-const Toggle = React.lazy(() => import(/* webpackChunkName: 'Toggle' */ '../Toggle'))
+const Toggle = React.lazy(() => import(/* webpackChunkName: 'Toggle' */ 'toggle/Toggle'))
 
 const Filter = () => {
   const meta = useMetaModel()

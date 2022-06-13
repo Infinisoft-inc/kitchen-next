@@ -1,0 +1,31 @@
+/*
+ * Copyright © All rights reserved 2022
+ * Infinisoft Inc.
+ * www.infini-soft.com
+ */
+ :root {
+  --color-primary-background: black;
+  --subtitle1-size: 16px;
+  --color-primary-contrast-background: white;
+  --text-primary: white;
+  --text-primary-contrast: black;
+}
+
+.toggleContainer {
+  display: flex;
+}
+
+.baseToggle {
+  display: flex;
+  background-color: var(--color-primary-background);
+  color: var(--text-primary);
+  padding: 0.75rem;
+  border: 1px solid;
+  font-size: var(--subtitle1-size);
+}
+
+.baseToggleActive {
+  background-color: var(--color-primary-contrast-background);
+  color: var(--text-primary-contrast);
+  font-size: var(--subtitle1-size);
+}

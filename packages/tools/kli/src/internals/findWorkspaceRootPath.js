@@ -1,6 +1,6 @@
 const { resolve } = require('path');
 const { existsSync, readFileSync } = require('fs');
-const { VERBOSE } = require('../commands/config/update/index');
+const { VERBOSE } = require('@/commands/config/update/index');
 
 const findWorkspaceRootPath = (rootPkgName = 'root') => {
   if (VERBOSE) {

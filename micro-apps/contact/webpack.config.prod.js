@@ -47,8 +47,8 @@ module.exports = merge(custom, common, {
     path: path.join(process.cwd(), 'dist'),
     publicPath: 'auto',
   },
-  optimization: {
-    minimize: true,
-    minimizer: [new TerserPlugin()],
-  },
+  // optimization: {
+  //   minimize: true,
+  //   minimizer: [new TerserPlugin()],
+  // },
 });

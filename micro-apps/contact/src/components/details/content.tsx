@@ -5,13 +5,13 @@
  */
 import { AddressIcon, PhoneIcon, RelatedwithIcon, WebIcon } from '@/assets/svg';
 import React from 'react';
-import { useItem } from '../store/src/useItem';
+import { useItem } from '../../context/useItem';
 import css from './index.module.css';
 
-const Chip = React.lazy(() => import(/*  webpackPreload: true */ /* webpackChunkName: 'Chip' */ '../mychip'))
+const Chip = React.lazy(() => import(/*  webpackPreload: true */ /* webpackChunkName: 'Chip' */ 'chip/Chip'))
 const InputText = React.lazy(() => import(/* webpackPreload: true */ /*  webpackChunkName: 'InputText'*/ 'inputtext/InputText'));
 const CrudList = React.lazy(() => import(/* webpackPreload: true */ /*  webpackChunkName: 'CrudList'*/ 'crudlist/CrudList'))
-const AvatarUpload = React.lazy(() => import(/* webpackPreload: true */ /*  webpackChunkName: 'AvatarUpload' */ '../avatar-upload'))
+const AvatarUpload = React.lazy(() => import(/* webpackPreload: true */ /*  webpackChunkName: 'AvatarUpload' */ 'avatarupload/AvatarUpload'))
 
 export type ContentProps = {
   SK: string
@@ -34,7 +34,7 @@ export const Content = ({ SK, onClose }: ContentProps) => {
     <div className={css.header}>
       <div className={css.headerContent}>
 
-
+      {/* @ts-ignore */}
         <AvatarUpload src={contact?.avatar} save={base64 => useMutator('avatar', base64)} />
         <InputText {...props('name')} />
         <InputText {...props('email')} />
