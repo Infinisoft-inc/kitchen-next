@@ -4,7 +4,6 @@
  * www.infini-soft.com
  */
 import { AddressIcon, PhoneIcon, RelatedwithIcon, WebIcon } from '@/assets/svg';
-import { useMicroContext } from '@/context/micro';
 import React from 'react';
 import { useItem } from '../../context/useItem';
 import css from './index.module.css';
@@ -21,7 +20,6 @@ export type ContentProps = {
 
 
 export const Content = ({ SK, onClose }: ContentProps) => {
-  const {store} = useMicroContext()
   const { item: contact, inputMutator, listMutator, useMutator, destroy } = useItem(SK)
 
   const props = (field: keyof API.Item) => ({
