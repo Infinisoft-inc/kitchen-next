@@ -35,11 +35,7 @@ module.exports = {
       template: './config/index.html',
     }),
   ],
-  output: {
-    filename: '[name].[contenthash].js',
-    path: path.join(process.cwd(), 'dist'),
-    publicPath: 'auto',
-  },
+
   resolve: {
     cacheWithContext: false,
     extensions: ['.tsx', '.ts', '.jsx', '.js'],
@@ -62,26 +58,7 @@ module.exports = {
             plugins: ['lodash'],
           },
         },
-        exclude: /node_modules/,
-      },
-      {
-        test: /\.less$/i,
-        use: [
-          {
-            loader: 'style-loader',
-          },
-          {
-            loader: 'css-loader',
-          },
-          {
-            loader: 'less-loader',
-            options: {
-              lessOptions: {
-                javascriptEnabled: true,
-              },
-            },
-          },
-        ],
+        exclude: /(node_modules|\*.stories.\*)/,
       },
       {
         test: /\.css$/i,

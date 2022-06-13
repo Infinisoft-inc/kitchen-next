@@ -61,25 +61,6 @@ module.exports = {
         exclude: /(node_modules|\*.stories.\*)/,
       },
       {
-        test: /\.less$/i,
-        use: [
-          {
-            loader: 'style-loader',
-          },
-          {
-            loader: 'css-loader',
-          },
-          {
-            loader: 'less-loader',
-            options: {
-              lessOptions: {
-                javascriptEnabled: true,
-              },
-            },
-          },
-        ],
-      },
-      {
         test: /\.css$/i,
         include: path.resolve(process.cwd(), 'src'),
         exclude: /node_modules/,

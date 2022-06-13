@@ -21,7 +21,8 @@
     "start:prod": "webpack serve -c webpack.config.prod.js --open",
     "serve:dist": "serve -s dist",
     "clean": "rm -rf analyze dist node_modules dev",
-    "config:update": "node config.js"
+    "config:update": "kli config update",
+    "task": "kli task run"
   },
   "devDependencies": {
     "@types/react": "^18.0.9",
@@ -32,10 +33,11 @@
     "react-dom": "^18.1.0"
   },
   "infinisoft": {
+    "tag": "mfcomponent",
     "moduleFederation": {
-      "title":"Booper",
-      "category":"ux",
-      "image":"",
+      "title": "Booper",
+      "category": "ux",
+      "image": "",
       "component": "Booper",
       "dev": {
         "remotes": {}

@@ -5,10 +5,37 @@
  */
 
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { ModuleFederationPlugin } = require('webpack').container;
+const {peerDependencies, name, infinisoft} = require('./package.json')
 
 module.exports = {
   context: process.cwd(),
+  plugins: [
+    new ModuleFederationPlugin({
+      name,
+      filename: 'remoteEntry.js',
+      remotes: infinisoft.moduleFederation.remotes,
+      exposes: {
+        [`./${infinisoft.moduleFederation.component}`]: './src/component',
+      },
+      shared: {
+        ...peerDependencies,
+        react: { singleton: true, eager: true, requiredVersion: peerDependencies.react },
+        'react-dom': {
+          singleton: true,
+          eager: true,
+          requiredVersion: peerDependencies['react-dom'],
+        },
+      },
+    }),
+    new MiniCssExtractPlugin(),
+    new HtmlWebpackPlugin({
+      template: './config/index.html',
+    }),
+  ],
+
   resolve: {
     cacheWithContext: false,
     extensions: ['.tsx', '.ts', '.jsx', '.js'],
@@ -31,26 +58,7 @@ module.exports = {
             plugins: ['lodash'],
           },
         },
-        exclude: /node_modules/,
-      },
-      {
-        test: /\.less$/i,
-        use: [
-          {
-            loader: 'style-loader',
-          },
-          {
-            loader: 'css-loader',
-          },
-          {
-            loader: 'less-loader',
-            options: {
-              lessOptions: {
-                javascriptEnabled: true,
-              },
-            },
-          },
-        ],
+        exclude: /(node_modules|\*.stories.\*)/,
       },
       {
         test: /\.css$/i,

@@ -1,6 +1,6 @@
 {
   "name": "@infini-soft/kli",
-  "version": "0.0.28",
+  "version": "0.0.35",
   "description": "Kitchen Line Interface",
   "author": "Infinisoft Inc. <info@infini-soft.com>",
   "homepage": "https://www.kitchen.infini-soft.com/",
@@ -49,7 +49,8 @@
     "moduleFederation": {
       "component": "kli",
       "registry": "https://app.micro.infini-soft.com"
-    }
+    },
+    "tag": "tool"
   },
   "devDependencies": {}
 }
