@@ -50,7 +50,11 @@
           "responsive": "responsive@http://localhost:5000/components/responsive/dev/remoteEntry.js",
           "toggle": "toggle@http://localhost:5000/components/toggle/dev/remoteEntry.js",
           "table": "table@http://localhost:5000/components/table/dev/remoteEntry.js",
-          "paginator": "paginator@http://localhost:5000/components/paginator/dev/remoteEntry.js"
+          "paginator": "paginator@http://localhost:5000/components/paginator/dev/remoteEntry.js",
+          "chip": "chip@http://localhost:5000/components/chip/dev/remoteEntry.js",
+          "drawer": "drawer@http://localhost:5000/components/drawer/dev/remoteEntry.js",
+          "dialog": "dialog@http://localhost:5000/components/dialog/dev/remoteEntry.js",
+          "avatarupload": "avatarupload@http://localhost:5000/components/avatarupload/dev/remoteEntry.js"
         }
       },
       "prod": {
@@ -62,7 +66,11 @@
           "responsive": "responsive@https://app.micro.infini-soft.com/components/responsive/remoteEntry.js",
           "toggle": "toggle@https://app.micro.infini-soft.com/components/toggle/remoteEntry.js",
           "table": "table@https://app.micro.infini-soft.com/components/table/remoteEntry.js",
-          "paginator": "paginator@https://app.micro.infini-soft.com/components/paginator/remoteEntry.js"
+          "paginator": "paginator@https://app.micro.infini-soft.com/components/paginator/remoteEntry.js",
+          "chip": "chip@https://app.micro.infini-soft.com/components/chip/remoteEntry.js",
+          "drawer": "drawer@https://app.micro.infini-soft.com/components/drawer/remoteEntry.js",
+          "dialog": "dialog@https://app.micro.infini-soft.com/components/dialog/remoteEntry.js",
+          "avatarupload": "avatarupload@https://app.micro.infini-soft.com/components/avatarupload/remoteEntry.js"
         }
       }
     },

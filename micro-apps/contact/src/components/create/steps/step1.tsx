@@ -9,7 +9,7 @@ import React, { HTMLAttributes } from 'react';
 import { useItem } from '../../../context/useItem';
 import css from './index.module.css';
 
-const Chip = React.lazy(() => import(/* webpackChunkName: 'Chip' */ '@/package/mychip'))
+const Chip = React.lazy(() => import(/* webpackChunkName: 'Chip' */ 'chip/Chip'))
 const InputText = React.lazy(() => import(/* webpackPreload: true */ /* webpackChunkName: 'inputtext' */'inputtext/InputText'));
 const CrudList = React.lazy(() => import(/* webpackPreload: true */ /* webpackChunkName: 'crudlist' */'crudlist/CrudList'))
 

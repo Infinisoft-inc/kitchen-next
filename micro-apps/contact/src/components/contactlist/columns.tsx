@@ -5,8 +5,8 @@
  */
 
 import { MicroStore } from "@/context/micro"
-import { defaultAvatar } from "../../package/avatar-upload/assets"
-import { TableConfig } from "../table/types"
+import { TableConfig } from "component/types"
+import { defaultAvatar } from "./assets/svg"
 
 
 export const columns = (store: MicroStore): TableConfig<API.Item> => {
