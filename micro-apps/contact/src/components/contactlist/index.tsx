@@ -1,30 +1,18 @@
 
 import { useMicroContext } from '@/context/micro';
-import React, { useMemo } from 'react';
-import Table from '../../package/table';
-import usePaginator, { Paginator } from '../../package/table/paginator';
-import '../../style/responsive.css';
+import React from 'react';
 import { columns } from './columns';
 import css from './index.module.css';
 import { useSearchFilter } from './useSearchFilter';
 
-const ROWS_PER_PAGE = 5
+const Table = React.lazy(() => import(/* webpackChunkName: 'Table' */ 'table/Table'))
 
 const ContactList = () => {
   const list = useSearchFilter()
-  const { paginate, handleGotoPage, currentPage, _numberOfPage } = usePaginator({ rowPerPage: ROWS_PER_PAGE, count: list?.size ?? 0, nextToken: '000' })
   const { store } = useMicroContext()
-  const [pageSize, setPageSize] = React.useState(ROWS_PER_PAGE);
-  const [nextToken, setNextToken] = React.useState('mocktoken');
-  const pagedList = useMemo(() => paginate(list), [paginate, list])
-
-
-
 
   return <div className={css.listContainer}>
-    <Table columns={columns(store)} data={pagedList} />
-
-    <Paginator currentPage={currentPage} handleGotoPage={handleGotoPage} numberOfPage={_numberOfPage} rowPerPage={pageSize} nextToken={nextToken} />
+    <Table columns={columns(store)} data={list} options={{pagination:true, rowPerPage:5}} />
   </div>
 };
 

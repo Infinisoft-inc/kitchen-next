@@ -4,6 +4,27 @@
  * www.infini-soft.com
  */
 
+@media only screen and (max-width: 480px) {
+  .xs {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .xs,
+  .md {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .xs,
+  .md,
+  .lg {
+    display: none;
+  }
+}
+
 th {
   font-size: var(--subtitle1-size);
   text-transform: capitalize;
@@ -41,9 +62,11 @@ span[data-tag*='paginatorItem']:hover {
 span.paginatorItem {
   flex: 0 0;
   padding: 0.35rem 0.75rem;
+  color: var(--text-primary);
 }
 
 span.paginatorItemActive {
   border: 1px solid var(--color-primary);
   padding: 0.35rem 0.75rem;
+  color: var(--text-primary);
 }

@@ -1,23 +1,5 @@
-/*
- * Copyright © All rights reserved 2022
- * Infinisoft Inc.
- * www.infini-soft.com
- */
-
-import React, { startTransition, useMemo } from 'react';
-import css from './index.css';
-import { PaginatorProps } from './types';
-
-export const Paginator = <T,>({numberOfPage, handleGotoPage, currentPage}: any) => <div className={css.paginatorContainer}>
-
-{new Array(numberOfPage).fill(0).map((a, i) =>
-  <span key={`page-${i + 1}`} onClick={() => { handleGotoPage?.(i + 1) }} data-tag='paginatorItem' className={(i + 1) === currentPage ? css['paginatorItemActive'] : css['paginatorItem']}>
-    {i + 1}
-  </span>
-)
-}
-
-</div>
+import React, { startTransition, useMemo } from "react";
+import { PaginatorProps } from "../types";
 
 export const usePaginator = <T,>({ rowPerPage, count = 1, nextToken }: PaginatorProps<T>) => {
   const [currentPage, setCurrentPage] = React.useState(1);
@@ -46,8 +28,8 @@ export const usePaginator = <T,>({ rowPerPage, count = 1, nextToken }: Paginator
     })
   }
 
-  const paginate = (_list?: Map<string, API.Item>) => {
-    return _list ? new Map(Array.from(_list).slice(_startIndex, _endIndex)) : new Map<string, API.Item>()
+  const paginate = <T,>(_list?: Map<string, T>) => {
+    return _list ? new Map(Array.from(_list).slice(_startIndex, _endIndex)) : new Map<string, T>()
   }
 
   return {

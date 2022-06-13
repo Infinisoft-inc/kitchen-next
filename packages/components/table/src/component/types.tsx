@@ -5,6 +5,13 @@
  */
 
 /**
+ * Table Options
+ */
+export type TableOptions = {
+  pagination?: boolean
+  rowPerPage?: number
+}
+/**
  * Table configuration
  */
 export type TableConfig<T> = Partial<Record<Partial<keyof T>, TableRowConfig<T>>>
@@ -35,7 +42,12 @@ export type TableProps<T> = {
    * Data map
    */
   data?: Map<string, T>
+  /**
+   * Table options
+   */
+  options?: TableOptions
 }
+
 
 export type PaginatorProps<T> = {
   /**

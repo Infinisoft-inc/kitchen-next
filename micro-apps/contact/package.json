@@ -48,7 +48,9 @@
           "flexcontainer": "flexcontainer@http://localhost:5000/components/flexcontainer/dev/remoteEntry.js",
           "flexitem": "flexitem@http://localhost:5000/components/flexitem/dev/remoteEntry.js",
           "responsive": "responsive@http://localhost:5000/components/responsive/dev/remoteEntry.js",
-          "toggle": "toggle@http://localhost:5000/components/toggle/dev/remoteEntry.js"
+          "toggle": "toggle@http://localhost:5000/components/toggle/dev/remoteEntry.js",
+          "table": "table@http://localhost:5000/components/table/dev/remoteEntry.js",
+          "paginator": "paginator@http://localhost:5000/components/paginator/dev/remoteEntry.js"
         }
       },
       "prod": {
@@ -58,7 +60,9 @@
           "flexcontainer": "flexcontainer@https://app.micro.infini-soft.com/components/flexcontainer/remoteEntry.js",
           "flexitem": "flexitem@https://app.micro.infini-soft.com/components/flexitem/remoteEntry.js",
           "responsive": "responsive@https://app.micro.infini-soft.com/components/responsive/remoteEntry.js",
-          "toggle": "toggle@https://app.micro.infini-soft.com/components/toggle/remoteEntry.js"
+          "toggle": "toggle@https://app.micro.infini-soft.com/components/toggle/remoteEntry.js",
+          "table": "table@https://app.micro.infini-soft.com/components/table/remoteEntry.js",
+          "paginator": "paginator@https://app.micro.infini-soft.com/components/paginator/remoteEntry.js"
         }
       }
     },
