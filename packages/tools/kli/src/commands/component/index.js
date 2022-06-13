@@ -28,7 +28,6 @@ component     create          <json input>      - Create new federated component
 };
 
 module.exports = {
-
   create,
   build,
   deploy,

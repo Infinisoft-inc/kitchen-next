@@ -1,24 +1,10 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import Responsive from "responsive/Responsive";
+import React from 'react';
 import TopBar from '.';
-import { defaultAvatar } from './assets';
-import css from './index.module.css';
+
+const Menu = React.lazy(() => import(/* webpackChunkName: 'Menu' */ 'menu/Menu'))
 
 const COMPONENT = "TopBar"
-
-const Menu = () => <div>
-  <Responsive showUp='laptop'>
-    <ul className={css.item}>
-      <ol>Accouting</ol>
-      <ol>Operations</ol>
-      <ol className={css.myProfile}>
-        <img className={css.profilImage} src={defaultAvatar} />
-        Martin Ouimet
-      </ol>
-    </ul>
-  </Responsive>
-
-</div>
 
 export default {
   title: 'TEMPLATE/TopBar',
@@ -57,8 +43,8 @@ export default {
 } as ComponentMeta<typeof TopBar>;
 
 const Template: ComponentStory<typeof TopBar> = (args) => (
-    <TopBar {...args} />
-  );
+  <TopBar {...args} />
+);
 
 
 export const BrandImageURL = Template.bind({});

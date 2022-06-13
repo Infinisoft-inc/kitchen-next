@@ -29,8 +29,8 @@ $ npm install @infini-soft/kli -g
 ```bash
 $ kli --help
 
-Kitchen Line Interface v0.0.20
-Powered 🚀 by Infinisoft
+Kitchen Line Interface v0.0.38
+Powered 🚀 by Infinisoft      
 
 
 Usage
@@ -43,31 +43,42 @@ options
 --dry-run                   - Simulate the execution without changing anything
 --skeleton                  - Console log json skeleton for the command input
 --input <json file>         - Customized json skeleton for input
+--tag <argument_tag>        - Scoped execution. Execute only if object infinisoft.tag in package.json equals argument_tag
 
 
 commands      subcommands     arguments         descriptions
 -----------------------------------------------------------------------------------------------------
 mono          create          <target>          - Create new monorepo to <target> folder.
 
-component     create          <json input>      - Create new federated component.
+component     create          <json input>      - Create new federated component
               build                             - Build component dev
                               [--prod]          - Build component prod
-                              [--watch-deploy]  - Watch mode, Auto Update Typescript Types Alias definitions every build
-                              [--watch-nodeploy]- Watch mode, Auto Update Typescript Types Alias definitions every build
+                              [--watch]         - Watch mode, rebuild code (without types)
+                              [--types]         - Type definition build, can be combined with --watch mode
                               [--deploy]        - Deploy after build, if running in watch mode, deploys every build
 
-              deploy                            - Deploy component on cloud. (ONLY FOR CONTRIBUTOR)
+              deploy                            - Deploy component on cloud (No build)
               use             <name>            - Add module to container
               remove          <name>            - removes module from container
 
 
-library       create          <json input>      - Create new federated library.
+library       create          <json input>      - Create new federated library
+                              [--no-mf]         - Create new library without module federation
               build                             - Build library dev
                               [--prod]          - Build library prod
-              deploy                            - Deploy library on cloud. (ONLY FOR CONTRIBUTOR)
+              deploy                            - Deploy library on cloud
               use             <name>            - Add module to container
               remove          <name>            - removes module from container
 
+config        update                            Copies all files from <root>/dev/config into current folder.
+
+task                                            Tasks are javascript files created under <root>/dev/tasks.
+                                                These tasks are meant to be executed in batch by lerna in each package context.
+              run             <task>            - Run a javascript task
+              create          <task>            - Create a javascript task
+              remove          <task>            - delete a javascript task
+
+$
 ```
 
 # Examples

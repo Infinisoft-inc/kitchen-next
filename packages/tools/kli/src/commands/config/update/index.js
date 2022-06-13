@@ -1,7 +1,7 @@
 const { execIo } = require('@/internals/exec');
-const { join } = require('path');
+const { join, resolve } = require('path');
 const { findWorkspaceRootPath } = require('@/internals/findWorkspaceRootPath');
-const { getCliOptionArgument } = require('@/internals/getCliOptionArgument');
+const { pkgDir } = require('@/internals/initialize');
 
 const VERBOSE = process.argv.join(' ').includes('--debug');
 const DRYRUN = process.argv.join(' ').includes('--dry-run');
@@ -9,7 +9,7 @@ const DRYRUN = process.argv.join(' ').includes('--dry-run');
 const update = () => {
   const rootPath = findWorkspaceRootPath('root');
   const configPath = join(rootPath, '/dev/config/');
-  const destPath = process.argv[4];
+  const destPath = pkgDir;
   const command = `cp -Ru . ${destPath}`;
 
   console.log(`
@@ -24,15 +24,6 @@ const update = () => {
     console.log(`process.cwd() = `, process.cwd());
   }
 
-  /**
-   * Execute command when
-   *
-   * - NOT dry-run
-   * and
-   * - no tag or package.json tag is the same as specified in cli
-   *
-   * Goal is to scope updates by tag
-   */
   if (!DRYRUN) {
     try {
       process.chdir(configPath);

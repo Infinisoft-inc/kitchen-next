@@ -66,7 +66,7 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
-    "@infini-soft/kli": "^0.0.28",
+    "@infini-soft/kli": "^0.0.40",
     "@infini-soft/lib-federation": "^0.0.14"
   },
   "scripts": {
@@ -90,7 +90,8 @@
     "serve:dist": "lerna run serve:dist --stream --parallel",
     "clean": "lerna run clean --stream --parallel",
     "start:local:federation": "serve -s packages",
-    "config:update": "lerna run config:update --stream --parallel -- --tag dog"
+    "config:update:dryrun": "lerna run config:update --stream --parallel -- --tag mfcomponents --dry-run",
+    "config:update": "lerna run config:update --stream --parallel -- --tag mfcomponents"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -120,7 +121,8 @@
           "inputtext": "inputtext@http://localhost:5000/components/inputtext/dev/remoteEntry.js",
           "flexitem": "flexitem@http://localhost:5000/components/flexitem/dev/remoteEntry.js",
           "slider": "slider@http://localhost:5000/components/slider/dev/remoteEntry.js",
-          "responsive": "responsive@http://localhost:5000/components/responsive/dev/remoteEntry.js"
+          "responsive": "responsive@http://localhost:5000/components/responsive/dev/remoteEntry.js",
+          "menu": "menu@http://localhost:5000/components/menu/dev/remoteEntry.js"
         }
       },
       "prod": {
@@ -130,7 +132,8 @@
           "inputtext": "inputtext@https://app.micro.infini-soft.com/components/inputtext/remoteEntry.js",
           "flexitem": "flexitem@https://app.micro.infini-soft.com/components/flexitem/remoteEntry.js",
           "slider": "slider@https://app.micro.infini-soft.com/components/slider/remoteEntry.js",
-          "responsive": "responsive@https://app.micro.infini-soft.com/components/responsive/remoteEntry.js"
+          "responsive": "responsive@https://app.micro.infini-soft.com/components/responsive/remoteEntry.js",
+          "menu": "menu@https://app.micro.infini-soft.com/components/menu/remoteEntry.js"
         }
       }
     }

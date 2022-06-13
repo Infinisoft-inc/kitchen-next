@@ -3,8 +3,6 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
-const commands = require('@/commands');
-const { VERBOSE } = require('./initialize');
 
 /**
  * Command usage informations
@@ -26,9 +24,6 @@ options
   console.log(`
 commands      subcommands     arguments         descriptions
 -----------------------------------------------------------------------------------------------------`);
-  Object.keys(commands).forEach((k) => {
-    commands[k]?.usage?.() ?? ''
-  })
 };
 
 module.exports = { usage };

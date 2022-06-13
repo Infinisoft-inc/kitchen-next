@@ -10,7 +10,7 @@ const {update} = require('./update');
  */
 const usage = () => {
   console.log(`
-config        update          <target>          - Update config <target> folder`);
+config        update                            Copies all files from <root>/dev/config into current folder.`);
 };
 
 module.exports = {
