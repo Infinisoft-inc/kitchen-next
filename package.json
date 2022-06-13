@@ -70,6 +70,7 @@
     "@infini-soft/lib-federation": "^0.0.14"
   },
   "scripts": {
+    "start:local:federation": "serve -s packages",
     "storybook": "start-storybook -p 6006",
     "storybook:nocache": "start-storybook -p 6006 --no-manager-cache",
     "publish:canary": "lerna publish --canary --preid canary",
@@ -89,7 +90,6 @@
     "start:prod": "lerna run start:prod --stream --parallel",
     "serve:dist": "lerna run serve:dist --stream --parallel",
     "clean": "lerna run clean --stream --parallel",
-    "start:local:federation": "serve -s packages",
     "config:update:dryrun": "lerna run config:update --stream --parallel -- --tag mfcomponents --dry-run",
     "config:update": "lerna run config:update --stream --parallel -- --tag mfcomponents"
   },

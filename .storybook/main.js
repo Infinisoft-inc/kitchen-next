@@ -5,7 +5,7 @@ const pkg = require('../package.json')
 
 module.exports = withStorybookModuleFederation({
   name: 'storybook',
-  remotes: pkg.infinisoft.moduleFederation.prod.remotes,
+  remotes: pkg.infinisoft.moduleFederation.dev.remotes,
   shared: {
     react: {
       singleton: true,
