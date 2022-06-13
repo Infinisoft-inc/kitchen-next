@@ -12,6 +12,7 @@ const ContactList = () => {
   const { store } = useMicroContext()
 
   return <div className={css.listContainer}>
+    {/* @ts-ignore */}
     <Table columns={columns(store)} data={list} options={{pagination:true, rowPerPage:5}} />
   </div>
 };

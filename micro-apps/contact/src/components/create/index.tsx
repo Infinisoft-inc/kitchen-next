@@ -21,6 +21,7 @@ export const Create = ({ children }: DetailsProps) => {
     const SK = `person__${new Date().getTime().toFixed(0)}`
 
     startTransition(() => {
+      // @ts-ignore
       store.mutate((state) => {
         const newState = {
           ...state,

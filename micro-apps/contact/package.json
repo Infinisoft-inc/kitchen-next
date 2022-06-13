@@ -35,8 +35,7 @@
     "@infini-soft/utils": "^1.3.37",
     "framer-motion": "^6.3.6",
     "react": "^18.1.0",
-    "react-dom": "^18.1.0",
-    "react-router-dom": "^6.3.0"
+    "react-dom": "^18.1.0"
   },
   "infinisoft": {
     "component": "contact",
