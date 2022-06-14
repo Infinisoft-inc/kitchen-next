@@ -14,15 +14,16 @@ export class Store<S, P> implements IStore<S, P> {
           options: { map: true }
         }
       });
-    }
 
-    init?.()
+      init?.()
       .then(result => {
         this._state = result
         this.emit('@initialization')
         this.initializeDevtool()
       })
       .catch(console.error)
+    }
+
 
   }
 

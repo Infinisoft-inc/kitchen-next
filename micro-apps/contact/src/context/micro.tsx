@@ -1,6 +1,7 @@
-import { CrudMutators, InputMutatorGeneric, Store, UseListMutatorGeneric, UseMutatorGeneric } from "@infini-soft/store";
+import { Store, UseMutatorGeneric } from "@infini-soft/store";
 import React from 'react';
 import config from '../../config/config.json';
+import { CrudMutators, InputMutatorGeneric, UseListMutatorGeneric } from "./useItem";
 
 import * as listService from "../services/contacts/list";
 

@@ -11,8 +11,9 @@ module.exports = {
   entry: './src/index.ts',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'index.js',
+    filename: 'store.js',
     library: 'store',
+    libraryTarget: 'umd'
   },
   resolve: {
     cacheWithContext: false,
@@ -21,14 +22,13 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx|ts|tsx)?$/,
+        test: /\.(js|ts)?$/,
         use: {
           loader: 'babel-loader',
           options: {
             presets: [
               '@babel/preset-typescript',
-              '@babel/preset-env',
-              ['@babel/preset-react', { runtime: 'automatic' }],
+              '@babel/preset-env'
             ],
             plugins: ['lodash'],
           },
@@ -36,7 +36,5 @@ module.exports = {
         exclude: /node_modules/,
       },
     ],
-  },
-  plugins: [
-  ],
+  }
 };

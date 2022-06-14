@@ -1,0 +1,27 @@
+{
+  "$id": "schema 1 2 3",
+  "description": "this is a JSON SChema test for typescript conversion",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string" },
+    "name": {
+      "type": "string"
+    },
+    "info": {
+      "$ref": "#/$defs/contact"
+    }
+  },
+  "required": ["id", "name", "info"],
+  "additionalProperties": false,
+  "$defs": {
+    "contact": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "phone": { "type": "number" }
+      },
+      "required": ["id", "phone"],
+      "additionalProperties": false
+    }
+  }
+}

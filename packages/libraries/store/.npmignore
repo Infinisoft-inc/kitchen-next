@@ -9,3 +9,4 @@ tsconfig.prod.json
 webpack.*
 *.log
 docs
+*.LICENSE.txt
