@@ -35,6 +35,13 @@ export default {
       },
     },
   },
+  decorators: [
+    (Story) => (
+      <div style={{ width: 80 }}>
+        <Story/>
+      </div>
+    ),
+  ],
   parameters: {
     docs: {
       description: {
@@ -46,9 +53,7 @@ export default {
 
 const Template: ComponentStory<typeof Chip> = (args) => {
   return (
-    <div style={{ width: 80 }}>
       <Chip {...args} />
-    </div>
   );
 };
 
