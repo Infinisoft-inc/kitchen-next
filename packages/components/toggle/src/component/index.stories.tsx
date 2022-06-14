@@ -2,22 +2,30 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import Toggle from '.';
 
 export default {
-  title: 'TEMPLATE/Toggle',
+  title: 'INPUT/Toggle',
   component: Toggle,
   argTypes: {
     toggles: {
-      control: false
-    },
-    content: {
-      defaultValue: '',
-      description: 'overwritten description',
       table: {
-        category: 'Content',
-        type: {
-          summary: 'something short',
-          detail: 'something really really long',
+        defaultValue: {
+          summary: 'None button',
         },
-        defaultValue: { summary: 'Hello' },
+
+        type: {
+          summary: 'Toggle label list',
+        },
+      },
+      control: {
+        type: null,
+      },
+    },
+    clickHandler: {
+      table: {
+        category: 'Events',
+        type: {
+          summary: '(term?: string) => void',
+          detail: 'Callback onclick and pass its value as argument',
+        },
       },
       control: {
         type: null,
@@ -27,25 +35,23 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: 'This is a super cool button',
+        component: 'This is a Toggles Buttons',
       },
     },
   },
 } as ComponentMeta<typeof Toggle>;
 
-const Template: ComponentStory<typeof Toggle> = (args) => (
-  <Toggle {...args} />
-);
+const Template: ComponentStory<typeof Toggle> = (args) => <Toggle {...args} />;
 
-export const StringArgs = Template.bind({});
-StringArgs.args = {
-  toggles: ['one', 'two', 'three']
+export const ToggleArgs = Template.bind({});
+ToggleArgs.args = {
+  toggles: ['One', 'Two', 'Tree'],
 };
 
-StringArgs.parameters = {
+ToggleArgs.parameters = {
   docs: {
     description: {
-      story: 'This is a string',
+      story: 'This is toggles names',
     },
   },
 };
