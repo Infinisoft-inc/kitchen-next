@@ -4,23 +4,14 @@
  * www.infini-soft.com
  */
 import { useMicroContext } from "@/context/micro";
-import React, { startTransition } from "react";
-import { useMetaModel } from "../../hooks/useMetaModel";
+import React, { startTransition, useSyncExternalStore } from "react";
 
 const Toggle = React.lazy(() => import(/* webpackChunkName: 'Toggle' */ 'toggle/Toggle'))
 
 const Filter = () => {
-  const meta = useMetaModel()
-  const [filters, setFilters] = React.useState<API.Meta>();
   const { store } = useMicroContext()
-
-  React.useEffect(() => {
-    if (!filters) {
-      setFilters(meta?.subCategories)
-    }
-
-  }, [filters, meta?.subCategories])
-
+  const state = useSyncExternalStore(store.subscribe, store.getState)
+  const subCategories = state?.meta?.categories ? Object.keys(state.meta.categories) : []
 
   const clickHandler = (newValue?: string) => {
     startTransition(() => {
@@ -34,7 +25,7 @@ const Filter = () => {
   }
 
   return <span data-style='filter:container:root'>
-    <Toggle toggles={['supplier', 'person', 'organization']} clickHandler={clickHandler} />
+    {subCategories && <Toggle toggles={subCategories} clickHandler={clickHandler} />}
   </span>
 
 }
