@@ -1,6 +1,6 @@
 {
   "name": "@infini-soft/store",
-  "version": "0.0.15",
+  "version": "0.0.20",
   "description": "",
   "author": "Infinisoft Inc. <info@infini-soft.com>",
   "homepage": "https://www.kitchen.infini-soft.com/",
@@ -46,6 +46,7 @@
     "tag": "library"
   },
   "devDependencies": {
+    "@infini-soft/kli": "^0.0.40",
     "@types/react": "^18.0.12",
     "@types/react-dom": "^18.0.5"
   },
@@ -54,6 +55,6 @@
     "react-dom": "^18.1.0"
   },
   "dependencies": {
-    "@infini-soft/kli": "^0.0.38"
+    "deep-object-diff": "^1.1.7"
   }
 }

@@ -25,13 +25,14 @@ export const useSearchFilter = () => {
     if (!filterTerm) {
       return microState?.list;
     }
-    const result = new Map<string, API.Item>()
+    let result = {}
 
-    microState?.list?.forEach((item, key) => {
-      if (JSON.stringify(item).includes(filterTerm)) {
-        result.set(key, item)
+    Object.keys(microState?.list)?.forEach((key) => {
+      if (JSON.stringify(microState.list[key])?.includes(filterTerm)) {
+        result = { ...result, [key]: microState.list[key] }
       }
     })
+
 
     return result;
 
@@ -41,7 +42,7 @@ export const useSearchFilter = () => {
    * Search
    * @returns Result
    */
-  const search = (list?: Map<string, API.Item>) => {
+  const search = (list?: Record<string, API.Item>) => {
 
     if (!searchTerm && !list) {
       return microState?.list;
@@ -50,11 +51,11 @@ export const useSearchFilter = () => {
     if (!searchTerm) {
       return list
     }
-    const result = new Map<string, API.Item>()
+    let result = {}
 
-    list?.forEach((item, key) => {
-      if (JSON.stringify(item).includes(searchTerm)) {
-        result.set(key, item)
+    Object.keys(microState?.list)?.forEach((key) => {
+      if (JSON.stringify(microState.list[key])?.includes(searchTerm)) {
+        result = { ...result, [key]: microState.list[key] }
       }
     })
 

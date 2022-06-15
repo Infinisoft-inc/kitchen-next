@@ -5,6 +5,7 @@ import { CrudMutators, InputMutatorGeneric, UseListMutatorGeneric } from "./useI
 
 import { metacategory } from "@/services/contacts/metacategory";
 import { metasubcategory } from "@/services/contacts/metasubcategory";
+import { IStore } from "@infini-soft/store/src/types";
 import * as listService from "../services/contacts/list";
 
 const devtool = config?.verbose
@@ -27,15 +28,15 @@ type Destroy = () => void
  * STATE
  */
 export type MicroState = {
-  list: Map<string, API.Item>
+  list: Record<string, API.Item>
   editItemId: string
   meta?: {
     categories?: API.Meta
     subCategories?: API.Meta
   }
 }
-export type MicroPayload = any
-export type MicroStore = Store<MicroState, MicroPayload>
+export type MicroPayload = unknown
+export type MicroStore = IStore<MicroState, MicroPayload>
 
 /**
  * OPERATION
@@ -44,8 +45,8 @@ export type MicroStore = Store<MicroState, MicroPayload>
 export const fetchData = async (filter = '',): Promise<MicroState> => {
   const result: API.Success = await listService.list({})
 
-  const normalized: Map<string, API.Item> = new Map()
-  result?.data?.forEach(item => normalized.set(item.SK!, item))
+  const normalized: Record<string, API.Item> =  result?.data?.reduce((acc: Record<string, API.Item>, item) => ({...acc, [item.SK!]: item}), {})
+
 
   return {
     list: normalized,
@@ -60,10 +61,10 @@ export const fetchData = async (filter = '',): Promise<MicroState> => {
 /**
  * CONTEXT
  */
-export type MicroContext = {
+export type IMicroContext = {
   store: MicroStore
 }
-const initialContext: MicroContext = {
+const initialContext: IMicroContext = {
   store: new Store(fetchData, { devtool })
 };
 const MicroContext = React.createContext(initialContext);
