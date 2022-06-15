@@ -13,7 +13,10 @@ const devtool = config?.verbose
  * This is the implementation part of app not the lib
  *  */
 export type UseMutator = UseMutatorGeneric<keyof API.Item, any, void>
-export type InputMutator = InputMutatorGeneric<keyof API.Item, React.ChangeEvent<HTMLInputElement>>
+/**
+ * Any in intended to use it InputMutator with anything
+ */
+export type InputMutator = InputMutatorGeneric<any, React.ChangeEvent<HTMLInputElement>>
 export type UseListMutator = UseListMutatorGeneric<keyof API.Item, CrudMutators>
 export type InputListMutator = InputMutatorGeneric<keyof API.Item, React.ChangeEvent<HTMLInputElement>>
 export type UseItem = UseItemGeneric<API.Item>
