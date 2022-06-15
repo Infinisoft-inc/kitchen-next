@@ -19,6 +19,7 @@ module.exports = {
       '@/components': path.resolve(__dirname, 'src/components'),
       '@/assets/svg': path.resolve(__dirname, 'src/assets/svg'),
       '@/style': path.resolve(__dirname, 'src/style/theme.module.css'),
+      '@/services': path.resolve(__dirname, 'src/services')
     },
   },
   experiments: {

@@ -36,5 +36,21 @@ const Template: ComponentStory<typeof Table> = (args) => (
 
 export const StringArgs = Template.bind({});
 StringArgs.args = {
-
+data: {
+  first: {
+    name: 'dog1'
+  },
+  second: {
+    name: 'dog2'
+  },
+  third: {
+    name: 'dog3'
+  },
+  fourth: {
+    name: 'dog4'
+  }
+},
+columns: {
+  name: {}
+}
 };

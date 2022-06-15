@@ -12,7 +12,6 @@ import { defaultAvatar } from "./assets/svg"
 export const columns = (store: MicroStore): TableConfig<API.Item> => {
   const onClick = (SK: string) => {
     window.dispatchEvent(new CustomEvent('item.clicked'))
-    // @ts-ignore
     store.mutate(prev => ({ ...prev, editItemId: SK }))
   }
 

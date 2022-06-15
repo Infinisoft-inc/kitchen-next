@@ -70,7 +70,7 @@
     "@infini-soft/lib-federation": "^0.0.14"
   },
   "scripts": {
-    "start:local:federation": "serve -s packages -l 5000",
+    "start:local:federation": "serve -s packages",
     "storybook": "start-storybook -p 6006",
     "storybook:nocache": "start-storybook -p 6006 --no-manager-cache",
     "publish:canary": "lerna publish --canary --preid canary",
@@ -124,7 +124,8 @@
           "responsive": "responsive@http://localhost:5000/components/responsive/dev/remoteEntry.js",
           "menu": "menu@http://localhost:5000/components/menu/dev/remoteEntry.js",
           "themetoken": "themetoken@http://localhost:5000/components/themetoken/dev/remoteEntry.js",
-          "toggle": "toggle@http://localhost:5000/components/toggle/dev/remoteEntry.js"
+          "toggle": "toggle@http://localhost:5000/components/toggle/dev/remoteEntry.js",
+          "table": "table@http://localhost:5000/components/table/dev/remoteEntry.js"
         }
       },
       "prod": {
@@ -137,7 +138,8 @@
           "responsive": "responsive@https://app.micro.infini-soft.com/components/responsive/remoteEntry.js",
           "menu": "menu@https://app.micro.infini-soft.com/components/menu/remoteEntry.js",
           "themetoken": "themetoken@https://app.micro.infini-soft.com/components/themetoken/remoteEntry.js",
-          "toggle": "toggle@https://app.micro.infini-soft.com/components/toggle/remoteEntry.js"
+          "toggle": "toggle@https://app.micro.infini-soft.com/components/toggle/remoteEntry.js",
+          "table": "table@https://app.micro.infini-soft.com/components/table/remoteEntry.js"
         }
       }
     }
