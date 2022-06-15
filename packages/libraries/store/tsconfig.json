@@ -17,7 +17,7 @@
     },
     "allowSyntheticDefaultImports": true,
   },
-  "include": [ "mock/**/*", "src/**/*", "config/*", "../../../micro-apps/contact/src/context/useItem.ts"],
+  "include": [ "mock/**/*", "src/**/*", "config/*"],
   "exclude": [
     "node_modules",
     "lib",

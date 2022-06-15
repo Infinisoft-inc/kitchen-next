@@ -13,14 +13,16 @@ const Paginator = React.lazy(() => import(/* webpackChunkName: 'Paginator' */ '.
 
 const Table = <T,>({ columns, data, options = {} }: TableProps<T>) => {
   const { pagination = true, rowPerPage = 10 } = options
-  const { paginate, handleGotoPage, currentPage, _numberOfPage } = usePaginator({ rowPerPage, count: data?.size ?? 0, nextToken: '000' })
+  const { paginate, handleGotoPage, currentPage, _numberOfPage } = usePaginator({ rowPerPage, count: Object.keys(data ?? {}).length, nextToken: '000' })
   const [pageSize,] = React.useState(rowPerPage);
   const [nextToken,] = React.useState('mocktoken');
   const pagedList = useMemo(() => pagination ? paginate(data) : data, [pagination, paginate, data])
-  const rows = []
+  
+  const rows: any[] = []
 
   if (data && pagedList) {
-    for (let [rowKey, rowColumns] of pagedList.entries()) {
+    Object.keys(pagedList).forEach((rowKey)=>{
+      const rowColumns = pagedList[rowKey]
 
       const row = <tr key={`${rowKey}-row-${new Date().getTime().toFixed(0)}`} id={rowKey}>
         {
@@ -34,7 +36,7 @@ const Table = <T,>({ columns, data, options = {} }: TableProps<T>) => {
       </tr>
 
       rows.push(row)
-    }
+    })
   }
 
 

@@ -27,7 +27,7 @@ export const Content = ({ SK, onClose }: ContentProps) => {
     placeholder: field,
     name: field,
     defaultValue: contact?.[field] ? String(contact?.[field]) : '',
-    onChange: inputMutator(field)
+    onChange: inputMutator(field as any)
   })
 
   return <span key={SK}>

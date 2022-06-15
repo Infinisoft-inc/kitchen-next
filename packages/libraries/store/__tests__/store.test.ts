@@ -19,10 +19,10 @@ import { Store } from '../src/lib/store';
 
 describe('Unit Testing', () => {
 
-  it('Array mutate()', () => {
-    const store = new Store(() => Promise.resolve(['dog', 'bobz']))
+  it('Mutation', () => {
+    const store = new Store<any, any>(() => Promise.resolve({ 0: 'dog', 1: 'bobz' }))
     store.mutate((_state) => {
-      return ['mutation']
+      return { 0: 'mutation' }
     })
 
     expect(store.getState()).toEqual({ 0: 'mutation' });
@@ -38,7 +38,6 @@ describe('Unit Testing', () => {
 
     expect(mock).toBeCalledTimes(1);
     expect(store.getState()).toEqual({ d: 'd' })
-
 
   });
 
@@ -58,7 +57,6 @@ describe('Unit Testing', () => {
     expect(receivedPayload).toEqual('payload');
   });
 
-
   it('Unsubscribe', () => {
     const store = new Store(() => Promise.resolve(['one']))
     let receivedPayload = ''
@@ -72,6 +70,45 @@ describe('Unit Testing', () => {
 
     expect(mock).toBeCalledTimes(2);
     expect(receivedPayload).toEqual('payload');
+  });
+
+  it('Mutation Verify Subscribers POJO Payload', () => {
+    const store = new Store<any, any>(() => Promise.resolve({ 0: 'dog', 1: 'bobz' }))
+
+    store.subscribe((event, state, payload) => {
+      console.log(`event `, event, ` state `, state, ` payload `, payload)
+
+      if (event.match("@initialization")) {
+        store.mutate((_state) => {
+          return { 0: 'mutation' }
+        })
+
+        expect(store.getState()).toEqual({ 0: 'mutation' });
+      }
+
+    })
+  })
+
+  it('Mutation Verify Subscribers Iterable Payload', () => {
+    let state:Record<string, { name: string }> = {'dog': { name: 'pound' }}
+    state = {...state, 'dogette': { name: 'poundette' }}
+
+    const store = new Store<any, any>(() => Promise.resolve(state))
+
+    store.subscribe((event, state, payload) => {
+      console.log(`event `, event, ` state `, state, ` payload `, payload)
+
+      if (event.match("@initialization")) {
+        store.mutate((_state) => {
+          return { dog: { name: 'mutation' } }
+        })
+
+        expect(store.getState()).toEqual({ dog: { name: 'mutation' }, doguette: { name: 'poundette' } });
+      }
+
+    })
+
+
   });
 
 });

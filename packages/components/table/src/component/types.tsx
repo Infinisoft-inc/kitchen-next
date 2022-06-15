@@ -41,7 +41,7 @@ export type TableProps<T> = {
   /**
    * Data map
    */
-  data?: Map<string, T>
+  data?: Record<string, T>
   /**
    * Table options
    */

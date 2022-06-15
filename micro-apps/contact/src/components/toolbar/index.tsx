@@ -17,7 +17,7 @@ export const ToolBar: React.FC<ToolBarProps> = (props) => {
   return <span className={css.rootContainer}>
     <Search />
 
-    <Responsive showUp='laptop'>
+    <Responsive showUp='desktop'>
       <Filter />
     </Responsive>
 

@@ -10,6 +10,7 @@ const { BundleStatsWebpackPlugin } = require('bundle-stats-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const BundleAnalyzerPlugin =
   require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+  const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = (env, argv) =>
   merge(common, {
@@ -19,6 +20,7 @@ module.exports = (env, argv) =>
       minimizer: [new TerserPlugin()],
     },
     plugins: [
+      new MiniCssExtractPlugin(),
       new BundleAnalyzerPlugin({
         analyzerMode: 'static',
         reportFilename: path.join(process.cwd(), '/analyze/deps.graph.html'),

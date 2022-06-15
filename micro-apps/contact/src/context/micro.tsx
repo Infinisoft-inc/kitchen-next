@@ -1,7 +1,11 @@
-import { CrudMutators, InputMutatorGeneric, Store, UseListMutatorGeneric, UseMutatorGeneric } from "@infini-soft/store";
+import { Store, UseMutatorGeneric } from "@infini-soft/store";
 import React from 'react';
 import config from '../../config/config.json';
+import { CrudMutators, InputMutatorGeneric, UseListMutatorGeneric } from "./useItem";
 
+import { metacategory } from "@/services/contacts/metacategory";
+import { metasubcategory } from "@/services/contacts/metasubcategory";
+import { IStore } from "@infini-soft/store/src/types";
 import * as listService from "../services/contacts/list";
 
 const devtool = config?.verbose
@@ -9,60 +13,59 @@ const devtool = config?.verbose
 /**
  * This is the implementation part of app not the lib
  *  */
- export type UseMutator = UseMutatorGeneric<keyof API.Item, any, void>
- export type InputMutator = InputMutatorGeneric<keyof API.Item, React.ChangeEvent<HTMLInputElement>>
- export type UseListMutator = UseListMutatorGeneric<keyof API.Item, CrudMutators>
- export type InputListMutator = InputMutatorGeneric<keyof API.Item, React.ChangeEvent<HTMLInputElement>>
- export type UseItem = UseItemGeneric<API.Item>
- export type UseItemGeneric<T> = (field: string) => { item: T, inputMutator: InputMutator, listMutator: UseListMutator, useMutator: UseMutator, destroy: Destroy }
- type Destroy =   () => void
+export type UseMutator = UseMutatorGeneric<keyof API.Item, any, void>
+/**
+ * Any in intended to use it InputMutator with anything
+ */
+export type InputMutator = InputMutatorGeneric<any, React.ChangeEvent<HTMLInputElement>>
+export type UseListMutator = UseListMutatorGeneric<keyof API.Item, CrudMutators>
+export type InputListMutator = InputMutatorGeneric<keyof API.Item, React.ChangeEvent<HTMLInputElement>>
+export type UseItem = UseItemGeneric<API.Item>
+export type UseItemGeneric<T> = (field: string) => { item: T, inputMutator: InputMutator, listMutator: UseListMutator, useMutator: UseMutator, destroy: Destroy }
+type Destroy = () => void
 
 /**
  * STATE
  */
 export type MicroState = {
-  list: Map<string, API.Item>
+  list: Record<string, API.Item>
   editItemId: string
-  // meta: {
-  //   categories?: API.Meta
-  //   subCategories?: API.Meta
-  // }
+  meta?: {
+    categories?: API.Meta
+    subCategories?: API.Meta
+  }
 }
-export type MicroPayload = any
-export type MicroStore = Store<MicroState, MicroPayload>
+export type MicroPayload = unknown
+export type MicroStore = IStore<MicroState, MicroPayload>
 
 /**
  * OPERATION
  * @returns
  */
-export const fetchData = async (): Promise<MicroState> => {
-  const result = await listService.list({}) as API.Success
-  /**
-   * Add useMetaModel also
-   */
+export const fetchData = async (filter = '',): Promise<MicroState> => {
+  const result: API.Success = await listService.list({})
 
-  const normalized: Map<string, API.Item> = new Map()
-  result?.data?.forEach(item => normalized.set(item.SK!, item))
+  const normalized: Record<string, API.Item> =  result?.data?.reduce((acc: Record<string, API.Item>, item) => ({...acc, [item.SK!]: item}), {})
+
 
   return {
     list: normalized,
     editItemId: '',
-    // meta:{
-    //   categories,
-    //   subCategories
-    // }
+    meta: {
+      categories: (await metacategory({ SK: `${config.appName}__${filter}` })),
+      subCategories: (await metasubcategory({ SK: `${config.appName}__${filter}` }))
+    }
   }
 }
 
 /**
  * CONTEXT
  */
-export type MicroContext = {
+export type IMicroContext = {
   store: MicroStore
 }
-const initialContext: MicroContext = {
-  // store: createstore(fetchData, { devtool})
-  store: new Store(fetchData, { devtool})
+const initialContext: IMicroContext = {
+  store: new Store(fetchData, { devtool })
 };
 const MicroContext = React.createContext(initialContext);
 const MicroContextProvider = ({ children }: { children: React.ReactNode }) => {

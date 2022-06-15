@@ -1,14 +1,12 @@
-// /*
-//  * Copyright © All rights reserved 2022
-//  * Infinisoft Inc.
-//  * www.infini-soft.com
-//  */
+/*
+ * Copyright © All rights reserved 2022
+ * Infinisoft Inc.
+ * www.infini-soft.com
+ */
 
 import { useCallback } from "react"
 import { useStore } from "../../../../packages/libraries/store/src/lib/usestore"
-import { MicroPayload, MicroState, useMicroContext } from "./micro"
-
-
+import { InputMutator, MicroPayload, MicroState, useMicroContext } from "./micro"
 
 export type CrudMutators = {
   onAdd: <T>(newValue?: T) => void
@@ -23,8 +21,6 @@ export type UseListMutatorGeneric<T, R> = (field: T) => R
 
 export type Destroy = () => void
 
-//******************************** */
-
 
 /**
  * Store item selector/mutator
@@ -38,79 +34,53 @@ type P = MicroPayload
 type Selector<S> = (a: S) => S
 export const useItem = (id: string) => {
   const { store } = useMicroContext()
-  const item = useStore(store, a=>a?.list?.get?.(id))
+  const item = useStore<S, P, API.Item>(store, a => a?.list?.[id])
 
-  // @ts-ignore
+  const useMutator = (field: string, newValue: unknown) => {
+    store.mutate(prev => {
+      return {
+        ...prev,
+        list: {
+          ...prev.list,
+          [id]: {
+            ...item,
+            [field]: newValue
+          }
+        }
 
-  const useMutator = (field: keyof S, newValue: unknown) => store.mutate(prev => {
-
-    prev?.list?.set?.(id, {
-      ...item,
-      [field]: newValue
-    })
-
-    return { ...prev }
+      }
+    }
+    )
   }
-  )
 
   const listMutator = (field: string) => {
 
     const onAdd = (newValue?: any) => {
-      // @ts-ignore
-      store.mutate(prev => {
-          // @ts-ignore
-        const arrayField = item[field]
+      const arrayField = item[field]
 
-        if (newValue && Array.isArray(arrayField)) {
-          arrayField.push(newValue)
-        }
+      if (newValue && Array.isArray(arrayField)) {
+        arrayField.push(newValue)
+      }
 
-        prev?.list?.set?.(id, {
-          ...item,
-          [field]: arrayField
-        })
-
-        return { ...prev }
-      })
+      useMutator(field, arrayField)
     }
 
     const onChange = (index: number, newValue: any) => {
-      // @ts-ignore
-      store.mutate(prev => {
-          // @ts-ignore
         const arrayField = item[field]
 
         if (newValue && Array.isArray(arrayField)) {
           arrayField.splice(index, 1, newValue)
         }
 
-
-        // @ts-ignore
-        prev?.list?.set?.(id, {
-          ...item,
-          [field]: arrayField
-        })
-
-        return { ...prev }
-      })
+        useMutator(field, arrayField)
     }
 
     const onRemove = (index: number) => {
-      // @ts-ignore
-      store.mutate(prev => {
-          // @ts-ignore
+
         const arrayField = item[field]
-        // @ts-ignore
         delete arrayField?.[index]
 
-        // @ts-ignore
-        prev.list.set(id, {
-          ...item,
-          [field]: arrayField
-        })
-
-        return { ...prev }
-      })
+        useMutator(field, arrayField)
     }
 
     return {
@@ -120,15 +90,11 @@ export const useItem = (id: string) => {
     }
   }
 
-  // @ts-ignore
   const destroy = () => store.mutate(prev => {
-    prev?.list?.delete?.(id)
+    delete prev.list[id]
 
     return prev
   })
-
-
-  // @ts-ignore
 
   const inputMutator: InputMutator = (field) => useCallback((e) => useMutator(field, e?.target?.value), [field, useMutator])
 

@@ -14,7 +14,6 @@ const App = () => {
     <Header />
     <Toolbar />
 
-
     <ContactList />
 
     <Details />
