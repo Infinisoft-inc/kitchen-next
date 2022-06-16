@@ -2,22 +2,43 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import Table from '.';
 
 export default {
-  title: 'TEMPLATE/Table',
+  title: 'LAYOUT/Table',
   component: Table,
   argTypes: {
-    content: {
+    data: {
       defaultValue: '',
-      description: 'overwritten description',
       table: {
-        category: 'Content',
         type: {
-          summary: 'something short',
-          detail: 'something really really long',
+          summary: 'Record<string, T>',
+          detail: 'Map data',
         },
-        defaultValue: { summary: 'Hello' },
       },
       control: {
-        type: null,
+        type: 'object',
+      },
+    },
+    columns: {
+      defaultValue: '',
+      table: {
+        type: {
+          summary: 'Record<string, TableRowConfig<T>>',
+          detail: 'Columns config',
+        },
+      },
+      control: {
+        type: 'object',
+      },
+    },
+    options: {
+      default: true,
+      table: {
+        type: {
+          summary: 'pagination: boolean, rowPerPage: number',
+          detail: 'Pagination config',
+        },
+      },
+      control: {
+        type: 'boolean',
       },
     },
   },
@@ -30,27 +51,52 @@ export default {
   },
 } as ComponentMeta<typeof Table>;
 
-const Template: ComponentStory<typeof Table> = (args) => (
-  <Table {...args}/>
-);
+const Template: ComponentStory<typeof Table> = (args) => <Table {...args} />;
 
-export const StringArgs = Template.bind({});
-StringArgs.args = {
-data: {
-  first: {
-    name: 'dog1'
+export const TableArgs = Template.bind({});
+TableArgs.args = {
+  data: {
+    first: {
+      name: 'dog1',
+      telephones: '555-555-5555',
+      address: '1234 rue abcd, AlphabetTown, QC, Canada, J9F 7U3',
+      email: 'abc@defg.hij',
+    },
+    second: {
+      name: 'dog2',
+      telephones: '555-555-5555',
+      address: '1234 rue abcd, AlphabetTown, QC, Canada, J9F 7U3',
+      email: 'abc@defg.hij',
+    },
+    third: {
+      name: 'dog3',
+      telephones: '555-555-5555',
+      address: '1234 rue abcd, AlphabetTown, QC, Canada, J9F 7U3',
+      email: 'abc@defg.hij',
+    },
+    fourth: {
+      name: 'dog4',
+      telephones: '555-555-5555',
+      address: '1234 rue abcd, AlphabetTown, QC, Canada, J9F 7U3',
+      email: 'abc@defg.hij',
+    },
   },
-  second: {
-    name: 'dog2'
+  columns: {
+    name: {},
+    telephones: {},
+    address: {},
+    email: {},
   },
-  third: {
-    name: 'dog3'
+  options: {
+    pagination: true,
+    rowPerPage: 3,
   },
-  fourth: {
-    name: 'dog4'
-  }
-},
-columns: {
-  name: {}
-}
+};
+
+TableArgs.parameters = {
+  docs: {
+    description: {
+      story: 'There is table content',
+    },
+  },
 };
