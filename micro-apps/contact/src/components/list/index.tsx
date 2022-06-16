@@ -11,7 +11,7 @@ const List = () => {
   const list = useSearchFilter()
   const { store } = useMicroContext()
 
-  return <div className={css.listContainer}>
+return <div className={css.listContainer}>
     <Table columns={columns(store)} data={list} options={{pagination:true, rowPerPage:5}} />
   </div>
 };

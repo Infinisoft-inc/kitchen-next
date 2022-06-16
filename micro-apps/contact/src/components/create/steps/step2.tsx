@@ -38,17 +38,10 @@ export const Step2 = ({ SK, hidden }: Step2Props) => {
     </div>
 
     <div className={css.content}>
-
       <span className={css.detailsContainer}>
-
-        <span className={css.categoryContainer}>
-          <Chip>Person</Chip>
-          <Chip>Friend</Chip>
-        </span>
-
         <InputText before={<WebIcon />} {...props('website')} />
 
-        <CrudList icon={<RelatedwithIcon />} placeholder={'Relation ?'} onAdd={listMutatorsFactory('relatedWith').add} onChange={listMutatorsFactory('relatedWith').update} itemList={contact?.relatedWith} itemRender={(item: string, i: number) => <Chip key={`relation${i}`} onRemove={() => listMutatorsFactory('relatedWith').remove(i)}>{item}</Chip>} />
+        <CrudList icon={<RelatedwithIcon />} placeholder={'Relation ?'} onAdd={listMutatorsFactory('relatedWith').add} onChange={listMutatorsFactory('relatedWith').update} itemList={contact?.relatedWith} itemRender={(item: string, i: number) => <Chip key={`relatedWith${i}`} onRemove={() => listMutatorsFactory('relatedWith').remove(i)}>{item}</Chip>} />
       </span>
     </div>
   </span>

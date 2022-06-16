@@ -14,20 +14,27 @@ export type DetailsProps = {
 };
 
 export const Create = ({ children }: DetailsProps) => {
-
   const { store } = useMicroContext()
 
   const handleAdd = () => {
-    const SK = `person__${new Date().getTime().toFixed(0)}`
+    const SK = `person`
 
     startTransition(() => {
-      store.mutate((state) => {
+      store.mutate((prev) => {
         const newState = {
-          ...state,
-          editItemId: SK
+          ...prev,
+          editItemId: SK,
+          list: {
+            ...prev?.list,
+            [SK]: {
+              SK,
+              tempID: new Date().getTime().toFixed(0),
+              relatedWith: [],
+              telephones: []
+            }
+          }
         }
-        store.emit
-        // newState?.list?.set(newState.editItemId, { SK: newState.editItemId, relatedWith: [], telephones: [] })
+
         return newState
       })
     })
