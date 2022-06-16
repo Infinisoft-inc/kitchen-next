@@ -14,12 +14,12 @@ module.exports = {
     cacheWithContext: false,
     extensions: ['.tsx', '.ts', '.jsx', '.js'],
     alias: {
-      // '@/infini-soft/store': path.resolve(__dirname, 'src/packages/store'),
       '@/context/micro': path.resolve(__dirname, 'src/context/micro'),
       '@/components': path.resolve(__dirname, 'src/components'),
       '@/assets/svg': path.resolve(__dirname, 'src/assets/svg'),
       '@/style': path.resolve(__dirname, 'src/style/theme.module.css'),
-      '@/services': path.resolve(__dirname, 'src/services')
+      '@/services': path.resolve(__dirname, 'src/services'),
+      '@/context': path.resolve(__dirname, 'src/context'),
     },
   },
   experiments: {

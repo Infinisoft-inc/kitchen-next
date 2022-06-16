@@ -21,7 +21,7 @@ export type Step2Props = Partial<HTMLAttributes<HTMLDivElement>> & {
 
 export const Step2 = ({ SK, hidden }: Step2Props) => {
   const {store} = useMicroContext()
-  const { item: contact, inputMutator, listMutator, useMutator } = useItem(SK)
+  const { item: contact, inputMutator, listMutatorsFactory } = useItem(SK)
 
   const props = (field: keyof API.Item) => ({
     placeholder: field,
@@ -48,7 +48,7 @@ export const Step2 = ({ SK, hidden }: Step2Props) => {
 
         <InputText before={<WebIcon />} {...props('website')} />
 
-        <CrudList icon={<RelatedwithIcon />} placeholder={'Relation ?'} {...listMutator('relatedWith')} itemList={contact?.relatedWith} itemRender={(item: string, i: number) => <Chip key={`relation${i}`} onRemove={() => listMutator('relatedWith').onRemove(i)}>{item}</Chip>} />
+        <CrudList icon={<RelatedwithIcon />} placeholder={'Relation ?'} onAdd={listMutatorsFactory('relatedWith').add} onChange={listMutatorsFactory('relatedWith').update} itemList={contact?.relatedWith} itemRender={(item: string, i: number) => <Chip key={`relation${i}`} onRemove={() => listMutatorsFactory('relatedWith').remove(i)}>{item}</Chip>} />
       </span>
     </div>
   </span>

@@ -32,7 +32,6 @@ const Toggle = ({ toggles, clickHandler, children, ...props }: ToggleProps) => {
   })
 
   return <div className={css.toggleContainer} onClickCapture={onClickCapture}>
-    <button {...getProps("none")} {...props}>None</button>
     {
       toggles &&
       toggles.map(item => <button {...getProps(item)} {...props}>{item}</button>)

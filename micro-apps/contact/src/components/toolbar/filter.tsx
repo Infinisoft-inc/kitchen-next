@@ -25,7 +25,7 @@ const Filter = () => {
   }
 
   return <span data-style='filter:container:root'>
-    {subCategories && <Toggle toggles={subCategories} clickHandler={clickHandler} />}
+    {subCategories && <Toggle toggles={['none', ...subCategories]} clickHandler={clickHandler} />}
   </span>
 
 }
