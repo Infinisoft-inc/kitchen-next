@@ -6,7 +6,7 @@
 import { AddressIcon, EmailIcon, NameIcon, PhoneIcon } from '@/assets/svg';
 
 import React, { HTMLAttributes } from 'react';
-import { useItem } from '../../../context/useItem';
+import { useItem } from '../../../hooks/useItem';
 import css from './index.module.css';
 
 const Chip = React.lazy(() => import(/* webpackChunkName: 'Chip' */ 'chip/Chip'))

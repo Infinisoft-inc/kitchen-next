@@ -1,11 +1,11 @@
 import { Store, UseMutatorGeneric } from "@infini-soft/store";
 import React from 'react';
+import { CrudMutators, InputMutatorGeneric, UseListMutatorGeneric } from ".";
 import config from '../../config/config.json';
-import { CrudMutators, InputMutatorGeneric, UseListMutatorGeneric } from "./useItem";
 
 import { metacategory } from "@/services/contacts/metacategory";
 import { metasubcategory } from "@/services/contacts/metasubcategory";
-import { IStore } from "@infini-soft/store/src/types";
+import { IStore } from "@infini-soft/store";
 import * as listService from "../services/contacts/list";
 
 const devtool = config?.verbose

@@ -20,6 +20,7 @@ module.exports = {
       '@/style': path.resolve(__dirname, 'src/style/theme.module.css'),
       '@/services': path.resolve(__dirname, 'src/services'),
       '@/context': path.resolve(__dirname, 'src/context'),
+      '@/hooks': path.resolve(__dirname, 'src/hooks'),
     },
   },
   experiments: {

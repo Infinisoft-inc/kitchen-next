@@ -1,2 +1,2 @@
-export * from './useItem';
+export * from '../hooks/useItem';
 

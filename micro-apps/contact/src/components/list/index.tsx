@@ -1,13 +1,13 @@
 
 import { useMicroContext } from '@/context/micro';
 import React from 'react';
+import { useSearchFilter } from '../../hooks/useSearchFilter';
 import { columns } from './columns';
 import css from './index.module.css';
-import { useSearchFilter } from './useSearchFilter';
 
 const Table = React.lazy(() => import(/* webpackChunkName: 'Table' */ 'table/Table'))
 
-const ContactList = () => {
+const List = () => {
   const list = useSearchFilter()
   const { store } = useMicroContext()
 
@@ -16,4 +16,4 @@ const ContactList = () => {
   </div>
 };
 
-export default ContactList
+export default List

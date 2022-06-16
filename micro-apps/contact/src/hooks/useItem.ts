@@ -4,9 +4,9 @@
  * www.infini-soft.com
  */
 
+import { useStore } from "@infini-soft/store/src/lib/usestore"
 import { useCallback } from "react"
-import { useStore } from "../../../../packages/libraries/store/src/lib/usestore"
-import { InputMutator, MicroPayload, MicroState, useMicroContext } from "./micro"
+import { InputMutator, MicroPayload, MicroState, useMicroContext } from "../context/micro"
 
 export type CrudMutators = {
   add: <T>(newValue?: T) => void

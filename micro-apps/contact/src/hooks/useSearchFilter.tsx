@@ -1,6 +1,6 @@
 import { useMicroContext } from "@/context/micro";
 import React, { startTransition, useEffect, useSyncExternalStore } from "react";
-import config from '../../../config/config.json';
+import config from '../../config/config.json';
 
 /**
  * Filter store list
