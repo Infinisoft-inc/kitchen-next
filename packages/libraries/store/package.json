@@ -1,13 +1,14 @@
 {
   "name": "@infini-soft/store",
-  "version": "0.0.20",
-  "description": "",
+  "version": "0.1.2",
+  "description": "Pub/Sub Event Driven Micro State Management Lib. This is core package of new UNRELEASED micro frontend boilerplate.",
   "author": "Infinisoft Inc. <info@infini-soft.com>",
   "homepage": "https://www.kitchen.infini-soft.com/",
   "license": "INFINISOFT",
   "main": "dist/store.js",
   "module": "dist/store.js",
   "types": "dist/index.d.ts",
+  "keywords":["state", "react 18", "hooks", "devtool", "tiny", "micro", "useSyncExternalStore", "mutable"],
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
