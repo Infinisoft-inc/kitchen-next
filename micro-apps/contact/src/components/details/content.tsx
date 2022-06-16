@@ -20,7 +20,7 @@ export type ContentProps = {
 
 
 export const Content = ({ SK, onClose }: ContentProps) => {
-  const { item: contact, inputMutator, listMutator, useMutator, destroy } = useItem(SK)
+  const { item: contact, inputMutator, listMutatorsFactory, mutation, remove } = useItem(SK)
 
   const props = (field: keyof API.Item) => ({
     className: 'invariant',
@@ -33,9 +33,7 @@ export const Content = ({ SK, onClose }: ContentProps) => {
   return <span key={SK}>
     <div className={css.header}>
       <div className={css.headerContent}>
-
-      {/* @ts-ignore */}
-        <AvatarUpload src={contact?.avatar} save={base64 => useMutator('avatar', base64)} />
+        <AvatarUpload src={contact?.avatar} save={base64 => mutation('avatar', base64)} />
         <InputText {...props('name')} />
         <InputText {...props('email')} />
 
@@ -52,13 +50,13 @@ export const Content = ({ SK, onClose }: ContentProps) => {
         <InputText before={<AddressIcon />} {...props('address')} multiline />
         <InputText before={<WebIcon />} {...props('website')} />
 
-        <CrudList icon={<PhoneIcon />} placeholder={'(514) 864-5742'} {...listMutator('telephones')} itemList={contact?.telephones} itemRender={(item: string, i: number) => <Chip key={`telephone${i}`} onRemove={() => listMutator('telephones').onRemove(i)}>{item}</Chip>} />
+        <CrudList icon={<PhoneIcon />} placeholder={'(514) 864-5742'} onAdd={listMutatorsFactory('telephones').add} onChange={listMutatorsFactory('telephones').update} itemList={contact?.telephones} itemRender={(item: string, i: number) => <Chip key={`telephone-${i}`} onRemove={() => listMutatorsFactory('telephones').remove(i)}>{item}</Chip>} />
 
-        <CrudList icon={<RelatedwithIcon />} placeholder={'Relation ?'} {...listMutator('relatedWith')} itemList={contact?.relatedWith} itemRender={(item: string, i: number) => <Chip key={`relation${i}`} onRemove={() => listMutator('relatedWith').onRemove(i)}>{item}</Chip>} />
+        <CrudList icon={<RelatedwithIcon />} placeholder={'Relation ?'} onAdd={listMutatorsFactory('relatedWith').add} onChange={listMutatorsFactory('relatedWith').update} itemList={contact?.relatedWith} itemRender={(item: string, i: number) => <Chip key={`relatedWith-${i}`} onRemove={() => listMutatorsFactory('relatedWith').remove(i)}>{item}</Chip>} />
       </span>
     </div>
 
-    <div style={{ display: "flex", justifyContent: 'center' }} onClick={() => { destroy(); onClose?.() }}><button style={{ color: "red" }}>Delete</button></div>
+    <div style={{ display: "flex", justifyContent: 'center' }} onClick={() => { remove(); onClose?.() }}><button style={{ color: "red" }}>Delete</button></div>
   </span>
 
 }

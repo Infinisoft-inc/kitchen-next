@@ -4,13 +4,19 @@
  * www.infini-soft.com
  */
 
+:root {
+  --chip-background-color: transparent;
+  --chip-border-color: black;
+  --chip-border-radius: 5px;
+  --chip-color: black;
+}
 
- [data-style='data:chip:control'] {
+[data-style='data:chip:control'] {
   display: flex;
-  background-color: var(--color-primary-background-60);
-  color: var(--text-primary);
+  background-color: var(--chip-background-color);
+  color: var(--chip-color);
   padding: 0.5rem;
-  border-radius: 15px;
+  border-radius: var(--chip-border-radius);
   font-size: var(--body2-size);
-  border: 1px solid var(--color-primary-contrast-background);
+  border: 1px solid var(--chip-border-color);
 }
