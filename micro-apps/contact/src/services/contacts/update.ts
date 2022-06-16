@@ -1,4 +1,4 @@
-import config from '../../../config/config.json';
+import config from '@/config/config.json';
 
 export async function update(body: API.Item, options?: { [key: string]: any }) {
   const response = await fetch(`${config.api}/api/contacts`, {

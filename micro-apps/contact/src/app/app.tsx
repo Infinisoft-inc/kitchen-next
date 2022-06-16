@@ -1,7 +1,7 @@
 
 import Create from '@/components/create';
+import '@/style';
 import React from 'react';
-import '../style/theme.module.css';
 import styles from './index.css';
 
 const Toolbar = React.lazy(() => import(/*webpackPreload: true*/ /* webpackChunkName: 'toolbar' */'../components/toolbar'));

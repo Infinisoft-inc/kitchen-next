@@ -22,6 +22,6 @@ export const ToolBar: React.FC<ToolBarProps> = (props) => {
     </Responsive>
 
     <Create />
-  </span>;
+  </span>
 }
 export default ToolBar

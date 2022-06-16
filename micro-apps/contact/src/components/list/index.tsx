@@ -1,7 +1,7 @@
 
 import { useMicroContext } from '@/context/micro';
+import { useSearchFilter } from '@/hooks/useSearchFilter';
 import React from 'react';
-import { useSearchFilter } from '../../hooks/useSearchFilter';
 import { columns } from './columns';
 import css from './index.module.css';
 

@@ -5,8 +5,8 @@
  */
 import { RelatedwithIcon, WebIcon } from '@/assets/svg';
 import { useMicroContext } from '@/context/micro';
+import { useItem } from '@/hooks/useItem';
 import React, { HTMLAttributes } from 'react';
-import { useItem } from '../../../hooks/useItem';
 import css from './index.module.css';
 
 const Chip = React.lazy(() => import(/* webpackChunkName: 'Chip' */ 'chip/Chip'))

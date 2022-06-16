@@ -1,4 +1,4 @@
-import config from '../../../config/config.json';
+import config from '@/config/config.json';
 
 /** Meta category with count GET /api/Meta/category */
 export async function metacategory(

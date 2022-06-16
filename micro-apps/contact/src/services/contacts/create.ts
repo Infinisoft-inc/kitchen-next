@@ -1,4 +1,4 @@
-import config from '../../../config/config.json';
+import config from '@/config/config.json';
 
 /** Create POST /api/contacts */
 export async function create(body: API.Item, options?: { [key: string]: any }) {

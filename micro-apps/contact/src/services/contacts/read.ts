@@ -1,4 +1,4 @@
-import config from '../../../config/config.json';
+import config from '@/config/config.json';
 export async function read(
   params: API.readParams,
   options?: { [key: string]: any },

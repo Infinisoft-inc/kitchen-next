@@ -1,4 +1,4 @@
-import config from '../../../config/config.json';
+import config from '@/config/config.json';
 /** Meta subcategory with count GET /api/Meta/subcategory */
 export async function metasubcategory(
   params: API.metasubcategoryParams,
