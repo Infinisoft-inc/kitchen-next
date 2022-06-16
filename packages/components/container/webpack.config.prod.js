@@ -3,37 +3,42 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
-
+const path = require('path');
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common');
-const custom = require('./config/custom.webpack.config.dev');
-const path = require('path');
+const custom = require('./config/custom.webpack.config.prod');
+const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { ModuleFederationPlugin } = require('webpack').container;
-const { dependencies, name, infinisoft } = require('./package.json');
+const {peerDependencies, name, infinisoft} = require('./package.json')
 
 module.exports = merge(custom, common, {
-  mode: 'development',
+  mode: 'production',
+  output: {
+    filename: '[name].[contenthash].js',
+    path: path.join(process.cwd(), 'dist'),
+    publicPath: 'auto',
+  },
+  optimization: {
+    minimize: true,
+    minimizer: [new TerserPlugin()],
+  },
   plugins: [
     new ModuleFederationPlugin({
       name,
       filename: 'remoteEntry.js',
-      remotes: infinisoft.moduleFederation.dev.remotes,
+      remotes: infinisoft.moduleFederation.prod.remotes,
       exposes: {
-        [`./${infinisoft.moduleFederation.component}`]: './src/app',
+        [`./${infinisoft.moduleFederation.component}`]: './src/component',
       },
       shared: {
-        ...dependencies,
-        react: {
-          singleton: true,
-          eager: true,
-          requiredVersion: dependencies.react,
-        },
+        ...peerDependencies,
+        react: { singleton: true, eager: true, requiredVersion: peerDependencies.react },
         'react-dom': {
           singleton: true,
           eager: true,
-          requiredVersion: dependencies['react-dom'],
+          requiredVersion: peerDependencies['react-dom'],
         },
       },
     }),
@@ -42,14 +47,4 @@ module.exports = merge(custom, common, {
       template: './config/index.html',
     }),
   ],
-  output: {
-    filename: '[name].[contenthash].js',
-    path: path.join(process.cwd(), 'dev'),
-    publicPath: 'auto',
-  },
-  devServer: {
-    static: path.join(process.cwd(), 'dev'),
-    hot: true,
-  },
-  devtool: 'eval-source-map',
 });

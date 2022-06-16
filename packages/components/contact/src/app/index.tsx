@@ -11,7 +11,7 @@ import React from 'react';
 const MicroContextProvider = React.lazy(() => import('../context/micro'))
 const App = React.lazy(() => import('./app'));
 
-const Index = () => {
+const Contact = () => {
   return (
       <MicroContextProvider>
         <App />
@@ -19,4 +19,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default Contact;

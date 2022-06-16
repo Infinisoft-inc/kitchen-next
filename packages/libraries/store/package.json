@@ -1,6 +1,6 @@
 {
   "name": "@infini-soft/store",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Pub/Sub Event Driven Micro State Management Lib. This is core package of new UNRELEASED micro frontend boilerplate.",
   "author": "Infinisoft Inc. <info@infini-soft.com>",
   "homepage": "https://www.kitchen.infini-soft.com/",
@@ -8,7 +8,16 @@
   "main": "dist/store.js",
   "module": "dist/store.js",
   "types": "dist/index.d.ts",
-  "keywords":["state", "react 18", "hooks", "devtool", "tiny", "micro", "useSyncExternalStore", "mutable"],
+  "keywords": [
+    "state",
+    "react 18",
+    "hooks",
+    "devtool",
+    "tiny",
+    "micro",
+    "useSyncExternalStore",
+    "mutable"
+  ],
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
@@ -16,7 +25,7 @@
   "scripts": {
     "build:dev": "kli lib build",
     "build:dev:watch": "kli lib build --watch",
-    "build:prod": "tsc -p tsconfig.prod.json -d --emitDeclarationOnly --outDir dist --esModuleInterop& webpack -c ./webpack.config.prod.js",
+    "build:prod:type": "tsc -p tsconfig.prod.json -d --emitDeclarationOnly --outDir dist --esModuleInterop& webpack -c ./webpack.config.prod.js",
     "build:prod:watch": "kli lib build --prod --watch",
     "build:analyze": "kli lib build --analyze& start analyze/bundle-stats.html",
     "build:analyze:baseline": "kli lib build --analyze-baseline& start analyze/bundle-stats.html",

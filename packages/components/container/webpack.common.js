@@ -5,24 +5,16 @@
  */
 
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { ModuleFederationPlugin } = require('webpack').container;
+const {peerDependencies, name, infinisoft} = require('./package.json')
 
 module.exports = {
   context: process.cwd(),
-
-  resolve: {
+   resolve: {
     cacheWithContext: false,
     extensions: ['.tsx', '.ts', '.jsx', '.js'],
-    alias: {
-      '@/context/micro': path.resolve(__dirname, 'src/context/micro'),
-      '@/components': path.resolve(__dirname, 'src/components'),
-      '@/assets/svg': path.resolve(__dirname, 'src/assets/svg'),
-      '@/style': path.resolve(__dirname, 'src/style/theme.module.css'),
-      '@/services': path.resolve(__dirname, 'src/services'),
-      '@/context': path.resolve(__dirname, 'src/context'),
-      '@/hooks': path.resolve(__dirname, 'src/hooks'),
-      '@/config': path.resolve(__dirname, 'config'),
-    },
   },
   experiments: {
     topLevelAwait: true,
@@ -42,26 +34,7 @@ module.exports = {
             plugins: ['lodash'],
           },
         },
-        exclude: /node_modules/,
-      },
-      {
-        test: /\.less$/i,
-        use: [
-          {
-            loader: 'style-loader',
-          },
-          {
-            loader: 'css-loader',
-          },
-          {
-            loader: 'less-loader',
-            options: {
-              lessOptions: {
-                javascriptEnabled: true,
-              },
-            },
-          },
-        ],
+        exclude: /(node_modules|\*.stories.\*)/,
       },
       {
         test: /\.css$/i,

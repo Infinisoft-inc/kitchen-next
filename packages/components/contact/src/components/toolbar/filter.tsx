@@ -11,6 +11,7 @@ const Toggle = React.lazy(() => import(/* webpackChunkName: 'Toggle' */ 'toggle/
 const Filter = () => {
   const { store } = useMicroContext()
   const state = useSyncExternalStore(store.subscribe, store.getState)
+
   const subCategories = state?.meta?.categories ? Object.keys(state.meta.categories) : []
 
   const clickHandler = (newValue?: string) => {

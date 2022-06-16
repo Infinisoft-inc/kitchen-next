@@ -12,7 +12,6 @@
 .root {
   display: flex;
   background-color: var(--topbar-background-color);
-  justify-content: flex-end;
   padding: 0 2rem;
   min-height: 64px;
   color: var(--topbar-color);
