@@ -1,7 +1,7 @@
 {
-  "name": "container",
+  "name": "themeswitch",
   "version": "0.0.1",
-  "description": "Container",
+  "description": "ThemeSwitch",
   "private": true,
   "author": "Infinisoft Inc. <info@infini-soft.com>",
   "homepage": "https://www.kitchen.infini-soft.com/",
@@ -13,9 +13,6 @@
     "build:prod:watch": "kli component build --prod --watch",
     "build:analyze": "kli component build --analyze --prod& start analyze/bundle-stats.html",
     "build:analyze:baseline": "kli component build --analyze-baseline --prod& start analyze/bundle-stats.html",
-    "performance:analyze:mobile": "node tools/performance.js mobile",
-    "performance:analyze:desktop": "node tools/performance.js desktop",
-    "performance:analyze:desktop:cloud": "node tools/performance.cloud.js desktop",
     "test": "jest",
     "test:watchAll": "jest --watchAll",
     "test:coverage": "jest --coverage&& start analyze/coverage/lcov-report/index.html",
@@ -36,23 +33,15 @@
   },
   "infinisoft": {
     "moduleFederation": {
-      "title": "Container",
-      "category": "microapps",
-      "image": "https://www.kitchen.infini-soft.com/assets/components.png",
-      "component": "Container",
-      "dev": {
-        "remotes": {
-          "topbar": "topbar@http://localhost:5000/components/topbar/dev/remoteEntry.js",
-          "contact": "contact@http://localhost:5000/components/contact/dev/remoteEntry.js",
-          "themeswitch": "themeswitch@http://localhost:5000/components/themeswitch/dev/remoteEntry.js"
-        }
+      "title":"ThemeSwitch",
+      "category":"theme",
+      "image":"https://www.kitchen.infini-soft.com/assets/infinisoftticon.png",
+      "component": "ThemeSwitch",
+      "dev":{
+        "remotes": {}
       },
-      "prod": {
-        "remotes": {
-          "topbar": "topbar@https://app.micro.infini-soft.com/components/topbar/remoteEntry.js",
-          "contact": "contact@https://app.micro.infini-soft.com/components/contact/remoteEntry.js",
-          "themeswitch": "themeswitch@https://app.micro.infini-soft.com/components/themeswitch/remoteEntry.js"
-        }
+      "prod":{
+        "remotes": {}
       }
     }
   },

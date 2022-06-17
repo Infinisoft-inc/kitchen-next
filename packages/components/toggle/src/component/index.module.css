@@ -3,10 +3,27 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
- :root {
-  --color-primary-background: black;
-  --subtitle1-size: 16px;
-  --color-primary-contrast-background: white;
+
+ @import url('theme/variables.css');
+
+:root {
+  --color-primary-background: var(--md-sys-color-background);
+  --subtitle1-size: var(--md-sys-typescale-title-small-size);
+  --color-primary-contrast-background: var(--md-sys-color-on-background);
+  --text-primary: white;
+  --text-primary-contrast: black;
+}
+
+body[class*='darkmode'] {
+  --color-primary-background: var(--md-sys-color-background-dark);
+  --color-primary-contrast-background: var(--md-sys-color-on-background-dark);
+  --text-primary: white;
+  --text-primary-contrast: black;
+}
+
+body[class*='lightmode'] {
+  --color-primary-background: var(--md-sys-color-background-light);
+  --color-primary-contrast-background: var(--md-sys-color-on-background-light);
   --text-primary: white;
   --text-primary-contrast: black;
 }

@@ -11,6 +11,7 @@ import { ContainerProps } from './types';
 
 const TopBar = React.lazy(() => import(/* webpackChunkName: 'Topbar' */ 'topbar/TopBar'))
 const Contact = React.lazy(() => import(/* webpackChunkName: 'Contact' */ 'contact/Contact'))
+const ThemeSwitch = React.lazy(() => import(/* webpackChunkName: 'ThemeSwitch' */ 'themeswitch/ThemeSwitch'))
 
 const Container = (props: ContainerProps) => {
   return <Suspense>
@@ -19,6 +20,7 @@ const Container = (props: ContainerProps) => {
         <div className={css.header}>
           <TopBar
             brandImageUrl='https://www.kitchen.infini-soft.com/assets/infinisoftticon.png'
+            menuComponent={<><ThemeSwitch /></>}
           />
         </div>
 

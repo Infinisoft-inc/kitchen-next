@@ -1,0 +1,29 @@
+/*
+ * Copyright © All rights reserved 2022
+ * Infinisoft Inc.
+ * www.infini-soft.com
+ */
+
+@import url('theme/variables.css');
+
+:root {
+  --themeswitch-background-color: var(--md-sys-color-primary);
+  --themeswitch-text-color: var(--md-sys-color-on-primary);
+}
+
+body[class*='darkmode'] {
+  --themeswitch-background-color: var(--md-sys-color-primary-dark);
+  --themeswitch-text-color: var(--md-sys-color-on-primary-dark);
+}
+
+body[class*='lightmode'] {
+  --themeswitch-background-color: var(--md-sys-color-primary-light);
+  --themeswitch-text-color: var(--md-sys-color-on-primary-light);
+}
+
+.toggle {
+  background-color: var(--themeswitch-background-color);
+  color: var(--themeswitch-text-color);
+  border-radius: 50%;
+  padding: 0.3rem;
+}
