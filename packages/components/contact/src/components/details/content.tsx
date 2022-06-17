@@ -27,7 +27,7 @@ export const Content = ({ SK, onClose }: ContentProps) => {
     placeholder: field,
     name: field,
     defaultValue: contact?.[field] ? String(contact?.[field]) : '',
-    onChange: inputMutator(field as any)
+    onChange: inputMutator(field)
   })
 
   return <span key={SK}>
@@ -36,18 +36,17 @@ export const Content = ({ SK, onClose }: ContentProps) => {
         <AvatarUpload src={contact?.avatar} save={base64 => mutation('avatar', base64)} />
         <InputText {...props('name')} />
         <InputText {...props('email')} />
-
       </div>
     </div>
 
     <div className={css.content}>
       <span className={css.categoryContainer}>
-        <Chip>Person</Chip>
-        <Chip>Friend</Chip>
+        <Chip>{SK?.split('__')?.[0] ?? ''}</Chip>
+        <Chip>{contact?.Subcategory ?? ''}</Chip>
       </span>
 
       <span className={css.detailsContainer}>
-        <InputText before={<AddressIcon />} {...props('address')} multiline />
+        <InputText before={<AddressIcon />} {...props('address')} multiline className='noresize' />
         <InputText before={<WebIcon />} {...props('website')} />
 
         <CrudList icon={<PhoneIcon />} placeholder={'(514) 864-5742'} onAdd={listMutatorsFactory('telephones').add} onChange={listMutatorsFactory('telephones').update} itemList={contact?.telephones} itemRender={(item: string, i: number) => <Chip key={`telephone-${i}`} onRemove={() => listMutatorsFactory('telephones').remove(i)}>{item}</Chip>} />

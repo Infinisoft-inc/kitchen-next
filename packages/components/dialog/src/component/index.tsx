@@ -8,7 +8,7 @@ import React, { ForwardedRef, startTransition, Suspense, useCallback, useEffect 
 import './index.module.css';
 import { DialogProps } from './types';
 
-const Dialog = React.forwardRef(({ children, openEvents, closeEvents, ...props }: DialogProps, ref: ForwardedRef<HTMLSpanElement>) => {
+const Dialog = React.forwardRef(({ children, openEvents=[], closeEvents=[], ...props }: DialogProps, ref: ForwardedRef<HTMLSpanElement>) => {
   const [_visible, set_Visible] = React.useState(false);
 
   const handleOpen = useCallback(() => set_Visible(true), [])

@@ -221,28 +221,34 @@
   --md-sys-typescale-display-medium-weight: Regular;
   --md-sys-typescale-display-small-family: Roboto;
   --md-sys-typescale-display-small-weight: Regular;
+
+
   --md-sys-typescale-headline-large-family: Roboto;
   --md-sys-typescale-headline-large-weight: Regular;
   --md-sys-typescale-headline-medium-family: Roboto;
   --md-sys-typescale-headline-medium-weight: Regular;
   --md-sys-typescale-headline-small-family: Roboto;
   --md-sys-typescale-headline-small-weight: Regular;
-  --md-sys-typescale-title-large-family: Roboto;
-  --md-sys-typescale-title-large-weight: Regular;
   --md-sys-typescale-headline-6-family: Roboto;
   --md-sys-typescale-headline-6-weight: Regular;
+
+
+  --md-sys-typescale-title-large-family: Roboto;
+  --md-sys-typescale-title-large-weight: Regular;
   --md-sys-typescale-title-medium-family: Roboto;
   --md-sys-typescale-title-medium-weight: Medium;
   --md-sys-typescale-title-small-family: Roboto;
   --md-sys-typescale-title-small-weight: Medium;
-  --md-sys-typescale-label-large-family: Roboto;
-  --md-sys-typescale-label-large-weight: Medium;
+
   --md-sys-typescale-body-large-family: Roboto;
   --md-sys-typescale-body-large-weight: Regular;
   --md-sys-typescale-body-medium-family: Roboto;
   --md-sys-typescale-body-medium-weight: Regular;
   --md-sys-typescale-body-small-family: Roboto;
   --md-sys-typescale-body-small-weight: Regular;
+
+  --md-sys-typescale-label-large-family: Roboto;
+  --md-sys-typescale-label-large-weight: Medium;
   --md-sys-typescale-label-medium-family: Roboto;
   --md-sys-typescale-label-medium-weight: Medium;
   --md-sys-typescale-label-small-family: Roboto;
@@ -256,17 +262,21 @@
   --md-sys-typescale-display-large-size: 57px;
   --md-sys-typescale-display-medium-size: 45px;
   --md-sys-typescale-display-small-size: 36px;
+
   --md-sys-typescale-headline-large-size: 32px;
   --md-sys-typescale-headline-medium-size: 28px;
   --md-sys-typescale-headline-small-size: 24px;
-  --md-sys-typescale-title-large-size: 22px;
   --md-sys-typescale-headline-6-size: 18px;
+
+  --md-sys-typescale-title-large-size: 22px;
   --md-sys-typescale-title-medium-size: 16px;
   --md-sys-typescale-title-small-size: 14px;
-  --md-sys-typescale-label-large-size: 14px;
+
   --md-sys-typescale-body-large-size: 16px;
   --md-sys-typescale-body-medium-size: 14px;
   --md-sys-typescale-body-small-size: 12px;
+
+  --md-sys-typescale-label-large-size: 14px;
   --md-sys-typescale-label-medium-size: 12px;
   --md-sys-typescale-label-small-size: 11px;
 }

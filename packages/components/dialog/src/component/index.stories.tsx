@@ -1,5 +1,4 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import React from 'react';
 import Dialog from '.';
 
 export default {
@@ -31,34 +30,22 @@ export default {
   },
 } as ComponentMeta<typeof Dialog>;
 
-const Template: ComponentStory<typeof Dialog> = (args) => (
-  <Dialog {...args}/>
-);
+const Template: ComponentStory<typeof Dialog> = ({onClick, ...args}) => {
 
-export const StringArgs = Template.bind({});
-StringArgs.args = {
-  title: 'Title',
-  content: 'Content',
+  return <><button onClick={onClick}>Open</button><Dialog {...args} /></>
 };
 
-StringArgs.parameters = {
+export const Example = Template.bind({});
+Example.args = {
+  children: <>Example Dialog</>,
+  openEvents: ['dialog.open'],
+  onClick: () => { window.dispatchEvent(new CustomEvent('dialog.open'))}
+};
+
+Example.parameters = {
   docs: {
     description: {
       story: 'This is a string',
-    },
-  },
-};
-
-export const StringArgs2 = Template.bind({});
-StringArgs2.args = {
-  title: 'Title',
-  content: 'Content',
-};
-
-StringArgs2.parameters = {
-  docs: {
-    description: {
-      story: 'This is a string2',
     },
   },
 };

@@ -25,13 +25,14 @@ export const Create = ({ children }: DetailsProps) => {
           ...prev,
           editItemId: SK,
           list: {
-            ...prev?.list,
             [SK]: {
               SK,
               tempID: new Date().getTime().toFixed(0),
               relatedWith: [],
               telephones: []
-            }
+            },
+            ...prev?.list,
+
           }
         }
 

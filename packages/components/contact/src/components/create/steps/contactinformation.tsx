@@ -4,7 +4,6 @@
  * www.infini-soft.com
  */
 import { AddressIcon, EmailIcon, NameIcon, PhoneIcon } from '@/assets/svg';
-
 import { useItem } from '@/hooks/useItem';
 import React, { HTMLAttributes } from 'react';
 import css from './index.module.css';
@@ -13,11 +12,11 @@ const Chip = React.lazy(() => import(/* webpackChunkName: 'Chip' */ 'chip/Chip')
 const InputText = React.lazy(() => import(/* webpackPreload: true */ /* webpackChunkName: 'inputtext' */'inputtext/InputText'));
 const CrudList = React.lazy(() => import(/* webpackPreload: true */ /* webpackChunkName: 'crudlist' */'crudlist/CrudList'))
 
-export type Step1 = Partial<HTMLAttributes<HTMLDivElement>> & {
+export type ContactInformation = Partial<HTMLAttributes<HTMLDivElement>> & {
   SK: string
 };
 
-export const Step1 = ({ SK, hidden }: Step1) => {
+export const ContactInformation = ({ SK, hidden }: ContactInformation) => {
   const { item: contact, inputMutator, listMutatorsFactory } = useItem(SK)
 
   const props = (field: keyof API.Item) => ({
@@ -37,7 +36,7 @@ export const Step1 = ({ SK, hidden }: Step1) => {
     <div className={css.content}>
 
       <span className={css.detailsContainer}>
-        <InputText before={<NameIcon />} className={css.name} {...props('name')} />
+        <InputText before={<NameIcon />} className={css.name} {...props('name')}/>
         <InputText before={<EmailIcon />} className={css.email} {...props('email')} />
         <InputText before={<AddressIcon />} {...props('address')} multiline />
 
@@ -48,6 +47,6 @@ export const Step1 = ({ SK, hidden }: Step1) => {
   </span>
 
 }
-export default Step1
+export default ContactInformation
 
 

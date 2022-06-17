@@ -1,5 +1,4 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import React from 'react';
 import InputText from '.';
 import { LocationIcon, PhoneIcon } from './assets/svg';
 
@@ -62,7 +61,7 @@ export default {
           summary: 'Copyable & Removable',
         },
       },
-      control: { type: 'null'},
+      control: { type: 'null' },
     },
     after: {
       description: 'Component after',
@@ -72,7 +71,7 @@ export default {
           summary: 'Add',
         },
       },
-      control: { type: 'null'},
+      control: { type: 'null' },
     },
     variant: {
       description: 'Component theme style',
@@ -82,7 +81,7 @@ export default {
           summary: 'myvariant',
         },
       },
-      options: ['myvariant','primary', 'secondary'],
+      options: ['myvariant', 'primary', 'secondary'],
       control: { type: 'radio' },
     },
   },
@@ -95,13 +94,14 @@ export default {
   },
 } as ComponentMeta<typeof InputText>;
 
-const Template: ComponentStory<typeof InputText> = (args) => <InputText {...args} defaultValue="Default Value"/>;
+const Template: ComponentStory<typeof InputText> = (args) => <InputText {...args} defaultValue="Default Value" />;
 
 export const Primary = Template.bind({});
 Primary.args = {
-  ghost: false,
   copyable: true,
   removable: true,
+  label: 'Telephones',
+  placeholder: '(514) 784-9826'
 };
 Primary.parameters = {
   docs: {
@@ -114,10 +114,10 @@ Primary.parameters = {
 export const Before = Template.bind({});
 Before.args = {
   before: <PhoneIcon />,
-  ghost: false,
   copyable: true,
   removable: true,
-  variant: 'doguette'
+  label: 'Before',
+
 };
 Before.parameters = {
   docs: {
@@ -130,9 +130,9 @@ Before.parameters = {
 export const After = Template.bind({});
 After.args = {
   after: <LocationIcon />,
-  ghost: false,
   copyable: false,
   removable: false,
+  label: 'After',
 };
 After.parameters = {
   docs: {
@@ -141,22 +141,4 @@ After.parameters = {
     },
   },
 };
-
-export const MyVariant = Template.bind({});
-MyVariant.args = {
-  variant: 'myvariant',
-  ghost: false,
-  copyable: true,
-  removable: true,
-};
-MyVariant.parameters = {
-  docs: {
-    description: {
-      story: 'MyVariant Input Text'
-    },
-  },
-};
-
-
-
 

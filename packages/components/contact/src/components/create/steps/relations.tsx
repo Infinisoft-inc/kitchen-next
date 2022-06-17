@@ -4,23 +4,19 @@
  * www.infini-soft.com
  */
 import { RelatedwithIcon, WebIcon } from '@/assets/svg';
-import { useMicroContext } from '@/context/micro';
 import { useItem } from '@/hooks/useItem';
 import React, { HTMLAttributes } from 'react';
 import css from './index.module.css';
 
 const Chip = React.lazy(() => import(/* webpackChunkName: 'Chip' */ 'chip/Chip'))
-const InputText = React.lazy(() => import(/* webpackPreload: true */ 'inputtext/InputText'));
-const CrudList = React.lazy(() => import(/* webpackPreload: true */ 'crudlist/CrudList'))
-const AvatarUpload = React.lazy(() => import(/* webpackChunkName: 'AvatarUpload' */ 'avatarupload/AvatarUpload'))
+const InputText = React.lazy(() => import(/* webpackPreload: true */ /* webpackChunkName: 'InputText' */'inputtext/InputText'));
+const CrudList = React.lazy(() => import(/* webpackPreload: true */ /* webpackChunkName: 'InputText' */'crudlist/CrudList'))
 
-export type Step2Props = Partial<HTMLAttributes<HTMLDivElement>> & {
+export type RelationsProps = Partial<HTMLAttributes<HTMLDivElement>> & {
   SK: string
 };
 
-
-export const Step2 = ({ SK, hidden }: Step2Props) => {
-  const {store} = useMicroContext()
+export const Relations = ({ SK, hidden }: RelationsProps) => {
   const { item: contact, inputMutator, listMutatorsFactory } = useItem(SK)
 
   const props = (field: keyof API.Item) => ({
@@ -47,6 +43,6 @@ export const Step2 = ({ SK, hidden }: Step2Props) => {
   </span>
 
 }
-export default Step2
+export default Relations
 
 

@@ -1,6 +1,5 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
-import React, { useSyncExternalStore } from 'react';
-import type { IStore } from 'store/types';
+import React from 'react';
 import CrudList from '.';
 import { PhoneIcon } from './assets/svg';
 
@@ -8,26 +7,28 @@ export default {
   title: 'Input/CrudList',
   component: CrudList,
   argTypes: {
-    onClick: { action: 'clicked',
-    description: '`onClick={onAdd}`',
+    onClick: {
+      action: 'clicked',
+      description: '`onClick={onAdd}`',
       table: {
         category: 'Event'
-      } },
-      onAdd: {
-        table: {
-          category: 'Event',
-        },
+      }
+    },
+    onAdd: {
+      table: {
+        category: 'Event',
       },
-      onRemove: {
-        table: {
-          category: 'Event',
-        },
+    },
+    onRemove: {
+      table: {
+        category: 'Event',
       },
-      onChange: {
-        table: {
-          category: 'Event',
-        },
+    },
+    onChange: {
+      table: {
+        category: 'Event',
       },
+    },
     title: {
       description: 'string',
       table: {
@@ -53,50 +54,36 @@ export default {
       },
     },
   },
-  decorators: [
-    (Story, context) => {
-      const store: IStore<any, any, any, any> = context.createstore(() => ['514-796-0626'])
-
-      return <>
-        {!store &&
-          <>Creating context...</>
-        }
-        {store &&
-          <Story store={store} />
-        }
-      </>
-    }
-  ]
 
 } as ComponentMeta<typeof CrudList>;
 
 
-const Template: ComponentStory<typeof CrudList> = ({icon, ...args}, context) => {
-  const customIcon = String(icon).includes('blob:http') ? <img src={String(icon)}/>: icon
-  const state = useSyncExternalStore<string[]>(context.store.subscribe, context.store.getSnapshot)
-  const store: IStore<string[], string, string, string> = context.store
+const Template: ComponentStory<typeof CrudList> = ({ icon, ...args }, context) => {
+  const customIcon = String(icon).includes('blob:http') ? <img src={String(icon)} /> : icon
 
+  const [_state, _setState] = React.useState<string[]>();
 
   const onAdd = () => {
-    store.mutate(_state => {
-      _state.unshift('Insert number')
-      return [..._state];
-    })
+    _setState(_prev => _prev ? ['', ..._prev] : [])
   }
 
   const onRemove = (i: number) => {
-    store.mutate(_state => {
-      return [..._state.filter((_, index) => i !== index)];
+    _setState(_prev => {
+      return _prev ? [..._prev.filter((_, index) => i !== index)] : [];
     })
   }
   const onChange = (i: number, newValue: string) => {
-    store.mutate(_state => {
-      _state[i] = newValue
-      return [..._state];
+    _setState(_prev => {
+      if (_prev) {
+        _prev[i] = newValue
+        return [..._prev];
+      }
+
+      return []
     })
   }
 
-  return <CrudList {...args} onAdd={onAdd} onChange={onChange} onRemove={onRemove} itemList={state} icon={customIcon} />
+  return <CrudList {...args} onAdd={onAdd} onChange={onChange} onRemove={onRemove} itemList={_state} icon={customIcon} />
 
 }
 export const Example = Template.bind({});

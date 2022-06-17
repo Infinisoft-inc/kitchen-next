@@ -9,16 +9,13 @@ import { useCreateItem } from '@/hooks/useItem';
 import React, { HTMLAttributes } from 'react';
 import css from './index.module.css';
 
-const Chip = React.lazy(() => import(/* webpackChunkName: 'Chip' */ 'chip/Chip'))
-const InputText = React.lazy(() => import(/* webpackPreload: true */ /* webpackChunkName: 'inputtext' */'inputtext/InputText'));
-const CrudList = React.lazy(() => import(/* webpackPreload: true */ /* webpackChunkName: 'crudlist' */'crudlist/CrudList'))
 const Toggle = React.lazy(() => import(/* webpackChunkName: 'Toggle' */ 'toggle/Toggle'))
 
 export type SubcategoryProps = Partial<HTMLAttributes<HTMLDivElement>> & {
   SK: string
 };
 
-export const Subcategory = ({ hidden }: SubcategoryProps) => {
+const Subcategory = ({ hidden }: SubcategoryProps) => {
   const { store } = useMicroContext()
   const { onMutation, item } = useCreateItem()
 
@@ -32,7 +29,6 @@ export const Subcategory = ({ hidden }: SubcategoryProps) => {
     </div>
 
     <div className={css.content}>
-
       <span className={css.detailsContainer}>
         <Toggle toggles={subCategories} clickHandler={onMutation('SubCategories')} key='subcategories' />
       </span>
@@ -40,6 +36,6 @@ export const Subcategory = ({ hidden }: SubcategoryProps) => {
   </span>
 
 }
-export default SubcategoryProps
+export default Subcategory
 
 

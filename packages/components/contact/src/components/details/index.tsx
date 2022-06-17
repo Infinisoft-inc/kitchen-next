@@ -4,40 +4,27 @@
  * www.infini-soft.com
  */
 import { useMicroContext } from '@/context/micro';
-import React, { useEffect } from 'react';
+import React from 'react';
+import { useEvent } from '../../hooks/useEvent';
 import css from './index.module.css';
 
 const Drawer = React.lazy(() => import(/*  webpackPreload: true */ /* webpackChunkName: 'Drawer' */ 'drawer/Drawer'))
 const Content = React.lazy(() => import(/*  webpackPreload: true */ /* webpackChunkName: 'Content' */ './Content'))
 
-export type DetailsProps = {
-};
+export type DetailsProps = {};
 
-export const Details = ({ }: DetailsProps) => {
+const Details = ({ }: DetailsProps) => {
   const [visible, setVisible] = React.useState(false);
   const { store } = useMicroContext()
+  const hide = () => {setVisible(false)}
+  const show = () => {setVisible(true)}
 
-  useEffect(() => {
-    const handleItemClick = (e: Event) => {
-      setVisible(true)
-    }
-    window.addEventListener('item.clicked', handleItemClick)
-    return () => window.removeEventListener('item.clicked', handleItemClick)
-
-  }, [])
-
-  useEffect(() => {
-    const handleClose = (e: Event) => {
-      setVisible(false)
-    }
-    window.addEventListener('backdrop.clicked', handleClose)
-    return () => window.removeEventListener('backdrop.clicked', handleClose)
-
-  }, [])
+  useEvent('item.clicked', show)
+  useEvent('backdrop.clicked', hide)
 
   return <div className={css.root}>
     <Drawer visible={visible}>
-      <Content SK={store.getState()?.editItemId} onClose={() => setVisible(false)} />
+      <Content SK={store.getState()?.editItemId} onClose={hide} />
     </Drawer>
   </div>
 }

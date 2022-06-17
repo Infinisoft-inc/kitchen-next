@@ -4,14 +4,14 @@
  * www.infini-soft.com
  */
 
-[data-style*='input:text:control'][name='email'].email,
+/* [data-style*='input:text:control'][name='email'].email,
 [data-style*='input:text:control'][name='name'].name {
   background: transparent;
   border: 1px solid var(--color-primary-background);
   color: var(--text-primary-contrast);
   font-size: var(--body1-size);
   text-align: left;
-}
+} */
 
 .headerTitle {
   color: var(--text-primary-contrast);

@@ -5,30 +5,54 @@
  */
 import React from 'react';
 import css from './index.module.css';
-import { Category } from './steps/category';
-import { Subcategory } from './steps/subcategory';
 
-const Step1 = React.lazy(() => import(/*webpackPreload: true*//* webpackChunkName: 'Step1' */ './steps/step1'))
-const Step2 = React.lazy(() => import(/*webpackPreload: true*//* webpackChunkName: 'Step2' */ './steps/step2'))
+const Category = React.lazy(() => import(/* webpackChunkName: 'Category' */ './steps/category'))
+const Subcategory = React.lazy(() => import(/* webpackChunkName: 'SubCategory' */ './steps/subcategory'))
+const ContactInformation = React.lazy(() => import(/*webpackPreload: true*//* webpackChunkName: 'ContactInformation' */ './steps/contactinformation'))
+const Relations = React.lazy(() => import(/*webpackPreload: true*//* webpackChunkName: 'Relations' */ './steps/relations'))
+
 export type ContentProps = {
   SK: string
 };
+
+/**
+ * CONFIG SECTION STANDARDIZE FOR TEMPLATE
+ */
+const _steps = [
+  { Component: Category },
+  { Component: Subcategory },
+  { Component: ContactInformation },
+  { Component: Relations }
+]
+
+/**
+ * Convert to a MF
+ */
+type NavButtonsProps = {
+  step: number,
+  setStep: React.Dispatch<React.SetStateAction<number>>,
+  count: number
+  onCompleteEvent?: Event
+}
+
+const NavButtons = ({ setStep, step, count, onCompleteEvent=new CustomEvent('complete') }: NavButtonsProps) => (<> <button hidden={step <= 1} className={css.next} onClick={() => setStep(prev => prev - 1)}>Back</button>
+  <button hidden={step === count} className={css.next} onClick={() => setStep(prev => prev + 1)}>Next</button>
+  <button hidden={!(step === count)} className={css.next} onClick={() => { window.dispatchEvent(onCompleteEvent); setStep(1) }}>Complete</button>
+</>
+)
+
+const Steps = ({ SK, step }: { step: number, SK: string }) => (<>{_steps.map(({ Component }, i) => <Component hidden={step !== (i + 1)} SK={SK} />)}</>)
 
 export const Content = ({ SK }: ContentProps) => {
   const [step, setStep] = React.useState(1);
 
   return <span key={SK}>
     <div className={css.content}>
-      <Category hidden={step !== 1} SK={SK} />
-      <Subcategory hidden={step !== 2} SK={SK} />
-      <Step1 hidden={step !== 3} SK={SK} />
-      <Step2 hidden={step !== 4} SK={SK} />
+      <Steps step={step} SK={SK} />
     </div>
 
     <div className={css.footer}>
-      <button hidden={step <= 1} className={css.next} onClick={() => setStep(prev => prev - 1)}>Back</button>
-      <button hidden={step === 4} className={css.next} onClick={() => setStep(prev => prev + 1)}>Next</button>
-      <button hidden={!(step === 4)} className={css.next} onClick={() => {window.dispatchEvent(new CustomEvent('create.complete')); setStep(1)}}>Complete</button>
+      <NavButtons step={step} setStep={setStep} count={_steps.length} onCompleteEvent={new CustomEvent('create.complete')} />
     </div>
   </span>
 

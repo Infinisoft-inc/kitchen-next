@@ -16,10 +16,6 @@ export type InputTextProps = {
    */
   multiline?: boolean
   /**
-   * Transparent background, no border
-   */
-  ghost?: boolean
-  /**
    * This element value is copyable in the clipboard
    */
   copyable?: boolean
@@ -43,8 +39,17 @@ export type InputTextProps = {
    * Invalid component
    */
   invalidMessage?: string
-
-
-
-} & React.InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement>
+  /**
+   * label
+   */
+  label?: string,
+  /**
+   * input Placeholder
+   */
+  placeholder?: string,
+  /**
+ * Props passed down to input or textarea
+ */
+  inputProps?: React.InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement>,
+} & React.InputHTMLAttributes<HTMLFieldSetElement>
 
