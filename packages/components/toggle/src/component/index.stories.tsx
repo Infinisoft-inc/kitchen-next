@@ -46,6 +46,7 @@ const Template: ComponentStory<typeof Toggle> = (args) => <Toggle {...args} />;
 export const ToggleArgs = Template.bind({});
 ToggleArgs.args = {
   toggles: ['One', 'Two', 'Tree'],
+  clickHandler(term?) {},
 };
 
 ToggleArgs.parameters = {
