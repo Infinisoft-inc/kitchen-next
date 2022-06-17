@@ -1,20 +1,31 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import Button from '.';
 
+const COMPONENT = "Button"
+
 export default {
   title: 'input/Button',
   component: Button,
   argTypes: {
-    content: {
-      defaultValue: '',
-      description: 'overwritten description',
+    "background-color": {
       table: {
-        category: 'Content',
+        category: 'TOKEN',
         type: {
-          summary: 'something short',
-          detail: 'something really really long',
+          summary: `--color-primary-background`,
         },
-        defaultValue: { summary: 'Hello' },
+        defaultValue: { summary: `var(--md-sys-color-primary-light)` },
+      },
+      control: {
+        type: null,
+      },
+    },
+    "color": {
+      table: {
+        category: 'TOKEN',
+        type: {
+          summary: `--text-primary`,
+        },
+        defaultValue: { summary: `var(--md-sys-color-on-primary-dark)` },
       },
       control: {
         type: null,
@@ -34,27 +45,17 @@ const Template: ComponentStory<typeof Button> = (args) => (
   <Button {...args}/>
 );
 
-export const StringArgs = Template.bind({});
-StringArgs.args = {
+export const TokenArgs = Template.bind({});
+TokenArgs.args = {
 
 };
 
-StringArgs.parameters = {
+TokenArgs.parameters = {
   docs: {
     description: {
-      story: 'This is a string',
+      story: 'This is Background Color Token and Text Color Token',
     },
   },
 };
 
-export const StringArgs2 = Template.bind({});
-StringArgs2.args = {
-};
 
-StringArgs2.parameters = {
-  docs: {
-    description: {
-      story: 'This is a string2',
-    },
-  },
-};
