@@ -4,16 +4,26 @@
  * www.infini-soft.com
  */
 
-@import ('presets/variables.css')
+@import url('theme/variables.css');
 
 :root {
-  --topbar-background-color: var(--md-sys-color-background);
-  --topbar-color: var(--md-sys-color-primary-dark);
+  --topbar-background-color: var(--md-sys-color-surface);
+  --topbar-color: var(--md-sys-color-on-surface);
+}
+
+body[class*='darkmode'] {
+  --topbar-background-color: var(--md-sys-color-surface-dark);
+  --topbar-color: var(--md-sys-color-on-surface-dark);
+}
+
+body[class*='lightmode'] {
+  --topbar-background-color: var(--md-sys-color-surface-light);
+  --topbar-color: var(--md-sys-color-on-surface-light);
 }
 
 .root {
   display: flex;
-  background-color: var(--topbar-root-background-color);
+  background-color: var(--topbar-background-color);
   padding: 0 2rem;
   min-height: 64px;
   color: var(--topbar-color);
