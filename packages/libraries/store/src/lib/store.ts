@@ -1,4 +1,4 @@
-import { addedDiff, deletedDiff, diff, updatedDiff } from "deep-object-diff";
+import { diff } from "deep-object-diff";
 import { CreateStoreOptions, EmitEvent, InitStore, IStore, Mutate, SubscribeOptions, SubscriberEventHandler, Subscribers } from "..";
 
 export class Store<S, P> implements IStore<S, P> {
@@ -46,7 +46,6 @@ export class Store<S, P> implements IStore<S, P> {
     this.subscribe((event, state, payload) => {
       console.log(`Event `, event, `State `, state, `Payload `, payload)
       this._devtool.send({ type: event, payload }, state)
-      // this._devtool.send({ type: event, payload }, { ...this._state, list: new Map((this._state as any)?.list) })
     })
   }
 
@@ -89,25 +88,10 @@ export class Store<S, P> implements IStore<S, P> {
     const newState = { ...this._state, ...callback(this._state) }
 
     const stateDiff = diff(this._state as any, newState as any) as unknown as S
-    const stateUpdatedDiff = updatedDiff(this._state as any, newState as any) as unknown as S
-    const stateAddedDiff = addedDiff(this._state as any, newState as any) as unknown as S
-    const stateDeletedDiff = deletedDiff(this._state as any, newState as any) as unknown as S
-
-    console.log(`diff  `, stateDiff)
-    console.log(`updated `, stateUpdatedDiff)
-    console.log(`added `, stateAddedDiff)
-    console.log(`deleted `, stateDeletedDiff)
-
-    console.log(`state before mutation `, this._state)
-    console.log(`stateDiff before mutation `, stateUpdatedDiff)
 
     this._state = {
       ...newState
     }
-
-    console.log(`stateDiff after mutation `, stateUpdatedDiff)
-    console.log(`state after mutation `, this._state)
-
     this.emit('mutation', stateDiff as unknown as P)
   }
 

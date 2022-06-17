@@ -1,0 +1,61 @@
+/*
+ * Copyright © All rights reserved 2022
+ * Infinisoft Inc.
+ * www.infini-soft.com
+ */
+:root{
+  --surface-background-color: #1d1d1d;
+  --menu-background-color: #1d1d1d;
+}
+.root {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  background-color: black;
+}
+
+.container {
+  padding: 0 1rem;
+  flex: 1;
+  max-width: 1200px;
+}
+
+.section {
+  display: flex;
+  flex-wrap: nowrap;
+  flex: 1;
+}
+
+.header {
+  display: flex;
+  flex-wrap: nowrap;
+  flex: 1;
+  color: white;
+  padding: 0
+}
+
+.side {
+  width: 220px;
+  background-color: var(--menu-background-color);
+  padding: 1rem;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: -webkit-fill-available;
+}
+
+.content {
+  flex: 1 1 100%;
+  background-color: var(--surface-background-color);
+  padding: 1rem;
+  min-height: calc(100vh - 150px);
+}

@@ -27,6 +27,8 @@ module.exports = withStorybookModuleFederation({
     '@storybook/addon-links',
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
+    'storybook-design-token',
+    'storybook-dark-mode'
   ],
   framework: '@storybook/react',
   core: {

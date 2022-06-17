@@ -2,15 +2,25 @@
  * Copyright © All rights reserved 2022
  * Infinisoft Inc.
  * www.infini-soft.com
+ *
  */
+@import url('theme/variables.css');
+
+:root {
+  --spinner-color: var(--md-sys-color-primary);
+}
+
+body[class*='darkmode'] {
+  --spinner-color: var(--md-sys-color-primary-dark);
+}
+
+body[class*='lightmode'] {
+  --spinner-color: var(--md-sys-color-primary-light);
+}
 
 .root {
   display: flex;
   margin-bottom: 1.5rem;
-}
-
-:root {
-  --spinner-color: #1890ff;
 }
 
 .spinner .loader {

@@ -9,6 +9,7 @@ import { ForwardedRef, forwardRef, Suspense, useEffect } from 'react';
 import css from './index.module.css';
 import { TopBarProps } from './types';
 
+
 /**
  * Refactor into a component
  */

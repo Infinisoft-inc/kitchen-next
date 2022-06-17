@@ -5,7 +5,7 @@
  *
  * Spinner Federated Micro Component
  */
-import React, { ForwardedRef, forwardRef, Suspense } from 'react';
+import { ForwardedRef, forwardRef, Suspense } from 'react';
 import styles from './index.module.css';
 import { SpinnerProps } from './types';
 
