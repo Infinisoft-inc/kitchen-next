@@ -80,5 +80,8 @@
       }
     },
     "tag": "microapp"
+  },
+  "dependencies": {
+    "style-dictionary": "^3.7.1"
   }
 }

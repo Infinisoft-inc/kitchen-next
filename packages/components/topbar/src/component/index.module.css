@@ -4,14 +4,16 @@
  * www.infini-soft.com
  */
 
+@import ('presets/variables.css')
+
 :root {
-  --topbar-background-color: black;
-  --topbar-color: white;
+  --topbar-background-color: var(--md-sys-color-background);
+  --topbar-color: var(--md-sys-color-primary-dark);
 }
 
 .root {
   display: flex;
-  background-color: var(--topbar-background-color);
+  background-color: var(--topbar-root-background-color);
   padding: 0 2rem;
   min-height: 64px;
   color: var(--topbar-color);
