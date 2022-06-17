@@ -3,8 +3,35 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
+@import url('theme/variables.css');
+
+ :root {
+  --color-primary-background: var(--md-sys-color-primary);
+  --subtitle1-size: var(--md-sys-typescale-label-small-size);
+  --color-primary-contrast-background: var(--md-sys-color-on-background);
+  --text-primary: var(--md-sys-color-on-primary);
+  --text-primary-contrast: var(--md-sys-color-on-surface-variant);
+}
+
+body[class*='darkmode'] {
+  --color-primary-background: var(--md-sys-color-primary-dark);
+  --color-primary-contrast-background: var(--md-sys-color-on-background-dark);
+  --text-primary: var(--md-sys-color-on-primary-dark);
+  --text-primary-contrast: var(--md-sys-color-on-surface-variant-dark);
+}
+
+body[class*='lightmode'] {
+  --color-primary-background: var(--md-sys-color-primary-light);
+  --color-primary-contrast-background: var(--md-sys-color-on-background-light);
+  --text-primary: var(--md-sys-color-on-primary-light);
+  --text-primary-contrast: var(--md-sys-color-on-surface-variant-light);
+}
 
 .root {
-  display: flex;
   margin-bottom: 1.5rem;
+}
+
+button {
+  background-color: var(--color-primary-background) !important;
+  color: var(--text-primary);
 }
