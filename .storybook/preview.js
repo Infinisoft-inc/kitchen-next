@@ -1,7 +1,7 @@
 // import { load } from '@infini-soft/lib-federation';
 import React, { startTransition } from 'react';
+import { themes } from '@storybook/theming';
 // import(/* webpackPreload: true */ 'store/createstore');
-
 
 // /**
 //  * --- WORKAROUND ---
@@ -53,5 +53,27 @@ export const parameters = {
       date: /Date$/,
     },
   },
+  darkMode: {
+    darkClass: 'darkmode',
+    lightClass: 'lightmode',
+    stylePreview: true,
+  },
+  options: {
+    storySort: {
+      order: ['Design System', ['Introduction', '*']],
+    },
+  },
 };
 
+const ThemeProvider = ({ children }) => <>{children}</>;
+
+const knobDecorator = (storyFn) => {
+  const colorScheme = 'dark';
+  return React.createElement(ThemeProvider, {
+    theme: themes.dark,
+    colorScheme,
+    children: [storyFn()],
+  });
+};
+
+export const decorators = [knobDecorator];

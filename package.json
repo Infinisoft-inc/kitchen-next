@@ -51,6 +51,8 @@
     "moment-locales-webpack-plugin": "^1.2.0",
     "react": "18.1.0",
     "react-dom": "18.1.0",
+    "storybook-dark-mode": "^1.1.0",
+    "storybook-design-token": "^2.4.0",
     "storybook-module-federation": "^0.6.2",
     "style-loader": "^3.3.1",
     "terser-webpack-plugin": "^5.3.1",
