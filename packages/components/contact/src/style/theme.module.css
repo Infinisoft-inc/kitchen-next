@@ -38,7 +38,7 @@ body[class*='darkmode'] {
 
 body[class*='lightmode'] {
   --color-primary: var(--md-sys-color-primary-light);
-  --text-primary: var(--md-sys-color-on-primary-light);
+  --text-primary: var(--md-sys-color-on-background-light);
   --text-primary-contrast: var(--md-sys-color-primary-light);
   --color-primary-background: var(--md-sys-color-background-light);
   --color-primary-contrast-background: var(--md-sys-color-on-background-light);

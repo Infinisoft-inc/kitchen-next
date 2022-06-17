@@ -3,10 +3,10 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
-:root{
+/* :root{
   --surface-background-color: #1d1d1d;
   --menu-background-color: #1d1d1d;
-}
+} */
 .root {
   display: flex;
   justify-content: center;
