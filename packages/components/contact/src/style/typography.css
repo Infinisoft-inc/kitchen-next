@@ -6,53 +6,53 @@
 
 :root {
   --font-family: unquote('Orbitron');
-  --font-size: 16px;
+  --font-size: var(--md-sys-typescale-title-medium-size);
 
-  --h1-size: 88px;
+  --h1-size: var(--md-sys-typescale-display-1-size);
   --h1-weight: light;
   --h1-letter-spacing: -1.5px;
 
-  --h2-size: 55px;
+  --h2-size: var(--md-sys-typescale-display-large-size);
   --h2-weight: light;
   --h2-letter-spacing: -0.5px;
 
-  --h3-size: 44px;
+  --h3-size: var(--md-sys-typescale-display-medium-size);
   --h2-weight: normal;
   --h2-letter-spacing: 0px;
 
-  --h4-size: 31px;
+  --h4-size: var(--md-sys-typescale-display-small-size);
   --h4-weight: normal;
   --h4-letter-spacing: 0.25px;
 
-  --h5-size: 22px;
+  --h5-size: var(--md-sys-typescale-headline-large-size);
   --h5-weight: normal;
   --h5-letter-spacing: 0px;
 
-  --h6-size: 18px;
+  --h6-size: var(--md-sys-typescale-headline-medium-size);
   --h6-weight: medium;
   --h6-letter-spacing: 0.15px;
 
-  --subtitle1-size: 15px;
+  --subtitle1-size: var(--md-sys-typescale-headline-small-size);
   --subtitle1-weight: normal;
   --subtitle1-letter-spacing: 0.15px;
 
-  --subtitle2-size: 13px;
+  --subtitle2-size: var(--md-sys-typescale-title-large-size);
   --subtitle2-weight: medium;
   --subtitle2-letter-spacing: 0.1px;
 
-  --body1-size: 15px;
+  --body1-size: var(--md-sys-typescale-body-large-size);
   --body1-weight: normal;
   --body1-letter-spacing: 0.5px;
 
-  --body2-size: 13px;
+  --body2-size: var(--md-sys-typescale-body-medium-size);
   --body2-weight: normal;
   --body2-letter-spacing: 0.15px;
 
-  --button-text-size: 13px;
+  --button-text-size: var(--md-sys-typescale-body-medium-size);
   --button-weight: medium;
   --button-letter-spacing: 1.25px;
 
-  --caption-size: 11px;
+  --caption-size: var(--md-sys-typescale-label-small-size);
   --caption-weight: normal;
   --caption-letter-spacing: 0.4px;
 
