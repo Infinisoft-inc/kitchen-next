@@ -32,7 +32,7 @@ body[class*='lightmode'] {
   border: 1px solid var(--chip-border-color);
 }
 
-button {
+.delete {
   background-color: transparent !important;
   margin-left: .5rem;
   margin-top: .2rem;

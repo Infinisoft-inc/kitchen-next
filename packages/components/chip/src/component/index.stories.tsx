@@ -18,6 +18,30 @@ export default {
         type: 'text',
       },
     },
+    "border-color": {
+        table: {
+            category: 'TOKEN',
+            type: {
+              summary: `--chip-border-color`,
+            },
+            defaultValue: { summary: `var(--md-sys-color-outline)` },
+          },
+          control: {
+            type: null,
+          },
+    },
+    "color": {
+        table: {
+            category: 'TOKEN',
+            type: {
+              summary: `--chip-color`,
+            },
+            defaultValue: { summary: `var(--md-sys-color-on-surface-variant)` },
+          },
+          control: {
+            type: null,
+          },
+    },
     onRemove: {
       table: {
         category: 'Events',
