@@ -4,60 +4,45 @@
  * www.infini-soft.com
  */
 @import 'typography.css';
-@import 'button.css';
-@import 'responsive.css';
+@import 'theme/variables.css';
 
-/* light */
+:root {
+  --color-primary: var(--md-sys-color-primary);
 
-/* @media (prefers-color-scheme: dark) { */
-  :root {
-    --color-primary: blue;
+  --text-primary: var(--md-sys-color-on-primary);
+  --text-primary-contrast: var(--md-sys-color-primary);
 
-    --text-primary: black;
-    --text-primary-contrast: white;
+  --color-primary-background: var(--md-sys-color-background);
 
-    --color-primary-background: white;
-    --color-primary-background-60: rgba(255, 255, 255, 0.9);
+  --color-primary-contrast-background: --md-sys-color-on-background;
 
-    --color-primary-contrast-background: black;
+  --color-invariant: var(--md-ref-palette-neutral-100);
+  --color-invariant-90: var(--md-ref-palette-neutral-90);
+  --color-invariant-contrast: var(--md-ref-palette-neutral-0);
 
-    --color-invariant: white;
-    --color-invariant-90: rgba(0, 0, 0, 0.9);
-    --color-invariant-contrast: white;
+  --z-dialog: 1200;
+  --z-drawer: 1000;
+  --z-backdrop: 500;
+  --z-control-icon: 250;
+  --opacity-backdrop: 0.7;
+  --font-family: 'Orbitron', sans-serif;
+}
 
-    --z-dialog: 1200;
-    --z-drawer: 1000;
-    --z-backdrop: 500;
-    --z-control-icon: 250;
-    --opacity-backdrop: 0.7;
-    --font-family: 'Orbitron', sans-serif;
-  }
-/* } */
-/*
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-primary: blue;
+body[class*='darkmode'] {
+  --color-primary: var(--md-sys-color-primary-dark);
+  --text-primary: var(--md-sys-color-on-primary-dark);
+  --text-primary-contrast: var(--md-sys-color-primary-dark);
+  --color-primary-background: var(--md-sys-color-background-dark);
+  --color-primary-contrast-background: var(--md-sys-color-on-background-dark);
+}
 
-    --text-primary: white;
-    --text-primary-contrast: black;
-
-    --color-primary-background: black;
-    --color-primary-background-60: rgba(0, 0, 0, 0.9);
-
-    --color-primary-contrast-background: black;
-
-    --color-invariant: white;
-    --color-invariant-90: rgba(0, 0, 0, 0.9);
-    --color-invariant-contrast: white;
-
-    --z-dialog: 1200;
-    --z-drawer: 1000;
-    --z-backdrop: 500;
-    --z-control-icon: 250;
-    --opacity-backdrop: 0.7;
-    --font-family: 'Orbitron', sans-serif;
-  }
-} */
+body[class*='lightmode'] {
+  --color-primary: var(--md-sys-color-primary-light);
+  --text-primary: var(--md-sys-color-on-primary-light);
+  --text-primary-contrast: var(--md-sys-color-primary-light);
+  --color-primary-background: var(--md-sys-color-background-light);
+  --color-primary-contrast-background: var(--md-sys-color-on-background-light);
+}
 
 body {
   font-family: 'Orbitron', sans-serif;
