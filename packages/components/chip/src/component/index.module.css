@@ -3,20 +3,37 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
+@import url('theme/variables.css');
 
 :root {
-  --chip-background-color: transparent;
-  --chip-border-color: black;
+  --chip-border-color: var(--md-sys-color-outline);
   --chip-border-radius: 5px;
-  --chip-color: black;
+  --chip-color: var(--md-sys-color-on-surface-variant);
+}
+
+body[class*='darkmode'] {
+  --chip-border-color: var(--md-sys-color-outline-dark);
+  --chip-color: var(--md-sys-color-on-surface-variant-dark);
+}
+
+body[class*='lightmode'] {
+  --chip-border-color: var(--md-sys-color-outline-light);
+  --chip-color: var(--md-sys-color-on-surface-variant-light);
 }
 
 [data-style='data:chip:control'] {
   display: flex;
-  background-color: var(--chip-background-color);
+  flex-direction: row;
+  align-items: center;
   color: var(--chip-color);
   padding: 0.5rem;
   border-radius: var(--chip-border-radius);
   font-size: var(--body2-size);
   border: 1px solid var(--chip-border-color);
+}
+
+button {
+  background-color: transparent !important;
+  margin-left: .5rem;
+  margin-top: .2rem;
 }
