@@ -28,13 +28,10 @@ body[class*='lightmode'] {
 }
 
 .root {
-  display: flex;
   margin-bottom: 1.5rem;
-  background-color: var(--color-primary-background);
-  /* color: var(--text-primary-contrast); */
 }
 
 button {
-  background-color: var(--color-primary-background);
+  background-color: var(--color-primary-background) !important;
   color: var(--text-primary);
 }
