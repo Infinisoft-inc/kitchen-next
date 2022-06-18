@@ -33,6 +33,7 @@ declare module "component/types" {
 }
 declare module "crudlist/CrudList" {
     import { CrudListProps } from "component/types";
+    export const getId: () => string;
     export const CrudList: ({ listTitle, icon, itemList, onAdd, onChangeItem, onRemove, itemRender, label, placeholder, ...props }: CrudListProps) => JSX.Element;
     export default CrudList;
 }

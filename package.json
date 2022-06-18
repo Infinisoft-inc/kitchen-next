@@ -68,7 +68,7 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
-    "@infini-soft/kli": "^0.0.40",
+    "@infini-soft/kli": "^0.0.41",
     "@infini-soft/lib-federation": "^0.0.14",
     "@infini-soft/store": "^0.1.3"
   },
@@ -94,7 +94,9 @@
     "serve:dist": "lerna run serve:dist --stream --parallel",
     "clean": "lerna run clean --stream --parallel",
     "config:update:dryrun": "lerna run config:update --stream --parallel -- --tag mfcomponents --dry-run",
-    "config:update": "lerna run config:update --stream --parallel -- --tag mfcomponents"
+    "config:update": "lerna run config:update --stream --parallel -- --tag mfcomponents",
+    "task:refresh": "lerna run task --stream --parallel -- refresh --tag mfcomponents"
+
   },
   "jest": {
     "collectCoverageFrom": [

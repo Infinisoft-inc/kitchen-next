@@ -21,7 +21,7 @@ declare module "flexitem/FlexItem" {
 declare module "bootstrap" { }
 declare module "component/index.stories" {
     import { ComponentMeta, ComponentStory } from '@storybook/react';
-  import React from 'react';
+    import React from 'react';
     const _default_1: ComponentMeta<React.ForwardRefExoticComponent<{
         children: React.ReactNode;
     } & React.AllHTMLAttributes<HTMLDivElement> & React.RefAttributes<HTMLDivElement>>>;
