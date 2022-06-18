@@ -41,8 +41,7 @@ body[class*='lightmode'] {
 }
 
 .inputtext.inverse,
-.inputtext.inverse > input
- {
+.inputtext.inverse > input {
   background-color: var(--inputtext-background-color-contrast);
   color: var(--inputtext-background);
 }
@@ -54,6 +53,7 @@ body[class*='lightmode'] {
   outline: none;
   font-size: var(--inputtext-font-size);
   margin: 0 0.35rem;
+  width: 100%;
 }
 
 .inputtext:focus-within {
@@ -75,8 +75,6 @@ legend.inputtextLegend {
   outline: 0px;
   border-width: 0px;
 }
-
-
 
 .inputtext > svg,
 .inputtext > button {

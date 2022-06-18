@@ -4,6 +4,7 @@
  * www.infini-soft.com
  */
 
+import { InputTextProps } from "component/types";
 import React from "react";
 
 /**
@@ -12,10 +13,10 @@ import React from "react";
 type Crud<T = any, I = any> = {
   itemList?: T[]
   onAdd?: (newValue?: T) => void
-  onChange?: (newValue: T, id: I) => void
+  onChangeItem?: (newValue: T, id: I) => void
   onRemove?: (id: I) => void
 }
-export type CrudListProps<T = any, I = any> = Partial<HTMLInputElement> & Crud<T, I> & {
+export type CrudListProps<T = any, I = any> = Partial<HTMLInputElement> & Crud<T, I> & Partial<InputTextProps> & {
   /**
    * List title
    */

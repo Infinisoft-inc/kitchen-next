@@ -57,5 +57,4 @@ body {
   flex: 1 1 100%;
   background-color: var(--surface-background-color);
   padding: 1rem;
-  min-height: calc(100vh - 150px);
 }

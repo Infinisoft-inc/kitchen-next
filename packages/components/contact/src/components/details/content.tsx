@@ -32,10 +32,10 @@ export const Content = ({ SK, onClose }: ContentProps) => {
     <div className={css.header}>
       <div className={css.headerContent}>
         <AvatarUpload src={contact?.avatar} save={base64 => mutation('avatar', base64)} />
-        <p>
+        <span>
           <InputText {...props('name')} inverse containerClass={css.block} inputClass={css.name} />
           <InputText {...props('email')} inverse containerClass={css.block} inputClass={css.email} />
-        </p>
+        </span>
       </div>
     </div>
 
@@ -49,9 +49,9 @@ export const Content = ({ SK, onClose }: ContentProps) => {
         <InputText before={<AddressIcon />} {...props('address')} label='Address' placeholder='66 Yale Road' />
         <InputText before={<WebIcon />} {...props('website')} label='Website' placeholder='www.contact.com' />
 
-        <CrudList icon={<PhoneIcon />} placeholder={'(514) 864-5742'} onAdd={listMutatorsFactory('telephones').add} onChange={listMutatorsFactory('telephones').update} itemList={contact?.telephones} itemRender={(item: string, i: number) => <Chip key={`telephone-${i}`} onRemove={() => listMutatorsFactory('telephones').remove(i)}>{item}</Chip>} />
+        <CrudList icon={<PhoneIcon />} label='Telephones' placeholder={'(514) 864-5742'} onAdd={listMutatorsFactory('telephones').add} onChangeItem={listMutatorsFactory('telephones').update} itemList={contact?.telephones} onRemove={listMutatorsFactory('telephones').remove} />
 
-        <CrudList icon={<RelatedwithIcon />} placeholder={'Relation ?'} onAdd={listMutatorsFactory('relatedWith').add} onChange={listMutatorsFactory('relatedWith').update} itemList={contact?.relatedWith} itemRender={(item: string, i: number) => <Chip key={`relatedWith-${i}`} onRemove={() => listMutatorsFactory('relatedWith').remove(i)}>{item}</Chip>} />
+        <CrudList icon={<RelatedwithIcon />} label='Relation' placeholder={'Ex: Case0112'} onAdd={listMutatorsFactory('relatedWith').add} onChangeItem={listMutatorsFactory('relatedWith').update} itemList={contact?.relatedWith} onRemove={listMutatorsFactory('relatedWith').remove} />
       </span>
     </div>
 

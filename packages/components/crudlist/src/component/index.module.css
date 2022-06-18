@@ -22,29 +22,15 @@
 
 .content {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 1rem;
-  padding: 1rem;
-  margin-left: 1.5rem;
+  /* padding: 1rem;
+  margin-left: 1.5rem; */
 }
 
-button {
-  background-color: transparent;
-  border: 0;
-}
-
-button:hover {
+.actionButton {
+  border: 0px;
   cursor: pointer;
-}
-
-.addButton {
-  position: absolute;
-  right: 0;
-  top: 35%;
-}
-
-[data-style='input:text:container'] {
-  width: 100%;
 }

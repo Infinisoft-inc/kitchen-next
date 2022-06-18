@@ -20,8 +20,8 @@ component     create          <json input>      - Create new federated component
                               [--watch]         - Watch mode, rebuild code (without types)
                               [--types]         - Type definition build, can be combined with --watch mode
                               [--deploy]        - Deploy after build, if running in watch mode, deploys every build
-
               deploy                            - Deploy component on cloud (No build)
+                              [--no-invalidate] - Deploy without invalidating cloud front cache
               use             <name>            - Add module to container
               remove          <name>            - removes module from container
               `);

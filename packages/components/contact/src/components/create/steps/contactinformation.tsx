@@ -40,7 +40,7 @@ export const ContactInformation = ({ SK, hidden }: ContactInformation) => {
         <InputText before={<EmailIcon />} className={css.email} {...props('email')} />
         <InputText before={<AddressIcon />} {...props('address')} multiline />
 
-        <CrudList icon={<PhoneIcon />} placeholder={'(514) 864-5742'} onAdd={listMutatorsFactory('telephones').add} onChange={listMutatorsFactory('telephones').update} itemList={contact?.telephones ?? []} itemRender={(item: string, i: number) => <Chip key={`telephone${i}`} onRemove={() => listMutatorsFactory('telephones').remove(i)}>{item}</Chip>} />
+        <CrudList icon={<PhoneIcon />} placeholder={'(514) 864-5742'} onAdd={listMutatorsFactory('telephones').add} onChangeItem={listMutatorsFactory('telephones').update} itemList={contact?.telephones ?? []} itemRender={(item: string, i: number) => <Chip key={`telephone${i}`} onRemove={() => listMutatorsFactory('telephones').remove(i)}>{item}</Chip>} />
 
       </span>
     </div>

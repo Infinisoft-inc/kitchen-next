@@ -6,21 +6,23 @@
  * CrudList Federated Micro Component
  */
 import React, { startTransition, Suspense, useRef } from 'react';
-import { AddIcon } from './assets/svg';
+import { AddIcon, DeleteIcon } from './assets/svg';
 import css from './index.module.css';
 import { CrudListProps } from './types';
 
 const InputText = React.lazy(() => import(/* webpackPrefetch: true */'inputtext/InputText'));
+export const getId = () => String(new Date().getTime() * Math.random())
 
 export const CrudList = ({
   listTitle,
   icon,
   itemList = [],
   onAdd,
-  onChange,
+  onChangeItem,
   onRemove,
   itemRender,
-  placeholder = 'Insert here',
+  label = '',
+  placeholder,
   ...props
 }: CrudListProps) => {
   const [state, setState] = React.useState<string | undefined>(undefined);
@@ -37,7 +39,7 @@ export const CrudList = ({
   }
 
   return <Suspense>
-    <div data-style='input:text:container'>
+    <div className={css.root}>
 
       <div className={css.list}>
         <div className={css.header}>
@@ -45,8 +47,16 @@ export const CrudList = ({
             listTitle
             :
             <>
-              <InputText before={icon} ref={inputRef} defaultValue={state} onKeyDown={e => { if (e.key === 'Enter') { handleAdd() } }} placeholder={placeholder} onChange={e => setState(e.target.value)} />
-              <button onClick={handleAdd} className={css.addButton} data-style='input:text:button:add'><AddIcon /></button>
+              <InputText
+                before={icon}
+                after={<button onClick={handleAdd} className={css.actionButton}><AddIcon /></button>}
+                label={label}
+                ref={inputRef}
+                defaultValue={state}
+                onKeyDown={e => { if (e.key === 'Enter') { handleAdd() } }}
+                placeholder={placeholder}
+                onChange={e => setState(e.target.value)} />
+
             </>
           }
         </div>
@@ -57,7 +67,7 @@ export const CrudList = ({
                 itemRender ?
                   itemRender(item, i, array)
                   :
-                  <InputText key={i} value={String(item)} onChange={e => onChange?.(i, e.target.value)} data-index={i} name={name + `${i}`} onRemove={() => onRemove?.(i)} removable />
+                  <span key={getId()} data-index={i}>{String(item)}<button onClick={() => onRemove?.(i)} className={css.actionButton}><DeleteIcon /></button></span>
               )
             }
           </div>}

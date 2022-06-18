@@ -11,6 +11,7 @@ import css from './index.module.css';
 const Chip = React.lazy(() => import(/* webpackChunkName: 'Chip' */ 'chip/Chip'))
 const InputText = React.lazy(() => import(/* webpackPreload: true */ /* webpackChunkName: 'InputText' */'inputtext/InputText'));
 const CrudList = React.lazy(() => import(/* webpackPreload: true */ /* webpackChunkName: 'InputText' */'crudlist/CrudList'))
+export const getId = () => String(new Date().getTime() * Math.random())
 
 export type RelationsProps = Partial<HTMLAttributes<HTMLDivElement>> & {
   SK: string
@@ -37,7 +38,7 @@ export const Relations = ({ SK, hidden }: RelationsProps) => {
       <span className={css.detailsContainer}>
         <InputText before={<WebIcon />} {...props('website')} />
 
-        <CrudList icon={<RelatedwithIcon />} placeholder={'Relation ?'} onAdd={listMutatorsFactory('relatedWith').add} onChange={listMutatorsFactory('relatedWith').update} itemList={contact?.relatedWith} itemRender={(item: string, i: number) => <Chip key={`relatedWith${i}`} onRemove={() => listMutatorsFactory('relatedWith').remove(i)}>{item}</Chip>} />
+        <CrudList icon={<RelatedwithIcon />} placeholder={'Relation ?'} onAdd={listMutatorsFactory('relatedWith').add} onChangeItem={listMutatorsFactory('relatedWith').update} itemList={contact?.relatedWith} itemRender={(item: string, i: number) => <Chip key={getId()} onRemove={() => listMutatorsFactory('relatedWith').remove(i)}>{item}</Chip>} />
       </span>
     </div>
   </span>

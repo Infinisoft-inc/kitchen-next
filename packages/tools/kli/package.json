@@ -1,6 +1,6 @@
 {
   "name": "@infini-soft/kli",
-  "version": "0.0.40",
+  "version": "0.0.41",
   "description": "Kitchen Line Interface",
   "author": "Infinisoft Inc. <info@infini-soft.com>",
   "homepage": "https://www.kitchen.infini-soft.com/",
@@ -35,7 +35,7 @@
   },
   "gitHead": "2a2dd9af203fe9e9eef3aef9d7c4707e99ef3849",
   "dependencies": {
-    "@infini-soft/kli": "^0.0.40",
+    "@infini-soft/kli": "^0.0.41",
     "mustache": "^4.2.0"
   },
   "scripts": {

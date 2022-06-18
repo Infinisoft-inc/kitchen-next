@@ -41,7 +41,7 @@ const NavButtons = ({ setStep, step, count, onCompleteEvent=new CustomEvent('com
 </>
 )
 
-const Steps = ({ SK, step }: { step: number, SK: string }) => (<>{_steps.map(({ Component }, i) => <Component hidden={step !== (i + 1)} SK={SK} />)}</>)
+const Steps = ({ SK, step }: { step: number, SK: string }) => (<>{_steps.map(({ Component }, i) => <Component key={`step${i}`} hidden={step !== (i + 1)} SK={SK} />)}</>)
 
 export const Content = ({ SK }: ContentProps) => {
   const [step, setStep] = React.useState(1);

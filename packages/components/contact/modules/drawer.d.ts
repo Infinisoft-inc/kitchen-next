@@ -6,7 +6,7 @@ declare module "component/types" {
         visible?: boolean;
     } & Partial<React.HTMLProps<HTMLSpanElement>>;
 }
-declare module "component/index" {
+declare module "drawer/Drawer" {
     import './index.module.css';
     import { DrawerProps } from "component/types";
     const Drawer: ({ children, visible, ...props }: DrawerProps) => JSX.Element;

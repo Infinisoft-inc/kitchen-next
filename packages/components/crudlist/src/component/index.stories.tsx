@@ -63,8 +63,12 @@ const Template: ComponentStory<typeof CrudList> = ({ icon, ...args }, context) =
 
   const [_state, _setState] = React.useState<string[]>();
 
-  const onAdd = () => {
-    _setState(_prev => _prev ? ['', ..._prev] : [])
+  const onAdd = (newValue?: any) => {
+    if (!newValue) {
+      return;
+    }
+
+    _setState(_prev => _prev ? [newValue, ..._prev] : [newValue])
   }
 
   const onRemove = (i: number) => {
@@ -74,20 +78,22 @@ const Template: ComponentStory<typeof CrudList> = ({ icon, ...args }, context) =
   }
   const onChange = (i: number, newValue: string) => {
     _setState(_prev => {
-      if (_prev) {
-        _prev[i] = newValue
-        return [..._prev];
+      if (!_prev) {
+        return [newValue]
       }
 
-      return []
+      _prev[i] = newValue
+      return [..._prev];
+
     })
   }
 
-  return <CrudList {...args} onAdd={onAdd} onChange={onChange} onRemove={onRemove} itemList={_state} icon={customIcon} />
+  return <div style={{maxWidth: '300px'}}><CrudList {...args} onAdd={onAdd} onChangeItem={onChange} onRemove={onRemove} itemList={_state} icon={customIcon} /></div>
 
 }
 export const Example = Template.bind({});
 Example.args = {
-  title: 'Example List',
+  label: 'Example List',
   icon: <PhoneIcon />,
+  placeholder: '(514) 895-4274'
 };

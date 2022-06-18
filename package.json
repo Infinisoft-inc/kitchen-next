@@ -88,7 +88,7 @@
     "test": "lerna run test --stream --parallel",
     "test:watchAll": "lerna run watchAll --stream --parallel",
     "test:coverage": "lerna run test:coverage --stream --parallel",
-    "deploy": "lerna run deploy --stream --parallel -- --tag mfcomponents",
+    "deploy": "lerna run deploy --stream --parallel -- --tag mfcomponents --no-invalidate",
     "start:dev": "lerna run start:dev --stream --parallel",
     "start:prod": "lerna run start:prod --stream --parallel",
     "serve:dist": "lerna run serve:dist --stream --parallel",
