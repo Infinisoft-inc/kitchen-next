@@ -11,6 +11,7 @@
   --inputtext-before-color: var(--md-sys-color-on-background);
   --inputtext-background-color-contrast: var(--md-sys-color-on-background);
   --inputtext-focus-within: var(--md-sys-color-primary);
+  --inputtext-font-size: var(--md-sys-typescale-body-medium-size);
 }
 
 body[class*='darkmode'] {
@@ -23,18 +24,20 @@ body[class*='darkmode'] {
 body[class*='lightmode'] {
   --inputtext-background: var(--md-sys-color-background-light);
   --inputtext-before-color: var(--md-sys-color-on-background-light);
-  --inputtext-background-color-contrast: var(--md-sys-color-on-background-light);
+  --inputtext-background-color-contrast: var(
+    --md-sys-color-on-background-light
+  );
   --inputtext-focus-within: var(--md-sys-color-primary-light);
 }
 
 .inputtext {
   background-color: var(--inputtext-background);
   color: var(--inputtext-background-color-contrast);
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  width: 250px;
   border-radius: 5px;
   border: 1px var(--inputtext-background-color-contrast) solid;
+  flex: 1;
 }
 
 .inputtext:focus-within {
@@ -42,21 +45,37 @@ body[class*='lightmode'] {
   font-weight: bold;
 }
 
-.inputtext:focus-within > legend {
-  color: var(--inputtext-focus-within);
+fieldset.inputtext {
+  margin: 0.35rem 0;
+  flex: 1;
+}
+
+legend.inputtextLegend {
+  text-align: left;
+}
+
+.inputtextArea {
+  resize: none;
+  outline: 0px;
+  border-width: 0px;
 }
 
 .inputtext > input {
   background-color: var(--inputtext-background);
   color: var(--inputtext-background-color-contrast);
-  min-width: 250px;
   border: 0px;
   outline: none;
-  font-size: 1.5rem;
-  margin-left: 0.75rem;
+  font-size: var(--inputtext-font-size);
+  margin: 0 0.35rem;
 }
 
 .inputtext > svg,
 .inputtext > button {
   color: var(--inputtext-background-color-contrast);
+}
+
+.inputtext:focus-within > legend,
+.inputtext:focus-within > svg,
+.inputtext:focus-within > button {
+  color: var(--inputtext-focus-within);
 }

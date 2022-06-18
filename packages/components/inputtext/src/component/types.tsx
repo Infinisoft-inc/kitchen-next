@@ -8,23 +8,9 @@ import React from "react"
 
 export type InputTextProps = {
   /**
-   * variant
-   */
-  variant?: "primary" | 'secondary' | string
-  /**
    * Multiline
    */
   multiline?: boolean
-  /**
-   * This element value is copyable in the clipboard
-   */
-  copyable?: boolean
-  /**
-   * This element is removeable
-   * Triggers onRemove
-   */
-  removable?: boolean
-  onRemove?: <T, >(...arg: T[]) => void
   /**
    * Before component
    * this attributes collide with @types/react and must be replaced by before
@@ -50,6 +36,6 @@ export type InputTextProps = {
   /**
  * Props passed down to input or textarea
  */
-  inputProps?: React.InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement>,
-} & React.InputHTMLAttributes<HTMLFieldSetElement>
+  inputProps?: Partial<React.InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement>>,
+} & Partial<React.InputHTMLAttributes<HTMLFieldSetElement>>
 

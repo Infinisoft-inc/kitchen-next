@@ -68,8 +68,6 @@ body {
   letter-spacing: var(--body1-letter-spacing);
 }
 
-textarea,
-input[type='text'],
 h1,
 h2,
 h3,
@@ -135,8 +133,6 @@ subtitle2 {
   letter-spacing: var(--subtitle2-letter-spacing);
 }
 
-textarea,
-input[type='text'],
 body1 {
   font-size: var(--body1-size);
   font-weight: var(--body1-weight);
@@ -167,3 +163,13 @@ caption {
   font-weight: var(--caption-weight);
   letter-spacing: var(--caption-letter-spacing);
 }
+/*
+input[type='text'],
+textarea {
+  outline: none;
+  border: 0;
+}
+
+textarea {
+  resize: none;
+} */

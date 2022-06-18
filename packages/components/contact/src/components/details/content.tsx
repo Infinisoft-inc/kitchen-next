@@ -23,9 +23,8 @@ export const Content = ({ SK, onClose }: ContentProps) => {
   const { item: contact, inputMutator, listMutatorsFactory, mutation, remove } = useItem(SK)
 
   const props = (field: keyof API.Item) => ({
-    className: 'invariant',
-    placeholder: field,
     name: field,
+    label:field,
     defaultValue: contact?.[field] ? String(contact?.[field]) : '',
     onChange: inputMutator(field)
   })
@@ -46,8 +45,8 @@ export const Content = ({ SK, onClose }: ContentProps) => {
       </span>
 
       <span className={css.detailsContainer}>
-        <InputText before={<AddressIcon />} {...props('address')} multiline className='noresize' />
-        <InputText before={<WebIcon />} {...props('website')} />
+        <InputText before={<AddressIcon />} {...props('address')} placeholder='66 Yale Road' />
+        <InputText before={<WebIcon />} {...props('website')} placeholder='www.contact.com'/>
 
         <CrudList icon={<PhoneIcon />} placeholder={'(514) 864-5742'} onAdd={listMutatorsFactory('telephones').add} onChange={listMutatorsFactory('telephones').update} itemList={contact?.telephones} itemRender={(item: string, i: number) => <Chip key={`telephone-${i}`} onRemove={() => listMutatorsFactory('telephones').remove(i)}>{item}</Chip>} />
 
