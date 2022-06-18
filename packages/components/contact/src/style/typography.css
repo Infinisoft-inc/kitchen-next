@@ -61,11 +61,8 @@
   --overline-letter-spacing: 1.5px;
 }
 
-body {
-  font-size: var(--font-size);
+input {
   font-family: var(--font-family);
-  font-weight: var(--body1-weight);
-  letter-spacing: var(--body1-letter-spacing);
 }
 
 h1,
@@ -163,13 +160,3 @@ caption {
   font-weight: var(--caption-weight);
   letter-spacing: var(--caption-letter-spacing);
 }
-/*
-input[type='text'],
-textarea {
-  outline: none;
-  border: 0;
-}
-
-textarea {
-  resize: none;
-} */

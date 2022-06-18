@@ -17,17 +17,20 @@ const InputText = ({
   label = '',
   invalidMessage = 'Invalid!',
   placeholder,
-  inputProps,
+  inverse = false,
+  containerProps,
+  containerClass = '',
+  inputClass = '',
   ...props
 }: InputTextProps,
   ref: React.ForwardedRef<HTMLInputElement>) => {
 
-  return <fieldset className={css.inputtext} key={name} {...props}>
+  return <fieldset className={`${css.inputtext} ${inverse ? css.inverse : ''} ${containerClass}`} key={name} {...containerProps}>
     {label && <legend className={css.inputtextLegend}>{label}</legend>}
     {before}
-    {multiline && <textarea  className={css.inputtextArea} {...inputProps} placeholder={placeholder} name={name} />}
+    {multiline && <textarea className={`${css.inputtextArea} ${inputClass}`} {...props} placeholder={placeholder} name={name} />}
 
-    {!multiline && <input {...inputProps} placeholder={placeholder} name={name} ref={ref} type='text' />}
+    {!multiline && <input {...props} className={inputClass} placeholder={placeholder} name={name} ref={ref} type='text' />}
 
     {after}
   </fieldset>

@@ -63,6 +63,7 @@ export const After = Template.bind({});
 After.args = {
   after:  <PhoneIcon />,
   label: 'After',
+  inverse:true
 };
 After.parameters = {
   docs: {

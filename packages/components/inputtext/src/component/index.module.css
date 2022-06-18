@@ -33,11 +33,27 @@ body[class*='lightmode'] {
 .inputtext {
   background-color: var(--inputtext-background);
   color: var(--inputtext-background-color-contrast);
-  display: inline-flex;
+  display: flex;
   align-items: center;
   border-radius: 5px;
   border: 1px var(--inputtext-background-color-contrast) solid;
   flex: 1;
+}
+
+.inputtext.inverse,
+.inputtext.inverse > input
+ {
+  background-color: var(--inputtext-background-color-contrast);
+  color: var(--inputtext-background);
+}
+
+.inputtext > input {
+  background-color: var(--inputtext-background);
+  color: var(--inputtext-background-color-contrast);
+  border: 0px;
+  outline: none;
+  font-size: var(--inputtext-font-size);
+  margin: 0 0.35rem;
 }
 
 .inputtext:focus-within {
@@ -60,14 +76,7 @@ legend.inputtextLegend {
   border-width: 0px;
 }
 
-.inputtext > input {
-  background-color: var(--inputtext-background);
-  color: var(--inputtext-background-color-contrast);
-  border: 0px;
-  outline: none;
-  font-size: var(--inputtext-font-size);
-  margin: 0 0.35rem;
-}
+
 
 .inputtext > svg,
 .inputtext > button {

@@ -34,8 +34,24 @@ export type InputTextProps = {
    */
   placeholder?: string,
   /**
- * Props passed down to input or textarea
- */
-  inputProps?: Partial<React.InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement>>,
-} & Partial<React.InputHTMLAttributes<HTMLFieldSetElement>>
+   * inverse theme colors
+   */
+  inverse?: boolean
+  /**
+   * containerProps
+   */
+  containerProps?: Partial<React.FieldsetHTMLAttributes<HTMLFieldSetElement>>
+  /**
+   * Add css class to container
+   */
+  containerClass?: string
+  /**
+   * inputProps
+   */
+  inputProps?: Partial<React.InputHTMLAttributes<HTMLInputElement>>
+  /**
+   * Add css class to container
+   */
+  inputClass?: string
+} & Partial<React.InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement>>
 

@@ -4,10 +4,27 @@
  * www.infini-soft.com
  */
 
+ :root {
+  --drawer-background: var(--md-sys-color-surface);
+  --drawer-background-color-contrast: var(--md-sys-color-on-surface);
+  --drawer-backdrop-color: var(--md-ref-palette-neutral-0);
+  --drawer-backdrop-z-index: 1200;
+}
+
+body[class*='darkmode'] {
+  --drawer-background: var(--md-sys-color-surface-dark);
+  --drawer-background-color-contrast: var(--md-sys-color-on-surface-dark);
+}
+
+body[class*='lightmode'] {
+  --drawer-background: var(--md-sys-color-surface-light);
+  --drawer-background-color-contrast: var(--md-sys-color-on-surface-light);
+}
+
  [data-component='backdrop:drawer'] {
   display: none;
-  z-index: var(--z-backdrop);
-  background-color: var(--color-primary-background);
+  z-index: var(--drawer-backdrop-z-index);
+  background-color: var(--drawer-backdrop-color);
   position: fixed;
   top: 0;
   bottom: 0;
@@ -22,13 +39,12 @@
 [data-component='backdrop:drawer'][data-visible='true'] {
   display: block;
   position: fixed;
-  background-color: var(--color-primary-contrast-background);
   opacity: 0.6;
 }
 
 [data-component='drawer'] {
   display: block;
-  z-index: var(--z-backdrop);
+  z-index: var(--drawer-backdrop-z-index);
   position: absolute;
   top: 0;
   right: 0;
@@ -36,7 +52,7 @@
   height:auto;
   width: 0px;
   opacity: 0;
-  background-color: var(--color-invariant-contrast);
+  background-color: var(--drawer-background);
   transition: all ease 700ms;
 }
 

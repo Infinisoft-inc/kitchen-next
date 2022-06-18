@@ -8,24 +8,21 @@
 
 :root {
   --color-primary: var(--md-sys-color-primary);
-
   --text-primary: var(--md-sys-color-on-primary);
   --text-primary-contrast: var(--md-sys-color-primary);
-
   --color-primary-background: var(--md-sys-color-background);
-
   --color-primary-contrast-background: --md-sys-color-on-background;
-
   --color-invariant: var(--md-ref-palette-neutral-100);
   --color-invariant-90: var(--md-ref-palette-neutral-90);
   --color-invariant-contrast: var(--md-ref-palette-neutral-0);
-
   --z-dialog: 1200;
   --z-drawer: 1000;
   --z-backdrop: 500;
   --z-control-icon: 250;
   --opacity-backdrop: 0.7;
   --font-family: 'Orbitron', sans-serif;
+
+  --contact-details-header-background-color: var(--md-sys-color-on-background);
 }
 
 body[class*='darkmode'] {
