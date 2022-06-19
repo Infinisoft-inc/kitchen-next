@@ -36,6 +36,7 @@ module.exports = withStorybookModuleFederation({
   },
   features: {
     previewMdx2: true,
+    interactionsDebugger: true,
   },
   webpackFinal: async (config) => {
     return {

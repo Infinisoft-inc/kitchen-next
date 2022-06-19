@@ -33,17 +33,19 @@
   },
   "infinisoft": {
     "moduleFederation": {
-      "title":"Chip",
-      "category":"data",
-      "image":"https://www.kitchen.infini-soft.com/assets/infinisoftticon.png",
+      "title": "Chip",
+      "category": "data",
+      "image": "https://www.kitchen.infini-soft.com/assets/infinisoftticon.png",
       "component": "Chip",
-      "dev":{
+      "dev": {
         "remotes": {}
       },
-      "prod":{
+      "prod": {
         "remotes": {}
       }
     }
   },
-  "dependencies": {}
+  "dependencies": {
+    "@storybook/jest": "^0.0.10"
+  }
 }

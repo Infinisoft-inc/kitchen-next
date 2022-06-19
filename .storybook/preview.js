@@ -1,6 +1,6 @@
 // import { load } from '@infini-soft/lib-federation';
-import React, { startTransition } from 'react';
 import { themes } from '@storybook/theming';
+import React from 'react';
 // import(/* webpackPreload: true */ 'store/createstore');
 
 // /**
