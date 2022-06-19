@@ -3,6 +3,8 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { userEvent, within } from '@storybook/testing-library';
 import Chip from '.';
 
+
+
 export default {
   title: 'INPUT/Chip',
   component: Chip,
@@ -11,7 +13,7 @@ export default {
       defaultValue: '',
       table: {
         type: {
-          summary: 'string',
+          summary: 'The children is what is rendered in the input chip',
         },
       },
       control: {
@@ -27,7 +29,7 @@ export default {
             defaultValue: { summary: `var(--md-sys-color-outline)` },
           },
           control: {
-            type: null,
+            type: 'color',
           },
     },
     "color": {
@@ -39,15 +41,16 @@ export default {
             defaultValue: { summary: `var(--md-sys-color-on-surface-variant)` },
           },
           control: {
-            type: null,
+            type: 'color',
           },
     },
     onRemove: {
-      action: true,
+      action: 'clicked',
       table: {
         category: 'Events',
         type: {
-          summary: '() => void',
+          summary: 'Remove chip input when the button is clicked',
+          detail: `() => void`,
         },
       },
     },
@@ -55,7 +58,8 @@ export default {
       table: {
         category: 'Events',
         type: {
-          summary: '(arg: string)=>void',
+          summary: 'Change the value when a new value is call in the input chip',
+          detail: `(args: string) => void`,
         },
       },
     },
@@ -72,7 +76,7 @@ export default {
 export const Demo = {
   play: async ({args, canvasElement}) => {
     const canvas = within(canvasElement);
-    await userEvent.clear(canvas.getByRole('button'));
+    await userEvent.click(canvas.getByRole('button'));
     await expect(args.onRemove).toHaveBeenCalled();
   },
 };
@@ -87,12 +91,12 @@ const Template: ComponentStory<typeof Chip> = (args) => {
 
 
 
-export const ContentArgs = Template.bind({});
-ContentArgs.args = {
-  children: ''
+export const InputChip = Template.bind({});
+InputChip.args = {
+   children: 'Im the children'  
 };
 
-ContentArgs.parameters = {
+InputChip.parameters = {
   docs: {
     description: {
       story: 'This is a chip',
