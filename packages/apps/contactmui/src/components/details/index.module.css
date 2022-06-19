@@ -1,0 +1,79 @@
+/*
+ * Copyright © All rights reserved 2022
+ * Infinisoft Inc.
+ * www.infini-soft.com
+ */
+.header {
+  height: 300px;
+  background-color: var(--md-sys-color-background-dark);
+  color: var(--md-sys-color-on-background-dark);
+  display: flex;
+  align-items: center;
+  jusitfy-content: center;
+}
+
+@media only screen and (min-width: 769px) {
+  .drawer {
+    width: 360px;
+  }
+}
+
+@media only screen and (max-height: 600x) {
+  .header {
+    height: 200px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .drawer {
+    width: 100%;
+  }
+}
+
+.headerContent {
+  flex: 1 1 auto;
+  text-align: center;
+}
+
+.content {
+  padding: 1rem;
+  background-color: white;
+}
+
+fieldset.block {
+  display: block;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+input.name {
+  text-align: center;
+  font-size: 24px !important;
+  padding: 0 !important;
+  margin: 0.35rem 0 !important;
+}
+
+input.email {
+  text-align: center;
+  font-size: 16px !important;
+  color: grey !important;
+  padding: 0 !important;
+  margin: 0.35rem 0 !important;
+}
+
+.noresize {
+  resize: none;
+}
+
+.categoryContainer {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.detailsContainer {
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+}

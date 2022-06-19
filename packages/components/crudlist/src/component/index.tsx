@@ -10,7 +10,7 @@ import { AddIcon, DeleteIcon } from './assets/svg';
 import css from './index.module.css';
 import { CrudListProps } from './types';
 
-const InputText = React.lazy(() => import(/* webpackPrefetch: false */'inputtext/InputText'));
+const InputText = React.lazy(() => import(/*   */'inputtext/InputText'));
 export const getId = () => String(new Date().getTime() * Math.random())
 
 export const CrudList = ({

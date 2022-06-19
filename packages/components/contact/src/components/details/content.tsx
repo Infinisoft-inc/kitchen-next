@@ -8,10 +8,10 @@ import { useItem } from '@/hooks/useItem';
 import React from 'react';
 import css from './index.module.css';
 
-const Chip = React.lazy(() => import(/* webpackPrefetch: false */ /* webpackChunkName: 'Chip' */ 'chip/Chip'))
-const InputText = React.lazy(() => import(/* webpackPrefetch: false */ /*  webpackChunkName: 'InputText'*/ 'inputtext/InputText'));
-const CrudList = React.lazy(() => import(/* webpackPrefetch: false */ /*  webpackChunkName: 'CrudList'*/ 'crudlist/CrudList'))
-const AvatarUpload = React.lazy(() => import(/* webpackPrefetch: false */ /*  webpackChunkName: 'AvatarUpload' */ 'avatarupload/AvatarUpload'))
+const Chip = React.lazy(() => import(/*   */ /* webpackChunkName: 'Chip' */ 'chip/Chip'))
+const InputText = React.lazy(() => import(/*   */ /*  webpackChunkName: 'InputText'*/ 'inputtext/InputText'));
+const CrudList = React.lazy(() => import(/*   */ /*  webpackChunkName: 'CrudList'*/ 'crudlist/CrudList'))
+const AvatarUpload = React.lazy(() => import(/*   */ /*  webpackChunkName: 'AvatarUpload' */ 'avatarupload/AvatarUpload'))
 
 export type ContentProps = {
   SK: string

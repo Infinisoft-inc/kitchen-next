@@ -5,8 +5,8 @@ import React from 'react';
 import { columns } from './columns';
 import css from './index.module.css';
 
-const Table = React.lazy(() => import(/* webpackPrefetch: false */ /* webpackChunkName: 'Table' */ 'table/Table'))
-const Button = React.lazy(() => import(/* webpackPrefetch: false */ /* webpackChunkName: 'Button' */ '@mui/material/Button'))
+const Table = React.lazy(() => import(/*   */ /* webpackChunkName: 'Table' */ 'table/Table'))
+const Button = React.lazy(() => import(/*   */ /* webpackChunkName: 'Button' */ '@mui/material/Button'))
 
 const List = () => {
   const list = useSearchFilter()
