@@ -8,7 +8,7 @@ export class Store<S, P> implements IStore<S, P> {
 
 
   constructor(init?: InitStore<S>, opt?: CreateStoreOptions<S, P>) {
-    const isDevtool = typeof window === 'object' && typeof (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ !== 'undefined' && opt?.devtool
+    const isDevtool = typeof window === 'object' && typeof (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ !== 'undefined'// && opt?.devtool
 
     if (isDevtool) {
       this._devtool = (window as any).__REDUX_DEVTOOLS_EXTENSION__.connect({
@@ -18,12 +18,12 @@ export class Store<S, P> implements IStore<S, P> {
       });
     }
 
-    if (opt?.subscribers) {
-      opt.subscribers.forEach(e => {
-        console.log(`init subscriber = `, e)
-        this.subscribe(e)
-      })
-    }
+    // if (opt?.subscribers) {
+    //   opt.subscribers.forEach(e => {
+    //     console.log(`init subscriber = `, e)
+    //     this.subscribe(e)
+    //   })
+    // }
 
     init?.()
       .then(result => {

@@ -61,7 +61,7 @@ export type CreateStoreOptions<S=unknown, P=unknown> = {
   /**
    * Initial subscribers
    */
-  subscribers?: SubscriberEventHandler<S, P>[]
+  // subscribers?: SubscriberEventHandler<S, P>[]
 }
 
 /**

@@ -115,8 +115,8 @@ describe('Store Unit Testing', () => {
       }
     }
 
-    const store = new Store<any, any>(() => Promise.resolve(state), { subscribers: [initialSubscriber1] })
-    store.emit('expected', 'payload')
+    // const store = new Store<any, any>(() => Promise.resolve(state), { subscribers: [initialSubscriber1] })
+    // store.emit('expected', 'payload')
   });
 
 })
