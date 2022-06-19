@@ -8,25 +8,27 @@
 :root {
   --chip-border-color: var(--md-sys-color-outline);
   --chip-border-radius: 5px;
-  --chip-color: var(--md-sys-color-on-surface-variant);
+  --chip-text-color: var(--md-sys-color-on-surface-variant);
 }
 
 body[class*='darkmode'] {
   --chip-border-color: var(--md-sys-color-outline-dark);
-  --chip-color: var(--md-sys-color-on-surface-variant-dark);
+  --chip-text-color: var(--md-sys-color-on-surface-variant-dark);
 }
 
 body[class*='lightmode'] {
   --chip-border-color: var(--md-sys-color-outline-light);
-  --chip-color: var(--md-sys-color-on-surface-variant-light);
+  --chip-text-color: var(--md-sys-color-on-surface-variant-light);
 }
 
-[data-style='data:chip:control'] {
+.chipStyle {
+  position: absolute;
   display: flex;
   flex-direction: row;
   align-items: center;
-  color: var(--chip-color);
-  padding: 0.5rem;
+  justify-content: center;
+  color: var(--chip-text-color);
+  padding: 0.2rem 0 0.2rem 0.5rem;
   border-radius: var(--chip-border-radius);
   font-size: var(--body2-size);
   border: 1px solid var(--chip-border-color);
@@ -35,5 +37,5 @@ body[class*='lightmode'] {
 .delete {
   background-color: transparent !important;
   margin-left: .5rem;
-  margin-top: .2rem;
+  margin-top: .3rem;
 }

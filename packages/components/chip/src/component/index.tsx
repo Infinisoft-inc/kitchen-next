@@ -11,7 +11,7 @@ import { ChipProps } from './types';
 
 const Chip = ({ onRemove, children, onChange, ...props }:ChipProps) => {
 
-  return <Suspense><div data-style={'data:chip:control'} {...props}>{children} {onRemove && <button className={css.delete} onClick={onRemove}><DeleteIcon /></button>}</div></Suspense>
+  return <Suspense><div className={css.chipStyle} {...props}>{children} {onRemove && <button className={css.delete} onClick={onRemove}><DeleteIcon /></button>}</div></Suspense>
 }
 
 export default Chip;

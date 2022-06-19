@@ -1,6 +1,7 @@
+import { expect } from '@storybook/jest';
 import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { userEvent, within } from '@storybook/testing-library';
 import Chip from '.';
-import './index.module.css';
 
 export default {
   title: 'INPUT/Chip',
@@ -12,7 +13,6 @@ export default {
         type: {
           summary: 'string',
         },
-        defaultValue: { summary: 'Hello' },
       },
       control: {
         type: 'text',
@@ -43,6 +43,7 @@ export default {
           },
     },
     onRemove: {
+      action: true,
       table: {
         category: 'Events',
         type: {
@@ -68,6 +69,14 @@ export default {
   },
 } as ComponentMeta<typeof Chip>;
 
+export const Demo = {
+  play: async ({args, canvasElement}) => {
+    const canvas = within(canvasElement);
+    await userEvent.clear(canvas.getByRole('button'));
+    await expect(args.onRemove).toHaveBeenCalled();
+  },
+};
+
 const Template: ComponentStory<typeof Chip> = (args) => {
   return (
     <div style={{ width: 80 }}>
@@ -76,9 +85,11 @@ const Template: ComponentStory<typeof Chip> = (args) => {
   );
 };
 
+
+
 export const ContentArgs = Template.bind({});
 ContentArgs.args = {
-  children: 'Hello',
+  children: ''
 };
 
 ContentArgs.parameters = {
