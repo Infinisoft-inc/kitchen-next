@@ -36,7 +36,7 @@ export default {
         table: {
             category: 'TOKEN',
             type: {
-              summary: `--chip-color`,
+              summary: `--chip-text-color`,
             },
             defaultValue: { summary: `var(--md-sys-color-on-surface-variant)` },
           },
