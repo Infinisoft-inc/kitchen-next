@@ -26,6 +26,7 @@
     "build:dev": "kli lib build",
     "build:dev:watch": "kli lib build --watch",
     "build:prod:type": "tsc -p tsconfig.prod.json -d --emitDeclarationOnly --outDir dist --esModuleInterop& webpack -c ./webpack.config.prod.js",
+    "build:prod": "kli lib build --prod",
     "build:prod:watch": "kli lib build --prod --watch",
     "build:analyze": "kli lib build --analyze& start analyze/bundle-stats.html",
     "build:analyze:baseline": "kli lib build --analyze-baseline& start analyze/bundle-stats.html",
@@ -58,7 +59,9 @@
   "devDependencies": {
     "@infini-soft/kli": "^0.0.40",
     "@types/react": "^18.0.12",
-    "@types/react-dom": "^18.0.5"
+    "@types/react-dom": "^18.0.5",
+    "fake-indexeddb": "^3.1.8",
+    "jest-environment-jsdom": "^28.1.1"
   },
   "peerDependencies": {
     "react": "^18.1.0",

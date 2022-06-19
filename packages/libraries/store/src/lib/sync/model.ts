@@ -9,9 +9,9 @@ const model = {
   }
 }
 
-class StoreIDB<E, S, P> {
+export class StoreIDB<E, S, P> {
   private _db?: IDBDatabase;
-  private _initDb:IDBOpenDBRequest;
+  private _initDb: IDBOpenDBRequest;
 
   constructor() {
     //@ts-ignore
@@ -21,57 +21,35 @@ class StoreIDB<E, S, P> {
     //@ts-ignore
     window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || window.msIDBKeyRange;
 
-    this._initDb= window.indexedDB.open("Infinistore", 4);
-
-    // Gecko-only IndexedDB temp storage option:
-    // var request = window.indexedDB.open("toDoList", {version: 4, storage: "temporary"});
-    this._initDb.onerror
-
-  }
-  private _setDb = (db: IDBDatabase) => {
-    this._db = db;
-  }
-
-    // these two event handlers act on the database being opened successfully, or not
-    private onError = (event:any) => {
-      console.error(event)
-    };
-
-    private onsuccess = (event:any) => {
-      console.log(event)
-
-       //DBOpenRequest.result;
+    if (!window.indexedDB) {
+      throw new DOMException('IndexDB Not Supported!')
     }
 
-  public EventHandler = (event: E, state: S, payload: P) => {
+    this._initDb = window.indexedDB.open("Infinistore", 4);
+
+    this._initDb.onerror = this.onError;
+    this._initDb.onsuccess = this.onsuccess;
+    this._initDb.onupgradeneeded = this.onupgradeneeded;
+
   }
 
-  public init = () => {
+  // these two event handlers act on the database being opened successfully, or not
+  private onError = (event: any) => {
+    console.error(event)
+  };
 
-    //@ts-ignore
-    window.indexedDB = window?.indexedDB || window?.mozIndexedDB || window?.webkitIndexedDB || window?.msIndexedDB;
-    //@ts-ignore
-    window.IDBTransaction = window.IDBTransaction || window.webkitIDBTransaction || window.msIDBTransaction;
-    //@ts-ignore
-    window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || window.msIDBKeyRange;
+  private onsuccess = (event: any) => {
+    console.log(event)
 
-    const DBOpenRequest = window.indexedDB.open("Infinistore", 4);
-    let db: IDBDatabase;
+    this._db = this._initDb.result;
+  }
 
-    // Gecko-only IndexedDB temp storage option:
-    // var request = window.indexedDB.open("toDoList", {version: 4, storage: "temporary"});
+  private onupgradeneeded = (event: any) => {
+    console.log(event)
+  }
 
-    // these two event handlers act on the database being opened successfully, or not
-    DBOpenRequest.onerror = function (event) {
-      console.error(event)
-    };
-
-    DBOpenRequest.onsuccess = function (event) {
-      console.log(event)
-
-      this._db = DBOpenRequest.result;
-    };
-
+  public eventHandler = (event: E, state: S, payload: P) => {
+    console.log("StoreIDB Event Handler ", event, state, payload)
   }
 
 }

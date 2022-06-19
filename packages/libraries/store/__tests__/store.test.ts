@@ -2,6 +2,7 @@
  * Copyright © All rights reserved 2022
  * www.infini-soft.com
  */
+import { SubscriberEventHandler } from '../src';
 import { Store } from '../src/lib/store';
 
 /**
@@ -17,7 +18,7 @@ import { Store } from '../src/lib/store';
 
 
 
-describe('Unit Testing', () => {
+describe('Store Unit Testing', () => {
 
   it('Mutation', () => {
     const store = new Store<any, any>(() => Promise.resolve({ 0: 'dog', 1: 'bobz' }))
@@ -76,8 +77,6 @@ describe('Unit Testing', () => {
     const store = new Store<any, any>(() => Promise.resolve({ 0: 'dog', 1: 'bobz' }))
 
     store.subscribe((event, state, payload) => {
-      console.log(`event `, event, ` state `, state, ` payload `, payload)
-
       if (event.match("@initialization")) {
         store.mutate((_state) => {
           return { 0: 'mutation' }
@@ -90,14 +89,12 @@ describe('Unit Testing', () => {
   })
 
   it('Mutation Verify Subscribers Iterable Payload', () => {
-    let state:Record<string, { name: string }> = {'dog': { name: 'pound' }}
-    state = {...state, 'dogette': { name: 'poundette' }}
+    let state: Record<string, { name: string }> = { 'dog': { name: 'pound' } }
+    state = { ...state, 'dogette': { name: 'poundette' } }
 
     const store = new Store<any, any>(() => Promise.resolve(state))
 
     store.subscribe((event, state, payload) => {
-      console.log(`event `, event, ` state `, state, ` payload `, payload)
-
       if (event.match("@initialization")) {
         store.mutate((_state) => {
           return { dog: { name: 'mutation' } }
@@ -107,9 +104,20 @@ describe('Unit Testing', () => {
       }
 
     })
-
-
   });
 
-});
+  it('Constructor Initial Subscribers Option', () => {
+    let state: Record<string, { name: string }> = { 'dog': { name: 'pound' } }
+
+    const initialSubscriber1: SubscriberEventHandler = (event, _state, payload) => {
+      if (event.match("expected")) {
+        expect(payload).toEqual('payload');
+      }
+    }
+
+    const store = new Store<any, any>(() => Promise.resolve(state), { subscribers: [initialSubscriber1] })
+    store.emit('expected', 'payload')
+  });
+
+})
 
