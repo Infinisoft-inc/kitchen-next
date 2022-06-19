@@ -17,12 +17,12 @@ const Container = (props: ContainerProps) => {
   return <Suspense>
     <div className={css.root}>
       <div className={css.container}>
-        <div className={css.header}>
+        <header>
           <TopBar
             brandImageUrl='https://www.kitchen.infini-soft.com/assets/infinisoftticon.png'
-            menuComponent={<><ThemeSwitch /></>}
+            menuComponent={<span style={{ width: '100%' }}><ThemeSwitch /></span>}
           />
-        </div>
+        </header>
 
         <div className={css.section}>
           <div className={css.side}>side menu</div>
