@@ -11,6 +11,7 @@ const custom = require('./config/custom.webpack.config.dev');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { ModuleFederationPlugin } = require('webpack').container;
+const { MinChunkSizePlugin } = require('webpack').optimize;
 const {peerDependencies, name, infinisoft} = require('./package.json')
 
 module.exports = merge(custom, common, {
@@ -25,6 +26,9 @@ module.exports = merge(custom, common, {
     hot: true,
   },
   plugins: [
+    new MinChunkSizePlugin({
+      minChunkSize: 10000, // Minimum number of characters
+    }),
     new ModuleFederationPlugin({
       name,
       filename: 'remoteEntry.js',

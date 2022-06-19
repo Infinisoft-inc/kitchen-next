@@ -92,10 +92,10 @@ const use = () => {
   Import
   -----
   Loads in parallel of parent
-  const Component = React.lazy(() => import(/* webpackPrefetch: true */'name/Component'));
+  const Component = React.lazy(() => import(/* webpackPrefetch: false */'name/Component'));
 
   Loads when browser is idle
-  const Component = React.lazy(() => import(/*webpackPreload: true*/'name/Component'));
+  const Component = React.lazy(() => import(/*webpackPrefetch: false*/'name/Component'));
 
   Completed
   ---------

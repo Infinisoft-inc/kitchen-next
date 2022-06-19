@@ -9,9 +9,11 @@ const path = require('path');
 const { BundleStatsWebpackPlugin } = require('bundle-stats-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BundleAnalyzerPlugin =
   require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const { ModuleFederationPlugin } = require('webpack').container;
+const { MinChunkSizePlugin } = require('webpack').optimize;
 const { dependencies, name, infinisoft } = require('./package.json');
 
 module.exports = (env, argv) =>
@@ -53,6 +55,12 @@ module.exports = (env, argv) =>
       new BundleStatsWebpackPlugin({
         outDir: '../analyze',
         baseline: env.ANALYZEBASELINE || false,
+      }),
+      new MinChunkSizePlugin({
+        minChunkSize: 10000, // Minimum number of characters
+      }),
+      new HtmlWebpackPlugin({
+        template: './config/index.html',
       }),
     ],
   });

@@ -8,11 +8,11 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { ModuleFederationPlugin } = require('webpack').container;
-const {peerDependencies, name, infinisoft} = require('./package.json')
+const { peerDependencies, name, infinisoft } = require('./package.json');
 
 module.exports = {
   context: process.cwd(),
-   resolve: {
+  resolve: {
     cacheWithContext: false,
     extensions: ['.tsx', '.ts', '.jsx', '.js'],
     alias: {
@@ -24,6 +24,7 @@ module.exports = {
       '@/context': path.resolve(__dirname, 'src/context'),
       '@/hooks': path.resolve(__dirname, 'src/hooks'),
       '@/config': path.resolve(__dirname, 'config'),
+      '@/helpers': path.resolve(__dirname, 'src/helpers'),
     },
   },
   experiments: {

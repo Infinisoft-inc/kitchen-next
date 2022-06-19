@@ -1,9 +1,0 @@
-node_modules
-src
-__tests__
-*.log
-typedoc.js
-tsconfig.json
-.cs.config.json
-.env
-docs

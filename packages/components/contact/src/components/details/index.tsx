@@ -8,8 +8,8 @@ import React from 'react';
 import { useEvent } from '../../hooks/useEvent';
 import css from './index.module.css';
 
-const Drawer = React.lazy(() => import(/*  webpackPreload: true */ /* webpackChunkName: 'Drawer' */ 'drawer/Drawer'))
-const Content = React.lazy(() => import(/*  webpackPreload: true */ /* webpackChunkName: 'Content' */ './Content'))
+const Drawer = React.lazy(() => import(/*  webpackPrefetch: false */ /* webpackChunkName: 'Drawer' */ 'drawer/Drawer'))
+const Content = React.lazy(() => import(/*  webpackPrefetch: false */ /* webpackChunkName: 'Content' */ './Content'))
 
 export type DetailsProps = {};
 

@@ -11,6 +11,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { ModuleFederationPlugin } = require('webpack').container;
+const { MinChunkSizePlugin } = require('webpack').optimize;
 const {peerDependencies, name, infinisoft} = require('./package.json')
 
 module.exports = merge(custom, common, {
@@ -25,10 +26,13 @@ module.exports = merge(custom, common, {
     minimizer: [new TerserPlugin()],
   },
   plugins: [
+    new MinChunkSizePlugin({
+      minChunkSize: 10000, // Minimum number of characters
+    }),
     new ModuleFederationPlugin({
       name,
       filename: 'remoteEntry.js',
-      remotes: infinisoft.moduleFederation.prod.remotes,
+      remotes: infinisoft.moduleFederation.dev.remotes,
       exposes: {
         [`./${infinisoft.moduleFederation.component}`]: './src/app',
       },

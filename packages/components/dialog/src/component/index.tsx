@@ -8,7 +8,7 @@ import React, { ForwardedRef, startTransition, Suspense, useCallback, useEffect 
 import './index.module.css';
 import { DialogProps } from './types';
 
-const Dialog = React.forwardRef(({ children, openEvents=[], closeEvents=[], ...props }: DialogProps, ref: ForwardedRef<HTMLSpanElement>) => {
+const Dialog = React.forwardRef(({ children, openEvents = [], closeEvents = [], ...props }: DialogProps, ref: ForwardedRef<HTMLSpanElement>) => {
   const [_visible, set_Visible] = React.useState(false);
 
   const handleOpen = useCallback(() => set_Visible(true), [])
@@ -40,7 +40,7 @@ const Dialog = React.forwardRef(({ children, openEvents=[], closeEvents=[], ...p
 
 
   return <Suspense><span {...props} ref={ref} onClickCapture={onClickCapture}>
-    <div data-component='backdrop' data-visible={String(_visible)} />
+    <div data-component='backdrop' data-visible={String(_visible)} onClick={() => window.dispatchEvent(new CustomEvent('backdrop.clicked'))} />
     <div data-component='dialog' data-visible={String(_visible)}>
       {children}
     </div>

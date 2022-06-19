@@ -4,7 +4,9 @@
  * www.infini-soft.com
  */
 import { useMicroContext } from '@/context/micro';
-import React, { startTransition, useEffect } from 'react';
+import { getId } from '@/helpers';
+import { useEvent } from '@/hooks/useEvent';
+import React, { startTransition } from 'react';
 import Content from './content';
 
 const Dialog = React.lazy(() => import(/* webpackChunkName: 'Dialog' */ 'dialog/Dialog'))
@@ -15,19 +17,17 @@ export type DetailsProps = {
 
 export const Create = ({ children }: DetailsProps) => {
   const { store } = useMicroContext()
-
-  const handleAdd = () => {
-    const SK = `person`
-
+  useEvent('create.click', () => {
     startTransition(() => {
       store.mutate((prev) => {
+        const SK = `person__${getId()}`
         const newState = {
           ...prev,
           editItemId: SK,
           list: {
             [SK]: {
               SK,
-              tempID: new Date().getTime().toFixed(0),
+              tempID: SK,
               relatedWith: [],
               telephones: []
             },
@@ -39,23 +39,12 @@ export const Create = ({ children }: DetailsProps) => {
         return newState
       })
     })
-
-    return SK
-  }
-
-  const [state, setState] = React.useState('');
-  useEffect(() => {
-    window.addEventListener('create.click', () => {
-      setState(handleAdd())
-    })
-
-    return () => window.removeEventListener('create.click', () => { })
-  }, [handleAdd])
+  })
 
 
   return <div >
-    <Dialog openEvents={['create.click']} closeEvents={['create.complete']}>
-      <Content SK={state} />
+    <Dialog openEvents={['create.click']} closeEvents={['create.complete', 'backdrop.clicked']}>
+      <Content SK={store?.getState()?.editItemId} />
     </Dialog>
   </div>
 }

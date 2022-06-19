@@ -4,14 +4,14 @@
  * www.infini-soft.com
  */
 import { RelatedwithIcon, WebIcon } from '@/assets/svg';
+import { getId } from '@/helpers';
 import { useItem } from '@/hooks/useItem';
 import React, { HTMLAttributes } from 'react';
 import css from './index.module.css';
 
 const Chip = React.lazy(() => import(/* webpackChunkName: 'Chip' */ 'chip/Chip'))
-const InputText = React.lazy(() => import(/* webpackPreload: true */ /* webpackChunkName: 'InputText' */'inputtext/InputText'));
-const CrudList = React.lazy(() => import(/* webpackPreload: true */ /* webpackChunkName: 'InputText' */'crudlist/CrudList'))
-export const getId = () => String(new Date().getTime() * Math.random())
+const InputText = React.lazy(() => import(/* webpackPrefetch: false */ /* webpackChunkName: 'InputText' */'inputtext/InputText'));
+const CrudList = React.lazy(() => import(/* webpackPrefetch: false */ /* webpackChunkName: 'InputText' */'crudlist/CrudList'))
 
 export type RelationsProps = Partial<HTMLAttributes<HTMLDivElement>> & {
   SK: string

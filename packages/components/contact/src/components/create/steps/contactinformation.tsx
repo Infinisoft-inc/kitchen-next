@@ -9,8 +9,8 @@ import React, { HTMLAttributes } from 'react';
 import css from './index.module.css';
 
 const Chip = React.lazy(() => import(/* webpackChunkName: 'Chip' */ 'chip/Chip'))
-const InputText = React.lazy(() => import(/* webpackPreload: true */ /* webpackChunkName: 'inputtext' */'inputtext/InputText'));
-const CrudList = React.lazy(() => import(/* webpackPreload: true */ /* webpackChunkName: 'crudlist' */'crudlist/CrudList'))
+const InputText = React.lazy(() => import(/* webpackPrefetch: false */ /* webpackChunkName: 'inputtext' */'inputtext/InputText'));
+const CrudList = React.lazy(() => import(/* webpackPrefetch: false */ /* webpackChunkName: 'crudlist' */'crudlist/CrudList'))
 
 export type ContactInformation = Partial<HTMLAttributes<HTMLDivElement>> & {
   SK: string
@@ -36,11 +36,11 @@ export const ContactInformation = ({ SK, hidden }: ContactInformation) => {
     <div className={css.content}>
 
       <span className={css.detailsContainer}>
-        <InputText before={<NameIcon />} className={css.name} {...props('name')}/>
-        <InputText before={<EmailIcon />} className={css.email} {...props('email')} />
-        <InputText before={<AddressIcon />} {...props('address')} multiline />
+        <InputText before={<NameIcon />} {...props('name')} label='Name' placeholder='John Doe' />
+        <InputText before={<EmailIcon />} {...props('email')} label='Email' placeholder='my@mail.com' />
+        <InputText before={<AddressIcon />} {...props('address')} label='Address' placeholder='66 Yale Road' />
 
-        <CrudList icon={<PhoneIcon />} placeholder={'(514) 864-5742'} onAdd={listMutatorsFactory('telephones').add} onChangeItem={listMutatorsFactory('telephones').update} itemList={contact?.telephones ?? []} itemRender={(item: string, i: number) => <Chip key={`telephone${i}`} onRemove={() => listMutatorsFactory('telephones').remove(i)}>{item}</Chip>} />
+        <CrudList icon={<PhoneIcon />} label='Telephones' placeholder={'(514) 864-5742'} onAdd={listMutatorsFactory('telephones').add} onChangeItem={listMutatorsFactory('telephones').update} itemList={contact?.telephones ?? []} onRemove={(i) => listMutatorsFactory('telephones').remove(i)} />
 
       </span>
     </div>
