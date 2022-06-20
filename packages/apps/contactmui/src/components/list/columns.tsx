@@ -10,33 +10,32 @@ import { defaultAvatar } from "./assets/svg"
 
 
 export const columns = (store: MicroStore): TableConfig<API.Item> => {
-  const onClick = (SK: string) => {
+  const onClick = (id: string) => {
     window.dispatchEvent(new CustomEvent('item.clicked'))
-    store.mutate(prev => ({ ...prev, editItemId: SK }))
+    store.mutate(prev => ({ ...prev, editItemId: id }))
   }
 
 
   return {
     avatar: {
       responsive: 'xs',
-      render: (item: API.Item) => <img onClick={() => onClick(item.SK!)} src={item?.avatar ?? defaultAvatar} id={item.SK} style={{ height: '50px', maxWidth: '50px' }} />
+      render: (item: API.Itemv2) => <img onClick={() => onClick(item.id)} src={item?.avatar ?? defaultAvatar} id={item.id} style={{ height: '50px', maxWidth: '50px' }} />
     },
-    // Subcategory: {},
     name: {
-      render: (item: API.Item) => <div key={item?.name} id={item.SK} onClick={() => onClick(item.SK!)}>{item?.name}</div>
+      render: (item: API.Itemv2) => <div key={item?.name} id={item.id} onClick={() => onClick(item.id)}>{item?.name}</div>
     },
     telephones: {
-      render: (item: API.Item) => item?.telephones?.map((phone, i) => <div onClick={() => onClick(item.SK!)} key={phone} id={item.SK}>{phone}</div>)
+      render: (item: API.Itemv2) => item?.telephones?.map((phone, i) => <div onClick={() => onClick(item.id)} key={phone} id={item.id}>{phone}</div>)
     },
 
     email: {
       responsive: 'xs',
-      render: (item: API.Item) => <div onClick={() => onClick(item.SK!)} key={item?.email} id={item.SK}>{item?.email}</div>
+      render: (item: API.Itemv2) => <div onClick={() => onClick(item.id)} key={item?.email} id={item.id}>{item?.email}</div>
     },
 
     address: {
       responsive: 'xs',
-      render: (item: API.Item) => <div onClick={() => onClick(item.SK!)} key={item?.address} id={item.SK}>{item?.address}</div>
+      render: (item: API.Itemv2) => <div onClick={() => onClick(item.id)} key={item?.address} id={item.id}>{item?.address}</div>
     }
   }
 }

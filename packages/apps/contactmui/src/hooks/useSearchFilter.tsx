@@ -1,7 +1,7 @@
 import { SearchSources } from '@/components/toolbar/search';
 import config from '@/config/config.json';
 import { MicroState, useMicroContext } from "@/context/micro";
-import React, { startTransition, useEffect, useSyncExternalStore } from "react";
+import React, { startTransition, useCallback, useEffect, useSyncExternalStore } from "react";
 
 /**
  * Filter store list
@@ -17,8 +17,8 @@ type UseSearchFilterProps<T> = {
 
 export const useSearchFilter = <T = MicroState,>({ source, _selector }: UseSearchFilterProps<T>) => {
   const { store } = useMicroContext();
-  // @ts-ignore
-  const microState = useSyncExternalStore(store.subscribe, _selector ? () => _selector(store.getState()) : store.getState)
+
+  const microState = useSyncExternalStore(store.subscribe, useCallback(() => _selector ? _selector(store?.getState()) : store?.getState(), [_selector, store?.getState()]))
   const [filterTerm, setFilter] = React.useState<string>();
   const [searchTerm, setSearchTerm] = React.useState<string>();
 
@@ -38,7 +38,7 @@ export const useSearchFilter = <T = MicroState,>({ source, _selector }: UseSearc
     let result = {} as MicroState | T
 
     Object.keys(microState)?.forEach((key) => {
-      if (JSON.stringify(microState[key])?.includes(filterTerm) || key.includes(filterTerm) ) {
+      if (JSON.stringify(microState[key])?.includes(filterTerm) || key.includes(filterTerm)) {
         result = { ...result, [key]: microState[key] }
       }
     })

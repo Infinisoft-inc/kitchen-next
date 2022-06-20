@@ -11,26 +11,26 @@ import css from './index.module.css';
 
 const Chip = React.lazy(() => import(/* webpackChunkName: 'Chip' */ 'chip/Chip'))
 const InputText = React.lazy(() => import(/*   */ /* webpackChunkName: 'InputText' */'inputtext/InputText'));
-const CrudList = React.lazy(() => import(/*   */ /* webpackChunkName: 'InputText' */'crudlist/CrudList'))
+const ListCrud = React.lazy(() => import(/*   */ /*  webpackChunkName: 'CrudList'*/ '@/packages/listcrud/src/component'))
 
 export type RelationsProps = Partial<HTMLAttributes<HTMLDivElement>> & {
-  SK: string
+  id: string
 };
 
-export const Relations = ({ SK, hidden }: RelationsProps) => {
-  const { item: contact, inputMutator, listMutatorsFactory } = useItem(SK)
+export const Relations = ({ id, hidden }: RelationsProps) => {
+  const { item: contact, inputMutator, listMutatorsFactory } = useItem(id)
 
-  const props = (field: keyof API.Item) => ({
+  const props = (field: keyof  API.Itemv2) => ({
     placeholder: field,
     name: field,
     value: contact?.[field] ? String(contact?.[field]) : '',
     onChange: inputMutator(field)
   })
 
-  return <span key={SK} hidden={hidden}>
+  return <span key={id} hidden={hidden}>
     <div className={css.header}>
       <div className={css.headerContent}>
-        <h2 className={css.headerTitle}>Category</h2>
+        <h2 className={css.headerTitle}>Additional Information</h2>
       </div>
     </div>
 
@@ -38,7 +38,7 @@ export const Relations = ({ SK, hidden }: RelationsProps) => {
       <span className={css.detailsContainer}>
         <InputText before={<WebIcon />} {...props('website')} />
 
-        <CrudList icon={<RelatedwithIcon />} placeholder={'Relation ?'} onAdd={listMutatorsFactory('relatedWith').add} onChangeItem={listMutatorsFactory('relatedWith').update} itemList={contact?.relatedWith} itemRender={(item: string, i: number) => <Chip key={getId()} onRemove={() => listMutatorsFactory('relatedWith').remove(i)}>{item}</Chip>} />
+        <ListCrud icon={<RelatedwithIcon />} placeholder={'Relation ?'} onAdd={listMutatorsFactory('relatedWith').add} onChangeItem={listMutatorsFactory('relatedWith').update} itemList={contact?.relatedWith} itemRender={(item: string, i: number) => <Chip key={getId()} onRemove={() => listMutatorsFactory('relatedWith').remove(i)}>{item}</Chip>} />
       </span>
     </div>
   </span>

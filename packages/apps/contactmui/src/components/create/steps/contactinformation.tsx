@@ -10,23 +10,23 @@ import css from './index.module.css';
 
 const Chip = React.lazy(() => import(/* webpackChunkName: 'Chip' */ 'chip/Chip'))
 const InputText = React.lazy(() => import(/*   */ /* webpackChunkName: 'inputtext' */'inputtext/InputText'));
-const CrudList = React.lazy(() => import(/*   */ /* webpackChunkName: 'crudlist' */'crudlist/CrudList'))
+const ListCrud = React.lazy(() => import(/*   */ /*  webpackChunkName: 'CrudList'*/ '@/packages/listcrud/src/component'))
 
 export type ContactInformation = Partial<HTMLAttributes<HTMLDivElement>> & {
-  SK: string
+  id: string
 };
 
-export const ContactInformation = ({ SK, hidden }: ContactInformation) => {
-  const { item: contact, inputMutator, listMutatorsFactory } = useItem(SK)
+export const ContactInformation = ({id, hidden }: ContactInformation) => {
+  const { item: contact, inputMutator, listMutatorsFactory } = useItem(id)
 
-  const props = (field: keyof API.Item) => ({
+  const props = (field: keyof  API.Itemv2) => ({
     placeholder: field,
     name: field,
     value: contact?.[field] ? String(contact?.[field]) : '',
     onChange: inputMutator(field)
   })
 
-  return <span key={SK} hidden={hidden}>
+  return <span key={id} hidden={hidden}>
     <div className={css.header}>
       <div className={css.headerContent}>
         <h2 className={css.headerTitle}>Contact</h2>
@@ -40,7 +40,7 @@ export const ContactInformation = ({ SK, hidden }: ContactInformation) => {
         <InputText before={<EmailIcon />} {...props('email')} label='Email' placeholder='my@mail.com' />
         <InputText before={<AddressIcon />} {...props('address')} label='Address' placeholder='66 Yale Road' />
 
-        <CrudList icon={<PhoneIcon />} label='Telephones' placeholder={'(514) 864-5742'} onAdd={listMutatorsFactory('telephones').add} onChangeItem={listMutatorsFactory('telephones').update} itemList={contact?.telephones ?? []} onRemove={(i) => listMutatorsFactory('telephones').remove(i)} />
+        <ListCrud icon={<PhoneIcon />} label='Telephones' placeholder={'(514) 864-5742'} onAdd={listMutatorsFactory('telephones').add} onChangeItem={listMutatorsFactory('telephones').update} itemList={contact?.telephones ?? []} onRemove={(i) => listMutatorsFactory('telephones').remove(i)} />
 
       </span>
     </div>

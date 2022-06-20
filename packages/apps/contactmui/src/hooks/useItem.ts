@@ -20,35 +20,6 @@ export type Remove = () => void
 type S = MicroState
 type P = MicroPayload
 
-const generateId = () => {
-  return new Date().getTime().toFixed(0)
-}
-
-export const useCreateItem = () => {
-  const { store } = useMicroContext()
-
-  // useEffect(() => {
-  //   const category = Object.keys(store?.getState?.()?.meta?.categories ?? { unknown: "" })[0]
-  //   const tempID = generateId()
-  //   const SK = `${category}__${tempID}`
-
-  //   store.mutate(prev => ({
-  //     ...prev,
-  //     editItemId: SK,
-  //     list: {
-  //       ...prev?.list,
-  //       [SK]: {
-  //         SK,
-  //         tempID
-  //       }
-  //     }
-  //   }))
-  // }, [])
-
-
-  return useItem(store.getState?.()?.editItemId)
-}
-
 /**
  * CRUD Item in list
  * @param id Item id
@@ -56,7 +27,7 @@ export const useCreateItem = () => {
  */
 export const useItem = (id: string) => {
   const { store } = useMicroContext()
-  const item = useStore<S, P, API.Item>(store, a => a?.list?.[id])
+  const item = useStore<S, P,  API.Itemv2>(store, a => a?.list[id])
 
   /**
    * onChange handler
@@ -94,9 +65,14 @@ export const useItem = (id: string) => {
    */
   const remove = () => {
     store.mutate(prev => {
-      delete prev.list[id]
-
-      return prev
+      let copy = Object.assign({}, prev?.list)
+      delete copy[id]
+      return {
+        ...prev,
+        list: {
+          ...copy,
+        }
+      }
     })
   }
 

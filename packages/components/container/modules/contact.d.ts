@@ -11,7 +11,7 @@ declare module "src/hooks/useItem" {
     export type UseListMutatorGeneric<T, R> = (field: T) => R;
     export type Remove = () => void;
     export const useCreateItem: () => {
-        item: API.Item;
+        item:  API.Itemv2;
         inputMutator: InputMutator;
         listMutatorsFactory: (field: string) => {
             add: (newValue: any) => void;
@@ -28,7 +28,7 @@ declare module "src/hooks/useItem" {
      * @returns Mutators, item, factory
      */
     export const useItem: (id: string) => {
-        item: API.Item;
+        item:  API.Itemv2;
         inputMutator: InputMutator;
         listMutatorsFactory: (field: string) => {
             add: (newValue: any) => void;
@@ -45,11 +45,11 @@ declare module "src/hooks/useSearchFilter" {
      * Filter store list
      * @returns filtered store list
      */
-    export const useSearchFilter: () => Record<string, API.Item>;
+    export const useSearchFilter: () => Record<string,  API.Itemv2>;
 }
 declare module "src/hooks/index" {
     export * from "src/hooks/useItem";
-  export * from "src/hooks/useSearchFilter";
+    export * from "src/hooks/useSearchFilter";
 }
 declare module "src/services/contacts/list" {
     export function list<T>(params: T, options?: {
@@ -70,16 +70,16 @@ declare module "src/services/contacts/metasubcategory" {
 }
 declare module "src/context/micro" {
     import { IStore, UseMutatorGeneric } from "@infini-soft/store";
-  import React from 'react';
-  import { CrudMutators, InputMutatorGeneric, UseListMutatorGeneric } from "src/hooks/index";
+    import React from 'react';
+    import { CrudMutators, InputMutatorGeneric, UseListMutatorGeneric } from "src/hooks/index";
     /**
      * This is the implementation part of app not the lib
      *  */
-    export type UseMutator = UseMutatorGeneric<keyof API.Item, any, void>;
+    export type UseMutator = UseMutatorGeneric<keyof  API.Itemv2, any, void>;
     export type InputMutator = InputMutatorGeneric<any, React.ChangeEvent<HTMLInputElement>>;
-    export type UseListMutator = UseListMutatorGeneric<keyof API.Item, CrudMutators>;
-    export type InputListMutator = InputMutatorGeneric<keyof API.Item, React.ChangeEvent<HTMLInputElement>>;
-    export type UseItem = UseItemGeneric<API.Item>;
+    export type UseListMutator = UseListMutatorGeneric<keyof  API.Itemv2, CrudMutators>;
+    export type InputListMutator = InputMutatorGeneric<keyof  API.Itemv2, React.ChangeEvent<HTMLInputElement>>;
+    export type UseItem = UseItemGeneric< API.Itemv2>;
     export type UseItemGeneric<T> = (field: string) => {
         item: T;
         inputMutator: InputMutator;
@@ -92,7 +92,7 @@ declare module "src/context/micro" {
      * STATE
      */
     export type MicroState = {
-        list: Record<string, API.Item>;
+        list: Record<string,  API.Itemv2>;
         editItemId: string;
         meta?: {
             categories?: API.Meta;
@@ -224,8 +224,8 @@ declare module "src/components/list/assets/svg" {
 }
 declare module "src/components/list/columns" {
     import { TableConfig } from "component/types";
-  import { MicroStore } from "src/context/micro";
-    export const columns: (store: MicroStore) => TableConfig<API.Item>;
+    import { MicroStore } from "src/context/micro";
+    export const columns: (store: MicroStore) => TableConfig< API.Itemv2>;
 }
 declare module "src/components/list/index" {
     const List: () => JSX.Element;
@@ -259,7 +259,7 @@ declare module "src/context/index" {
 }
 declare module "src/services/contacts/create" {
     /** Create POST /api/contacts */
-    export function create(body: API.Item, options?: {
+    export function create(body:  API.Itemv2, options?: {
         [key: string]: any;
     }): Promise<any>;
 }
@@ -269,17 +269,17 @@ declare module "src/services/contacts/read" {
     }): Promise<any>;
 }
 declare module "src/services/contacts/update" {
-    export function update(body: API.Item, options?: {
+    export function update(body:  API.Itemv2, options?: {
         [key: string]: any;
     }): Promise<any>;
 }
 declare module "src/services/contacts/index" {
     import * as create from "src/services/contacts/create";
-  import * as list from "src/services/contacts/list";
-  import * as metacategory from "src/services/contacts/metacategory";
-  import * as metasubcategory from "src/services/contacts/metasubcategory";
-  import * as read from "src/services/contacts/read";
-  import * as update from "src/services/contacts/update";
+    import * as list from "src/services/contacts/list";
+    import * as metacategory from "src/services/contacts/metacategory";
+    import * as metasubcategory from "src/services/contacts/metasubcategory";
+    import * as read from "src/services/contacts/read";
+    import * as update from "src/services/contacts/update";
     const _default: {
         metacategory: typeof metacategory;
         metasubcategory: typeof metasubcategory;

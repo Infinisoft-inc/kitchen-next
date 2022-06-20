@@ -62,11 +62,11 @@ span[data-tag*='paginatorItem']:hover {
 span.paginatorItem {
   flex: 0 0;
   padding: 0.35rem 0.75rem;
-  color: var(--text-primary);
+  color: var(--md-sys-color-on-background-lighty);
 }
 
 span.paginatorItemActive {
-  border: 1px solid var(--color-primary);
+  border: 1px solid var(--md-sys-color-primary);
   padding: 0.35rem 0.75rem;
-  color: var(--text-primary);
+  color: var(--md-sys-color-on-background-light);
 }

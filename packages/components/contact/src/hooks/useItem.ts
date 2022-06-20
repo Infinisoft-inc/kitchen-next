@@ -56,7 +56,7 @@ export const useCreateItem = () => {
  */
 export const useItem = (id: string) => {
   const { store } = useMicroContext()
-  const item = useStore<S, P, API.Item>(store, a => a?.list?.[id])
+  const item = useStore<S, P,  API.Itemv2>(store, a => a?.list?.[id])
 
   /**
    * onChange handler

@@ -19,7 +19,7 @@ export type ContactInformation = Partial<HTMLAttributes<HTMLDivElement>> & {
 export const ContactInformation = ({ SK, hidden }: ContactInformation) => {
   const { item: contact, inputMutator, listMutatorsFactory } = useItem(SK)
 
-  const props = (field: keyof API.Item) => ({
+  const props = (field: keyof  API.Itemv2) => ({
     placeholder: field,
     name: field,
     value: contact?.[field] ? String(contact?.[field]) : '',

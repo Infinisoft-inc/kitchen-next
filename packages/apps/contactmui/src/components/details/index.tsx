@@ -34,7 +34,7 @@ const Details = ({ }: DetailsProps) => {
         onClose={hide}
 
       >
-        <Content SK={store.getState()?.editItemId} onClose={hide} />
+        <Content id={store.getState()?.editItemId} onClose={hide} />
       </Drawer>
     </Suspense>
   </div>

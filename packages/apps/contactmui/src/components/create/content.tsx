@@ -4,6 +4,7 @@
  * www.infini-soft.com
  */
 import { useEvent } from '@/hooks/useEvent';
+import { useItem } from '@/hooks/useItem';
 import React from 'react';
 import css from './index.module.css';
 
@@ -13,7 +14,7 @@ const ContactInformation = React.lazy(() => import(/*   */ /* webpackChunkName: 
 const Relations = React.lazy(() => import(/*   *//* webpackChunkName: 'Relations' */ './steps/relations'))
 
 export type ContentProps = {
-  SK: string
+  id: string
 };
 
 /**
@@ -44,24 +45,25 @@ const NavButtons = ({ setStep, step, count, onCompleteEvent = new CustomEvent('c
 
 export type StepsActions = {
   step: number
-  SK: string
   next: Function
   back: Function
+  id: string
 }
 
 const Steps = ({ step, ...props }: StepsActions) => (<>{_steps.map(({ Component }, i) => <Component {...props} key={`step${i}`} step={step} hidden={step !== (i + 1)} />)}</>)
 
-export const Content = ({ SK }: ContentProps) => {
+export const Content = ({ id }: {id: string}) => {
+  const {item } = useItem(id)
   const [step, setStep] = React.useState(1);
   useEvent('backdrop.clicked', () => {setStep(1)})
 
   const next = () => setStep(prev => prev + 1)
   const back = () => setStep(prev => prev - 1)
-  const props = { next, back, step, SK }
+  const props = { next, back, step, item }
 
-  return <span key={SK}>
+  return <span key={item?.id}>
     <div className={css.content}>
-      <Steps {...props} />
+      <Steps {...props} id={item?.id} />
     </div>
 
     <div className={css.footer}>

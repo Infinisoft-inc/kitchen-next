@@ -11,11 +11,11 @@ const devtool = config?.verbose
 /**
  * This is the implementation part of app not the lib
  *  */
-export type UseMutator = UseMutatorGeneric<keyof API.Item, any, void>
+export type UseMutator = UseMutatorGeneric<keyof  API.Itemv2, any, void>
 export type InputMutator = InputMutatorGeneric<any, React.ChangeEvent<HTMLInputElement>>
-export type UseListMutator = UseListMutatorGeneric<keyof API.Item, CrudMutators>
-export type InputListMutator = InputMutatorGeneric<keyof API.Item, React.ChangeEvent<HTMLInputElement>>
-export type UseItem = UseItemGeneric<API.Item>
+export type UseListMutator = UseListMutatorGeneric<keyof  API.Itemv2, CrudMutators>
+export type InputListMutator = InputMutatorGeneric<keyof  API.Itemv2, React.ChangeEvent<HTMLInputElement>>
+export type UseItem = UseItemGeneric< API.Itemv2>
 export type UseItemGeneric<T> = (field: string) => { item: T, inputMutator: InputMutator, listMutator: UseListMutator, useMutator: UseMutator, destroy: Destroy }
 type Destroy = () => void
 
@@ -23,7 +23,7 @@ type Destroy = () => void
  * STATE
  */
 export type MicroState = {
-  list: Record<string, API.Item>
+  list: Record<string,  API.Itemv2>
   editItemId: string
   meta?: {
     categories?: API.Meta
@@ -41,7 +41,7 @@ export type MicroStore = IStore<MicroState, MicroPayload>
 export const fetchData = async (filter = '',): Promise<MicroState> => {
   const result: API.Success = await listService.list({})
 
-  const normalized: Record<string, API.Item> =  result?.data?.reduce((acc: Record<string, API.Item>, item) => ({...acc, [item.SK!]: item}), {})
+  const normalized: Record<string,  API.Itemv2> =  result?.data?.reduce((acc: Record<string,  API.Itemv2>, item) => ({...acc, [item.SK!]: item}), {})
 
   return {
     list: normalized,

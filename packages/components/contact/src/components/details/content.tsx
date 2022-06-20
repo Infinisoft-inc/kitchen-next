@@ -22,7 +22,7 @@ export type ContentProps = {
 export const Content = ({ SK, onClose }: ContentProps) => {
   const { item: contact, inputMutator, listMutatorsFactory, mutation, remove } = useItem(SK)
 
-  const props = (field: keyof API.Item) => ({
+  const props = (field: keyof  API.Itemv2) => ({
     name: field,
     defaultValue: contact?.[field] ? String(contact?.[field]) : '',
     onChange: inputMutator(field)

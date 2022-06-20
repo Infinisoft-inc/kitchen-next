@@ -20,11 +20,11 @@
     },
     {
       "name": "Microapp",
-      "type": "pwa-chrome",
+      "type": "chrome",
       "request": "launch",
       "url": "http://localhost:8080",
       "protocol": "inspector",
-      "webRoot": "${workspaceFolder}/micro-apps/container/src"
+      "webRoot": "${workspaceFolder}/packages/apps/contactmui"
     },
     {
       "name": "Storybook",

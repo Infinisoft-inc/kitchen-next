@@ -11,26 +11,25 @@ import css from './index.module.css';
 const Chip = React.lazy(() => import(/*   */ /* webpackChunkName: 'Chip' */ '@mui/material/Chip/Chip'))
 const Button = React.lazy(() => import(/*   */ /* webpackChunkName: 'Chip' */ '@mui/material/Button/Button'))
 const InputText = React.lazy(() => import(/*   */ /*  webpackChunkName: 'InputText'*/ 'inputtext/InputText'));
-const CrudList = React.lazy(() => import(/*   */ /*  webpackChunkName: 'CrudList'*/ 'crudlist/CrudList'))
 const ListCrud = React.lazy(() => import(/*   */ /*  webpackChunkName: 'CrudList'*/ '@/packages/listcrud/src/component'))
 const AvatarUpload = React.lazy(() => import(/*   */ /*  webpackChunkName: 'AvatarUpload' */ 'avatarupload/AvatarUpload'))
 
 export type ContentProps = {
-  SK: string
+  id: string
   onClose?: () => void
 };
 
 
-export const Content = ({ SK, onClose }: ContentProps) => {
-  const { item: contact, inputMutator, listMutatorsFactory, mutation, remove } = useItem(SK)
+export const Content = ({ id, onClose }: ContentProps) => {
+  const { item: contact, inputMutator, listMutatorsFactory, mutation, remove } = useItem(id)
 
-  const props = (field: keyof API.Item) => ({
+  const props = (field: keyof API.Itemv2) => ({
     name: field,
     defaultValue: contact?.[field] ? String(contact?.[field]) : '',
     onChange: inputMutator(field)
   })
 
-  return <span key={SK}>
+  return <span key={id}>
     <div className={css.header}>
       <div className={css.headerContent}>
         <AvatarUpload src={contact?.avatar} save={base64 => mutation('avatar', base64)} />
@@ -43,8 +42,8 @@ export const Content = ({ SK, onClose }: ContentProps) => {
 
     <div className={css.content}>
       <span className={css.categoryContainer}>
-        <Chip label={SK?.split('__')?.[0] ?? ''} />
-        <Chip label={contact?.Subcategory ?? ''} />
+        <Chip label={contact?.Categories} />
+        <Chip label={contact?.Subcategory} />
       </span>
 
       <span className={css.detailsContainer}>
@@ -57,7 +56,9 @@ export const Content = ({ SK, onClose }: ContentProps) => {
       </span>
     </div>
 
-    <div style={{ display: "flex", justifyContent: 'center' }} onClick={() => { remove(); onClose?.() }}><Button variant='outlined' color='error'>Delete</Button></div>
+    <div style={{ display: "flex", justifyContent: 'center' }} onClick={() => { remove(); onClose?.() }}>
+      <Button variant='outlined' color='error'>Delete</Button>
+    </div>
   </span>
 
 }

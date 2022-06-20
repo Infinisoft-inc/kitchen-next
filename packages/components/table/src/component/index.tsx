@@ -17,7 +17,7 @@ const Table = <T,>({ columns, data, options = {} }: TableProps<T>) => {
   const [pageSize,] = React.useState(rowPerPage);
   const [nextToken,] = React.useState('mocktoken');
   const pagedList = useMemo(() => pagination ? paginate(data) : data, [pagination, paginate, data])
-  
+
   const rows: any[] = []
 
   if (data && pagedList) {
@@ -47,7 +47,7 @@ const Table = <T,>({ columns, data, options = {} }: TableProps<T>) => {
       </tr>
     </thead>
 
-    <tbody>
+    <tbody key={'jhvljkhdlfk' +  rows?.length}>
       {rows}
     </tbody>
 
