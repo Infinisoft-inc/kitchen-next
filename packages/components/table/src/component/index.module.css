@@ -4,6 +4,18 @@
  * www.infini-soft.com
  */
 
+:root {
+  --table-text-color: var(--md-sys-color-on-background);
+}
+
+body[class*='darkmode'] {
+  --table-text-color: var(--md-sys-color-on-background-dark);
+}
+
+body[class*='lightmode'] {
+  --table-text-color: var(--md-sys-color-on-background-light);
+}
+
 @media only screen and (max-width: 480px) {
   .xs {
     display: none;
@@ -35,7 +47,7 @@ table {
   border-spacing: 0;
   width: 100%;
   border: 1px solid #ddd;
-  color: var(--md-sys-color-on-background-light);
+  color: var(--table-text-color);
 }
 
 th,

@@ -7,13 +7,14 @@ import { useMicroContext } from "@/context/micro";
 import React, { startTransition, useSyncExternalStore } from "react";
 
 const Toggle = React.lazy(() => import(/* webpackChunkName: 'Toggle' */ 'toggle/Toggle'))
+const Responsive = React.lazy(() => import(/* webpackChunkName: 'Responsive' */ 'responsive/Responsive'))
 
 export type FilterSources = "contact" | "meta"
 export type FilterProps = {
   source: FilterSources
 }
 
-const Filter = ({source}: FilterProps) => {
+const Filter = ({ source }: FilterProps) => {
   const { store } = useMicroContext()
   const state = useSyncExternalStore(store.subscribe, store.getState)
 
@@ -31,7 +32,9 @@ const Filter = ({source}: FilterProps) => {
   }
 
   return <span data-style='filter:container:root'>
-    {subCategories && <Toggle toggles={['none', ...subCategories]} clickHandler={clickHandler} />}
+    {subCategories &&
+        <Toggle toggles={['none', ...subCategories]} clickHandler={clickHandler} />
+    }
   </span>
 
 }

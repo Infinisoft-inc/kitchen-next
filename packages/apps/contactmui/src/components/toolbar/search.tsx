@@ -10,7 +10,7 @@ import css from './index.css';
 
 const Responsive = React.lazy(() => import(/* webpackChunkName: 'Responsive' */ 'responsive/Responsive'))
 
-export type SearchSources = "contact" | "meta"
+export type SearchSources = string
 export type SearchProps = {
   source: SearchSources
 }

@@ -3,10 +3,20 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
-/* :root{
-  --surface-background-color: #1d1d1d;
-  --menu-background-color: #1d1d1d;
-} */
+
+:root {
+  --container-menu-background-color: var(--md-ref-palette-neutral-40);
+  --container-background-color: var(--md-sys-color-background);
+}
+
+body[class*='darkmode'] {
+  --container-background-color: var(--md-sys-color-background-dark);
+}
+
+body[class*='lightmode'] {
+  --container-background-color: var(--md-sys-color-background-light);
+}
+
 .root {
   display: flex;
   justify-content: center;
@@ -40,12 +50,12 @@ body {
   flex-wrap: nowrap;
   flex: 1;
   color: white;
-  padding: 0
+  padding: 0;
 }
 
 .side {
   width: 220px;
-  background-color: var(--menu-background-color);
+  background-color: var(--container-menu-background-color);
   padding: 1rem;
   position: fixed;
   left: 0;
@@ -55,6 +65,6 @@ body {
 
 .content {
   flex: 1 1 100%;
-  background-color: var(--surface-background-color);
+  background-color: var(--container-background-color);
   padding: 1rem;
 }

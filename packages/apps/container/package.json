@@ -43,14 +43,14 @@
       "dev": {
         "remotes": {
           "topbar": "topbar@http://localhost:5000/components/topbar/dev/remoteEntry.js",
-          "contact": "contact@http://localhost:5000/components/contact/dev/remoteEntry.js",
+          "contactmui": "contactmui@http://localhost:5000/apps/contactmui/dev/remoteEntry.js",
           "themeswitch": "themeswitch@http://localhost:5000/components/themeswitch/dev/remoteEntry.js"
         }
       },
       "prod": {
         "remotes": {
           "topbar": "topbar@https://app.micro.infini-soft.com/components/topbar/remoteEntry.js",
-          "contact": "contact@https://app.micro.infini-soft.com/components/contact/remoteEntry.js",
+          "contactmui": "contactmui@https://app.micro.infini-soft.com/apps/contact/remoteEntry.js",
           "themeswitch": "themeswitch@https://app.micro.infini-soft.com/components/themeswitch/remoteEntry.js"
         }
       }

@@ -9,7 +9,7 @@ import { TableConfig } from "component/types"
 import { defaultAvatar } from "./assets/svg"
 
 
-export const columns = (store: MicroStore): TableConfig<API.Item> => {
+export const columns = (store: MicroStore): TableConfig<API.Itemv2> => {
   const onClick = (id: string) => {
     window.dispatchEvent(new CustomEvent('item.clicked'))
     store.mutate(prev => ({ ...prev, editItemId: id }))
@@ -36,6 +36,14 @@ export const columns = (store: MicroStore): TableConfig<API.Item> => {
     address: {
       responsive: 'xs',
       render: (item: API.Itemv2) => <div onClick={() => onClick(item.id)} key={item?.address} id={item.id}>{item?.address}</div>
+    },
+    Categories: {
+      responsive: 'xs',
+      render: (item: API.Itemv2) => <div onClick={() => onClick(item.id)} key={item?.id} id={item.id}>{item?.Categories}</div>
+    },
+    Subcategory: {
+      responsive: 'xs',
+      render: (item: API.Itemv2) => <div onClick={() => onClick(item.id)} key={item?.id} id={item.id}>{item?.Subcategory}</div>
     }
   }
 }

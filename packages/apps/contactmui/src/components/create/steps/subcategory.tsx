@@ -22,7 +22,7 @@ const Subcategory = ({ hidden, next, id }: SubcategoryProps) => {
   const { store } = useMicroContext()
   const { item, onMutation } = useItem(id)
   const subCategories = useSearchFilter({
-    source: "meta",
+    source: "meta.sub",
     _selector: _state => _state?.meta?.subCategories
   }) as Record<string, number>
 
@@ -36,7 +36,7 @@ const Subcategory = ({ hidden, next, id }: SubcategoryProps) => {
     <div className={css.content}>
       <span className={css.detailsContainer}>
         <Toggle onClick={() => next()} toggles={Object.keys(subCategories ?? {})} clickHandler={onMutation('Subcategory')} key='Subcategory' />
-        <Search source='meta' />
+        <Search source='meta.sub' />
       </span>
     </div>
   </span>

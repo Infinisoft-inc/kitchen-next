@@ -18,7 +18,7 @@ type CategoryProps = Partial<HTMLAttributes<HTMLDivElement>> & StepsActions
 export const Category = ({ hidden, next, id }: CategoryProps) => {
   const { onMutation, item } = useItem(id)
   const categories = useSearchFilter({
-    source: "meta",
+    source: "meta.cat",
     _selector: _state => _state?.meta?.categories
   }) as Record<string, number>
 
@@ -34,7 +34,7 @@ export const Category = ({ hidden, next, id }: CategoryProps) => {
       <span className={css.detailsContainer}>
         <Toggle onClick={() => next()} toggles={Object.keys(categories ?? {})} clickHandler={onMutation('Categories')} key='Categories' />
         <p>Not there? search or create one</p>
-        <Search source='meta' />
+        <Search source='meta.cat' />
       </span>
     </div>
   </span>

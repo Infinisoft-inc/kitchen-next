@@ -10,7 +10,7 @@ import css from './index.module.css';
 import { ContainerProps } from './types';
 
 const TopBar = React.lazy(() => import(/* webpackChunkName: 'Topbar' */ 'topbar/TopBar'))
-const Contact = React.lazy(() => import(/* webpackChunkName: 'Contact' */ 'contact/Contact'))
+const Contact = React.lazy(() => import(/* webpackChunkName: 'Contact' */ 'contactmui/Contact'))
 const ThemeSwitch = React.lazy(() => import(/* webpackChunkName: 'ThemeSwitch' */ 'themeswitch/ThemeSwitch'))
 
 const Container = (props: ContainerProps) => {

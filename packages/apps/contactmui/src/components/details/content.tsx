@@ -34,16 +34,16 @@ export const Content = ({ id, onClose }: ContentProps) => {
       <div className={css.headerContent}>
         <AvatarUpload src={contact?.avatar} save={base64 => mutation('avatar', base64)} />
         <span>
-          <InputText {...props('name')} inverse containerClass={css.block} inputClass={css.name} />
-          <InputText {...props('email')} inverse containerClass={css.block} inputClass={css.email} />
+          <InputText {...props('name')} placeholder='Name' inverse containerClass={css.block} inputClass={css.name} />
+          <InputText {...props('email')} placeholder='Email' inverse containerClass={css.block} inputClass={css.email} />
         </span>
       </div>
     </div>
 
     <div className={css.content}>
       <span className={css.categoryContainer}>
-        <Chip label={contact?.Categories} />
-        <Chip label={contact?.Subcategory} />
+        <Chip variant='filled' color='primary' label={contact?.Categories} />
+        {contact?.Subcategory && <Chip variant='filled' color='primary' label={contact?.Subcategory} />}
       </span>
 
       <span className={css.detailsContainer}>

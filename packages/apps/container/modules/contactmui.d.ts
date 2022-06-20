@@ -49,7 +49,7 @@ declare module "src/hooks/useSearchFilter" {
 }
 declare module "src/hooks/index" {
     export * from "src/hooks/useItem";
-    export * from "src/hooks/useSearchFilter";
+  export * from "src/hooks/useSearchFilter";
 }
 declare module "src/services/contacts/list" {
     export function list<T>(params: T, options?: {
@@ -70,8 +70,8 @@ declare module "src/services/contacts/metasubcategory" {
 }
 declare module "src/context/micro" {
     import { IStore, UseMutatorGeneric } from "@infini-soft/store";
-    import React from 'react';
-    import { CrudMutators, InputMutatorGeneric, UseListMutatorGeneric } from "src/hooks/index";
+  import React from 'react';
+  import { CrudMutators, InputMutatorGeneric, UseListMutatorGeneric } from "src/hooks/index";
     /**
      * This is the implementation part of app not the lib
      *  */
@@ -224,7 +224,7 @@ declare module "src/components/list/assets/svg" {
 }
 declare module "src/components/list/columns" {
     import { TableConfig } from "component/types";
-    import { MicroStore } from "src/context/micro";
+  import { MicroStore } from "src/context/micro";
     export const columns: (store: MicroStore) => TableConfig< API.Itemv2>;
 }
 declare module "src/components/list/index" {
@@ -249,7 +249,7 @@ declare module "src/app/app" {
     const App: () => JSX.Element;
     export default App;
 }
-declare module "contact/Contact" {
+declare module "contactmui/Contact" {
     const Contact: () => JSX.Element;
     export default Contact;
 }
@@ -275,11 +275,11 @@ declare module "src/services/contacts/update" {
 }
 declare module "src/services/contacts/index" {
     import * as create from "src/services/contacts/create";
-    import * as list from "src/services/contacts/list";
-    import * as metacategory from "src/services/contacts/metacategory";
-    import * as metasubcategory from "src/services/contacts/metasubcategory";
-    import * as read from "src/services/contacts/read";
-    import * as update from "src/services/contacts/update";
+  import * as list from "src/services/contacts/list";
+  import * as metacategory from "src/services/contacts/metacategory";
+  import * as metasubcategory from "src/services/contacts/metasubcategory";
+  import * as read from "src/services/contacts/read";
+  import * as update from "src/services/contacts/update";
     const _default: {
         metacategory: typeof metacategory;
         metasubcategory: typeof metasubcategory;
