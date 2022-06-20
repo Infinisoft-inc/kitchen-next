@@ -17,46 +17,46 @@ declare namespace API {
     success?: boolean;
   };
 
-  type Item = Entity & Contact;
+  // type Item = Entity & Contact;
 
   type ItemSuccess = {
-    data?: Item;
+    data?: Itemv2;
     success?: boolean;
   };
 
   type Success = {
-    data?: Item[];
+    data?: Itemv2[];
     success?: boolean;
   };
 
-  type Entity = {
-    /** Partition Key */
-    ID?: string;
-    /** Sort Key */
-    SK?: string;
-    /** SubCategory - Global Secondary Index */
-    Subcategory?: string;
-    /** Optional ID. Can be used by front-end to identify new items. */
-    tempID?: string;
-    /** Item is enabled or disabled */
-    enabled?: boolean;
-    /** Item creator userid */
-    USERID?: string;
-    /** Item creator name */
-    NAME?: string;
-    /** Item creator email */
-    EMAIL?: string;
-    /** Item creator picture url */
-    PICTURE?: string;
-    /** Meta Data Item Count */
-    Count?: string;
-    /** Creation date in ISO 8601 format */
-    createdAt?: string;
-    /** Last updated date in ISO 8601 format */
-    updatedAt?: string;
-    /** Relation in the graph */
-    relatedWith?: string[];
-  };
+  // type Entity = {
+  //   /** Partition Key */
+  //   ID?: string;
+  //   /** Sort Key */
+  //   SK?: string;
+  //   /** SubCategory - Global Secondary Index */
+  //   Subcategory?: string;
+  //   /** Optional ID. Can be used by front-end to identify new items. */
+  //   tempID?: string;
+  //   /** Item is enabled or disabled */
+  //   enabled?: boolean;
+  //   /** Item creator userid */
+  //   USERID?: string;
+  //   /** Item creator name */
+  //   NAME?: string;
+  //   /** Item creator email */
+  //   EMAIL?: string;
+  //   /** Item creator picture url */
+  //   PICTURE?: string;
+  //   /** Meta Data Item Count */
+  //   Count?: string;
+  //   /** Creation date in ISO 8601 format */
+  //   createdAt?: string;
+  //   /** Last updated date in ISO 8601 format */
+  //   updatedAt?: string;
+  //   /** Relation in the graph */
+  //   relatedWith?: string[];
+  // };
 
   type Contact = {
     name?: string;
@@ -105,7 +105,7 @@ declare namespace API {
   };
 
   type readParams = {
-    SK: string;
+    id: string;
   };
 
   /**

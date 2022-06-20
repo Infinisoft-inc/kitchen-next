@@ -15,6 +15,20 @@ module.exports = {
    resolve: {
     cacheWithContext: false,
     extensions: ['.tsx', '.ts', '.jsx', '.js'],
+    alias: {
+      '@/context/micro': path.resolve(__dirname, 'src/context/micro'),
+      '@/component': path.resolve(__dirname, 'src/component'),
+      '@/assets/svg': path.resolve(__dirname, 'src/assets/svg'),
+      '@/style': path.resolve(__dirname, 'src/style/theme.module.css'),
+      '@/services': path.resolve(__dirname, 'src/services'),
+      '@/context': path.resolve(__dirname, 'src/context'),
+      '@/hooks': path.resolve(__dirname, 'src/hooks'),
+      '@/config': path.resolve(__dirname, 'config'),
+      '@/helpers': path.resolve(__dirname, 'src/helpers'),
+      '@/packages': path.resolve(__dirname, 'src/packages'),
+      '@/router': path.resolve(__dirname, 'src/router'),
+      '@/app': path.resolve(__dirname, 'src/app'),
+    },
   },
   experiments: {
     topLevelAwait: true,

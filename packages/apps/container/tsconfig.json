@@ -13,6 +13,7 @@
     "strict": true,
     "skipLibCheck":true,
     "paths": {
+      "@/config/*": ["./config/*"],
       "@/*": ["src/*"]
     },
     "allowSyntheticDefaultImports": true

@@ -1,0 +1,54 @@
+/**
+ * Copyright © All rights reserved 2022
+ * Infinisoft Inc.
+ * www.infini-soft.com
+ */
+import React from 'react';
+import { Link } from 'react-router-dom';
+
+export type LinksProps = {};
+
+const MenuList = React.lazy(() => import(/* webpackChunkName: 'MenuList' */ '@mui/material/MenuList/MenuList'))
+const MenuItem = React.lazy(() => import(/* webpackChunkName: 'MenuItem' */ '@mui/material/MenuItem/MenuItem'))
+const ListItemIcon = React.lazy(() => import(/* webpackChunkName: 'ListItemIcon' */ '@mui/material/ListItemIcon'))
+const ListItemText = React.lazy(() => import(/* webpackChunkName: 'ListItemText' */ '@mui/material/ListItemText'))
+const Typography = React.lazy(() => import(/* webpackChunkName: 'Typography' */ '@mui/material/Typography/Typography'))
+
+type Menu = {
+  icon: React.ReactNode
+  to: string
+  text: string
+}
+const menus: Menu[] = [
+  {
+    icon: 'w',
+    to: 'contact',
+    text: 'Contact'
+  },
+  {
+    icon: 'w',
+    to: 'org',
+    text: 'Org'
+  },
+]
+
+const Links: React.FC<LinksProps> = (props) => {
+  return <MenuList>{menus.map(({ icon, to, text }) =>  <Link to={to} key={new Date().getTime().toFixed(0)}>
+    <MenuItem >
+
+        <ListItemIcon>
+          {icon}
+        </ListItemIcon>
+        <ListItemText>
+          {text}
+        </ListItemText>
+        <Typography variant="body2" color="text.secondary">
+          nonoo
+        </Typography>
+
+    </MenuItem>
+    </Link>
+  )} </MenuList>
+}
+
+export default Links
