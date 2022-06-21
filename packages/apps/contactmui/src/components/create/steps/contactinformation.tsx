@@ -9,7 +9,6 @@ import { Item } from '@/models';
 import React, { HTMLAttributes } from 'react';
 import css from './index.module.css';
 
-const Chip = React.lazy(() => import(/* webpackChunkName: 'Chip' */ 'chip/Chip'))
 const InputText = React.lazy(() => import(/*   */ /* webpackChunkName: 'inputtext' */'inputtext/InputText'));
 const ListCrud = React.lazy(() => import(/*   */ /*  webpackChunkName: 'CrudList'*/ '@/packages/listcrud/src/component'))
 

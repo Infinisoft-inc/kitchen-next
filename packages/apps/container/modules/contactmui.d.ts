@@ -1,10 +1,26 @@
 /// <reference types="react" />
-declare module "src/hooks/createItem" {
+declare module "src/helpers/generateId" {
+    export const generateId: () => string;
+}
+declare module "src/helpers/createItem" {
     import { MicroStore } from "src/context/micro";
     export const createItem: (store: MicroStore) => Promise<string>;
 }
+declare module "src/models/index" {
+    import type { Contact } from 'models/contact';
+  import type { Entity } from 'types/entity';
+    export type Item = Contact & Entity;
+    export type List = {
+        data?: Item[];
+        /** Item count */
+        total?: number;
+        success?: boolean;
+    };
+    export type Meta = Record<string, any>;
+}
 declare module "src/hooks/useItem" {
     import { InputMutator } from "src/context/micro";
+  import { Item } from "src/models/index";
     export type CrudMutators = {
         add: <T>(newValue?: T) => void;
         update: <T>(index: number, newValue: T) => void;
@@ -47,36 +63,71 @@ declare module "src/components/toolbar/search" {
 declare module "src/hooks/useSearchFilter" {
     import { SearchSources } from "src/components/toolbar/search";
   import { MicroState } from "src/context/micro";
-    /**
-     * Filter store list
-     * @returns filtered store list
-     */
     type Selector<T> = (_state: MicroState) => T;
     type UseSearchFilterProps<T> = {
         source?: SearchSources;
         _selector?: Selector<T>;
         filterPredicat?: (state: ReturnType<Selector<T>>, term: string) => ReturnType<Selector<T>>;
     };
+    /**
+     * Filter store list
+     * @returns filtered store list
+     */
     export const useSearchFilter: <T = MicroState>({ source, _selector }: UseSearchFilterProps<T>) => MicroState | T;
 }
 declare module "src/hooks/index" {
-    export * from "src/hooks/createItem";
+    export * from "src/helpers/createItem";
   export * from "src/hooks/useItem";
   export * from "src/hooks/useSearchFilter";
 }
 declare module "src/services/contacts/metacategory" {
+    export type metacategoryParams = {
+        /** Current page */
+        current?: number;
+        /** Items per page */
+        pageSize?: number;
+        /** Sort by */
+        SK?: string;
+        /** Filter by subcategory */
+        subcategory?: string;
+    };
     /** Meta category with count GET /api/Meta/category */
-    export function metacategory(params: API.metacategoryParams, options?: {
+    export function metacategory(params: metacategoryParams, options?: {
         [key: string]: any;
     }): Promise<any>;
 }
 declare module "src/services/contacts/metasubcategory" {
+    export type metasubcategoryParams = {
+        /** Current page */
+        current?: number;
+        /** Items per page */
+        pageSize?: number;
+        /** Sort by */
+        SK?: string;
+        /** Filter by subcategory */
+        subcategory?: string;
+    };
     /** Meta subcategory with count GET /api/Meta/subcategory */
-    export function metasubcategory(params: API.metasubcategoryParams, options?: {
+    export function metasubcategory(params: metasubcategoryParams, options?: {
         [key: string]: any;
     }): Promise<any>;
 }
 declare module "src/services/contacts/list" {
+    import type { Item } from "src/models/index";
+    export type listParams = {
+        /** Current page */
+        current?: number;
+        /** Items per page */
+        pageSize?: number;
+        /** Search term */
+        search?: string;
+        /** Sort by */
+        sort?: 'date' | 'category' | 'rating';
+        /** Sort by category */
+        category?: string;
+        /** Filter by subcategory */
+        subcategory?: string;
+    };
     export function list<T>(params?: T, options?: {
         [key: string]: any;
     }): Promise<{
@@ -92,6 +143,7 @@ declare module "src/context/micro" {
     import { IStore, UseMutatorGeneric } from "@infini-soft/store";
   import React from 'react';
   import { CrudMutators, InputMutatorGeneric, UseListMutatorGeneric } from "src/hooks/index";
+  import { Item, Meta } from "src/models/index";
     /**
      * This is the implementation part of app not the lib
      *  */
@@ -115,18 +167,14 @@ declare module "src/context/micro" {
         list: Record<string, Item>;
         editItemId: string;
         meta?: {
-            categories?: API.Meta;
-            subCategories?: API.Meta;
+            categories?: Meta;
+            subCategories?: Meta;
         };
     };
     export type MicroPayload = unknown;
     export type MicroStore = IStore<MicroState, MicroPayload>;
     /**
-     * OPERATION
-     * @returns
-     */
-    /**
-     * CONTEXT
+     * Micro Context
      */
     export type IMicroContext = {
         store: MicroStore;
@@ -134,6 +182,10 @@ declare module "src/context/micro" {
     const MicroContextProvider: ({ children }: {
         children: React.ReactNode;
     }) => JSX.Element;
+    /**
+     * Micro context hook
+     * @returns micro context
+     */
     export const useMicroContext: () => IMicroContext;
     export default MicroContextProvider;
 }
@@ -299,6 +351,7 @@ declare module "src/components/list/assets/svg" {
 declare module "src/components/list/columns" {
     import { TableConfig } from "component/types";
   import { MicroStore } from "src/context/micro";
+  import { Item } from "src/models/index";
     export const columns: (store: MicroStore) => TableConfig<Item>;
 }
 declare module "src/components/list/index" {
@@ -337,17 +390,22 @@ declare module "src/packages/listcrud/src/component/presets/index" {
     export const crudlistPresets: CrudListPresets;
 }
 declare module "src/services/contacts/create" {
+    import { Item } from "src/models/index";
     /** Create POST /api/contacts */
     export function create(body: Item, options?: {
         [key: string]: any;
     }): Promise<any>;
 }
 declare module "src/services/contacts/read" {
-    export function read(params: API.readParams, options?: {
+    export type readParams = {
+        id: string;
+    };
+    export function read(params: readParams, options?: {
         [key: string]: any;
     }): Promise<any>;
 }
 declare module "src/services/contacts/update" {
+    import { Item } from "src/models/index";
     export function update(body: Item, options?: {
         [key: string]: any;
     }): Promise<any>;

@@ -3,6 +3,7 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
+import { generateId } from '@/helpers/generateId';
 import { Mock } from '@/router';
 import Contact from 'contactmui/Contact';
 import React from 'react';
@@ -52,9 +53,8 @@ const menus: Menu[] = [
 ]
 
 const Links: React.FC<LinksProps> = (props) => {
-  return <MenuList>{menus.map(({ icon, to, text }) => <Link to={to} key={new Date().getTime().toFixed(0)}>
-    <MenuItem >
-
+  return <MenuList key={generateId()}>{menus.map(({ icon, to, text }) => <Link to={to} key={generateId()}>
+    <MenuItem key={generateId()}>
       <ListItemIcon>
         {icon}
       </ListItemIcon>

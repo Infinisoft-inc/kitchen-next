@@ -32,7 +32,7 @@ module.exports = merge(custom, common, {
     new ModuleFederationPlugin({
       name,
       filename: 'remoteEntry.js',
-      remotes: infinisoft.moduleFederation.dev.remotes,
+      remotes: infinisoft.moduleFederation.prod.remotes,
       exposes: {
         [`./${infinisoft.moduleFederation.component}`]: './src/app',
       },

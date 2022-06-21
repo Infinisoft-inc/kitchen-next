@@ -3,7 +3,6 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
-import { useMicroContext } from "@/context";
 import { useItem } from "@/hooks";
 import { useSearchFilter } from '@/hooks/useSearchFilter';
 
@@ -19,7 +18,6 @@ export type SubcategoryProps = Partial<HTMLAttributes<HTMLDivElement>> & StepsAc
 };
 
 const Subcategory = ({ hidden, next, id }: SubcategoryProps) => {
-  const { store } = useMicroContext()
   const { item, onMutation } = useItem(id)
   const subCategories = useSearchFilter({
     source: "meta.sub",
