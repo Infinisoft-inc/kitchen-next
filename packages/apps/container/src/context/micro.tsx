@@ -1,12 +1,15 @@
 import config from '@/config/config.json';
+import { context } from '@/data/context';
 import React from 'react';
 
 const devtool = config?.verbose
 
 export type IMicroContext = {
+  user: typeof context
 }
 
 const initialContext: IMicroContext = {
+  user: context
 };
 const MicroContext = React.createContext(initialContext);
 

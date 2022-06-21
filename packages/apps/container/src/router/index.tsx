@@ -4,6 +4,7 @@
  * www.infini-soft.com
  */
 
+import { useMicroContext } from "@/context";
 import React from "react";
 import {
   MemoryRouter, Route, Routes
@@ -22,7 +23,8 @@ type IRoute = {
 }
 
 export const routes: IRoute[] = [
-  { path: "contact", element: <Contact /> },
+  // @ts-ignore
+  { path: "contact", element: <Contact context={useMicroContext}/> },
   { path: "org", element: <Mock title='org' /> },
   { path: "cases", element: <Mock title='cases' /> },
   { path: "dashboard", element: <Mock title='dashboard' /> },

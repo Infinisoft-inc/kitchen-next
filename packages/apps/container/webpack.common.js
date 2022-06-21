@@ -28,6 +28,7 @@ module.exports = {
       '@/packages': path.resolve(__dirname, 'src/packages'),
       '@/router': path.resolve(__dirname, 'src/router'),
       '@/app': path.resolve(__dirname, 'src/app'),
+      '@/data': path.resolve(__dirname, 'src/data'),
     },
   },
   experiments: {

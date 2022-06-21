@@ -3,8 +3,8 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
-import type { Contact } from 'models/contact';
-import type { Entity } from 'types/entity';
+import type { Contact } from './contact';
+import type { Entity } from './entity';
 
 export type Item = Contact & Entity
 
@@ -16,3 +16,8 @@ export type List = {
 };
 
 export type Meta = Record<string, any>;
+
+export type Context = Contact & {
+
+}
+

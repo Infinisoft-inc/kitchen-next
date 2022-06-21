@@ -4,6 +4,8 @@
  * www.infini-soft.com
  */
 
-export type SecurityContext = {
+import { Contact } from "../models";
+
+export type SecurityContext = Contact & {
 
 }
