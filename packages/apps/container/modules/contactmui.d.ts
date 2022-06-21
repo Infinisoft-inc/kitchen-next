@@ -1,4 +1,8 @@
 /// <reference types="react" />
+declare module "src/hooks/createItem" {
+    import { MicroStore } from "src/context/micro";
+    export const createItem: (store: MicroStore) => Promise<string>;
+}
 declare module "src/hooks/useItem" {
     import { InputMutator } from "src/context/micro";
     export type CrudMutators = {
@@ -10,25 +14,13 @@ declare module "src/hooks/useItem" {
     export type InputMutatorGeneric<T, E> = (field: T) => (e: E) => void;
     export type UseListMutatorGeneric<T, R> = (field: T) => R;
     export type Remove = () => void;
-    export const useCreateItem: () => {
-        item:  API.Itemv2;
-        inputMutator: InputMutator;
-        listMutatorsFactory: (field: string) => {
-            add: (newValue: any) => void;
-            update: (index: number, newValue: any) => void;
-            remove: (index: number) => void;
-        };
-        mutation: (field: string, newValue: unknown) => void;
-        onMutation: (field: string) => (newValue: unknown) => void;
-        remove: () => void;
-    };
     /**
      * CRUD Item in list
      * @param id Item id
      * @returns Mutators, item, factory
      */
     export const useItem: (id: string) => {
-        item:  API.Itemv2;
+        item: Item;
         inputMutator: InputMutator;
         listMutatorsFactory: (field: string) => {
             add: (newValue: any) => void;
@@ -40,21 +32,37 @@ declare module "src/hooks/useItem" {
         remove: () => void;
     };
 }
+declare module "src/components/toolbar/assets/svg" {
+    import React from "react";
+    export const SearchIcon: (props: React.SVGProps<SVGSVGElement>) => JSX.Element;
+}
+declare module "src/components/toolbar/search" {
+    export type SearchSources = string;
+    export type SearchProps = {
+        source: SearchSources;
+    };
+    const Search: ({ source }: SearchProps) => JSX.Element;
+    export default Search;
+}
 declare module "src/hooks/useSearchFilter" {
+    import { SearchSources } from "src/components/toolbar/search";
+  import { MicroState } from "src/context/micro";
     /**
      * Filter store list
      * @returns filtered store list
      */
-    export const useSearchFilter: () => Record<string,  API.Itemv2>;
+    type Selector<T> = (_state: MicroState) => T;
+    type UseSearchFilterProps<T> = {
+        source?: SearchSources;
+        _selector?: Selector<T>;
+        filterPredicat?: (state: ReturnType<Selector<T>>, term: string) => ReturnType<Selector<T>>;
+    };
+    export const useSearchFilter: <T = MicroState>({ source, _selector }: UseSearchFilterProps<T>) => MicroState | T;
 }
 declare module "src/hooks/index" {
-    export * from "src/hooks/useItem";
+    export * from "src/hooks/createItem";
+  export * from "src/hooks/useItem";
   export * from "src/hooks/useSearchFilter";
-}
-declare module "src/services/contacts/list" {
-    export function list<T>(params: T, options?: {
-        [key: string]: any;
-    }): Promise<any>;
 }
 declare module "src/services/contacts/metacategory" {
     /** Meta category with count GET /api/Meta/category */
@@ -68,6 +76,18 @@ declare module "src/services/contacts/metasubcategory" {
         [key: string]: any;
     }): Promise<any>;
 }
+declare module "src/services/contacts/list" {
+    export function list<T>(params?: T, options?: {
+        [key: string]: any;
+    }): Promise<{
+        list: Record<string, Item>;
+        editItemId: string;
+        meta: {
+            categories: any;
+            subCategories: any;
+        };
+    }>;
+}
 declare module "src/context/micro" {
     import { IStore, UseMutatorGeneric } from "@infini-soft/store";
   import React from 'react';
@@ -75,11 +95,11 @@ declare module "src/context/micro" {
     /**
      * This is the implementation part of app not the lib
      *  */
-    export type UseMutator = UseMutatorGeneric<keyof  API.Itemv2, any, void>;
+    export type UseMutator = UseMutatorGeneric<keyof Item, any, void>;
     export type InputMutator = InputMutatorGeneric<any, React.ChangeEvent<HTMLInputElement>>;
-    export type UseListMutator = UseListMutatorGeneric<keyof  API.Itemv2, CrudMutators>;
-    export type InputListMutator = InputMutatorGeneric<keyof  API.Itemv2, React.ChangeEvent<HTMLInputElement>>;
-    export type UseItem = UseItemGeneric< API.Itemv2>;
+    export type UseListMutator = UseListMutatorGeneric<keyof Item, CrudMutators>;
+    export type InputListMutator = InputMutatorGeneric<keyof Item, React.ChangeEvent<HTMLInputElement>>;
+    export type UseItem = UseItemGeneric<Item>;
     export type UseItemGeneric<T> = (field: string) => {
         item: T;
         inputMutator: InputMutator;
@@ -92,7 +112,7 @@ declare module "src/context/micro" {
      * STATE
      */
     export type MicroState = {
-        list: Record<string,  API.Itemv2>;
+        list: Record<string, Item>;
         editItemId: string;
         meta?: {
             categories?: API.Meta;
@@ -105,7 +125,6 @@ declare module "src/context/micro" {
      * OPERATION
      * @returns
      */
-    export const fetchData: (filter?: string) => Promise<MicroState>;
     /**
      * CONTEXT
      */
@@ -118,21 +137,32 @@ declare module "src/context/micro" {
     export const useMicroContext: () => IMicroContext;
     export default MicroContextProvider;
 }
+declare module "src/context/index" {
+    export * from "src/context/micro";
+}
+declare module "src/hooks/useEvent" {
+    /**
+     *  Subscribe to event and unsubscribe
+     * @param name      Event name
+     * @param handler   Event handler
+     */
+    export const useEvent: (name: string, handler: (e: Event) => void) => void;
+}
 declare module "src/components/create/steps/category" {
     import { HTMLAttributes } from 'react';
-    export type CategoryProps = Partial<HTMLAttributes<HTMLDivElement>> & {
-        SK: string;
-    };
-    export const Category: ({ hidden }: CategoryProps) => JSX.Element;
-    export default CategoryProps;
+  import { StepsActions } from "src/components/create/content";
+    type CategoryProps = Partial<HTMLAttributes<HTMLDivElement>> & StepsActions;
+    export const Category: ({ hidden, next, id }: CategoryProps) => JSX.Element;
+    export default Category;
 }
 declare module "src/components/create/steps/subcategory" {
     import { HTMLAttributes } from 'react';
-    export type SubcategoryProps = Partial<HTMLAttributes<HTMLDivElement>> & {
-        SK: string;
+  import { StepsActions } from "src/components/create/content";
+    export type SubcategoryProps = Partial<HTMLAttributes<HTMLDivElement>> & StepsActions & {
+        id: string;
     };
-    export const Subcategory: ({ hidden }: SubcategoryProps) => JSX.Element;
-    export default SubcategoryProps;
+    const Subcategory: ({ hidden, next, id }: SubcategoryProps) => JSX.Element;
+    export default Subcategory;
 }
 declare module "src/assets/svg" {
     type Svgsize = {
@@ -151,27 +181,75 @@ declare module "src/assets/svg" {
     export const DeleteIcon: () => JSX.Element;
     export const AddIcon: () => JSX.Element;
 }
-declare module "src/components/create/steps/step1" {
-    import { HTMLAttributes } from 'react';
-    export type Step1 = Partial<HTMLAttributes<HTMLDivElement>> & {
-        SK: string;
-    };
-    export const Step1: ({ SK, hidden }: Step1) => JSX.Element;
-    export default Step1;
+declare module "src/helpers/index" {
+    export const getId: () => string;
 }
-declare module "src/components/create/steps/step2" {
-    import { HTMLAttributes } from 'react';
-    export type Step2Props = Partial<HTMLAttributes<HTMLDivElement>> & {
-        SK: string;
+declare module "src/packages/listcrud/src/component/assets/svg" {
+    export const PhoneIcon: () => JSX.Element;
+    export const DeleteIcon: () => JSX.Element;
+    export const AddIcon: () => JSX.Element;
+}
+declare module "src/packages/listcrud/src/component/types" {
+    import { InputTextProps } from "component/types";
+  import React from "react";
+    /**
+     * CrudList Props
+     */
+    type Crud<T = any, I = any> = {
+        itemList?: T[];
+        onAdd?: (newValue?: T) => void;
+        onChangeItem?: (newValue: T, id: I) => void;
+        onRemove?: (id: I) => void;
     };
-    export const Step2: ({ SK, hidden }: Step2Props) => JSX.Element;
-    export default Step2;
+    export type ListCrudProps<T = any, I = any> = Partial<HTMLInputElement> & Crud<T, I> & Partial<InputTextProps> & {
+        /**
+         * List title
+         */
+        listTitle?: React.ReactNode;
+        /**
+         * Title Icon
+         */
+        icon?: React.ReactNode;
+        /**
+         * Custom render
+         */
+        itemRender?: (item: T, index: number, array: T[]) => React.ReactNode;
+    };
+}
+declare module "src/packages/listcrud/src/component/index" {
+    import { ListCrudProps } from "src/packages/listcrud/src/component/types";
+    export const ListCrud: ({ listTitle, icon, itemList, onAdd, onChangeItem, onRemove, itemRender, label, placeholder, ...props }: ListCrudProps) => JSX.Element;
+    export default ListCrud;
+}
+declare module "src/components/create/steps/contactinformation" {
+    import { HTMLAttributes } from 'react';
+    export type ContactInformation = Partial<HTMLAttributes<HTMLDivElement>> & {
+        id: string;
+    };
+    export const ContactInformation: ({ id, hidden }: ContactInformation) => JSX.Element;
+    export default ContactInformation;
+}
+declare module "src/components/create/steps/relations" {
+    import { HTMLAttributes } from 'react';
+    export type RelationsProps = Partial<HTMLAttributes<HTMLDivElement>> & {
+        id: string;
+    };
+    export const Relations: ({ id, hidden }: RelationsProps) => JSX.Element;
+    export default Relations;
 }
 declare module "src/components/create/content" {
     export type ContentProps = {
-        SK: string;
+        id: string;
     };
-    export const Content: ({ SK }: ContentProps) => JSX.Element;
+    export type StepsActions = {
+        step: number;
+        next: Function;
+        back: Function;
+        id: string;
+    };
+    export const Content: ({ id }: {
+        id: string;
+    }) => JSX.Element;
     export default Content;
 }
 declare module "src/components/create/index" {
@@ -193,16 +271,12 @@ declare module "src/components/toolbar/create" {
     export default Create;
 }
 declare module "src/components/toolbar/filter" {
-    const Filter: () => JSX.Element;
+    export type FilterSources = "contact" | "meta";
+    export type FilterProps = {
+        source: FilterSources;
+    };
+    const Filter: ({ source }: FilterProps) => JSX.Element;
     export default Filter;
-}
-declare module "src/components/toolbar/assets/svg" {
-    import React from "react";
-    export const SearchIcon: (props: React.SVGProps<SVGSVGElement>) => JSX.Element;
-}
-declare module "src/components/toolbar/search" {
-    const Search: () => JSX.Element;
-    export default Search;
 }
 declare module "src/components/toolbar/index" {
     /**
@@ -225,7 +299,7 @@ declare module "src/components/list/assets/svg" {
 declare module "src/components/list/columns" {
     import { TableConfig } from "component/types";
   import { MicroStore } from "src/context/micro";
-    export const columns: (store: MicroStore) => TableConfig< API.Itemv2>;
+    export const columns: (store: MicroStore) => TableConfig<Item>;
 }
 declare module "src/components/list/index" {
     const List: () => JSX.Element;
@@ -233,15 +307,15 @@ declare module "src/components/list/index" {
 }
 declare module "src/components/details/Content" {
     export type ContentProps = {
-        SK: string;
+        id: string;
         onClose?: () => void;
     };
-    export const Content: ({ SK, onClose }: ContentProps) => JSX.Element;
+    export const Content: ({ id, onClose }: ContentProps) => JSX.Element;
     export default Content;
 }
 declare module "src/components/details/index" {
     export type DetailsProps = {};
-    export const Details: ({}: DetailsProps) => JSX.Element;
+    const Details: ({}: DetailsProps) => JSX.Element;
     export default Details;
 }
 declare module "src/app/app" {
@@ -254,12 +328,17 @@ declare module "contactmui/Contact" {
     export default Contact;
 }
 declare module "src/bootstrap" { }
-declare module "src/context/index" {
-    export * from "src/context/micro";
+declare module "src/packages/index" {
+    export { default as ListCrud } from "src/packages/listcrud/src/component/index";
+}
+declare module "src/packages/listcrud/src/bootstrap" { }
+declare module "src/packages/listcrud/src/component/presets/index" {
+    export type CrudListPresets = {};
+    export const crudlistPresets: CrudListPresets;
 }
 declare module "src/services/contacts/create" {
     /** Create POST /api/contacts */
-    export function create(body:  API.Itemv2, options?: {
+    export function create(body: Item, options?: {
         [key: string]: any;
     }): Promise<any>;
 }
@@ -269,7 +348,7 @@ declare module "src/services/contacts/read" {
     }): Promise<any>;
 }
 declare module "src/services/contacts/update" {
-    export function update(body:  API.Itemv2, options?: {
+    export function update(body: Item, options?: {
         [key: string]: any;
     }): Promise<any>;
 }
@@ -289,18 +368,4 @@ declare module "src/services/contacts/index" {
         read: typeof read;
     };
     export default _default;
-}
-declare module "src/services/search/search" {
-    export type SearchOption = {
-        key: string;
-        label: string;
-        value: string;
-    };
-    export const searchService: (term: string) => Promise<SearchOption[]>;
-}
-declare module "src/services/storage/download" {
-    export const download: () => Promise<unknown>;
-}
-declare module "src/services/storage/upload" {
-    export const upload: () => Promise<unknown>;
 }

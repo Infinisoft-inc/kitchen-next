@@ -17,13 +17,15 @@
     },
     "allowSyntheticDefaultImports": true
   },
+  "references": [{ "path": "../../common/tsconfig.json" }],
   "include": [
     "mock/**/*",
     "src/**/*",
     "config/*",
     "modules/*.d.ts",
-    "typings.d.ts" ],
-  "exclude": [
+    "typings.d.ts"
+  ],
+, "../../common/src/api/ItemSuccess.ts"  "exclude": [
     "node_modules",
     "lib",
     "es",

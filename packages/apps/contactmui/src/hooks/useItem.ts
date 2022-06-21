@@ -5,6 +5,7 @@
  */
 
 import { InputMutator, MicroPayload, MicroState, useMicroContext } from "@/context/micro"
+import { Item } from "@/models"
 import { useStore } from "@infini-soft/store/src/lib/usestore"
 import { useCallback } from "react"
 
@@ -27,7 +28,7 @@ type P = MicroPayload
  */
 export const useItem = (id: string) => {
   const { store } = useMicroContext()
-  const item = useStore<S, P,  API.Itemv2>(store, a => a?.list[id])
+  const item = useStore<S, P,  Item>(store, a => a?.list[id])
 
   /**
    * onChange handler

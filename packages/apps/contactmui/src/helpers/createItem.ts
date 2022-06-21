@@ -1,8 +1,5 @@
 import { MicroStore } from "@/context/micro";
-
-const generateId = () => {
-  return new Date().getTime().toFixed(0);
-};
+import { generateId } from "./generateId";
 
 export const createItem = (store: MicroStore) => new Promise<string>((res) => {
   const tempID = generateId();
@@ -13,6 +10,7 @@ export const createItem = (store: MicroStore) => new Promise<string>((res) => {
     list: {
       [tempID]: {
         id: tempID,
+        name: '',
         createdAt: new Date().toISOString(),
         updatedAt: new Date().toISOString(),
         tempID,

@@ -3,6 +3,8 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
+import { Mock } from '@/router';
+import Contact from 'contactmui/Contact';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -17,37 +19,54 @@ const Typography = React.lazy(() => import(/* webpackChunkName: 'Typography' */ 
 type Menu = {
   icon: React.ReactNode
   to: string
-  text: string
+  text: string,
+  path: string,
+  element: JSX.Element
 }
+
 const menus: Menu[] = [
   {
     icon: 'w',
     to: 'contact',
-    text: 'Contact'
+    text: 'Contact',
+    path: "contact", element: <Contact />
   },
   {
     icon: 'w',
     to: 'org',
-    text: 'Org'
+    text: 'Org',
+    path: "org", element: <Mock title='org' />
+  },
+  {
+    icon: 'w',
+    to: 'cases',
+    text: 'Cases',
+    path: "cases", element: <Mock title='org' />
+  },
+  {
+    icon: 'w',
+    to: 'dashboard',
+    text: 'Dashboard',
+    path: "dashboard", element: <Mock title='org' />
   },
 ]
 
 const Links: React.FC<LinksProps> = (props) => {
-  return <MenuList>{menus.map(({ icon, to, text }) =>  <Link to={to} key={new Date().getTime().toFixed(0)}>
+  return <MenuList>{menus.map(({ icon, to, text }) => <Link to={to} key={new Date().getTime().toFixed(0)}>
     <MenuItem >
 
-        <ListItemIcon>
-          {icon}
-        </ListItemIcon>
-        <ListItemText>
-          {text}
-        </ListItemText>
-        <Typography variant="body2" color="text.secondary">
-          nonoo
-        </Typography>
+      <ListItemIcon>
+        {icon}
+      </ListItemIcon>
+      <ListItemText>
+        {text}
+      </ListItemText>
+      <Typography variant="body2" color="text.secondary">
+        nonoo
+      </Typography>
 
     </MenuItem>
-    </Link>
+  </Link>
   )} </MenuList>
 }
 

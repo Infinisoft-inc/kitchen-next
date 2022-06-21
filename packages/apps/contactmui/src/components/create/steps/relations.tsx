@@ -6,6 +6,7 @@
 import { RelatedwithIcon, WebIcon } from '@/assets/svg';
 import { getId } from '@/helpers';
 import { useItem } from '@/hooks/useItem';
+import { Item } from '@/models';
 import React, { HTMLAttributes } from 'react';
 import css from './index.module.css';
 
@@ -20,7 +21,7 @@ export type RelationsProps = Partial<HTMLAttributes<HTMLDivElement>> & {
 export const Relations = ({ id, hidden }: RelationsProps) => {
   const { item: contact, inputMutator, listMutatorsFactory } = useItem(id)
 
-  const props = (field: keyof  API.Itemv2) => ({
+  const props = (field: keyof  Item) => ({
     placeholder: field,
     name: field,
     value: contact?.[field] ? String(contact?.[field]) : '',

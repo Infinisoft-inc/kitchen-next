@@ -3,10 +3,7 @@ import config from '@/config/config.json';
 import { MicroState, useMicroContext } from "@/context/micro";
 import React, { startTransition, useCallback, useEffect, useSyncExternalStore } from "react";
 
-/**
- * Filter store list
- * @returns filtered store list
- */
+
 type Selector<T,> = (_state: MicroState) => T
 
 type UseSearchFilterProps<T> = {
@@ -15,9 +12,12 @@ type UseSearchFilterProps<T> = {
   filterPredicat?: (state: ReturnType<Selector<T>>, term: string) => ReturnType<Selector<T>>
 }
 
+/**
+ * Filter store list
+ * @returns filtered store list
+ */
 export const useSearchFilter = <T = MicroState,>({ source, _selector }: UseSearchFilterProps<T>) => {
   const { store } = useMicroContext();
-
   const microState = useSyncExternalStore(store.subscribe, useCallback(() => _selector ? _selector(store?.getState()) : store?.getState(), [_selector, store?.getState()]))
   const [filterTerm, setFilter] = React.useState<string>();
   const [searchTerm, setSearchTerm] = React.useState<string>();

@@ -1,6 +1,11 @@
 import config from '@/config/config.json';
+
+export type readParams = {
+  id: string;
+};
+
 export async function read(
-  params: API.readParams,
+  params: readParams,
   options?: { [key: string]: any },
 ) {
   const { id: param0, ...queryParams } = params;

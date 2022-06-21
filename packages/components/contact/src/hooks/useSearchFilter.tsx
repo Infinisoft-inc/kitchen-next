@@ -42,7 +42,7 @@ export const useSearchFilter = () => {
    * Search
    * @returns Result
    */
-  const search = (list?: Record<string,  API.Itemv2>) => {
+  const search = (list?: Record<string,  Item>) => {
 
     if (!searchTerm && !list) {
       return microState?.list;

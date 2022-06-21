@@ -20,7 +20,7 @@ export type RelationsProps = Partial<HTMLAttributes<HTMLDivElement>> & {
 export const Relations = ({ SK, hidden }: RelationsProps) => {
   const { item: contact, inputMutator, listMutatorsFactory } = useItem(SK)
 
-  const props = (field: keyof  API.Itemv2) => ({
+  const props = (field: keyof  Item) => ({
     placeholder: field,
     name: field,
     value: contact?.[field] ? String(contact?.[field]) : '',

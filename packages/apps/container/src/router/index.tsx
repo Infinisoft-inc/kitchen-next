@@ -12,15 +12,26 @@ import {
 const Contact = React.lazy(() => import(/* webpackChunkName: 'Contact' */ 'contactmui/Contact'))
 const Layout = React.lazy(() => import(/* webpackChunkName: 'Layout' */ '@/component'))
 
-const Tukette = () => {
-  return <><h1 style={{ marginTop: '6rem' }}>Tuck suckette</h1></>
+export const Mock = ({ title }: { title: string }) => {
+  return <><h1 style={{ marginTop: '6rem' }}>{title}</h1></>
 }
+
+type IRoute = {
+  path: string
+  element: JSX.Element
+}
+
+export const routes: IRoute[] = [
+  { path: "contact", element: <Contact /> },
+  { path: "org", element: <Mock title='org' /> },
+  { path: "cases", element: <Mock title='cases' /> },
+  { path: "dashboard", element: <Mock title='dashboard' /> },
+]
 
 const Router = () => <MemoryRouter>
   <Routes>
     <Route path='/' element={<Layout />}>
-      <Route path="contact" element={<Contact />} />
-      <Route path="org" element={<Tukette />} />
+      {routes.map((props) => <Route key={new Date().getTime().toFixed(0)} {...props} />)}
     </Route>
   </Routes>
 </MemoryRouter>

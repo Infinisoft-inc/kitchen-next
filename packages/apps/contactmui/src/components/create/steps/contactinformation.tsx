@@ -5,6 +5,7 @@
  */
 import { AddressIcon, EmailIcon, NameIcon, PhoneIcon } from '@/assets/svg';
 import { useItem } from '@/hooks/useItem';
+import { Item } from '@/models';
 import React, { HTMLAttributes } from 'react';
 import css from './index.module.css';
 
@@ -19,7 +20,7 @@ export type ContactInformation = Partial<HTMLAttributes<HTMLDivElement>> & {
 export const ContactInformation = ({id, hidden }: ContactInformation) => {
   const { item: contact, inputMutator, listMutatorsFactory } = useItem(id)
 
-  const props = (field: keyof  API.Itemv2) => ({
+  const props = (field: keyof Item) => ({
     placeholder: field,
     name: field,
     value: contact?.[field] ? String(contact?.[field]) : '',

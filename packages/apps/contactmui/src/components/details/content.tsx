@@ -5,6 +5,7 @@
  */
 import { AddressIcon, PhoneIcon, RelatedwithIcon, WebIcon } from '@/assets/svg';
 import { useItem } from '@/hooks/useItem';
+import { Item } from '@/models';
 import React from 'react';
 import css from './index.module.css';
 
@@ -23,7 +24,7 @@ export type ContentProps = {
 export const Content = ({ id, onClose }: ContentProps) => {
   const { item: contact, inputMutator, listMutatorsFactory, mutation, remove } = useItem(id)
 
-  const props = (field: keyof API.Itemv2) => ({
+  const props = (field: keyof Item) => ({
     name: field,
     defaultValue: contact?.[field] ? String(contact?.[field]) : '',
     onChange: inputMutator(field)
