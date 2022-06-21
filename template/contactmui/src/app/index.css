@@ -1,0 +1,18 @@
+/**
+ * Copyright © All rights reserved 2022
+ * Infinisoft Inc.
+ * www.infini-soft.com
+ */
+
+
+
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  max-width: 1200px;
+  margin: auto;
+  padding: 1rem;
+  margin-top: 64px;
+}
