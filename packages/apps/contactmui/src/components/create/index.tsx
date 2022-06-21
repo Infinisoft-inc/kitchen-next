@@ -19,12 +19,7 @@ export const Create = ({ children }: DetailsProps) => {
   const { store } = useMicroContext()
   const [state, setState] = React.useState<string>();
 
-  useEvent('create.click', (e) => {
-    console.log(`craeate.click time: ${new Date().getTime().toLocaleString()} event = `, e)
-    createItem(store)
-      .then(setState)
-  })
-
+  useEvent('create.click', (e) => {createItem(store).then(setState) })
 
   return <div >
       <Dialog openEvents={['create.click']} closeEvents={['create.complete', 'backdrop.clicked']}>

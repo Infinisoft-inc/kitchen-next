@@ -28,11 +28,9 @@ const Details = ({ }: DetailsProps) => {
         PaperProps={{
           className: css.drawer
         }}
-
         anchor={'right'}
         open={visible}
         onClose={hide}
-
       >
         <Content id={store.getState()?.editItemId} onClose={hide} />
       </Drawer>

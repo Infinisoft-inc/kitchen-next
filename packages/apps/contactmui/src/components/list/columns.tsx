@@ -16,7 +16,6 @@ export const columns = (store: MicroStore): TableConfig<Item> => {
     store.mutate(prev => ({ ...prev, editItemId: id }))
   }
 
-
   return {
     avatar: {
       responsive: 'xs',

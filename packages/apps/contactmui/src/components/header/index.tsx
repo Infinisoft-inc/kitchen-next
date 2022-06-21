@@ -7,10 +7,8 @@
 import { Suspense } from "react"
 import styles from './index.css'
 
-const Header = () => <Suspense fallback={<h1>TITLE</h1>}>
-  <div
-    className={styles.header}
-  >
+const Header = () => <Suspense fallback={'loading..'}>
+  <div  className={styles.header}>
     <h1>Contacts</h1>
   </div>
 </Suspense>
