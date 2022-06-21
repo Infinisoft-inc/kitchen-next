@@ -13,11 +13,14 @@ export type FilterSources = "contact" | "meta"
 export type FilterProps = {
   source: FilterSources
 }
+export type FilterState = {
+  state: string
+}
 
 const Filter = ({ source }: FilterProps) => {
   const { store } = useMicroContext()
-  const state = useSyncExternalStore(store.subscribe, store.getState)
-
+  const {state} = useSyncExternalStore(store.subscribe, store.getState)
+  
   const subCategories = state?.meta?.categories ? Object.keys(state.meta.categories) : []
 
   const clickHandler = (newValue?: string) => {
