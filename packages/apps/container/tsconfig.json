@@ -13,13 +13,15 @@
     "strict": true,
     "skipLibCheck":true,
     "paths": {
+      "@/data/*": ["./data/*"],
       "@/config/*": ["./config/*"],
       "@/*": ["src/*"]
     },
     "allowSyntheticDefaultImports": true
   },
+  "references": [{ "path": "../../common/tsconfig.json" }],
   "include": [
-    "mock/**/*",
+    "data/**/*",
     "src/**/*",
     "config/*",
     "modules/*.d.ts",

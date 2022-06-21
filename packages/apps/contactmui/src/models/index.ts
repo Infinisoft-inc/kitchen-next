@@ -3,8 +3,7 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
-import type { Contact } from 'models/contact';
-import type { Entity } from 'types/entity';
+import type { Contact, Entity } from '../../../../common/src';
 
 export type Item = Contact & Entity
 

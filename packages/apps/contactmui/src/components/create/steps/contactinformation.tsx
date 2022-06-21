@@ -3,6 +3,7 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
+// @ts-nocheck
 import { AddressIcon, EmailIcon, NameIcon, PhoneIcon } from '@/assets/svg';
 import { useItem } from '@/hooks/useItem';
 import { Item } from '@/models';

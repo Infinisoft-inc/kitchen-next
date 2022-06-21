@@ -4,29 +4,36 @@
  * www.infini-soft.com
  */
 
-export type Entity = {
+export type Meta = {
+  /** Categories  */
+  Categories?: string;
+  /** SubCategory - Global Secondary Index */
+  Subcategory?: string;
+  /** Relation in the graph */
+  relatedWith?: string[];
+}
+
+export type Unique = {
+
   /** uuid*/
   id: string;
   /** Optional ID. Can be used by front-end to identify new items. */
   tempID?: string;
 
-  SK?: string;
-
   /** Creation date in ISO 8601 format */
   createdAt: string;
   /** Last updated date in ISO 8601 format */
   updatedAt: string;
-  /** Relation in the graph */
-  relatedWith?: string[];
 
-  /** Categories  */
-  Categories?: string;
-  /** SubCategory - Global Secondary Index */
-  Subcategory?: string;
+  /** MANAGE LATER  */
+  SK?: string;
 
   /** Item is enabled or disabled */
   enabled?: boolean;
 
+}
+
+export type Timestamp = {
   /** Item creator userid */
   USERID?: string;
   /** Item creator name */
@@ -35,5 +42,6 @@ export type Entity = {
   EMAIL?: string;
   /** Item creator picture url */
   PICTURE?: string;
+}
 
-};
+export type Entity = Unique & Meta & Timestamp

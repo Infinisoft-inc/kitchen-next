@@ -1,6 +1,5 @@
 import config from '@/config/config.json';
 import React from 'react';
-
 const devtool = config?.verbose
 
 export type IMicroContext = {

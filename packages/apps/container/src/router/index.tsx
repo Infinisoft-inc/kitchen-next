@@ -8,6 +8,7 @@ import React from "react";
 import {
   MemoryRouter, Route, Routes
 } from "react-router-dom";
+import context from '../../data/security.context.json';
 
 const Contact = React.lazy(() => import(/* webpackChunkName: 'Contact' */ 'contactmui/Contact'))
 const Layout = React.lazy(() => import(/* webpackChunkName: 'Layout' */ '@/component'))
@@ -21,8 +22,14 @@ type IRoute = {
   element: JSX.Element
 }
 
+const steve = {
+  name: 'steve',
+  quality: 'steve'
+}
+
 export const routes: IRoute[] = [
-  { path: "contact", element: <Contact /> },
+  // @ts-ignore
+  { path: "contact", element: <Contact context={context} /> },
   { path: "org", element: <Mock title='org' /> },
   { path: "cases", element: <Mock title='cases' /> },
   { path: "dashboard", element: <Mock title='dashboard' /> },

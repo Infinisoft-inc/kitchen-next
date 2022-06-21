@@ -16,7 +16,7 @@ type UseSearchFilterProps<T> = {
  * Filter store list
  * @returns filtered store list
  */
-export const useSearchFilter = <T = MicroState,>({ source, _selector }: UseSearchFilterProps<T>) => {
+export const useSearchFilter = <T=MicroState,>({ source, _selector }: UseSearchFilterProps<T>) => {
   const { store } = useMicroContext();
   const microState = useSyncExternalStore(store.subscribe, useCallback(() => _selector ? _selector(store?.getState()) : store?.getState(), [_selector, store?.getState()]))
   const [filterTerm, setFilter] = React.useState<string>();

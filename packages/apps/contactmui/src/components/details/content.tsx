@@ -25,7 +25,8 @@ export const Content = ({ id, onClose }: ContentProps) => {
   const { item: contact, inputMutator, listMutatorsFactory, mutation, remove } = useItem(id)
 
   const props = (field: keyof Item) => ({
-    name: field,
+    name: field as string,
+
     defaultValue: contact?.[field] ? String(contact?.[field]) : '',
     onChange: inputMutator(field)
   })

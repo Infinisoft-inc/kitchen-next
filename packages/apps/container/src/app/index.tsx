@@ -11,6 +11,7 @@ import { AppProps } from './types';
 const Router = React.lazy(() => import(/* webpackChunkName: 'Router' */ '@/router'))
 
 const App = (props: AppProps) => {
+
   return <Suspense fallback='loading'>
     <Router />
   </Suspense>
