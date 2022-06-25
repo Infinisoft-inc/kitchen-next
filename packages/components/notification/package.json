@@ -1,1 +1,36 @@
-{"name":"notification","version":"0.0.2","description":"","private":true,"author":"Infinisoft Inc. <info@infini-soft.com>","homepage":"https://www.kitchen.infini-soft.com/","license":"INFINISOFT","scripts":{"task":"kli task run","config:update":"kli config update"},"devDependencies":{"@types/react":"^18.0.9","@types/react-dom":"^18.0.4"},"peerDependencies":{"react":"^18.1.0","react-dom":"^18.1.0"},"infinisoft":{"moduleFederation":{"dev":{"remotes":{"slider":"slider@http://localhost:5000/components/slider/dev/remoteEntry.js"}},"prod":{"remotes":{"slider":"slider@https://app.micro.infini-soft.com/components/slider/remoteEntry.js"}}},"tag":"mfcomponents"}}
+{
+  "name": "notification",
+  "version": "0.0.2",
+  "description": "",
+  "private": true,
+  "author": "Infinisoft Inc. <info@infini-soft.com>",
+  "homepage": "https://www.kitchen.infini-soft.com/",
+  "license": "INFINISOFT",
+  "scripts": {
+    "task": "kli task run",
+    "config:update": "kli config update"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.9",
+    "@types/react-dom": "^18.0.4"
+  },
+  "peerDependencies": {
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
+  },
+  "infinisoft": {
+    "moduleFederation": {
+      "dev": {
+        "remotes": {
+          "slider": "slider@http://localhost:5000/components/slider/dev/remoteEntry.js"
+        }
+      },
+      "prod": {
+        "remotes": {
+          "slider": "slider@https://app.micro.infini-soft.com/components/slider/remoteEntry.js"
+        }
+      }
+    },
+    "tag": "mfcomponents"
+  }
+}

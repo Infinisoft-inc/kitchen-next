@@ -51,6 +51,7 @@
     "moment-locales-webpack-plugin": "^1.2.0",
     "react": "18.1.0",
     "react-dom": "18.1.0",
+    "serve": "^13.0.2",
     "storybook-dark-mode": "^1.1.0",
     "storybook-design-token": "^2.4.0",
     "storybook-module-federation": "^0.6.2",
@@ -70,7 +71,7 @@
   "dependencies": {
     "@infini-soft/kli": "^0.0.41",
     "@infini-soft/lib-federation": "^0.0.14",
-    "@infini-soft/store": "^0.1.3"
+    "@infini-soft/store": "^0.1.4"
   },
   "scripts": {
     "start:local:federation": "serve -s packages -l 5000",
@@ -96,7 +97,6 @@
     "config:update:dryrun": "lerna run config:update --stream --parallel -- --tag mfcomponents --dry-run",
     "config:update": "lerna run config:update --stream --parallel -- --tag mfcomponents",
     "task:refresh": "lerna run task --stream --parallel -- refresh --tag mfcomponents"
-
   },
   "jest": {
     "collectCoverageFrom": [

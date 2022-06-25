@@ -33,6 +33,7 @@
   },
   "infinisoft": {
     "moduleFederation": {
+      "tag": "mfcomponents",
       "title":"Drawer",
       "category":"data",
       "image":"https://www.kitchen.infini-soft.com/assets/infinisoftticon.png",

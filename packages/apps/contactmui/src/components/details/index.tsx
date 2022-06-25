@@ -9,7 +9,7 @@ import { useEvent } from '../../hooks/useEvent';
 import css from './index.module.css';
 
 const Drawer = React.lazy(() => import(/*    */ /* webpackChunkName: 'Drawer' */ '@mui/material/Drawer/Drawer'))
-const Content = React.lazy(() => import(/*    */ /* webpackChunkName: 'Content' */ './Content'))
+const Content = React.lazy(() => import(/*    */ /* webpackChunkName: 'Content' */ './contentnext'))
 
 export type DetailsProps = {};
 

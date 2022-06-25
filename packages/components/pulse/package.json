@@ -1,1 +1,52 @@
-{"name":"pulse","version":"0.0.1","description":"Pulse effect","private":true,"author":"Infinisoft Inc. <info@infini-soft.com>","homepage":"https://www.kitchen.infini-soft.com/","license":"INFINISOFT","scripts":{"build:dev":"kli component build","build:dev:watch":"kli component build --watch-deploy","build:prod":"kli component build --prod","build:prod:watch":"kli component build --prod --watch-deploy","build:analyze":"kli component build --analyze& start analyze/bundle-stats.html","build:analyze:baseline":"kli component build --analyze-baseline& start analyze/bundle-stats.html","test":"jest","test:watchAll":"jest --watchAll","test:coverage":"jest --coverage&& start analyze/coverage/lcov-report/index.html","deploy":"kli component deploy","start:dev":"webpack serve -c webpack.config.dev.js --open","start:prod":"webpack serve -c webpack.config.prod.js --open","serve:dist":"serve -s dist","clean":"rm -rf analyze dist node_modules","config:update":"kli config update","task":"kli task run"},"devDependencies":{"@types/react":"^18.0.9","@types/react-dom":"^18.0.4","framer-motion":"^6.3.6"},"peerDependencies":{"react":"^18.1.0","react-dom":"^18.1.0"},"infinisoft":{"moduleFederation":{"title":"Pulse","category":"ux","image":"https://www.kitchen.infini-soft.com/assets/infinisoftticon.png","component":"Pulse","dev":{"remotes":{}},"prod":{"remotes":{}}},"tag":"mfcomponents"},"dependencies":{}}
+{
+  "name": "pulse",
+  "version": "0.0.1",
+  "description": "Pulse effect",
+  "private": true,
+  "author": "Infinisoft Inc. <info@infini-soft.com>",
+  "homepage": "https://www.kitchen.infini-soft.com/",
+  "license": "INFINISOFT",
+  "scripts": {
+    "build:dev": "kli component build",
+    "build:dev:watch": "kli component build --watch-deploy",
+    "build:prod": "kli component build --prod",
+    "build:prod:watch": "kli component build --prod --watch-deploy",
+    "build:analyze": "kli component build --analyze& start analyze/bundle-stats.html",
+    "build:analyze:baseline": "kli component build --analyze-baseline& start analyze/bundle-stats.html",
+    "test": "jest",
+    "test:watchAll": "jest --watchAll",
+    "test:coverage": "jest --coverage&& start analyze/coverage/lcov-report/index.html",
+    "deploy": "kli component deploy",
+    "start:dev": "webpack serve -c webpack.config.dev.js --open",
+    "start:prod": "webpack serve -c webpack.config.prod.js --open",
+    "serve:dist": "serve -s dist",
+    "clean": "rm -rf analyze dist node_modules",
+    "config:update": "kli config update",
+    "task": "kli task run"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.9",
+    "@types/react-dom": "^18.0.4",
+    "framer-motion": "^6.3.6"
+  },
+  "peerDependencies": {
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
+  },
+  "infinisoft": {
+    "moduleFederation": {
+      "title": "Pulse",
+      "category": "ux",
+      "image": "https://www.kitchen.infini-soft.com/assets/infinisoftticon.png",
+      "component": "Pulse",
+      "dev": {
+        "remotes": {}
+      },
+      "prod": {
+        "remotes": {}
+      }
+    },
+    "tag": "mfcomponents"
+  },
+  "dependencies": {}
+}

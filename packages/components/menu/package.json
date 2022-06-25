@@ -33,6 +33,7 @@
   },
   "infinisoft": {
     "moduleFederation": {
+      "tag": "mfcomponents",
       "title": "Menu",
       "category": "layout",
       "image": "https://www.kitchen.infini-soft.com/assets/infinisoftticon.png",

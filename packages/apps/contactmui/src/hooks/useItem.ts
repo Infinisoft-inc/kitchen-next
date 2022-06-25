@@ -6,7 +6,7 @@
 
 import { InputMutator, MicroPayload, MicroState, useMicroContext } from "@/context/micro"
 import { Item } from "@/models"
-import { useStore } from "@infini-soft/store/src/lib/usestore"
+import { useStore } from "@infini-soft/store"
 import { useCallback } from "react"
 
 export type CrudMutators = {
