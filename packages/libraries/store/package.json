@@ -1,13 +1,12 @@
 {
   "name": "@infini-soft/store",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Pub/Sub Event Driven Micro State Management Lib. This is core package of new UNRELEASED micro frontend boilerplate.",
   "author": "Infinisoft Inc. <info@infini-soft.com>",
   "homepage": "https://www.kitchen.infini-soft.com/",
   "license": "INFINISOFT",
   "main": "dist/store.js",
-  "module": "dist/store.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/types.d.ts",
   "keywords": [
     "state",
     "react 18",
@@ -61,10 +60,10 @@
     "@types/react-dom": "^18.0.5"
   },
   "peerDependencies": {
-    "react": "^18.1.0",
     "react-dom": "^18.1.0"
   },
   "dependencies": {
-    "deep-object-diff": "^1.1.7"
+    "deep-object-diff": "^1.1.7",
+    "react": "18.1.0"
   }
 }

@@ -1,3 +1,4 @@
+//@ts-nocheck
 /**
  * Copyright © All rights reserved 2022
  * Infinisoft Inc.

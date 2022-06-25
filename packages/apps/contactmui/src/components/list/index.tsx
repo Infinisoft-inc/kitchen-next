@@ -11,8 +11,6 @@ const List = () => {
   const list = useSearchFilter({ source: "contact", _selector: _s => _s?.list })
   const { store } = useMicroContext()
 
-  // const list = useDeferredValue(()=>_list)
-
   return <div className={css.listContainer}>
     <Table columns={columns(store)} data={list} options={{ pagination: true, rowPerPage: 5 }} />
   </div>

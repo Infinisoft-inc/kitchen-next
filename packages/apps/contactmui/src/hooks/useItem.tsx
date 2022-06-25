@@ -6,8 +6,8 @@
 
 import { InputMutator, MicroPayload, MicroState, useMicroContext } from "@/context/micro"
 import { Item } from "@/models"
-import { useStore } from "@infini-soft/store"
 import { useCallback } from "react"
+import { useStore } from "./usestore"
 
 export type CrudMutators = {
   add: <T>(newValue?: T) => void
@@ -28,7 +28,7 @@ type P = MicroPayload
  */
 export const useItem = (id: string) => {
   const { store } = useMicroContext()
-  const item = useStore<S, P,  Item>(store, a => a?.list[id])
+  const item = useStore<S, P,  Item>(store, a => a?.list?.[id])
 
   /**
    * onChange handler

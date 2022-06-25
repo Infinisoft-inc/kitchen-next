@@ -21,7 +21,7 @@ export type ContentProps = {
 };
 
 
-export const Content = ({ id, onClose }: ContentProps) => {
+export const Content = ({ id='unknown', onClose }: ContentProps) => {
   const { item: contact, inputMutator, listMutatorsFactory, mutation, remove } = useItem(id)
 
   const props = (field: keyof Item) => ({

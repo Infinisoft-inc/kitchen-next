@@ -1,8 +1,10 @@
+//@ts-nocheck
 import config from '@/config/config.json';
 import { CrudMutators, InputMutatorGeneric, UseListMutatorGeneric } from "@/hooks";
+import { UseMutatorGeneric } from '@/hooks/types';
 import { Item, Meta } from '@/models';
 import * as listService from "@/services/contacts/list";
-import { IStore, Store, UseMutatorGeneric } from "@infini-soft/store";
+import { IStore, Store } from "@infini-soft/store";
 import React from 'react';
 
 const devtool = config?.verbose

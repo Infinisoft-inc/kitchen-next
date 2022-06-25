@@ -32,7 +32,8 @@ const Details = ({ }: DetailsProps) => {
         open={visible}
         onClose={hide}
       >
-        <Content id={store.getState()?.editItemId} onClose={hide} />
+        
+        {store?.getState?.()?.editItemId && <Content id={store?.getState?.()?.editItemId} onClose={hide} />}
       </Drawer>
     </Suspense>
   </div>

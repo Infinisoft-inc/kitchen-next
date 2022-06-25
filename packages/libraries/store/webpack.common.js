@@ -13,22 +13,23 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'store.js',
     library: 'store',
-    libraryTarget: 'umd'
+    libraryTarget: 'umd',
   },
   resolve: {
     cacheWithContext: false,
-    extensions: ['.ts', '.js'],
+    extensions: ['.ts', '.tsx', '.js'],
   },
   module: {
     rules: [
       {
-        test: /\.(js|ts)?$/,
+        test: /\.(js|ts|tsx)?$/,
         use: {
           loader: 'babel-loader',
           options: {
             presets: [
               '@babel/preset-typescript',
-              '@babel/preset-env'
+              '@babel/preset-env',
+              ['@babel/preset-react', { runtime: 'automatic' }],
             ],
             plugins: ['lodash'],
           },
@@ -36,5 +37,5 @@ module.exports = {
         exclude: /node_modules/,
       },
     ],
-  }
+  },
 };

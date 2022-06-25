@@ -58,7 +58,7 @@
     "style-loader": "^3.3.1",
     "terser-webpack-plugin": "^5.3.1",
     "ts-jest": "^28.0.2",
-    "ts-node": "^10.7.0",
+    "ts-node": "^10.8.1",
     "typedoc": "^0.22.17",
     "typedoc-plugin-markdown": "^3.12.1",
     "typescript": "^4.6.4",
@@ -70,8 +70,7 @@
   },
   "dependencies": {
     "@infini-soft/kli": "^0.0.41",
-    "@infini-soft/lib-federation": "^0.0.14",
-    "@infini-soft/store": "^0.1.4"
+    "@infini-soft/lib-federation": "^0.0.14"
   },
   "scripts": {
     "start:local:federation": "serve -s packages -l 5000",
