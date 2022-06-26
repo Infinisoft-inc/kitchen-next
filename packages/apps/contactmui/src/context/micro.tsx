@@ -38,16 +38,17 @@ export type MicroStore = IStore<MicroState, MicroPayload>
  * Micro Context
  */
 export type IMicroContext = {
-  store: MicroStore
+  store?: MicroStore
+  context?: Context
 }
 
 const initialContext: IMicroContext = {
-  store: new Store(listService.list, { devtool })
+  store: new Store(listService.list, { devtool }),
 };
 const MicroContext = React.createContext(initialContext);
 
-const MicroContextProvider = ({ children }: { children: React.ReactNode }) => {
-  return <MicroContext.Provider value={{ ...initialContext }}>
+const MicroContextProvider = ({ children, context }: { children: React.ReactNode, context: Context }) => {
+  return <MicroContext.Provider value={{ ...initialContext, context }}>
     {children}
   </MicroContext.Provider>
 }

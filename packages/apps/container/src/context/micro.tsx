@@ -6,10 +6,12 @@ const devtool = config?.verbose
 
 export type IMicroContext = {
   user: typeof context
+  style: string
 }
 
 const initialContext: IMicroContext = {
-  user: context
+  user: context,
+  style: ':host { --test: red;} body { background-color: pink; }'
 };
 const MicroContext = React.createContext(initialContext);
 

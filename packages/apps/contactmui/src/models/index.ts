@@ -17,7 +17,10 @@ export type List = {
 
 export type Meta = Record<string, any>;
 
-export type Context = Contact & {
-
+export type Context = {
+  user: Contact
+  style: string
 }
+
+
 

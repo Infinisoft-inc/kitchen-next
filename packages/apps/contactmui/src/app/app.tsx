@@ -1,7 +1,7 @@
 
 import Create from '@/components/create';
-import '@/style';
-import React from 'react';
+// import '@/style';
+import React, { Suspense } from 'react';
 import styles from './index.css';
 
 const Toolbar = React.lazy(() => import(/* */ /* webpackChunkName: 'toolbar' */'../components/toolbar'));
@@ -12,13 +12,15 @@ const Details = React.lazy(() => import(/* webpackChunkName: 'Details' */ '../co
 const App = () => {
 
 
-  return <div className={styles.root}>
-    <Header />
-    <Toolbar />
-    <ContactList />
-    <Details />
-    <Create />
-  </div>
+  return <Suspense>
+    <div className={styles.root}>
+      <Header />
+      <Toolbar />
+      <ContactList />
+      <Details />
+      <Create />
+    </div>
+  </Suspense>
 };
 
 export default App

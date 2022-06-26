@@ -84,6 +84,7 @@
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
     "@mui/material": "^5.8.4",
+    "react-shadow-root": "^6.2.0",
     "style-dictionary": "^3.7.1"
   }
 }
