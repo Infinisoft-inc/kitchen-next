@@ -28,7 +28,7 @@
       ],
       "name": "ButtonA",
       "tags": [],
-      "last_updated": "2022-06-26T20:30:47.197Z",
+      "last_updated": "2022-06-26T20:49:15.481Z",
       "last_updated_by": "Infinisoft <info@infini-soft.com>",
       "description": "# ButtonA\n\nPOCButtonA is a button component federated as a module for POC on [issue #32](https://github.com/Infinisoft-inc/kitchen-next/issues/32).\n\n#Outlined Button\n\nbackgroud-color: var(--md-sys-color-surface);\ncolor: var(--md-sys-color-primary);\nfont-size: var(--md-sys-typescale-large-size);\nfont-weight: var(--md-sys-typescale-label-large-weight);\n\n#Filled Button(contained)\n\nbackground-color: var(--md-sys-color-primary);\ncolor: var(--md-sys-color-on-primary);\nbox-shadow: var(--md-sys-color-shadow);\nfont-size: var(--md-sys-typescale-large-size);\nfont-weight: var(--md-sys-typescale-label-large-weight);\n\n#Disabled Filled Button\n\nbackground-color: var(--md-sys-color-on-surface);\nopacity: 12%;\ncolor: var(--md-sys-color-on-surface);\nopacity: 38%;\n\n#Hovered Filled Button\n\nbackground-color: var(--md-sys-color-on-primary);\nopacity: var(--md-sys-state-hover-state-layer-opacity);\ncolor: var(--md-sys-color-on-primary);\n\n#Focused Filled Button\n\nbackground-color: var(--md-sys-color-on-primary);\nopacity: var(--md-sys-state-focus-state-layer-opacity);\ncolor: var(--md-sys-color-on-primary);"
     }
