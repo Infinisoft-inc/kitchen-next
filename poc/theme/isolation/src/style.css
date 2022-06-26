@@ -1,0 +1,11 @@
+:root {
+    --primary:  gray;
+}
+
+body {
+    background-color: var(--primary);;
+}
+
+button {
+    background-color: pink;
+}

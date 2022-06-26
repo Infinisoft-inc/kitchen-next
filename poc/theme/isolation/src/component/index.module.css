@@ -1,0 +1,28 @@
+/*
+ * Copyright © All rights reserved 2022
+ * Infinisoft Inc.
+ * www.infini-soft.com
+ */
+
+:root {
+  --primary: pink;
+}
+
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  border: 1px black solid;
+  max-width: 200px;
+}
+
+.shadowRoot {
+  border: 2px red  dashed;
+  max-width: 150px;
+}
+
+button {
+  background-color: var(--primary);
+  max-width: 100px;
+}
