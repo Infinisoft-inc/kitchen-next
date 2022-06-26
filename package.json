@@ -55,6 +55,7 @@
     "storybook-dark-mode": "^1.1.0",
     "storybook-design-token": "^2.4.0",
     "storybook-module-federation": "^0.6.2",
+    "style-dictionary": "3.7.1",
     "style-loader": "^3.3.1",
     "terser-webpack-plugin": "^5.3.1",
     "ts-jest": "^28.0.2",
