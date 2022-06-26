@@ -29,3 +29,4 @@ packages/components/skeleton.json
 packages/libraries/skeleton-nomf.json
 docs
 dev/
+.vscode/settings.json
