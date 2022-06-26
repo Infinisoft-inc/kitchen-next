@@ -1,5 +1,6 @@
 {
     "debug.allowBreakpointsEverywhere": true,
     "xd.globalEditor": true,
-    "xd.lastPackage": "/C:/SHARED/WORKSPACE/kitchen-next/packages/components/contact/src/style/material-theme"
+    "xd.lastPackage": "/com.docker.devenvironments.code/poc/theme/dsp",
+    "xd.authorName": "Infinisoft <info@infini-soft.com>"
 }
