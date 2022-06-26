@@ -4,7 +4,7 @@
  * www.infini-soft.com
  */
 
-export type PocButtonAProps = {
+export type ButtonAProps = {
   title?: string
   content?: string
   context?: Context

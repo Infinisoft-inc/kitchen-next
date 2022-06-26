@@ -1,5 +1,5 @@
 {
-  "name": "pocbuttonb",
+  "name": "container1",
   "version": "0.0.1",
   "description": "Issue #32 Styling Scope&#x2F;Isolation Design to avoid Regression outside itself",
   "private": true,
@@ -25,7 +25,9 @@
   },
   "devDependencies": {
     "@types/react": "^18.0.9",
-    "@types/react-dom": "^18.0.4"
+    "@types/react-dom": "^18.0.4",
+    "ts-node": "^10.8.1",
+    "tsconfig-paths": "^4.0.0"
   },
   "peerDependencies": {
     "react": "^18.1.0",
@@ -33,12 +35,15 @@
   },
   "infinisoft": {
     "moduleFederation": {
-      "title": "ButtonB",
+      "title": "Container1",
       "category": "poc",
       "image": "https://www.kitchen.infini-soft.com/assets/components.png",
-      "component": "ButtonB",
+      "component": "Container1",
       "dev": {
-        "remotes": {}
+        "remotes": {
+          "buttona": "buttona@http://localhost:5000/buttona/dev/remoteEntry.js",
+          "buttonb": "buttonb@http://localhost:5000/buttonb/dev/remoteEntry.js"
+        }
       },
       "prod": {
         "remotes": {}
