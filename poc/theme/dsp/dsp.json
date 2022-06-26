@@ -1,12 +1,12 @@
 {
   "dsp_spec_version": "0.0.1",
   "last_updated_by": "Infinisoft <info@infini-soft.com>",
-  "last_updated": "2022-06-26T17:10:11.000Z",
+  "last_updated": "2022-06-26T17:30:17.321Z",
   "settings": {
-    "name": "Material",
+    "name": "",
     "package_version": "0.0.1",
     "build_tool": "StyleDictionary",
-    "snippet_trigger_prefix": "md_",
+    "snippet_trigger_prefix": "xd_",
     "build_status_label": "dev",
     "build_params": "./config.js",
     "languages": [
@@ -81,7 +81,7 @@
       },
       {
         "label": "JavaScript",
-        "export_tokens": true,
+        "export_tokens": false,
         "snippet_id": "javascript",
         "syntax": "text/javascript",
         "ext-com_adobe_xd-styledictionary_id": "js"
