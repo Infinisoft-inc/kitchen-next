@@ -9,17 +9,16 @@ import React, { ForwardedRef, forwardRef, Suspense } from 'react';
 import css from './index.module.css';
 import { context, PocContainerProps } from './types';
 
-const ButtonA = React.lazy(() => import(/* webpackChunkName: 'ButtonA' */ 'pocbuttona/PocButtonA'))
-const ButtonB = React.lazy(() => import(/* webpackChunkName: 'ButtonA' */ 'pocbuttonb/ButtonB'))
+const ButtonA = React.lazy(() => import(/* webpackChunkName: 'ButtonA' */ 'buttona/ButtonA'))
+const ButtonB = React.lazy(() => import(/* webpackChunkName: 'ButtonA' */ 'buttonb/ButtonB'))
 
-const PocContainer = (props: PocContainerProps, ref: ForwardedRef<unknown>) => {
+const Container1 = (props: PocContainerProps, ref: ForwardedRef<unknown>) => {
 
   return <Suspense>
     <header className={css.root}>
-      <h1>POC Container</h1>
+      <h1>POC#1 Container1</h1>
 
       <button>Container button</button>
-
 
     </header>
     <main>
@@ -29,4 +28,4 @@ const PocContainer = (props: PocContainerProps, ref: ForwardedRef<unknown>) => {
   </Suspense>
 }
 
-export default forwardRef<unknown, PocContainerProps>(PocContainer);
+export default forwardRef<unknown, PocContainerProps>(Container1);

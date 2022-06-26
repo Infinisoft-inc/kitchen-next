@@ -4,14 +4,23 @@
  * www.infini-soft.com
  */
 
-.root {
+header {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   border: 2px purple solid;
+  padding: 1rem;
   margin-bottom: 1.5rem;
+}
+
+main {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
 }
 
 button {
   background-color: green;
 }
+

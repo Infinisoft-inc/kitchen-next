@@ -1,5 +1,5 @@
 {
-  "name": "pocbuttona",
+  "name": "buttonb",
   "version": "0.0.1",
   "description": "Issue #32 Styling Scope&#x2F;Isolation Design to avoid Regression outside itself",
   "private": true,
@@ -33,11 +33,13 @@
   },
   "infinisoft": {
     "moduleFederation": {
-      "title": "PocButtonA",
+      "title": "ButtonB",
       "category": "poc",
       "image": "https://www.kitchen.infini-soft.com/assets/components.png",
-      "component": "PocButtonA",
-      "dev": {},
+      "component": "ButtonB",
+      "dev": {
+        "remotes": {}
+      },
       "prod": {
         "remotes": {}
       }
