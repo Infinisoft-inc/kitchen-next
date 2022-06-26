@@ -4,12 +4,18 @@
  * www.infini-soft.com
  */
 
-export type ButtonAProps = {
-  title?: string
-  content?: string
+import React from "react"
+import { Context, ThemeMode } from "../common/common"
+import { VariantButton } from "./presets"
+
+export type ButtonContextProps = {
+  children: React.ReactNode
+  variant?: VariantButton
   context?: Context
+  mode?: ThemeMode
 }
 
-export type Context = {
-  dynamicStyle: string
+export type ButtonProps = {
+  variant: VariantButton
+  children: React.ReactNode
 }

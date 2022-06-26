@@ -4,7 +4,11 @@
  * www.infini-soft.com
  */
 
+import { color } from '../../common/common';
+export type VariantButton = "filled" | "outlined"
+export type ButtonAPresets = Record<VariantButton, keyof typeof color>
 
-export type ButtonAPresets = { }
-
-export const buttonaPresets: ButtonAPresets = {}
+export const buttonaPresets: ButtonAPresets = {
+    filled: 'md_sys_color_primary',
+    outlined: 'md_sys_color_secondary'
+}

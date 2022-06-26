@@ -5,26 +5,50 @@
  *
  * PocButtonA Federated Micro Component
  */
-import { ForwardedRef, forwardRef, Suspense } from 'react';
+import React, { ForwardedRef, forwardRef, Suspense, useEffect } from 'react';
 import ReactShadowRoot from 'react-shadow-root';
-import css from './index.module.css';
-import { ButtonAProps } from './types';
+import Button from './component';
+import { buttonaPresets } from './presets';
+import { ButtonContextProps } from './types';
 
-const ButtonA = (props: ButtonAProps, ref: ForwardedRef<unknown>) => {
+const ButtonA = ({ context, variant = 'filled', mode='dark', children }: ButtonContextProps, ref: ForwardedRef<unknown>) => {
+  const [state, setState] = React.useState<any>();
+
+  useEffect(() => {
+    console.log(`Button A Preset = `, buttonaPresets[variant])
+    const token = context?.getToken(buttonaPresets[variant])
+    setState(token)
+    console.log(`ButtonA Variant = ${variant} Color = `, token)
+  }, [mode])
+
 
   return <Suspense>
     <div>
       <ReactShadowRoot mode='open'>
-        <style>{props?.context?.dynamicStyle}</style>
-
+        <style>
+          {state?.token && state?.value && `:host { ${state.token}: ${state.value};}`}
+          {`
+          .button {
+            background-color: var(--md-sys-primary-color);
+          }
+          
+          .filled {
+            background-color: var(--md-sys-color-primary);
+          }
+          
+          .outlined {
+            border: 2px var(--md-sys-color-secondary) solid;
+          }          
+          `}
+        </style>
         <main>
-          <button className={css.button} >
-            Button A
-          </button>
+          <Button variant={variant}>
+            {children}
+            </Button>
         </main>
       </ReactShadowRoot>
     </div>
   </Suspense>
 }
 
-export default forwardRef<unknown, ButtonAProps>(ButtonA);
+export default forwardRef<unknown, ButtonContextProps>(ButtonA);

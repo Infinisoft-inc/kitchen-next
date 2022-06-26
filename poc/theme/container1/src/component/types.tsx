@@ -9,10 +9,3 @@ export type PocContainerProps = {
   content?: string
 }
 
-export type Context = {
-  dynamicStyle: string
-}
-
-export const context: Context = {
-  dynamicStyle: `:host { --md-sys-primary-color: orange; } button { background-color: var(--md-sys-primary-color); }`
-}

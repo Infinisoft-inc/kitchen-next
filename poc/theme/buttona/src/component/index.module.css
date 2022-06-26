@@ -7,3 +7,11 @@
 .button {
   background-color: var(--md-sys-primary-color);
 }
+
+.filled {
+  background-color: var(--md-sys-color-primary);
+}
+
+.outlined {
+  background-color: var(--md-sys-color-secondary);
+}
