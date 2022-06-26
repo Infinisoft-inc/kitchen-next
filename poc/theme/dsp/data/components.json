@@ -2,5 +2,29 @@
   "dsp_spec_version": "0.0.1",
   "last_updated_by": "Infinisoft <info@infini-soft.com>",
   "last_updated": "2022-06-26T17:30:17.321Z",
-  "entities": []
+  "entities": [
+    {
+      "id": "60ff366c-ac42-4cb4-a58c-a7a071a5af7c",
+      "class": "component",
+      "type": "page",
+      "related_entity_ids": [
+        "md.sys.color.primary"
+      ],
+      "snippets": {
+        "trigger": "rbang",
+        "languages": {
+          "No language (For trigger access)": "import d",
+          "typescript": "import dog from 'dog'\n\nconst dog = () => <ButtonA />"
+        }
+      },
+      "renditions": [
+        "buttona.png"
+      ],
+      "name": "ButtonA",
+      "tags": [],
+      "last_updated": "2022-06-26T17:59:02.396Z",
+      "last_updated_by": "Infinisoft <info@infini-soft.com>",
+      "description": "# ButtonA\n\nPOCButtonA is a button component federated as a module for POC on [issue #32](https://github.com/Infinisoft-inc/kitchen-next/issues/32).\n"
+    }
+  ]
 }
