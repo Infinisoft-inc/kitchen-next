@@ -9,7 +9,9 @@
       "type": "page",
       "related_entity_ids": [
         "md.sys.color.primary",
-        "md.sys.color.surface"
+        "md.sys.color.surface",
+        "md.sys.typescale.label-large.size",
+        "md.sys.typescale.label-large.weight"
       ],
       "snippets": {
         "trigger": "rbang",
@@ -23,9 +25,9 @@
       ],
       "name": "ButtonA",
       "tags": [],
-      "last_updated": "2022-06-26T19:30:18.348Z",
+      "last_updated": "2022-06-26T19:48:28.491Z",
       "last_updated_by": "Infinisoft <info@infini-soft.com>",
-      "description": "# ButtonA\n\nPOCButtonA is a button component federated as a module for POC on [issue #32](https://github.com/Infinisoft-inc/kitchen-next/issues/32).\n\n#Outlined Button\n\nbackgroud-color: var(--md-sys-color-surface);\ncolor: var(--md-sys-color-primary);"
+      "description": "# ButtonA\n\nPOCButtonA is a button component federated as a module for POC on [issue #32](https://github.com/Infinisoft-inc/kitchen-next/issues/32).\n\n#Outlined Button\n\nbackgroud-color: var(--md-sys-color-surface);\ncolor: var(--md-sys-color-primary);\nfont-size: var(--md-sys-typescale-large-size);\nfont-weight: var(--md-sys-typescale-label-large-weight);"
     }
   ]
 }
