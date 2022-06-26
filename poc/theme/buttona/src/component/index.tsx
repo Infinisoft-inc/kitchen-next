@@ -8,9 +8,9 @@
 import { ForwardedRef, forwardRef, Suspense } from 'react';
 import ReactShadowRoot from 'react-shadow-root';
 import css from './index.module.css';
-import { PocButtonAProps } from './types';
+import { ButtonAProps } from './types';
 
-const PocButtonA = (props: PocButtonAProps, ref: ForwardedRef<unknown>) => {
+const ButtonA = (props: ButtonAProps, ref: ForwardedRef<unknown>) => {
 
   return <Suspense>
     <div>
@@ -27,4 +27,4 @@ const PocButtonA = (props: PocButtonAProps, ref: ForwardedRef<unknown>) => {
   </Suspense>
 }
 
-export default forwardRef<unknown, PocButtonAProps>(PocButtonA);
+export default forwardRef<unknown, ButtonAProps>(ButtonA);
