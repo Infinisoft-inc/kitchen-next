@@ -1,0 +1,11 @@
+{
+  "name": "theme",
+  "version": "1.0.0",
+  "private":true,
+  "description": "POC Theme DSP",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts":{
+    "start":"sh ./start.sh"
+  }
+}
