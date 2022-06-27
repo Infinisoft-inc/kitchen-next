@@ -1,5 +1,6 @@
 /// <reference types="react" />
-declare module "common/common" {
+declare module "core/tokens/index" {
+    import { ThemeMode } from "core/types";
     export const tokens: {
         "md_sys_typescale_label-small": {
             family: {
@@ -617,23 +618,17 @@ declare module "common/common" {
             value: string;
         };
     };
-    export type ThemeMode = "dark" | "light";
     export const themeMode: ThemeMode;
-    type getToken = <K extends keyof typeof tokens>(_tokens: K[]) => string;
-    export type Context = {
-        dynamicStyle: string;
-        getToken: getToken;
-    };
 }
 declare module "component/presets/index" {
-    import { tokens } from "common/common";
+    import { tokens } from "core/tokens/index";
     export type Variants = "filled" | "outlined";
     export type Presets = Record<Variants, (keyof typeof tokens)[]>;
     export const presets: Presets;
 }
 declare module "core/types" {
-    import { Context, ThemeMode } from "common/common";
     import { Variants } from "component/presets/index";
+    import { tokens } from "core/tokens/index";
     import React from "react";
     export type ContextProps = {
         children: React.ReactNode;
@@ -641,17 +636,24 @@ declare module "core/types" {
         context?: Context;
         mode?: ThemeMode;
     };
+    type getToken = <K extends keyof typeof tokens>(_tokens: K[]) => string;
+    export type ThemeMode = "dark" | "light";
+    export type Context = {
+        dynamicStyle: string;
+        getToken: getToken;
+    };
+}
+declare module "component/types" {
+    import { Variants } from "component/presets/index";
+    import React from "react";
+    export type ComponentProps = {
+        variant: Variants;
+        children: React.ReactNode;
+    };
 }
 declare module "component/component" {
-    /**
-     * Copyright © All rights reserved 2022
-     * Infinisoft Inc.
-     * www.infini-soft.com
-     *
-     * PocButtonA Federated Micro Component
-     */
-    import { ContextProps } from "core/types";
-    const _default: import("react").ForwardRefExoticComponent<ContextProps & import("react").RefAttributes<HTMLButtonElement>>;
+    import { ComponentProps } from "component/types";
+    const _default: import("react").ForwardRefExoticComponent<ComponentProps & import("react").RefAttributes<HTMLButtonElement>>;
     export default _default;
 }
 declare module "buttona/ButtonA" {
@@ -661,12 +663,3 @@ declare module "buttona/ButtonA" {
     export default _default_1;
 }
 declare module "bootstrap" { }
-declare module "component/types" {
-    import { Variants } from "component/presets/index";
-    import React from "react";
-    export type ComponentProps = {
-        variant: Variants;
-        children: React.ReactNode;
-    };
-}
-

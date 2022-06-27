@@ -6,7 +6,7 @@
 
 import { Variants } from "@/component/presets"
 import React from "react"
-import { Context, ThemeMode } from "../common/common"
+import { tokens } from "./tokens"
 
 export type ContextProps = {
   children: React.ReactNode
@@ -14,3 +14,11 @@ export type ContextProps = {
   context?: Context
   mode?: ThemeMode
 }
+
+type getToken = <K extends keyof typeof tokens>(_tokens: K[]) => string
+export type ThemeMode = "dark" | "light"
+export type Context = {
+    dynamicStyle: string
+    getToken: getToken
+}
+
