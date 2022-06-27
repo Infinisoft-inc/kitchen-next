@@ -16,14 +16,14 @@ const ButtonA = ({ context, variant = 'filled', mode = 'dark', children, ...prop
   const [tokens, setTokens] = React.useState('');
 
   useEffect(() => {
-    setTokens(context?.getToken(presets[variant])?.map(({ token, value }) => `${token}: ${value};`).join(' ') || '')
+    setTokens(context?.getToken(presets[variant]) || '')
   }, [mode])
 
   return <Suspense>
     <div>
       <ReactShadowRoot mode='open'>
         <style>
-          {`:host { ${tokens} }`}
+          {`${tokens}`}
           {css}
         </style>
         <main>

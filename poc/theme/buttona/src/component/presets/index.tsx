@@ -4,11 +4,11 @@
  * www.infini-soft.com
  */
 
-import { color } from '../../common/common';
+import { tokens } from '../../common/common';
 export type Variants = "filled" | "outlined"
-export type Presets = Record<Variants, (keyof typeof color)[]>
+export type Presets = Record<Variants, (keyof typeof tokens)[]>
 export const presets: Presets = {
-    filled: ['md_sys_color_primary', 'md_sys_color_on-primary', 'md_sys_color_shadow'],
+    filled: ['md_sys_color_primary', 'md_sys_color_on-primary', 'md_sys_color_shadow', 'md_sys_color_inverse-on-surface', 'md_sys_typescale_label-large'],
     outlined: ['md_sys_color_secondary']
 }
 
