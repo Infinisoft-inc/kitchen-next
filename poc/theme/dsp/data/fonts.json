@@ -100,8 +100,8 @@
       "type": "font",
       "id": "md.sys.typescale.label-large",
       "name": "md.sys.typescale.label-large",
-      "last_updated": "2022-06-26T17:37:20.000Z",
-      "last_updated_by": "Material",
+      "last_updated": "2022-06-27T03:34:26.567Z",
+      "last_updated_by": "Infinisoft <info@infini-soft.com>",
       "description": "",
       "tags": [
         "label-large",
@@ -110,22 +110,10 @@
       "related_entity_ids": [],
       "tokens": [
         {
-          "id": "md.sys.typescale.label-large.font",
-          "type": "custom",
-          "value": "Roboto",
-          "key": "family"
-        },
-        {
           "id": "md.sys.typescale.label-large.line-height",
           "type": "size",
           "value": "20",
           "key": "line-height"
-        },
-        {
-          "id": "md.sys.typescale.label-large.weight",
-          "type": "custom",
-          "value": "Medium",
-          "key": "weight"
         },
         {
           "id": "md.sys.typescale.label-large.tracking",
@@ -134,7 +122,19 @@
           "key": "tracking"
         },
         {
-          "id": "md.sys.typescale.label-large.size",
+          "id": "md.sys.typescale.label-large-family",
+          "type": "custom",
+          "value": "Roboto",
+          "key": "family"
+        },
+        {
+          "id": "md.sys.typescale.label-large-weight",
+          "type": "custom",
+          "value": "Medium",
+          "key": "weight"
+        },
+        {
+          "id": "md.sys.typescale.label-large-size",
           "type": "custom",
           "value": "14",
           "key": "size"
