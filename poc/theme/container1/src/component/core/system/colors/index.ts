@@ -1,4 +1,4 @@
-import colors from '../../theme/blue/colors.json';
+import colors from '../../theme/colors.json';
 import { key2var } from '../helpers';
 import { ThemeMode } from '../theme';
 

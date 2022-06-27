@@ -11,7 +11,7 @@
     "build:dev:watch": "kli component build --watch",
     "build:prod": "kli component build --prod",
     "build:prod:watch": "kli component build --prod --watch",
-    "build:analyze": "kli component build --analyze --prod& start analyze/bundle-stats.html",
+    "build:analyze": "kli component build --analyze --prod",
     "build:analyze:baseline": "kli component build --analyze-baseline --prod& start analyze/bundle-stats.html",
     "test": "jest",
     "test:watchAll": "jest --watchAll",

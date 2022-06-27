@@ -1,4 +1,4 @@
-import fonts from '../../theme/blue/fonts.json';
+import fonts from '../../theme/fonts.json';
 import { key2var } from '../helpers';
 import { ThemeMode } from '../theme';
 
