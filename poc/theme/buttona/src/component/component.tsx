@@ -8,9 +8,9 @@
 import { ForwardedRef, forwardRef, Suspense } from 'react';
 import { ContextProps } from './types';
 
-const ButtonA = ({ variant, children }: ContextProps, ref: ForwardedRef<HTMLButtonElement>) => {
+const ButtonA = ({ variant, children, ...props }: ContextProps, ref: ForwardedRef<HTMLButtonElement>) => {
   return <Suspense>
-    <button className={variant} ref={ref}>
+    <button className={variant} ref={ref} {...props}>
       {children}
     </button>
   </Suspense>
