@@ -3,8 +3,11 @@ import fonts from './blue/fonts.json';
 
 type Size = "large" | "medium" | "small"
 type Typography = "headline" | "display" | "body" | "label" | "title"
+
 const fontTokens = fonts.font
+const fontSizeTokens = fonts.size.font
 const colorTokens = colors.color
+
 const tokens = { ...colorTokens, ...fontTokens }
 
 export type ThemeMode = "dark" | "light"
@@ -28,8 +31,9 @@ type Tokens = FontTokens | ColorTokens
 const typographyHandler: Function = (_token: FontTokens, _mode: ThemeMode) => {
     const family = tokens?.[_token].family.value
     const weight = tokens?.[_token].weight.value
+    const size = fontSizeTokens[_token].value
 
-    return `${key2var(_token)}-weight: ${weight}; ${key2var(_token)}-family: ${family};`
+    return `${key2var(_token)}-weight: ${weight}; ${key2var(_token)}-family: ${family}; ${key2var(_token)}-size: ${size}px;`
 }
 
 const colorHandler: Function = (_token: string, _mode: ThemeMode) => {

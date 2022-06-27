@@ -8,15 +8,15 @@
   background-color: var(--md-sys-color-primary);
   color: var(--md-sys-color-on-primary);
   box-shadow: var(--md-sys-color-shadow);
-  font-size: var(--md-sys-typescale-large-size);
+  font-size: var(--md-sys-typescale-label-large-size);
   font-weight: var(--md-sys-typescale-label-large-weight);
   font-family: var(--md-sys-typescale-label-large-family);
 }
 
 .filled:hover {
+  color: var(--md-sys-color-primary);
   background-color: var(--md-sys-color-on-primary);
   opacity: var(--md-sys-state-hover-state-layer-opacity);
-  color: var(--md-sys-color-on-primary);
   cursor: pointer;
 }
 
@@ -27,11 +27,11 @@
   opacity: 38%;
 }
 
-.filled:focus {
-  background-color: var(--md-sys-color-on-primary);
+/* .filled:focus {
+  background-color: var(--md-sys-color-primary);
   opacity: var(--md-sys-state-focus-state-layer-opacity);
   color: var(--md-sys-color-on-primary);
-}
+} */
 
 .outlined {
   background-color: var(--md-sys-color-secondary);
