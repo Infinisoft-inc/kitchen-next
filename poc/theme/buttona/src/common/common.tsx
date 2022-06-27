@@ -15,7 +15,7 @@ export const themeMode: ThemeMode = "light"
 
 // const key2var = (k: string) => `--${k.replaceAll('_', '-')}`
 
-type getToken = <K extends keyof typeof tokens>(_tokens: K[]) => { token: string, value: string }[]
+type getToken = <K extends keyof typeof tokens>(_tokens: K[]) => string
 
 // export const getToken = <K extends keyof typeof color>(_tokens: K[]) => {
 //     console.log(`getToken Argument Tokens = `, _tokens)
