@@ -4,6 +4,13 @@
  * www.infini-soft.com
  */
 
+ button {
+  transition: all 250ms ease-in-out;
+  padding: 0 16px;
+  height: 40px;
+  border-radius: 10px;
+ }
+ 
 .filled {
   background-color: var(--md-sys-color-primary);
   color: var(--md-sys-color-on-primary);
@@ -34,5 +41,15 @@
 } */
 
 .outlined {
-  background-color: var(--md-sys-color-secondary);
+  outline-color: var(--md-sys-color-outline);
+  color: var(--md-sys-color-primary);
+  font-size: var(--md-sys-typescale-label-large-size);
+  font-family: var(--md-sys-typescale-label-large-family);
+  font-weight: var(--md-sys-typescale-label-large-weight);
+}
+.outlined:hover {
+  outline-color: var(--md-sys-color-on-outline);
+  color: var(--md-sys-color-on-primary);
+  opacity: var(--md-sys-state-hover-state-layer-opacity);
+  cursor: pointer;
 }
