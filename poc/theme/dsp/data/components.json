@@ -22,9 +22,32 @@
       "renditions": [],
       "name": "ButtonA Filled",
       "tags": [],
-      "last_updated": "2022-06-27T00:54:06.582Z",
+      "last_updated": "2022-06-27T02:30:54.565Z",
       "last_updated_by": "Infinisoft <info@infini-soft.com>",
       "description": "# ButtonA Filled\n\nPOCButtonA Filled is a button component federated as a module for POC on [issue #32](https://github.com/Infinisoft-inc/kitchen-next/issues/32).\n\n\n## Filled Button\n\nbackground-color: var(--md-sys-color-primary);\ncolor: var(--md-sys-color-on-primary);\nbox-shadow: var(--md-sys-color-shadow);\nfont-size: var(--md-sys-typescale-large-size);\nfont-weight: var(--md-sys-typescale-label-large-weight);\nfont-family: var(--md-sys-typescale-label-large-family);\n\n### Disabled Filled Button\n\nbackground-color: var(--md-sys-color-on-surface);\nopacity: 12%;\ncolor: var(--md-sys-color-on-surface);\nopacity: 38%;\n\n### Hovered Filled Button\n\nbackground-color: var(--md-sys-color-on-primary);\nopacity: var(--md-sys-state-hover-state-layer-opacity);\ncolor: var(--md-sys-color-on-primary);\n\n### Focused Filled Button\n\nbackground-color: var(--md-sys-color-on-primary);\nopacity: var(--md-sys-state-focus-state-layer-opacity);\ncolor: var(--md-sys-color-on-primary);"
+    },
+    {
+      "id": "93e264ff-d5ec-45f3-9acf-1b34c2e54389",
+      "class": "component",
+      "type": "page",
+      "related_entity_ids": [
+        "md.sys.color.outline",
+        "md.sys.color.primary",
+        "md.sys.typescale.label-large.font",
+        "md.sys.typescale.label-large.size",
+        "md.sys.typescale.label-large.weight",
+        "md.sys.color.on-surface"
+      ],
+      "snippets": {
+        "trigger": "",
+        "languages": {}
+      },
+      "renditions": [],
+      "name": "ButtonA Outlined",
+      "tags": [],
+      "last_updated": "2022-06-27T02:46:28.364Z",
+      "last_updated_by": "Infinisoft <info@infini-soft.com>",
+      "description": "# ButtonA Filled\n\nPOCButtonA Filled is a button component federated as a module for POC on [issue #32](https://github.com/Infinisoft-inc/kitchen-next/issues/32).\n\n## Outlined Button\n\noutline-color: var(--md-sys-color-outline);\ncolor: var(--md-sys-color-primary);\nfont-size: var(--md-sys-typescale-label-large-size);\nfont-family: var(--md-sys-typescale-label-large-family);\nfont-weight: var(--md-sys-typescale-label-large-weight);\n\n### Disabled Outlined Button\n\noutline-color: var(--md-sys-color-on-surface);\nopacity: 12%;\ncolor: var(--md-sys-color-on-surface);\nopacity: 38%;\n\n### Hovered Outlined Button\n\noutline-color: var(--md-sys-color-primary);\nopacity: var(--md-sys-state-hover-state-layer-opacity);\n\n### Focused Outlined Button\n\noutline-color: var(--md-sys-color-primary);\nopacity: var(--md-sys-state-focus-state-layer-opacity);\n\n"
     },
     {
       "id": "60ff366c-ac42-4cb4-a58c-a7a071a5af7c",
