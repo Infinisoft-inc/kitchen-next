@@ -5,35 +5,15 @@
  *
  * PocButtonA Federated Micro Component
  */
-import css from '!!raw-loader!./style.css';
-import React, { ForwardedRef, forwardRef, Suspense, useEffect } from 'react';
-import ReactShadowRoot from 'react-shadow-root';
-import Button from './component';
-import { presets } from './presets';
-import type { ContextProps } from './types';
+import { ContextProps } from '@/core/types';
+import { ForwardedRef, forwardRef, Suspense } from 'react';
 
-const ButtonA = ({ context, variant = 'filled', mode = 'dark', children, ...props }: ContextProps, ref: ForwardedRef<HTMLButtonElement>) => {
-  const [tokens, setTokens] = React.useState('');
-
-  useEffect(() => {
-    setTokens(context?.getToken(presets[variant]) || '')
-  }, [mode])
-
+const Component = ({ variant, children, ...props }: ContextProps, ref: ForwardedRef<HTMLButtonElement>) => {
   return <Suspense>
-    <div>
-      <ReactShadowRoot mode='open'>
-        <style>
-          {`${tokens}`}
-          {css}
-        </style>
-        <main>
-          <Button variant={variant} ref={ref} {...props}>
-            {children}
-          </Button>
-        </main>
-      </ReactShadowRoot>
-    </div>
+    <button className={variant} ref={ref} {...props}>
+      {children}
+    </button>
   </Suspense>
 }
 
-export default forwardRef<HTMLButtonElement, ContextProps>(ButtonA);
+export default forwardRef<HTMLButtonElement, ContextProps>(Component);

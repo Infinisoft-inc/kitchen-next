@@ -3,9 +3,8 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
-import React from 'react';
 import { createRoot } from 'react-dom/client';
-import Component from './component';
+import Component from './core';
 
 /**
  * Component is fetched at runtime with Module Federation.

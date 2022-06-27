@@ -6,8 +6,9 @@
  * PocContainer Federated Micro Component
  */
 import React, { startTransition, Suspense } from 'react';
+import { ThemeMode, themeMode, toggleThemeMode } from './core';
+import { context } from "./core/context";
 import css from './index.module.css';
-import { context, ThemeMode, themeMode, toggleThemeMode } from './theme';
 import { PocContainerProps } from './types';
 
 const ButtonA = React.lazy(() => import(/* webpackChunkName: 'ButtonA' */ 'buttona/ButtonA'))
