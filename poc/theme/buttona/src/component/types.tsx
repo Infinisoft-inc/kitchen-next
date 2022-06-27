@@ -6,16 +6,16 @@
 
 import React from "react"
 import { Context, ThemeMode } from "../common/common"
-import { VariantButton } from "./presets"
+import { Variants } from "./presets"
 
-export type ButtonContextProps = {
+export type ContextProps = {
   children: React.ReactNode
-  variant?: VariantButton
+  variant?: Variants
   context?: Context
   mode?: ThemeMode
 }
 
-export type ButtonProps = {
-  variant: VariantButton
+export type ComponentProps = {
+  variant: Variants
   children: React.ReactNode
 }

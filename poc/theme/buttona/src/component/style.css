@@ -1,0 +1,24 @@
+/*
+ * Copyright © All rights reserved 2022
+ * Infinisoft Inc.
+ * www.infini-soft.com
+ */
+
+.filled {
+  background-color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+  box-shadow: var(--md-sys-color-shadow);
+  font-size: var(--md-sys-typescale-large-size);
+  font-weight: var(--md-sys-typescale-label-large-weight);
+}
+
+.filled:hover {
+  background-color: var(--md-sys-color-on-primary);
+  opacity: var(--md-sys-state-hover-state-layer-opacity);
+  color: var(--md-sys-color-on-primary);
+  cursor: pointer;
+}
+
+.outlined {
+  background-color: var(--md-sys-color-secondary);
+}

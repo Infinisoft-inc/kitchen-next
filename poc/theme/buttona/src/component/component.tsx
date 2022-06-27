@@ -6,9 +6,9 @@
  * PocButtonA Federated Micro Component
  */
 import { ForwardedRef, forwardRef, Suspense } from 'react';
-import { ButtonContextProps } from './types';
+import { ContextProps } from './types';
 
-const ButtonA = ({ variant, children }: ButtonContextProps, ref: ForwardedRef<HTMLButtonElement>) => {
+const ButtonA = ({ variant, children }: ContextProps, ref: ForwardedRef<HTMLButtonElement>) => {
   return <Suspense>
     <button className={variant} ref={ref}>
       {children}
@@ -16,4 +16,4 @@ const ButtonA = ({ variant, children }: ButtonContextProps, ref: ForwardedRef<HT
   </Suspense>
 }
 
-export default forwardRef<HTMLButtonElement, ButtonContextProps>(ButtonA);
+export default forwardRef<HTMLButtonElement, ContextProps>(ButtonA);

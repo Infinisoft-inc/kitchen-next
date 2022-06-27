@@ -10,11 +10,8 @@ import css from './index.module.css';
 import { context, ThemeMode, themeMode, toggleThemeMode } from './theme';
 import { PocContainerProps } from './types';
 
-
-
 const ButtonA = React.lazy(() => import(/* webpackChunkName: 'ButtonA' */ 'buttona/ButtonA'))
 const ButtonB = React.lazy(() => import(/* webpackChunkName: 'ButtonA' */ 'buttonb/ButtonB'))
-
 
 const Container1 = (props: PocContainerProps) => {
   const [mode, setMode] = React.useState<typeof themeMode>('dark');

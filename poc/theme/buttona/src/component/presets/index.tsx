@@ -5,10 +5,32 @@
  */
 
 import { color } from '../../common/common';
-export type VariantButton = "filled" | "outlined"
-export type ButtonAPresets = Record<VariantButton, keyof typeof color>
-
-export const buttonaPresets: ButtonAPresets = {
-    filled: 'md_sys_color_primary',
-    outlined: 'md_sys_color_secondary'
+export type Variants = "filled" | "outlined"
+export type Presets = Record<Variants, (keyof typeof color)[]>
+export const presets: Presets = {
+    filled: ['md_sys_color_primary', 'md_sys_color_on-primary', 'md_sys_color_shadow'],
+    outlined: ['md_sys_color_secondary']
 }
+
+
+/**
+ * Presets are arrays of design token requested at runtime.
+ * This process is triggered when Component mounts. Its context is injected by
+ * container holding token resolver function.
+ * 
+ * Component request tokens values. 
+ * Assumptions:
+ * - Single source of truth in federation
+ * - Highest container in graph is style master (Scalability)
+ * - Memory optimization (Only component required tokens are stored in memory instead of duplicating tokens in each shadow dom)
+ * 
+ * Semantic
+ * 
+ * key      {string}    CSS Class
+ * value    {Token}     Design Token Object
+ * 
+ * Token
+ * key      {string}    CSS Variable 
+ * value    {string}    Variable value
+ */
+

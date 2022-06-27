@@ -5,50 +5,35 @@
  *
  * PocButtonA Federated Micro Component
  */
+import css from '!!raw-loader!./style.css';
 import React, { ForwardedRef, forwardRef, Suspense, useEffect } from 'react';
 import ReactShadowRoot from 'react-shadow-root';
 import Button from './component';
-import { buttonaPresets } from './presets';
-import { ButtonContextProps } from './types';
+import { presets } from './presets';
+import type { ContextProps } from './types';
 
-const ButtonA = ({ context, variant = 'filled', mode='dark', children }: ButtonContextProps, ref: ForwardedRef<unknown>) => {
-  const [state, setState] = React.useState<any>();
+const ButtonA = ({ context, variant = 'filled', mode = 'dark', children, ...props }: ContextProps, ref: ForwardedRef<HTMLButtonElement>) => {
+  const [tokens, setTokens] = React.useState('');
 
   useEffect(() => {
-    console.log(`Button A Preset = `, buttonaPresets[variant])
-    const token = context?.getToken(buttonaPresets[variant])
-    setState(token)
-    console.log(`ButtonA Variant = ${variant} Color = `, token)
+    setTokens(context?.getToken(presets[variant])?.map(({ token, value }) => `${token}: ${value};`).join(' ') || '')
   }, [mode])
-
 
   return <Suspense>
     <div>
       <ReactShadowRoot mode='open'>
         <style>
-          {state?.token && state?.value && `:host { ${state.token}: ${state.value};}`}
-          {`
-          .button {
-            background-color: var(--md-sys-primary-color);
-          }
-          
-          .filled {
-            background-color: var(--md-sys-color-primary);
-          }
-          
-          .outlined {
-            border: 2px var(--md-sys-color-secondary) solid;
-          }          
-          `}
+          {`:host { ${tokens} }`}
+          {css}
         </style>
         <main>
-          <Button variant={variant}>
+          <Button variant={variant} ref={ref} {...props}>
             {children}
-            </Button>
+          </Button>
         </main>
       </ReactShadowRoot>
     </div>
   </Suspense>
 }
 
-export default forwardRef<unknown, ButtonContextProps>(ButtonA);
+export default forwardRef<HTMLButtonElement, ContextProps>(ButtonA);
