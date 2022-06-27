@@ -14,13 +14,18 @@ module.exports = {
   context: process.cwd(),
    resolve: {
     cacheWithContext: false,
-    extensions: ['.tsx', '.ts', '.jsx', '.js'],
+    extensions: ['.tsx', '.ts', '.jsx', '.js', '.txt'],
   },
   experiments: {
     topLevelAwait: true,
   },
   module: {
     rules: [
+      {
+        include: path.resolve(process.cwd(), 'src'),
+        test: /\*.txt$/i,
+        use: 'raw-loader',
+      },
       {
         test: /\.(js|jsx|ts|tsx)?$/,
         use: {

@@ -1,7 +1,3 @@
-declare module "./index.module.css" {
-  const content: string;
-  export default content;
-}
 declare module '*.css';
 declare module '*.less';
 declare module '*.png';
