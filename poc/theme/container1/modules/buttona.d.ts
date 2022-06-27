@@ -631,7 +631,7 @@ declare module "component/presets/index" {
     export type Presets = Record<Variants, (keyof typeof tokens)[]>;
     export const presets: Presets;
 }
-declare module "component/types" {
+declare module "core/types" {
     import { Context, ThemeMode } from "common/common";
     import { Variants } from "component/presets/index";
     import React from "react";
@@ -641,20 +641,32 @@ declare module "component/types" {
         context?: Context;
         mode?: ThemeMode;
     };
-    export type ComponentProps = {
-        variant: Variants;
-        children: React.ReactNode;
-    };
 }
 declare module "component/component" {
-    import { ContextProps } from "component/types";
+    /**
+     * Copyright © All rights reserved 2022
+     * Infinisoft Inc.
+     * www.infini-soft.com
+     *
+     * PocButtonA Federated Micro Component
+     */
+    import { ContextProps } from "core/types";
     const _default: import("react").ForwardRefExoticComponent<ContextProps & import("react").RefAttributes<HTMLButtonElement>>;
     export default _default;
 }
 declare module "buttona/ButtonA" {
-    import type { ContextProps } from "component/types";
+    import { ContextProps } from "core/types";
     import React from 'react';
     const _default_1: React.ForwardRefExoticComponent<ContextProps & React.RefAttributes<HTMLButtonElement>>;
     export default _default_1;
 }
 declare module "bootstrap" { }
+declare module "component/types" {
+    import { Variants } from "component/presets/index";
+    import React from "react";
+    export type ComponentProps = {
+        variant: Variants;
+        children: React.ReactNode;
+    };
+}
+

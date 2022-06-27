@@ -1,8 +1,6 @@
 import fonts from '../../theme/blue/fonts.json';
 import { key2var } from '../helpers';
 import { ThemeMode } from '../theme';
-import { tokens } from "../tokens";
-
 
 export type Size = "large" | "medium" | "small";
 export type Typography = "headline" | "display" | "body" | "label" | "title";
@@ -12,7 +10,6 @@ export const fontSizeTokens = fonts.size.font;
 type Font = typeof fontTokens;
 export type FontTokens = keyof Font;
 
-
 /**
  *  Get Typography CSS Attributes for token
  * @param _token Token Key
@@ -20,8 +17,8 @@ export type FontTokens = keyof Font;
  * @returns      3 css variables weight, family, size
  */
 export const typographyToken2CssVariableMapper: Function = (_token: FontTokens, _mode: ThemeMode) => {
-    const family = tokens?.[_token].family.value;
-    const weight = tokens?.[_token].weight.value;
+    const family = fontTokens?.[_token].family.value;
+    const weight = fontTokens?.[_token].weight.value;
     const size = fontSizeTokens[_token].value;
 
     return `${key2var(_token)}-weight: ${weight}; ${key2var(_token)}-family: ${family}; ${key2var(_token)}-size: ${size}px;`;
