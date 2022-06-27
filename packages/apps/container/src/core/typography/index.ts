@@ -1,6 +1,6 @@
-import fonts from '../../theme/fonts.json';
 import { key2var } from '../helpers';
 import { ThemeMode } from '../theme';
+import fonts from './fonts.json';
 
 export type Size = "large" | "medium" | "small";
 export type Typography = "headline" | "display" | "body" | "label" | "title";

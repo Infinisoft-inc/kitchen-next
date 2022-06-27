@@ -22,20 +22,25 @@ type IRoute = {
   element: JSX.Element
 }
 
-export const routes: IRoute[] = [
-  // @ts-ignore
-  { path: "contact", element: <Contact context={useMicroContext}/> },
-  { path: "org", element: <Mock title='org' /> },
-  { path: "cases", element: <Mock title='cases' /> },
-  { path: "dashboard", element: <Mock title='dashboard' /> },
-]
+export 
 
-const Router = () => <MemoryRouter>
+const Router = () => {
+  const context = useMicroContext()
+
+  const routes: IRoute[] = [
+    // @ts-ignore
+    { path: "contact", element: <Contact context={context}/> },
+    { path: "org", element: <Mock title='org' /> },
+    { path: "cases", element: <Mock title='cases' /> },
+    { path: "dashboard", element: <Mock title='dashboard' /> },
+  ]
+
+return <MemoryRouter>
   <Routes>
     <Route path='/' element={<Layout />}>
       {routes.map((props) => <Route key={new Date().getTime().toFixed(0)} {...props} />)}
     </Route>
   </Routes>
-</MemoryRouter>
+</MemoryRouter>}
 
 export default Router

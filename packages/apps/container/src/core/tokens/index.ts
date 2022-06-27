@@ -3,13 +3,14 @@ import { ThemeMode } from '../theme';
 import { FontTokens, typographyToken2CssVariableMapper } from '../typography';
 
 
-type Tokens = FontTokens | ColorTokens;
+export type Tokens = FontTokens | ColorTokens;
 
 const token2CssVarMappers = {
     md_sys_color: colorToken2CssVariableMapper,
     md_sys_typescale: typographyToken2CssVariableMapper
 };
 
+export type GetToken = typeof getToken
 
 export const getToken = <K extends Tokens>(_tokens: K[]) => {
     const _mode = (localStorage.getItem('__theme__') || 'dark') as ThemeMode;

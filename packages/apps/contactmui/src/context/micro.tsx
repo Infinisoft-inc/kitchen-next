@@ -1,9 +1,11 @@
-//@ts-nocheck
+
 import config from '@/config/config.json';
+import { Context } from '@/core/types';
 import { CrudMutators, InputMutatorGeneric, UseListMutatorGeneric } from "@/hooks";
 import { UseMutatorGeneric } from '@/hooks/types';
 import { Item, Meta } from '@/models';
 import * as listService from "@/services/contacts/list";
+//@ts-ignore
 import { IStore, Store } from "@infini-soft/store";
 import React from 'react';
 
@@ -39,7 +41,7 @@ export type MicroStore = IStore<MicroState, MicroPayload>
  */
 export type IMicroContext = {
   store?: MicroStore
-  context?: Context
+  context?:  Context
 }
 
 const initialContext: IMicroContext = {
@@ -47,7 +49,7 @@ const initialContext: IMicroContext = {
 };
 const MicroContext = React.createContext(initialContext);
 
-const MicroContextProvider = ({ children, context }: { children: React.ReactNode, context: Context }) => {
+const MicroContextProvider = ({ children, context }: { children: React.ReactNode, context: Context}) => {
   return <MicroContext.Provider value={{ ...initialContext, context }}>
     {children}
   </MicroContext.Provider>

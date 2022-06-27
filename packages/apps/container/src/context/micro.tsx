@@ -1,4 +1,5 @@
 import config from '@/config/config.json';
+import { getToken, GetToken } from '@/core/tokens';
 import { context } from '@/data/context';
 import React from 'react';
 
@@ -6,12 +7,12 @@ const devtool = config?.verbose
 
 export type IMicroContext = {
   user: typeof context
-  style: string
+  getToken: GetToken
 }
 
 const initialContext: IMicroContext = {
   user: context,
-  style: ':host { --test: red;} body { background-color: pink; }'
+  getToken,
 };
 const MicroContext = React.createContext(initialContext);
 

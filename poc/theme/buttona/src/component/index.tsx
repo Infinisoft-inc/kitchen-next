@@ -21,7 +21,7 @@ const ButtonA = ({ context, variant = 'filled', mode = 'dark', children, ...prop
 
   return <Suspense>
     <div>
-      <ReactShadowRoot mode='open'>
+      <ReactShadowRoot mode='closed'>
         <style>
           {`${tokens}`}
           {css}

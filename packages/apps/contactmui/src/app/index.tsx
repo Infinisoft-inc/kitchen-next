@@ -6,28 +6,34 @@
  * Micro app entry point
  * Context Provider is created with localization, configuration andlogging
  */
-import { Context } from '@/models';
-import React, { Suspense } from 'react';
+import { Context } from '@/core/types';
+import React, { startTransition, Suspense, useEffect } from 'react';
 import ReactShadowRoot from 'react-shadow-root';
 
 const MicroContextProvider = React.lazy(() => import('../context/micro'))
 const App = React.lazy(() => import('./app'));
 
-//@ts-ignore
 const Contact = (props: Context) => {
-  //@ts-ignore
-  const { context } = props
-  console.log(`PROPS = `, context?.())
+  const [tokens, setTokens] = React.useState('');
+
+  useEffect(() => {
+    startTransition(() => {
+      const result = props?.getToken?.(['md_sys_color_primary', 'md_sys_color_on-primary', 'md_sys_color_shadow', 'md_sys_color_inverse-on-surface', 'md_sys_typescale_label-large'])
+      console.log(result)
+      setTokens(result)
+    })
+  }, [props.mode])
+
   return (
     <MicroContextProvider context={props}>
       <Suspense>
         <ReactShadowRoot>
-          <style>{context?.().style}</style>
-          <body>
-            <Suspense>
-              <App />
-            </Suspense>
-          </body>
+          <style>
+            {`${tokens}`}
+          </style>
+          <Suspense>
+            <App />
+          </Suspense>
         </ReactShadowRoot>
       </Suspense>
     </MicroContextProvider>
