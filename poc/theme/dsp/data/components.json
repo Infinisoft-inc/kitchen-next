@@ -45,9 +45,9 @@
       "renditions": [],
       "name": "ButtonA Outlined",
       "tags": [],
-      "last_updated": "2022-06-27T02:46:28.364Z",
+      "last_updated": "2022-06-27T02:49:20.166Z",
       "last_updated_by": "Infinisoft <info@infini-soft.com>",
-      "description": "# ButtonA Filled\n\nPOCButtonA Filled is a button component federated as a module for POC on [issue #32](https://github.com/Infinisoft-inc/kitchen-next/issues/32).\n\n## Outlined Button\n\noutline-color: var(--md-sys-color-outline);\ncolor: var(--md-sys-color-primary);\nfont-size: var(--md-sys-typescale-label-large-size);\nfont-family: var(--md-sys-typescale-label-large-family);\nfont-weight: var(--md-sys-typescale-label-large-weight);\n\n### Disabled Outlined Button\n\noutline-color: var(--md-sys-color-on-surface);\nopacity: 12%;\ncolor: var(--md-sys-color-on-surface);\nopacity: 38%;\n\n### Hovered Outlined Button\n\noutline-color: var(--md-sys-color-primary);\nopacity: var(--md-sys-state-hover-state-layer-opacity);\n\n### Focused Outlined Button\n\noutline-color: var(--md-sys-color-primary);\nopacity: var(--md-sys-state-focus-state-layer-opacity);\n\n"
+      "description": "# ButtonA Outlined\n\nPOCButtonA Outlined is a button component federated as a module for POC on [issue #32](https://github.com/Infinisoft-inc/kitchen-next/issues/32).\n\n## Outlined Button\n\noutline-color: var(--md-sys-color-outline);\ncolor: var(--md-sys-color-primary);\nfont-size: var(--md-sys-typescale-label-large-size);\nfont-family: var(--md-sys-typescale-label-large-family);\nfont-weight: var(--md-sys-typescale-label-large-weight);\n\n### Disabled Outlined Button\n\noutline-color: var(--md-sys-color-on-surface);\nopacity: 12%;\ncolor: var(--md-sys-color-on-surface);\nopacity: 38%;\n\n### Hovered Outlined Button\n\noutline-color: var(--md-sys-color-primary);\nopacity: var(--md-sys-state-hover-state-layer-opacity);\n\n### Focused Outlined Button\n\noutline-color: var(--md-sys-color-primary);\nopacity: var(--md-sys-state-focus-state-layer-opacity);\n\n"
     },
     {
       "id": "60ff366c-ac42-4cb4-a58c-a7a071a5af7c",
