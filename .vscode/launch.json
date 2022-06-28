@@ -5,47 +5,13 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Package",
-      "type": "chrome",
-      "request": "launch",
-      "url": "http://localhost:8080",
-      "webRoot": "${workspaceFolder}/micro-apps/contact",
-      "sourceMapPathOverrides": {
-        "webpack:/*": "${webRoot}/*",
-        "/./*": "${webRoot}/*",
-        "/src/*": "${webRoot}/*",
-        "/*": "*",
-        "/./~/*": "${webRoot}/node_modules/*"
-      },
-    },
-    {
-      "name": "Microapp",
-      "type": "chrome",
-      "request": "launch",
-      "url": "http://localhost:8080",
-      "protocol": "inspector",
-      "webRoot": "${workspaceFolder}/packages/apps/contactmui"
-    },
-    {
-      "name": "Storybook",
-      "type": "pwa-chrome",
-      "request": "launch",
-      "url": "http://localhost:6006",
-      "protocol": "inspector",
-      "webRoot": "${workspaceFolder}"
-    },
-    {
-      "name":"TEST",
-      "type": "pwa-chrome",
-      "request": "launch",
-      "trace": true,
-      "url": "http://localhost:8080",
-      "webRoot": "${workspaceFolder}",
-      "sourceMaps": true,
-      "sourceMapPathOverrides": {
-          "webpack://@${workspaceFolderBasename}/*": "${workspaceFolder}/packages/*"
-
-      }
-  }
+        "name": "Launch Chrome against localhost",
+      "type": "node",
+      "request": "attach",
+      "port": "9229",
+      "restart": true,
+      "localRoot": "${workspaceFolder}",
+      "remoteRoot": "/"
+    }
   ]
 }
