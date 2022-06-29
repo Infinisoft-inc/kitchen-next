@@ -60,6 +60,7 @@
     "terser-webpack-plugin": "^5.3.1",
     "ts-jest": "^28.0.2",
     "ts-node": "^10.8.1",
+    "ts-node-dev": "^2.0.0",
     "typedoc": "^0.22.17",
     "typedoc-plugin-markdown": "^3.12.1",
     "typescript": "^4.7.4",
@@ -71,9 +72,11 @@
   },
   "dependencies": {
     "@infini-soft/kli": "^0.0.41",
-    "@infini-soft/lib-federation": "^0.0.14"
+    "@infini-soft/lib-federation": "^0.0.14",
+    "@infini-soft/store": "^0.1.4"
   },
   "scripts": {
+    "image:bootstrap": "sh tools/scripts/bootstrap.sh",
     "start:local:federation": "serve -s packages -l 5000",
     "storybook": "start-storybook -p 6006",
     "storybook:nocache": "start-storybook -p 6006 --no-manager-cache",

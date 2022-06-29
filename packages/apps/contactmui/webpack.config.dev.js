@@ -51,5 +51,5 @@ module.exports = merge(custom, common, {
       template: './config/index.html',
     }),
   ],
-  devtool: 'eval-source-map',
+  devtool: 'source-map',
 });
