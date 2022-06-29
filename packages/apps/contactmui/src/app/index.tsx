@@ -13,19 +13,20 @@ import ReactShadowRoot from 'react-shadow-root';
 const MicroContextProvider = React.lazy(() => import('../context/micro'))
 const App = React.lazy(() => import('./app'));
 
-const Contact = (props: Context) => {
+const Contact = (props: {context: Context}) => {
   const [tokens, setTokens] = React.useState('');
 
   useEffect(() => {
     startTransition(() => {
-      const result = props?.getToken?.(['md_sys_color_primary', 'md_sys_color_on-primary', 'md_sys_color_shadow', 'md_sys_color_inverse-on-surface', 'md_sys_typescale_label-large'])
+      console.log(`props = `, props)
+      const result = props?.context?.getToken?.(['md_sys_color_primary', 'md_sys_color_on-primary', 'md_sys_color_shadow', 'md_sys_color_inverse-on-surface', 'md_sys_typescale_label-large'])
       console.log(result)
       setTokens(result)
     })
-  }, [props.mode])
+  }, [props.context.mode])
 
   return (
-    <MicroContextProvider context={props}>
+    <MicroContextProvider context={props.context}>
       <Suspense>
         <ReactShadowRoot>
           <style>

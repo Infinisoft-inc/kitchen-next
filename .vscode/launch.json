@@ -14,7 +14,7 @@
       "remoteRoot": "/"
     },
     {
-      "name": "Chrome",
+      "name": "WORKING",
       "type": "chrome",
       "request": "launch",
       "url": "http://localhost:8080",
@@ -23,6 +23,17 @@
       "sourceMaps": true,
       "sourceMapPathOverrides": {
         "webpack:/*": "/com.docker.devenvironments.code/packages/apps/*"      }
+    },
+    {
+      "name": "Test Scope DOES NOT WORK",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:8080",
+      "webRoot": "${workspaceFolder}",
+      "breakOnLoad": true,
+      "sourceMaps": true,
+      "sourceMapPathOverrides": {
+        "webpack:/*": "/com.docker.devenvironments.code/packages/*"      }
     }
   ]
 }
