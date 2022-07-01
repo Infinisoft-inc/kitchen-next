@@ -9,7 +9,7 @@ const commands = require('./commands');
 const { usage } = require('./internals/usage');
 const { initialize } = require('./internals/initialize');
 
-const VERBOSE = process.argv.join(' ').includes('--debug');
+// const VERBOSE = process.argv.join(' ').includes('--debug');
 const cmd = process.argv?.[2];
 const sub = process.argv?.[3];
 const HELP = process.argv.join(' ').includes('--help') || !cmd || !sub;
@@ -29,8 +29,8 @@ const cli = () => {
   }
 
   try {
-    const cmd = process.argv?.[2];
-    const sub = process.argv?.[3];
+    // const cmd = process.argv?.[2];
+    // const sub = process.argv?.[3];
 
     commands?.[cmd]?.[sub]?.();
   } catch (error) {

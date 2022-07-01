@@ -23,7 +23,7 @@ const Contact = (props: {context: Context}) => {
       console.log(result)
       setTokens(result)
     })
-  }, [props.context.mode])
+  }, [props?.context?.mode])
 
   return (
     <MicroContextProvider context={props.context}>
