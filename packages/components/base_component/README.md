@@ -4,6 +4,8 @@ TODO
  - Dynamic Component/Module loading at runtime
  Final Optimization
  - Enable CSP in html and bundler with nonce
+ - Add robot.txt for crawling
+   https://web.dev/robots-txt/?utm_source=lighthouse&utm_medium=devtools
  
 Features
 - Live Reload on Dev

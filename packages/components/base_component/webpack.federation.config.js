@@ -15,8 +15,9 @@ module.exports = new ModuleFederationPlugin({
   },
   shared: {
     ...peerDependencies,
-    react: { requiredVersion: peerDependencies.react },
+    react: { eager: true,requiredVersion: peerDependencies.react },
     'react-dom': {
+      eager:true, 
       requiredVersion: peerDependencies['react-dom'],
     },
   },
