@@ -46,7 +46,7 @@ module.exports = {
       {
         test: /\.css$/i,
         include: path.resolve(process.cwd(), 'src'),
-        exclude: /node_modules/,
+        exclude: /(node_modules|\*.stories.\*)/,
         use: [
           MiniCssExtractPlugin.loader,
           {
@@ -60,7 +60,7 @@ module.exports = {
       {
         test: /\.(png|svg|jpg|jpeg|gif|ico)$/i,
         include: path.resolve(process.cwd(), 'src'),
-        exclude: /node_modules/,
+        exclude: /(node_modules|\*.stories.\*)/,
         type: 'asset/resource',
       },
     ],
