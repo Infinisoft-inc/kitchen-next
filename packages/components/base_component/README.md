@@ -46,3 +46,11 @@ src/components/types.ts
   - context
   - state
   - payload
+
+  port forward
+
+  3000    app
+  3030    app
+  8080    app
+  9229    chrome debugger
+  40001   module fed live reload
