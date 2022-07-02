@@ -13,6 +13,7 @@
     "skipLibCheck": true,
     "paths": {
       "@/config/*": ["./config/*"],
+      "@/helpers/*": ["./src/helpers/*"],
       "@/*": ["./src/*"]
     },
     "allowSyntheticDefaultImports": true

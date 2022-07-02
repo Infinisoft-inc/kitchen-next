@@ -5,10 +5,7 @@
  */
 
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { ModuleFederationPlugin } = require('webpack').container;
-const { peerDependencies, name, infinisoft } = require('./package.json');
 
 module.exports = {
   context: process.cwd(),
@@ -16,19 +13,14 @@ module.exports = {
     cacheWithContext: false,
     extensions: ['.tsx', '.ts', '.jsx', '.js'],
     alias: {
-      '@/context/micro': path.resolve(__dirname, 'src/context/micro'),
-      '@/components': path.resolve(__dirname, 'src/components'),
-      '@/assets/svg': path.resolve(__dirname, 'src/assets/svg'),
-      '@/style': path.resolve(__dirname, 'src/style/theme.module.css'),
-      '@/services': path.resolve(__dirname, 'src/services'),
-      '@/context': path.resolve(__dirname, 'src/context'),
-      '@/hooks': path.resolve(__dirname, 'src/hooks'),
       '@/config': path.resolve(__dirname, 'config'),
-      '@/helpers': path.resolve(__dirname, 'src/helpers'),
-      '@/packages': path.resolve(__dirname, 'src/packages'),
-      '@/common': path.resolve(__dirname, '..', '..', 'common'),
-      '@/models': path.resolve(__dirname, 'src/models',
-      ),
+      '@/component': path.resolve(__dirname, 'src/component'),
+      '@/assets': path.resolve(__dirname, 'src/component/assets'),
+      '@/presets': path.resolve(__dirname, 'src/component/presets'),
+      '@/subcomponents': path.resolve(__dirname, 'src/component/subcomponents'),
+      '@/style': path.resolve(__dirname, 'src/component/style'),
+      '@/context': path.resolve(__dirname, 'src/core/context'),
+      '@/core': path.resolve(__dirname, 'src/core')
     },
   },
   experiments: {

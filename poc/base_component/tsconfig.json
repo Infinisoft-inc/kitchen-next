@@ -13,7 +13,17 @@
     "strict": true,
     "skipLibCheck":true,
     "paths": {
-      "@/config/*": ["./config/*"],
+      "@/config/*": ["config/*"],
+      "@/component/*": ["src/component/*"],
+      "@/assets/*": ["src/component/assets/*"],
+      "@/presets/*": ["src/component/presets/*"],
+      "@/subcomponents/*": ["src/component/subcomponents/*"],
+      "@/style/*": ["src/component/style/*"],
+      "@/hooks/*": ["src/core/hooks/*"],
+      "@/state/*": ["src/core/state/*"],
+      "@/helpers/*": ["src/core/helpers/*"],
+      "@/context/*": ["src/core/context/*"],
+      "@/core/*": ["src/core/*"],
       "@/*": ["src/*"]
     },
     "allowSyntheticDefaultImports": true
