@@ -1,1 +1,1 @@
-import('./core/bootstrap')
+import('./bootstrap')

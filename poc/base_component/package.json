@@ -1,5 +1,5 @@
 {
-  "name": "base_component",
+  "name": "component",
   "version": "1.0.0",
   "private": true,
   "description": "",
@@ -7,11 +7,13 @@
   "homepage": "https://www.kitchen.infini-soft.com/microapp/contacts",
   "license": "MIT",
   "scripts": {
-    "build:types": "tsc -p tsconfig.json -d --emitDeclarationOnly --outFile dist/types.d.ts --esModuleInterop",
-    "build:dev": "kli component build",
-    "build:dev:watch": "kli component build --watch",
-    "build:prod": "kli component build --prod",
-    "build:prod:watch": "kli component build --prod --watch",
+    "start:dev": "webpack serve -c webpack.config.dev.js --open",
+    "start:prod": "webpack serve -c webpack.config.prod.js --open",
+    "build": "rimraf \"dist\"&& concurrently \"tsc\" \"webpack -c webpack.config.prod.js\"",
+    "build:dev": "rimraf \"dev\"&& concurrently \"tsc\" \"webpack -c webpack.config.dev.js\"",
+    "build:dev:watch": "rimraf \"dev\"&& concurrently \"tsc -p tsconfig.dev.json -w\" \"webpack -c webpack.config.dev.js\"",
+    "build:prod": "rimraf \"dist\"&& concurrently \"tsc\" \"webpack -c webpack.config.prod.js\"",
+    "build:prod:watch": "rimraf \"dist\"&& concurrently \"tsc -p tsconfig.json -w\" \"webpack -c webpack.config.prod.js\"",
     "build:analyze": "kli component build --analyze --prod",
     "build:analyze:baseline": "kli component build --analyze-baseline --prod",
     "performance:analyze:mobile": "node tools/performance.js mobile",
@@ -20,15 +22,15 @@
     "test:watchAll": "jest --watchAll",
     "test:coverage": "jest --coverage&& start analyze/coverage/lcov-report/index.html",
     "deploy": "kli component deploy",
-    "start:dev": "webpack serve -c webpack.config.dev.js --open",
-    "start:prod": "webpack serve -c webpack.config.prod.js --open",
     "serve:dist": "serve -s dist",
-    "clean": "rm -rf analyze dist node_modules dev",
+    "serve:dev": "serve -s dev",
+    "clean": "rimraf analyze dist node_modules dev",
     "config:update": "kli config update",
     "task": "kli task run"
   },
   "devDependencies": {
     "@infini-soft/kli": "^0.0.41",
+    "@module-federation/fmr": "^0.0.7",
     "@types/react": "^18.0.9",
     "@types/react-dom": "^18.0.5",
     "chrome-launcher": "^0.15.1",
@@ -45,10 +47,11 @@
   },
   "infinisoft": {
     "moduleFederation": {
+      "devport":8080,
       "title": "Core",
       "category": "microapps",
       "image": "https://www.kitchen.infini-soft.com/assets/infinisoftticon.png",
-      "component": "Core",
+      "component": "Component",
       "dev": {
         "remotes": {}
       },

@@ -7,7 +7,7 @@
 /**
  * Extend component with custom props
  */
-export type ExtendComponentProps = {};
+export type ExtendComponentProps = {doguette?: string};
 
 /**
  * Extend context with custom implementation

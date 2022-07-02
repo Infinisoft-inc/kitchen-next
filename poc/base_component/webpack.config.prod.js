@@ -6,23 +6,33 @@
 const path = require('path');
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common');
-const custom = require('./config/custom.webpack.config.prod');
+const custom = require('./src/config/custom.webpack.config.prod');
 const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { MinChunkSizePlugin } = require('webpack').optimize;
-const moduleFederation = require('./webpack.federation.config')
+const moduleFederation = require('./webpack.federation.config');
+
 
 module.exports = merge(custom, common, {
   mode: 'production',
   output: {
     filename: '[name].[contenthash].js',
     path: path.join(process.cwd(), 'dist'),
-    publicPath: 'auto',
+    publicPath: 'auto'
   },
   optimization: {
     minimize: true,
-    minimizer: [new TerserPlugin()],
+    minimizer: [
+      new TerserPlugin({
+        extractComments: true,
+        terserOptions: {
+          compress: {
+            drop_console: true,
+          },
+        },
+      }),
+    ],
   },
   plugins: [
     new MinChunkSizePlugin({
@@ -31,7 +41,7 @@ module.exports = merge(custom, common, {
     moduleFederation,
     new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
-      template: './config/index.html',
+      template: './src/config/index.html',
     }),
   ],
 });

@@ -7,11 +7,14 @@
 const path = require('path');
 const { merge } = require('webpack-merge');
 const common = require('./webpack.common');
-const custom = require('./config/custom.webpack.config.dev');
+const custom = require('./src/config/custom.webpack.config.dev');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { MinChunkSizePlugin } = require('webpack').optimize;
-const moduleFederation = require('./webpack.federation.config')
+const moduleFederation = require('./webpack.federation.config');
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const { MFLiveReloadPlugin } = require('@module-federation/fmr');
+const {name, infinisoft} = require('./package.json')
 
 module.exports = merge(custom, common, {
   mode: 'development',
@@ -22,16 +25,24 @@ module.exports = merge(custom, common, {
   },
   devServer: {
     static: path.join(process.cwd(), 'dev'),
-    hot: true,
+    hot: false,
+    liveReload: true,
+    port: infinisoft.moduleFederation.devport
   },
   plugins: [
+    new MFLiveReloadPlugin({
+      port: infinisoft.moduleFederation.devport,
+      container: name,
+      standalone: true
+    }),
+    new ReactRefreshWebpackPlugin(),
     new MinChunkSizePlugin({
       minChunkSize: 10000, // Minimum number of characters
     }),
     moduleFederation,
     new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
-      template: './config/index.html',
+      template: './src/config/index.html',
     }),
   ],
   devtool: 'source-map',

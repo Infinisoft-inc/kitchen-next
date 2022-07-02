@@ -13,7 +13,7 @@ module.exports = {
     cacheWithContext: false,
     extensions: ['.tsx', '.ts', '.jsx', '.js'],
     alias: {
-      '@/config': path.resolve(__dirname, 'config'),
+      '@/config': path.resolve(__dirname, 'src/config'),
       '@/component': path.resolve(__dirname, 'src/component'),
       '@/assets': path.resolve(__dirname, 'src/component/assets'),
       '@/presets': path.resolve(__dirname, 'src/component/presets'),
@@ -38,7 +38,7 @@ module.exports = {
               '@babel/preset-env',
               ['@babel/preset-react', { runtime: 'automatic' }],
             ],
-            plugins: ['lodash'],
+            plugins: ['lodash', 'react-refresh/babel'],
           },
         },
         exclude: /(node_modules|\*.stories.\*)/,
@@ -58,7 +58,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        test: /\.(png|svg|jpg|jpeg|gif|ico)$/i,
         include: path.resolve(process.cwd(), 'src'),
         exclude: /node_modules/,
         type: 'asset/resource',

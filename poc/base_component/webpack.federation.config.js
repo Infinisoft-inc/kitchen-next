@@ -11,7 +11,7 @@ module.exports = new ModuleFederationPlugin({
   filename: 'remoteEntry.js',
   remotes: infinisoft.moduleFederation.dev.remotes,
   exposes: {
-    [`./${infinisoft.moduleFederation.component}`]: './src/core',
+    [`./${infinisoft.moduleFederation.component}`]: `./src/${name}`,
   },
   shared: {
     ...peerDependencies,

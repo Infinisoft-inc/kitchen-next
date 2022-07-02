@@ -12,9 +12,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BundleAnalyzerPlugin =
   require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const { ModuleFederationPlugin } = require('webpack').container;
 const { MinChunkSizePlugin } = require('webpack').optimize;
-const { dependencies, name, infinisoft } = require('./package.json');
 const moduleFederation = require('./webpack.federation.config')
 
 module.exports = (env, argv) =>
@@ -22,7 +20,14 @@ module.exports = (env, argv) =>
     mode: 'production',
     optimization: {
       minimize: true,
-      minimizer: [new TerserPlugin()],
+      minimizer: [new TerserPlugin({
+        extractComments: true,
+        terserOptions: {
+          compress: {
+            drop_console: true,
+          },
+        },
+      })],
     },
 
     plugins: [
@@ -40,7 +45,7 @@ module.exports = (env, argv) =>
         minChunkSize: 10000, // Minimum number of characters
       }),
       new HtmlWebpackPlugin({
-        template: './config/index.html',
+        template: './src/config/index.html',
       }),
     ],
   });
