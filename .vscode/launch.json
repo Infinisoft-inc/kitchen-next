@@ -5,16 +5,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Launch Chrome against localhost",
-      "type": "node",
-      "request": "attach",
-      "port": "4321",
-      "restart": true,
-      "localRoot": "${workspaceFolder}",
-      "remoteRoot": "/"
-    },
-    {
-      "name": "WORKING",
+      "name": "Components Live Reload",
       "type": "chrome",
       "request": "launch",
       "url": "http://localhost:8080",
@@ -22,18 +13,7 @@
       "breakOnLoad": true,
       "sourceMaps": true,
       "sourceMapPathOverrides": {
-        "webpack:/*": "/com.docker.devenvironments.code/packages/apps/*"      }
-    },
-    {
-      "name": "OUtfile Test",
-      "type": "chrome",
-      "request": "launch",
-      "url": "http://localhost:8080",
-      "webRoot": "${workspaceFolder}",
-      "breakOnLoad": true,
-      "sourceMaps": true,
-      "sourceMapPathOverrides": {
-        "*": "*"      }
+        "webpack:/*": "/com.docker.devenvironments.code/packages/components/*"      }
     }
   ]
 }
