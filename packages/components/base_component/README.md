@@ -1,12 +1,19 @@
 
 TODO
  - Enable CSP in html and bundler with nonce
- - Webpack Plugin
-   - Typescript Types Live Reload
+ - Dynamic Component or Module loading at runtime
  
 Features
 - Live Reload on Dev
 - Debug (first load is slow, maybe narrow the pattern in launch.settings could be good)
+
+Nice to Have
+- Http FS or Custom Webpack Plugin for types live reload over module federation
+ - remotly mount over http to get types.d.ts
+ - https://github.com/fangfufu/httpdirfs
+ - /dev/fuse missing on wsl2 (should work with linux)
+ - https://github.com/microsoft/WSL/issues/17#issuecomment-759817472
+
 
 Implementation
 - under src/component
