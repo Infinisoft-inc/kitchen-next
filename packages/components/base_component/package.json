@@ -33,7 +33,7 @@
     "@infini-soft/kli": "^0.0.41",
     "@module-federation/fmr": "^0.0.7",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.7",
-    "@types/react": "^18.0.9",
+    "@types/react": "^18.0.14",
     "@types/react-dom": "^18.0.5",
     "chrome-launcher": "^0.15.1",
     "finalhandler": "^1.2.0",
@@ -44,8 +44,8 @@
     "webpack-cli": "^4.10.0"
   },
   "peerDependencies": {
-    "react": "^18.1.0",
-    "react-dom": "^18.1.0"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "infinisoft": {
     "moduleFederation": {
