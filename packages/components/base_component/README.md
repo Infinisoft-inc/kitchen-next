@@ -1,7 +1,9 @@
 
 TODO
+ Requirement
+ - Dynamic Component/Module loading at runtime
+ Final Optimization
  - Enable CSP in html and bundler with nonce
- - Dynamic Component or Module loading at runtime
  
 Features
 - Live Reload on Dev
