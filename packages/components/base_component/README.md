@@ -1,6 +1,8 @@
 
 TODO
  - Enable CSP in html and bundler with nonce
+ - Webpack Plugin
+   - Typescript Types Live Reload
  
 Features
 - Live Reload on Dev
