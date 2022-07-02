@@ -4,7 +4,7 @@ TODO
  
 Features
 - Live Reload on Dev
-- Debug (Need to retest its not solid)
+- Debug (first load is slow, maybe narrow the pattern in launch.settings could be good)
 
 Implementation
 - under src/component
