@@ -7,9 +7,8 @@ import { useMicroContext } from '@/context';
 import { createItem } from '@/hooks';
 import { useEvent } from '@/hooks/useEvent';
 import React from 'react';
-import Content from './content';
 
-const Dialog = React.lazy(() => import(/* webpackChunkName: 'Dialog' */ 'dialog/Dialog'))
+// const Dialog = React.lazy(() => import(/* webpackChunkName: 'Dialog' */ 'dialog/Dialog'))
 
 export type DetailsProps = {
   children?: React.ReactNode
@@ -22,9 +21,9 @@ export const Create = ({ children }: DetailsProps) => {
   useEvent('create.click', (e) => {createItem(store).then(setState) })
 
   return <div >
-      <Dialog openEvents={['create.click']} closeEvents={['create.complete', 'backdrop.clicked']}>
+      {/* <Dialog openEvents={['create.click']} closeEvents={['create.complete', 'backdrop.clicked']}>
         {state && <Content id={state} />}
-      </Dialog>
+      </Dialog> */}
   </div>
 }
 export default Create
