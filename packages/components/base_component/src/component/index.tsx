@@ -9,6 +9,6 @@ import type { ExtendComponentProps } from './types';
 const Component = (props: ExtendComponentProps) => {
   const {store} = useMicroContext()
 
-  return <div>Fistonn995</div>;
+  return <div>Fistnn995</div>;
 }
 export default Component

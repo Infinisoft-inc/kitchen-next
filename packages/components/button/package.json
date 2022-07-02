@@ -17,6 +17,7 @@
     "test:watchAll": "jest --watchAll",
     "test:coverage": "jest --coverage&& start analyze/coverage/lcov-report/index.html",
     "deploy": "kli component deploy",
+    "start:debug": "/usr/local/share/nvm/current/bin/node --inspect -r ts-node/register /com.docker.devenvironments.code/node_modules/webpack/bin/webpack.js serve ./src/index.ts -c ./webpack.config.dev.js --open --compress",
     "start:dev": "webpack serve -c webpack.config.dev.js --open",
     "start:prod": "webpack serve -c webpack.config.prod.js --open",
     "serve:dist": "serve -s dist",

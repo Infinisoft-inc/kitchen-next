@@ -11,7 +11,6 @@ const { ModuleFederationPlugin } = require('webpack').container;
 const {peerDependencies, name, infinisoft} = require('./package.json')
 
 module.exports = {
-  context: process.cwd(),
    resolve: {
     cacheWithContext: false,
     extensions: ['.tsx', '.ts', '.jsx', '.js'],

@@ -5,7 +5,7 @@
  *
  * Button Federated Micro Component
  */
-import React, { ForwardedRef, forwardRef, Suspense } from 'react';
+import { ForwardedRef, forwardRef, Suspense } from 'react';
 import css from './index.module.css';
 import { buttonSizePresets } from './presets';
 import { ButtonProps } from './types';
@@ -16,7 +16,7 @@ const Button = ({ size = 'large' }: ButtonProps, ref: ForwardedRef<HTMLButtonEle
   return <Suspense>
     <div className={css.root} data-style='test'>
       <button ref={ref} {...buttonSizePresets[size]} >
-        Button
+        Button1
       </button>
     </div>
 

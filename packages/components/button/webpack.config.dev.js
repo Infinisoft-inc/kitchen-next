@@ -34,10 +34,8 @@ module.exports = merge(custom, common, {
       },
       shared: {
         ...peerDependencies,
-        react: { singleton: true, eager: true, requiredVersion: peerDependencies.react },
+        react: { requiredVersion: peerDependencies.react },
         'react-dom': {
-          singleton: true,
-          eager: true,
           requiredVersion: peerDependencies['react-dom'],
         },
       },

@@ -8,6 +8,7 @@
   "license": "MIT",
   "scripts": {
     "start:dev": "webpack serve -c webpack.config.dev.js --open",
+    "start:debug": "/usr/local/share/nvm/current/bin/node --inspect -r ts-node/register /com.docker.devenvironments.code/node_modules/webpack/bin/webpack.js serve ./src/index.ts -c ./webpack.config.dev.js --open --compress",
     "start:prod": "webpack serve -c webpack.config.prod.js --open",
     "build": "rimraf \"dist\"&& concurrently \"tsc\" \"webpack -c webpack.config.prod.js\"",
     "build:dev": "rimraf \"dev\"&& concurrently \"tsc\" \"webpack -c webpack.config.dev.js\"",
