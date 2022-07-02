@@ -31,6 +31,7 @@
   "devDependencies": {
     "@infini-soft/kli": "^0.0.41",
     "@module-federation/fmr": "^0.0.7",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.7",
     "@types/react": "^18.0.9",
     "@types/react-dom": "^18.0.5",
     "chrome-launcher": "^0.15.1",
@@ -47,7 +48,7 @@
   },
   "infinisoft": {
     "moduleFederation": {
-      "devport":8080,
+      "devport": 8080,
       "title": "Core",
       "category": "microapps",
       "image": "https://www.kitchen.infini-soft.com/assets/infinisoftticon.png",

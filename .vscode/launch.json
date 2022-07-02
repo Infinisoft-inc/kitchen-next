@@ -25,7 +25,7 @@
         "webpack:/*": "/com.docker.devenvironments.code/packages/apps/*"      }
     },
     {
-      "name": "Test Scope DOES NOT WORK",
+      "name": "OUtfile Test",
       "type": "chrome",
       "request": "launch",
       "url": "http://localhost:8080",
@@ -33,7 +33,7 @@
       "breakOnLoad": true,
       "sourceMaps": true,
       "sourceMapPathOverrides": {
-        "webpack:/*": "/com.docker.devenvironments.code/packages/*"      }
+        "*": "*"      }
     }
   ]
 }

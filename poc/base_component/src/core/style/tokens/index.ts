@@ -2,7 +2,9 @@ import { colorToken2CssVariableMapper, ColorTokens } from '../colors';
 import { ThemeMode } from '../theme';
 import { FontTokens, typographyToken2CssVariableMapper } from '../typography';
 
-
+/**
+ * Style injection
+ */
 export type Tokens = FontTokens | ColorTokens;
 
 const token2CssVarMappers = {

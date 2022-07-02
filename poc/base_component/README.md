@@ -1,4 +1,17 @@
 
+TODO
+ - Enable CSP in html and bundler with nonce
+ 
+Features
+- Live Reload on Dev
+- Debug (Need to retest its not solid)
+
+Implementation
+- under src/component
+
+Analyze
+- Bundle
+- Performance
 
 Config file
 

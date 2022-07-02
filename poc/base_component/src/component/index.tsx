@@ -6,6 +6,6 @@
 import type { ExtendComponentProps } from './types';
 
 const Component = (props: ExtendComponentProps) => {
-  return <div>Heassaasaaddddddddddddddddddddes</div>;
+  return <div>Bobz</div>;
 }
 export default Component
