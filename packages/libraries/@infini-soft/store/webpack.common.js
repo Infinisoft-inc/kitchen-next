@@ -12,13 +12,12 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'store.js',
-    library: 'store',
-    libraryTarget: 'umd',
+    library: { name: 'store', type: 'umd' },
   },
   resolve: {
     cacheWithContext: false,
     extensions: ['.ts', '.tsx', '.js'],
-  },
+  }, 
   module: {
     rules: [
       {

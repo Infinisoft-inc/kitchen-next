@@ -74,8 +74,7 @@
   },
   "dependencies": {
     "@infini-soft/kli": "^0.0.41",
-    "@infini-soft/lib-federation": "^0.0.14",
-    "@infini-soft/store": "^0.1.4"
+    "@infini-soft/lib-federation": "^0.0.14"
   },
   "scripts": {
     "image:bootstrap": "sh tools/scripts/bootstrap.sh",

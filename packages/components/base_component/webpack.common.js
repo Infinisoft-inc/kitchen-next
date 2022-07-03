@@ -8,7 +8,6 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-
   resolve: {
     cacheWithContext: false,
     extensions: ['.tsx', '.ts', '.jsx', '.js'],
@@ -20,7 +19,8 @@ module.exports = {
       '@/subcomponents': path.resolve(__dirname, 'src/component/subcomponents'),
       '@/style': path.resolve(__dirname, 'src/component/style'),
       '@/context': path.resolve(__dirname, 'src/core/context'),
-      '@/core': path.resolve(__dirname, 'src/core')
+      '@/core': path.resolve(__dirname, 'src/core'),
+      '@/hooks': path.resolve(__dirname, 'src/core/hooks'),
     },
   },
   experiments: {

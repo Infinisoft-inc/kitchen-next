@@ -26,18 +26,21 @@ const Core = (props: ICoreProps) => {
     }, []) // Probably useless since props mutation trigger render
 
     return (
-        <MicroContextProvider context={props?.context}>
-            <Suspense>
-                <ReactShadowRoot>
-                    <style>
-                        {`${tokens}`}
-                    </style>
-                    <Suspense>
-                        <Component />
-                    </Suspense>
-                </ReactShadowRoot>
-            </Suspense>
-        </MicroContextProvider>
+        <Suspense>
+            <MicroContextProvider context={props?.context}>
+                <Suspense>
+                    <ReactShadowRoot>
+                        <style>
+                            {`${tokens}`}
+                        </style>
+                        <Suspense>
+                            <Component />
+                        </Suspense>
+                    </ReactShadowRoot>
+                </Suspense>
+            </MicroContextProvider>
+        </Suspense>
+
     );
 };
 

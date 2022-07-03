@@ -26,13 +26,11 @@
 
 “I have not failed. I’ve just found 10,000 ways that won’t work.” by Thomas Edison.
 ```
-[repo](../../README.md)  / [components](../README.md)  / <strong>base_component</strong>
+[repo](../../../README.md)  / [components](../README.md)  / <strong>base_component</strong>
 <br />
 
-
 # Getting started
-
-Focus on Features instead of breaking your ballz. This template is the micro boilerplate core foundation of Infinisoft Kitchen-next module federation ecosystem.
+Focus on features instead working to prepare what's required to start working!. This template is the micro boilerplate core foundation of Infinisoft Kitchen-next module federation ecosystem.
 
 <br />
 
@@ -63,7 +61,7 @@ Focus on Features instead of breaking your ballz. This template is the micro boi
   e. Best Practices  
   f. SEO  
 - Micro State Management  
-  Inpect with Redux Chrome Extension
+  Inspect with Redux Chrome Extension
 - Event Driven Pub Sub
 - Complete Design System
 - Compatible Material Design v3 Specification
@@ -74,44 +72,23 @@ Focus on Features instead of breaking your ballz. This template is the micro boi
 - Dynamic Runtime Style Injection
 - Customizable
 
-# Priority
-## High
- 1. Dynamic Component/Module loading at runtime
- 2. Development Time Typescript Types Resolver/Loader
-    when lazy loading with rlazy, type is requirement.
-    How to get it ahead of time ?
-    Ideas
-    2.1 FS over http ?  
-      Http FS or Custom Webpack Plugin for types live reload over module federation  
-      remotly mount over http to get types.d.ts  
-      https://github.com/fangfufu/httpdirfs  
-      https://github.com/microsoft/WSL/issues/17#issuecomment-759817472  
-      /dev/fuse missing on wsl2 (should work with linux)  
+# My Feature
+Your component entry point starts under `src/component/index.tsx`.
 
-    2.2 Webpack Hook to trigger type fetch precompile?   
+# Micro Context
+Component is wrapped around MicroContextProvider and is easy from anywhere to access it with [`useMicronContext()`](src/core/context/index.tsx) hook. By default it contains:
 
+|  Default                     |                                                                |  
+|------------------------------|-----------------------------------------------------------------
+| store                        |  Reference to the store holding, state, subscriptions, events 
+|                              |  [@infini-soft/store](https://www.npmjs.com/package/@infini-soft/store)  
+| config                       |  Runtime reference to [`config.json`](src/config/config.json) file 
+| log                          |  Logger                                                        
 
-## Normal      
- 3. Improve Debug Configuration  
-    - Current configuration is not scalable  
-    - Start debug is slow to have breakpoints  
-      * narrow the pattern in launch.settings could be good  
+```tsx
+const {store} = useMicroContext()
+```
 
- 4. Improve Cli  
-    - Refactors are too slow. Need for simplicity  
-    - New command to scafold environment  
-
-## Low
- 5. Boilerplate Improvements  
-   - Enable CSP for prod bundle with nonce  
-   - Add robot.txt for crawling    
-      https://web.dev/robots-txt/?utm_source=lighthouse&utm_medium=devtools  
-
-
-
-# Documentation
-Implementation  
-- under src/component  
 
 Quality Analysis  
 - Bundle  
@@ -236,7 +213,14 @@ Not implemented
 
 ![image](https://user-images.githubusercontent.com/47437825/177013766-f22d19ab-f60c-4adf-a82a-1314ac609323.png)
 
-Config file
+# Configurations
+These configuration can be found under `src/config/config.json`.
+
+| Keys                   | Types         |  constraints  | Descriptions                          |
+| ---------------------- |-------------- | ------------  |-------------------------------------- |
+| devtools               |  boolean      |   required    | Enable Redux Chrome Extension         |
+|                        |               |               | Observe Micro State / Store Events    |
+
 
 config/config.json
 - devtools

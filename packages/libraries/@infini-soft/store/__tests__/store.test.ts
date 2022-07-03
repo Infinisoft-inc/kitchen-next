@@ -91,7 +91,7 @@ describe('Unit Testing', () => {
 
   it('Mutation Verify Subscribers Iterable Payload', () => {
     let state:Record<string, { name: string }> = {'dog': { name: 'pound' }}
-    state = {...state, 'dogette': { name: 'poundette' }}
+    state = {...state, 'doguette': { name: 'poundette' }}
 
     const store = new Store<any, any>(() => Promise.resolve(state))
 

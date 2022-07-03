@@ -1,12 +1,16 @@
 {
   "name": "@infini-soft/store",
-  "version": "0.1.5",
+  "version": "0.1.24",
   "description": "Pub/Sub Event Driven Micro State Management Lib. This is core package of new UNRELEASED micro frontend boilerplate.",
   "author": "Infinisoft Inc. <info@infini-soft.com>",
   "homepage": "https://www.kitchen.infini-soft.com/",
   "license": "INFINISOFT",
   "main": "dist/store.js",
-  "types": "dist/types.d.ts",
+  "module": "dist/store.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
   "keywords": [
     "state",
     "react 18",
@@ -24,10 +28,11 @@
   "scripts": {
     "build:dev": "kli lib build",
     "build:dev:watch": "kli lib build --watch",
-    "build:prod:type": "tsc -p tsconfig.prod.json -d --emitDeclarationOnly --outDir dist --esModuleInterop& webpack -c ./webpack.config.prod.js",
-    "build:prod:watch": "kli lib build --prod --watch",
-    "build:analyze": "kli lib build --analyze& start analyze/bundle-stats.html",
-    "build:analyze:baseline": "kli lib build --analyze-baseline& start analyze/bundle-stats.html",
+    "build:prod:type": "tsc -p tsconfig.prod.json& webpack -c ./webpack.config.prod.js",
+    "build": "webpack -c ./webpack.config.prod.js& tsc",
+    "build:npmprod:watch": "kli lib build --prod --watch",
+    "build:analyze": "kli lib build --analyze",
+    "build:analyze:baseline": "kli lib build --analyze-baseline",
     "test": "jest",
     "test:watchAll": "jest --watchAll",
     "test:coverage": "jest --coverage&& start analyze/coverage/lcov-report/index.html",
@@ -55,15 +60,10 @@
     "tag": "library"
   },
   "devDependencies": {
-    "@infini-soft/kli": "^0.0.40",
-    "@types/react": "^18.0.12",
-    "@types/react-dom": "^18.0.5"
+    "@infini-soft/kli": "^0.0.40"
   },
-  "peerDependencies": {
-    "react-dom": "^18.1.0"
-  },
+  "peerDependencies": {},
   "dependencies": {
-    "deep-object-diff": "^1.1.7",
-    "react": "18.1.0"
+    "deep-object-diff": "^1.1.7"
   }
 }

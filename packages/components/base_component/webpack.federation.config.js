@@ -4,7 +4,7 @@
  * www.infini-soft.com
  */
 const { ModuleFederationPlugin } = require('webpack').container;
-const {peerDependencies, name, infinisoft} = require('./package.json')
+const {peerDependencies, dependencies, name, infinisoft} = require('./package.json')
 
 module.exports = new ModuleFederationPlugin({
   name,
@@ -14,11 +14,11 @@ module.exports = new ModuleFederationPlugin({
     [`./${infinisoft.moduleFederation.component}`]: `./src/component`,
   },
   shared: {
-    ...peerDependencies,
-    react: { eager: true,requiredVersion: peerDependencies.react },
+    ...dependencies,
+    react: { requiredVersion: dependencies.react },
     'react-dom': {
-      eager:true, 
-      requiredVersion: peerDependencies['react-dom'],
+       
+      requiredVersion: dependencies['react-dom'],
     },
   },
 })
