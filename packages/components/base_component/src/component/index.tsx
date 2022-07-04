@@ -4,7 +4,7 @@
  * www.infini-soft.com
  */
 import { useMicroContext } from '@/context/index';
-import { useMicroState } from '@/hooks/useStore';
+import { useMicroState } from '@/hooks/useMicroState';
 import type { ExtendComponentProps } from './types';
 
 const Component = (props: ExtendComponentProps) => {
