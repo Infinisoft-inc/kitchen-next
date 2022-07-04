@@ -10,12 +10,12 @@ import css from './index.module.css';
 import { buttonSizePresets } from './presets';
 import { ButtonProps } from './types';
 
-const Button = ({ size = 'large' }: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) => {
+export const Button = ({ size = 'large', ...props }: ButtonProps, ref: ForwardedRef<HTMLButtonElement>) => {
 
 
   return <Suspense>
     <div className={css.root} data-style='test'>
-      <button ref={ref} {...buttonSizePresets[size]} >
+      <button ref={ref} {...buttonSizePresets[size]} {...props} >
         Button1
       </button>
     </div>

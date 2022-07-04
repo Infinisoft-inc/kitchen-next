@@ -1,6 +1,10 @@
 // import { load } from '@infini-soft/lib-federation';
 import React, { startTransition } from 'react';
 import { themes } from '@storybook/theming';
+const { addDecorator } = require('@storybook/react');
+const { withPropsTable } = require('storybook-addon-react-docgen');
+
+addDecorator(withPropsTable);
 // import(/*   */ 'store/createstore');
 
 // /**

@@ -1,6 +1,7 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 import Button from '.';
 
+
 const COMPONENT = "Button"
 
 export default {

@@ -1,7 +1,7 @@
 const {
   withStorybookModuleFederation,
 } = require('storybook-module-federation');
-const pkg = require('../package.json')
+const pkg = require('../package.json');
 
 module.exports = withStorybookModuleFederation({
   name: 'storybook',
@@ -28,7 +28,9 @@ module.exports = withStorybookModuleFederation({
     '@storybook/addon-essentials',
     '@storybook/addon-interactions',
     'storybook-design-token',
-    'storybook-dark-mode'
+    'storybook-dark-mode',
+    '@storybook/addon-docs',
+    'storybook-addon-react-docgen',
   ],
   framework: '@storybook/react',
   core: {
@@ -36,6 +38,15 @@ module.exports = withStorybookModuleFederation({
   },
   features: {
     previewMdx2: true,
+  },
+  typescript: {
+    reactDocgen: 'react-docgen-typescript',
+    reactDocgenTypescriptOptions: {
+      compilerOptions: {
+        allowSyntheticDefaultImports: false,
+        esModuleInterop: false,
+      },
+    }
   },
   webpackFinal: async (config) => {
     return {

@@ -1,0 +1,18 @@
+/*
+ * Copyright © All rights reserved 2022
+ * Infinisoft Inc.
+ * www.infini-soft.com
+ */
+
+.root {
+  margin-bottom: 1.5rem;
+}
+
+button {
+  background-color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+}
+
+button:hover {
+  cursor: pointer;
+}
