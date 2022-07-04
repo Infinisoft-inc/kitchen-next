@@ -12,7 +12,6 @@ excluded
 
 # build
 dist
-lib
 
 # misc
 .DS_Store
