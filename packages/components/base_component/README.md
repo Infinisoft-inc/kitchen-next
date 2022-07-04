@@ -193,15 +193,6 @@ Utils command
 
 <br />
 
-# End 2 End Testing
-Not implemented
-
-# CI/CD Tests
-Not implemented
-
-# Data Mock
-Not implemented
-
 <br />
 
 # Folder structure
