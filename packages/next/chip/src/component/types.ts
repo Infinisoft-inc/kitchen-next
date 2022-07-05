@@ -3,11 +3,15 @@
  * Infinisoft Inc.
  * www.infini-soft.com
  */
-
+import React from "react";
 /**
  * Extend component with custom props
  */
-export type ExtendComponentProps = {doguette?: string};
+export type ExtendComponentProps = Partial<React.HTMLAttributes<HTMLDivElement>> & {
+    children?: React.ReactNode
+    onRemove?: () => void
+    onChange?:(arg: string)=>void
+}
 
 /**
  * Extend context with custom implementation

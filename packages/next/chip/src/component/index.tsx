@@ -5,28 +5,33 @@
  */
 import { useMicroContext } from '@/context/index';
 import { useMicroState } from '@/hooks/useMicroState';
+import { Suspense } from 'react';
+import { DeleteIcon } from './assets';
+import './index.module.css';
 import type { ExtendComponentProps } from './types';
 
-const Component = (props: ExtendComponentProps) => {
-  const { store } = useMicroContext()
-  const state = useMicroState()
+const Component = ({
+  onRemove,
+  children,
+  onChange,
+  ...props
+}: ExtendComponentProps) => {
+  const { store } = useMicroContext();
+  const state = useMicroState();
 
-  return <div>
-    <h1>Base Component Template</h1>
-
+  return (
     <div>
-      <h2>State</h2>
-      <code key={store.getState()?.cat}>
-        {JSON.stringify(state)}
-      </code>
+      <Suspense>
+        <div data-style={'data:chip:control'} {...props}>
+          {children}{' '}
+          {onRemove && (
+            <button onClick={onRemove}>
+              <DeleteIcon />
+            </button>
+          )}
+        </div>
+      </Suspense>
     </div>
-
-    <div>
-      <button onClick={() => {
-        store.mutate((state) => ({ ...state, cat: 'XXXXX', user: 'XXXXX', bob: 99999, dog: 'XXXXXX' }))
-        store.emit('scream', { level: 'DANGEROUS' });
-      }}>Mutate State</button>
-    </div>
-  </div>;
-}
-export default Component
+  );
+};
+export default Component;
