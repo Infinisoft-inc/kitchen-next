@@ -18,20 +18,24 @@ export type ExtendMicroContext = {}
  * Extend state with custom implementation
  */
 export type ExtendMicroStoreState = {
-    user:string
-    bob: number
-} & IDog & ICat
+    list: Record<string, Item>
+    editItemId: string
+    meta?: {
+      categories?: Meta
+      subCategories?: Meta
+    }
+  }
 
 /**
 * Extend store events payload with custom implementation
 */
-export type ExtendMicroStoreEventsPayload = { event: "dog", payload: IDog }
-    | { event: "cat", payload: ICat }
+export type ExtendMicroStoreEventsPayload = { event: "dog", payload: Meta }
+    | { event: "cat", payload: Item }
     | { event: 'scream', payload: {level: string}}
     | {}
 
-type IDog = { dog: string }
-type ICat = { cat: string }
+export type Item = any
+export type Meta = any
 
 
 const d: ExtendMicroStoreEventsPayload = {

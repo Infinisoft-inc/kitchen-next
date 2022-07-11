@@ -13,7 +13,7 @@ import {
 const Contact = React.lazy(() => import(/* webpackChunkName: 'Contact' */ 'contactmui/Contact'))
 const Layout = React.lazy(() => import(/* webpackChunkName: 'Layout' */ '@/component'))
 
-const Mock = ({ title }: { title: string }) => {
+export const Mock = ({ title }: { title: string }) => {
   return <><h1 style={{ marginTop: '6rem' }}>{title}</h1></>
 }
 
