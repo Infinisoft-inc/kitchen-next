@@ -25,7 +25,7 @@
     "deploy": "kli component deploy",
     "serve:dist": "serve -s dist",
     "serve:dev": "serve -s dev",
-    "clean": "rimraf analyze dist node_modules dev",
+    "clean1": "rimraf analyze dist node_modules dev",
     "config:update": "kli config update",
     "task": "kli task run"
   },
